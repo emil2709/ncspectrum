@@ -1,4 +1,6 @@
 <?php
     echo "hei";
-    hi
+
+    echo "Erik er homo";
+
 ?>
