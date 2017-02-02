@@ -2,8 +2,14 @@
 
 class UserController extends Controller
 {
-    public function index()
+    public function index($name = '')
     {
-        echo "home/index";
+        echo "usercontroller/index";
+        echo "$name";
+    }
+    
+    public function test()
+    {
+        echo "test";
     }
 }

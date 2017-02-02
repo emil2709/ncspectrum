@@ -1,8 +1,11 @@
 <?php
 
-class AdminController
+class AdminController extends Controller
 {
-    
+    public function index()
+    {
+        echo "admin index";
+    }
 }
 
 ?>
