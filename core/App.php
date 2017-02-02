@@ -2,23 +2,31 @@
 
 class App
 {
+	
 	public function __construct()
-	{
-		$url = $_GET['url'];
-		$url = rtrim($url, '/');
-		$url = explode('/', $url);
+	{		
+		if(isset($_GET['url']))
+		{
+			$url = $_GET['url'];
+			$url = rtrim($url, '/');
+			$url = explode('/', $url);
+		}
+		else 
+		{
+			return false;
+		}
 
 		//print_r($url);
 
 		$file = 'controllers/' .$url[0]. '.php'; 
 		if(file_exists($file))
 		{
-			require $file;
+			require_once $file;
 		}
 		else
 		{
-			require 'controllers/errorhandler.php';
-			$controller = new Errorhandler();
+			require_once 'controllers/ErrorController.php';
+			$controller = new ErrorController();
 			return false;
 		}
 
@@ -36,4 +44,6 @@ class App
 			}
 		}
 	}
+
+
 }

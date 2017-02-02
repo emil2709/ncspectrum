@@ -1,6 +1,6 @@
 <?php
 
-class User extends Controller
+class UserController extends Controller
 {
 	
 	public function __construct()
@@ -11,8 +11,11 @@ class User extends Controller
 
 	public function test($arg = false)
 	{
-		echo 'We are inside user-other <br/>';
+		echo 'We are inside user->test <br/>';
 		echo 'Optional: '.$arg.'<br/>';
+
+		require 'models/User.php';
+		$model = new User();
 	}
 	
 }

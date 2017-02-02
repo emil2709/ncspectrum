@@ -9,6 +9,6 @@ class View
 
 	public function render($name)
 	{
-		require 'views/'.$name.'.php';
+		require_once 'views/'.$name.'.php';
 	}
 }

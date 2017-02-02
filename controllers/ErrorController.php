@@ -1,6 +1,6 @@
 <?php
 
-class Errorhandler extends Controller
+class ErrorController extends Controller
 {
 	public function __construct()
 	{
