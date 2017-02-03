@@ -6,7 +6,7 @@ class UserController extends Controller
 	public function __construct()
 	{
 		parent::__construct();
-		echo 'We are in user controller <br/>';
+		$this->view->render('public/home');
 	}
 
 	public function test($arg = false)
@@ -14,8 +14,13 @@ class UserController extends Controller
 		echo 'We are inside user->test <br/>';
 		echo 'Optional: '.$arg.'<br/>';
 
-		require 'models/User.php';
+		require 'app/models/User.php';
 		$model = new User();
+	}
+
+	public function login()
+	{
+		$this->view->render('public/login');
 	}
 	
 }

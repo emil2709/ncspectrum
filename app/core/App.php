@@ -5,27 +5,27 @@ class App
 	
 	public function __construct()
 	{		
-		if(isset($_GET['url']))
+		$url = isset($_GET['url']) ? $_GET['url'] : null;
+		$url = rtrim($url, '/');
+		$url = explode('/', $url);
+		
+		if(empty($url[0]))
 		{
-			$url = $_GET['url'];
-			$url = rtrim($url, '/');
-			$url = explode('/', $url);
-		}
-		else 
-		{
+			require_once 'app/controllers/UserController.php';
+			$controller = new UserController();
 			return false;
 		}
 
 		//print_r($url);
 
-		$file = 'controllers/' .$url[0]. '.php'; 
+		$file = 'app/controllers/' .$url[0]. '.php'; 
 		if(file_exists($file))
 		{
 			require_once $file;
 		}
 		else
 		{
-			require_once 'controllers/ErrorController.php';
+			require_once 'app/controllers/ErrorController.php';
 			$controller = new ErrorController();
 			return false;
 		}
