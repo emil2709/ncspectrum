@@ -14,7 +14,9 @@ class CreateOverviewsTable extends Migration
     public function up()
     {
         Schema::create('overviews', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id'); //primary
+            //$table->increments('bnr'); //fremmednøkkel fra visit
+            //$table->increments('pid'); //fremmed fra user
             $table->timestamps();
         });
     }
