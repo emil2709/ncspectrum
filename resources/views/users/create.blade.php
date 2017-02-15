@@ -8,7 +8,7 @@
 		<div class="panel panel-primary margin-top">
 
 			<div class="panel panel-heading text-center">
-				<h3>Create new user</h3>
+				<div class="panel-title">Create New User</div>
 			</div>
 
 			<div class="panel panel-body">
@@ -32,6 +32,15 @@
 									'placeholder' => 'Enter Last Name here...']) }}
 							</div>
 						</div>
+						
+						<div class="form-group">
+							{{ Form::label('phone', 'Phone:') }}
+							<div class="input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+								{{ Form::text('email', null, ['class' => 'form-control', 
+									'placeholder' => 'Enter Phone Number here...']) }}
+							</div>
+						</div>
 
 						<div class="form-group">
 							{{ Form::label('email', 'E-Mail:') }}
@@ -52,12 +61,14 @@
 						</div>
 
 						<div class="form-group">
-							<div class="row">
-								<div class="col-md-5 col-md-offset-1">
-									{{ Form::submit('Create', ['class' => 'btn btn-success btn-block']) }}
-								</div>
-								<div class="col-md-5">
-									{{ Form::submit('Cancel', ['class' => 'btn btn-default btn-block']) }}
+							<div class="btn-margin-top">
+								<div class="row">
+									<div class="col-md-5 col-md-offset-1">
+										{{ Form::submit('Create', ['class' => 'btn btn-success btn-block']) }}
+									</div>
+									<div class="col-md-5">
+										{{ Form::submit('Cancel', ['class' => 'btn btn-default btn-block']) }}
+									</div>
 								</div>
 							</div>
 						</div>
@@ -65,7 +76,7 @@
 					{!! Form::close() !!}
 				</div>
 			</div>
-
+			
 		</div>
 	</div>
 
