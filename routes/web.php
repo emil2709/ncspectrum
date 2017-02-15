@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', ['as' => 'home', 'uses' => 'UserController@index']);
+Route::get('/create', ['as' => 'create', 'uses' => 'UserController@create']);

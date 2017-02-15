@@ -1,9 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-{!! Form::submit('Save', ['class' => 'btn btn-success btn-block']) !!}
-{!! Form::close() !!}
+	@include('partials._head')
 
-@include('partials._javascript')
+	<body>
+		
+		<div class="container">
+
+			@include('partials._message')
+
+			@yield('content')
+			
+		</div>
+
+	@include('partials._footer')
+
+	@include('partials._javascript')	
+
+	</body>
 
 </html>
