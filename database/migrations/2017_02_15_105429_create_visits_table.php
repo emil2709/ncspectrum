@@ -18,8 +18,8 @@ class CreateVisitsTable extends Migration
             $table->timestamps();
             $table->nullableTimestamp('from');
             $table->nullableTimestamp('to');
-            $table->string('comany');
-            $table->sting('comment');
+            $table->string('company');
+            $table->string('comment');
         });
     }
 
