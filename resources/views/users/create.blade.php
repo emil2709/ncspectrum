@@ -5,7 +5,7 @@
 @section('content')
 
 	<div class="col-md-6 col-md-offset-3">
-		<div class="panel panel-primary">
+		<div class="panel panel-primary margin-top">
 
 			<div class="panel panel-heading text-center">
 				<h3>Create new user</h3>
@@ -36,7 +36,7 @@
 						<div class="form-group">
 							{{ Form::label('email', 'E-Mail:') }}
 							<div class="input-group">
-								<span class="input-group-addon"><i class="glyphicon glyphicon-inbox"></i></span>
+								<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 								{{ Form::text('email', null, ['class' => 'form-control', 
 									'placeholder' => 'Enter E-Mail Address here...']) }}
 							</div>
