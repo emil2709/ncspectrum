@@ -94,4 +94,5 @@ class UserController extends Controller
     {
         // Users will not have this function
     }
+
 }

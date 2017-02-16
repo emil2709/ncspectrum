@@ -7,7 +7,7 @@
 		
 		<fieldset>
 			
-			<legend class="text-center">Admin Login</legend>
+			<legend class="text-center">ADMIN LOGIN</legend>
 
 			<div class="form-group">
 				<div class="col-md-4 control-label">
@@ -37,10 +37,10 @@
 
 			<div class="form-group">
 				<div class="col-md-4 col-md-offset-2">
-					{{ Form::submit('Login', ['class' => 'btn btn-success btn-block']) }}
+					{{ Form::submit('LOGIN', ['class' => 'btn btn-success btn-block']) }}
 				</div>
 				<div class="col-md-4">
-					<a href="{{ route('users.index') }}" class="btn btn-default btn-block">Cancel</a>
+					<a href="{{ route('users.index') }}" class="btn btn-default btn-block">CANCEL</a>
 				</div>
 			</div>
 

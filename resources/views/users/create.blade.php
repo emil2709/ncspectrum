@@ -8,7 +8,7 @@
 		<div class="panel panel-primary margin-top">
 
 			<div class="panel panel-heading text-center">
-				<div class="panel-title">Create New User</div>
+				<div class="panel-title">CREATE NEW USER</div>
 			</div>
 
 			<div class="panel panel-body">
@@ -64,10 +64,10 @@
 							<div class="btn-margin-top">
 								<div class="row">
 									<div class="col-md-5 col-md-offset-1">
-										{{ Form::submit('Create', ['class' => 'btn btn-success btn-block']) }}
+										{{ Form::submit('CREATE', ['class' => 'btn btn-success btn-block']) }}
 									</div>
 									<div class="col-md-5">
-										<a href="{{ route('users.index') }}" class="btn btn-default btn-block">Cancel</a>
+										<a href="{{ route('users.index') }}" class="btn btn-default btn-block">CANCEL</a>
 									</div>
 								</div>
 							</div>

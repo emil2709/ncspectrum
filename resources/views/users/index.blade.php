@@ -25,7 +25,7 @@
 						<div class="col-md-6">
 							<div class="well">
 								<p class="lead">
-									Drag
+									DRAG
 								</p>
 								<hr>
 								<p>
@@ -40,7 +40,23 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="well">
-								<a href="{{ route('users.create') }}" class="btn btn-primary btn-block">Create new user</a>
+								<p class="lead">
+									FLASH MESSAGE
+								</p>
+								<hr>
+								<p>
+									En "Success" flash-message vil nå vises etter at en har blitt opprettet.
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+
+				<li>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="well">
+								<a href="{{ route('users.create') }}" class="btn btn-primary btn-block">CREATE NEW USER</a>
 								<hr>
 								<p>
 									Knappen for å lage en bruker. <br/>
@@ -56,7 +72,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="well">
-								<a href="{{ route('login') }}" class="btn btn-primary btn-block">Admin login</a>
+								<a href="{{ route('login') }}" class="btn btn-primary btn-block">ADMIN LOGIN</a>
 								<hr>
 								<p>
 									Knappen for å logge inn som admin. <br/>
