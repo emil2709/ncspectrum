@@ -2,11 +2,13 @@
 
 @section('title', '| Admin Login')
 
-
-<div class="container col-md-8 col-md-offset-2">
-	{!! Form::open(['class' => 'well form-horizontal']) !!}
+<div class="col-md-8 col-md-offset-2">
+	{!! Form::open(['class' => 'well form-horizontal margin-top']) !!}
 		
 		<fieldset>
+			
+			<legend class="text-center">Admin Login</legend>
+
 			<div class="form-group">
 				<div class="col-md-4 control-label">
 					{{ Form::label('username', 'Username:') }}
@@ -32,6 +34,16 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="form-group">
+				<div class="col-md-4 col-md-offset-2">
+					{{ Form::submit('Login', ['class' => 'btn btn-success btn-block']) }}
+				</div>
+				<div class="col-md-4">
+					<a href="{{ route('users.index') }}" class="btn btn-default btn-block">Cancel</a>
+				</div>
+			</div>
+
 		</fieldset>
 
 	{!! Form::close() !!}

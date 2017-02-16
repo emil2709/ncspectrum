@@ -19,7 +19,7 @@
 	background:#202020;
 }
 
-/* Real css-rules */
+/* Active css-rules */
 
 .margin-top {
 	margin-top: 40px;
@@ -27,4 +27,8 @@
 
 .btn-margin-top {
 	margin-top:30px;
+}
+
+ul {
+	list-style-type:none;
 }
