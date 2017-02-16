@@ -13,8 +13,8 @@
 
 			<div class="panel panel-body">
 				<div class="col-md-12">
-					{!! Form::open() !!}
-
+					{!! Form::open(['route' => 'users.store']) !!}
+						
 						<div class="form-group">
 							{{ Form::label('firstname', 'First Name:') }}
 							<div class="input-group">
@@ -37,7 +37,7 @@
 							{{ Form::label('phone', 'Phone:') }}
 							<div class="input-group">
 								<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-								{{ Form::text('email', null, ['class' => 'form-control', 
+								{{ Form::text('phone', null, ['class' => 'form-control', 
 									'placeholder' => 'Enter Phone Number here...']) }}
 							</div>
 						</div>
@@ -67,7 +67,7 @@
 										{{ Form::submit('Create', ['class' => 'btn btn-success btn-block']) }}
 									</div>
 									<div class="col-md-5">
-										{{ Form::submit('Cancel', ['class' => 'btn btn-default btn-block']) }}
+										<a href="{{ route('users.index') }}" class="btn btn-default btn-block">Cancel</a>
 									</div>
 								</div>
 							</div>
@@ -76,7 +76,7 @@
 					{!! Form::close() !!}
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 

@@ -11,5 +11,12 @@
 |
 */
 
-Route::get('/', ['as' => 'home', 'uses' => 'UserController@index']);
-Route::get('/create', ['as' => 'create', 'uses' => 'UserController@create']);
+// User Routes
+
+Route::get('/', ['as' => 'users.index', 'uses' => 'UserController@index']);
+Route::get('/create', ['as' => 'users.create', 'uses' => 'UserController@create']);
+Route::post('users', ['as' => 'users.store', 'uses' => 'UserController@store']);
+
+// Admin Routes
+
+Route::get('auth/login', ['as' => 'login', 'uses' => 'AdminController@index']);

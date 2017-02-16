@@ -1,3 +1,26 @@
+
+/* Test css-rules */
+
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+
+.fa-fw {
+	width: 2em;
+}
+
+.dark-bg {
+	background:#707070;
+}
+
+.darker-bg {
+	background:#505050;
+}
+
+.darkest-bg {
+	background:#202020;
+}
+
+/* Real css-rules */
+
 .margin-top {
 	margin-top: 40px;
 }

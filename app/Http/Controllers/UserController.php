@@ -36,7 +36,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+    	$user = new User();
+    	$user->firstname = $request->firstname;
+    	$user->lastname = $request->lastname;
+    	$user->phone = $request->phone;
+    	$user->email = $request->email;
+    	$user->company = $request->company;
 
+    	$user->save();
+
+        Session::flash('success', 'The user was successfully created!');
+
+    	return redirect()->route('users.index');
     }
 
     /**
@@ -58,7 +69,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-
+        // Users will not have this function
     }
 
     /**
@@ -70,7 +81,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        // Users will not have this function
     }
 
     /**
@@ -81,6 +92,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-
+        // Users will not have this function
     }
 }
