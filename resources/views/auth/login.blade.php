@@ -3,7 +3,7 @@
 @section('title', '| Admin Login')
 
 <div class="col-md-8 col-md-offset-2">
-	{!! Form::open(['class' => 'well form-horizontal margin-top']) !!}
+	{!! Form::open(['route' => 'login', 'method' => 'GET', 'class' => 'well form-horizontal margin-top']) !!}
 		
 		<fieldset>
 			

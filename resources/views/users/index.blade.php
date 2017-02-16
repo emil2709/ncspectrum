@@ -8,12 +8,12 @@
 		<div class="row col-md-12">
 
 			<div class="margin-top" id="welcome">
-				<h1 class="text-center">Welcome Nigga..</h1>
+				<h1 class="text-center">Welcome to <i>'huehue, sikkerhet..'</i></h1>
 			</div>
 
 			<div class="row margin-top">
 				<p class="lead">
-					Yalla section containing work in progress
+					Yalla Work in Progress Section
 				</p>
 			</div>
 
@@ -29,7 +29,7 @@
 								</p>
 								<hr>
 								<p>
-									Drag the wells bitch.
+									Drag the wells.
 								</p>
 							</div>
 						</div>
@@ -60,7 +60,8 @@
 								<hr>
 								<p>
 									Knappen for å logge inn som admin. <br/>
-									Funker ikke. Designet burde forbedret mye mer >>!
+									Selve innloggingen er ikke laget enda. <br/>
+									Designet burde forbedret mye mer >>!
 								</p>
 							</div>
 						</div>
