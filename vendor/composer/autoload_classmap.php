@@ -6,12 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AdminTableSeeder' => $baseDir . '/database/seeds/AdminTableSeeder.php',
     'CreateAdminsTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_admins_table.php',
     'CreateOverviewsTable' => $baseDir . '/database/migrations/2017_02_15_105402_create_overviews_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateStatusesTable' => $baseDir . '/database/migrations/2017_02_15_105313_create_statuses_table.php',
-    'CreateUsersTable' => $baseDir . '/database/migrations/2017_02_15_105512_create_users_table.php',
-    'CreateVisitsTable' => $baseDir . '/database/migrations/2017_02_15_105429_create_visits_table.php',
+    'CreateUsersTable' => $baseDir . '/database/migrations/2017_02_14_105512_create_users_table.php',
+    'CreateVisitsTable' => $baseDir . '/database/migrations/2017_02_14_105429_create_visits_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
@@ -542,4 +543,5 @@ return array(
     'SebastianBergmann\\ResourceOperations\\ResourceOperations' => $vendorDir . '/sebastian/resource-operations/src/ResourceOperations.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'UsersTableSeeder' => $baseDir . '/database/seeds/UsersTableSeeder.php',
 );

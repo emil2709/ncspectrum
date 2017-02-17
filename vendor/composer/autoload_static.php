@@ -278,12 +278,13 @@ class ComposerStaticInit5e2bea8f382df52533866c6d5d3cb4d1
     );
 
     public static $classMap = array (
+        'AdminTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminTableSeeder.php',
         'CreateAdminsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_admins_table.php',
         'CreateOverviewsTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_15_105402_create_overviews_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateStatusesTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_15_105313_create_statuses_table.php',
-        'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_15_105512_create_users_table.php',
-        'CreateVisitsTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_15_105429_create_visits_table.php',
+        'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_14_105512_create_users_table.php',
+        'CreateVisitsTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_14_105429_create_visits_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
@@ -814,6 +815,7 @@ class ComposerStaticInit5e2bea8f382df52533866c6d5d3cb4d1
         'SebastianBergmann\\ResourceOperations\\ResourceOperations' => __DIR__ . '/..' . '/sebastian/resource-operations/src/ResourceOperations.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
