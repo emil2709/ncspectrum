@@ -14,11 +14,16 @@ class CreateStatusesTable extends Migration
     public function up()
     {
         Schema::create('statuses', function (Blueprint $table) {
-            $table->increments('id');
-            //$table->increments('pid');
+            $table->increments('id', false);
+            $table->integer('user_id')->unsigned();
             $table->string('status');
             $table->timestamps();
         });
+
+        Schema::table('statuses', function($table) {
+            $table->foreign('user_id')->references('uid')->on('users');
+        });
+
     }
 
     /**

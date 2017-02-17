@@ -14,9 +14,10 @@ class CreateVisitsTable extends Migration
     public function up()
     {
         Schema::create('visits', function (Blueprint $table) {
-            $table->increments('bnr');
-            $table->date('from');
-            $table->date('to');
+            $table->increments('vid');
+            $table->string('date');
+            $table->string('from');
+            $table->string('to');
             $table->string('company');
             $table->string('comment');
         });
