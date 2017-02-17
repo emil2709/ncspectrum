@@ -14,6 +14,7 @@ class CreateStatusesTable extends Migration
     public function up()
     {
         Schema::create('statuses', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id', false);
             $table->integer('user_id')->unsigned();
             $table->string('status');
@@ -21,7 +22,7 @@ class CreateStatusesTable extends Migration
         });
 
         Schema::table('statuses', function($table) {
-            $table->foreign('user_id')->references('uid')->on('users');
+            $table->foreign('user_id')->references('uid')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
 
     }
@@ -33,6 +34,7 @@ class CreateStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuses');
+        //Schema::dropIfExists('statuses');
+        //Schema::dropIfExists('users');
     }
 }

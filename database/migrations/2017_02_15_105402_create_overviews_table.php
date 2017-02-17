@@ -14,13 +14,17 @@ class CreateOverviewsTable extends Migration
     public function up()
     {
         Schema::create('overviews', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id', false); //Primarykey
             $table->integer('visit_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
-
-            $table->foreign('visit_id')->references('vid')->on('visits'); //Foreignkey from visitstable
-            $table->foreign('user_id')->references('uid')->on('users'); //Foreignkey from userstable
+        });
+            //$table->foreign('visit_id')->references('vid')->on('visits'); //Foreignkey from visitstable
+            //$table->foreign('user_id')->references('uid')->on('users'); //Foreignkey from userstable
+        Schema::table('overviews', function($table) {
+            $table->foreign('visit_id')->references('vid')->on('visits')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('uid')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
