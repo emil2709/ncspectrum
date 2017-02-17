@@ -278,7 +278,7 @@ class ComposerStaticInit5e2bea8f382df52533866c6d5d3cb4d1
     );
 
     public static $classMap = array (
-        'AdminTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminTableSeeder.php',
+        'AdminsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminsTableSeeder.php',
         'CreateAdminsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_admins_table.php',
         'CreateOverviewsTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_15_105402_create_overviews_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
@@ -357,6 +357,7 @@ class ComposerStaticInit5e2bea8f382df52533866c6d5d3cb4d1
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'OverviewsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/OverviewsTableSeeder.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
         'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
         'PHPUnit\\Framework\\TestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
@@ -814,8 +815,10 @@ class ComposerStaticInit5e2bea8f382df52533866c6d5d3cb4d1
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\ResourceOperations\\ResourceOperations' => __DIR__ . '/..' . '/sebastian/resource-operations/src/ResourceOperations.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'StatusesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/StatusesTableSeeder.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
         'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
+        'VisitsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/VisitsTableSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

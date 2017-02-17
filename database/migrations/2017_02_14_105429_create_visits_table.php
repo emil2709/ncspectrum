@@ -20,6 +20,7 @@ class CreateVisitsTable extends Migration
             $table->string('to');
             $table->string('company');
             $table->string('comment');
+            $table->timestamps();
         });
     }
 
