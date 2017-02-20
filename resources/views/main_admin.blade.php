@@ -2,16 +2,25 @@
 <html lang="en">
 
 	@include('partials._head')
-<body>
-	@include('partials._nav')
+	
+	<body>
+	
+		@include('partials._nav')
 
-	@include('partials._sidebar_left')
+		@include('partials._sidebar_left')
 
-		@yield('content')
+		<div class="container">
 
-	@include('partials._footer')
+			@include('partials._message')
 
-	@include('partials._javascript')	
+			@yield('content')
 
-</body>
+		</div>
+
+		@include('partials._footer')
+
+		@include('partials._javascript')	
+
+	</body>
+
 </html>
