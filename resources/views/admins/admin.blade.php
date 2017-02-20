@@ -30,16 +30,16 @@
             </div>
           </div>
 
-          <h2 class="sub-header">Section title</h2>
+          <h2 class="sub-header">Visits</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Company</th>
                 </tr>
               </thead>
               <tbody>
