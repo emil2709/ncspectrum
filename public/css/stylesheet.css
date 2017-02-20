@@ -26,6 +26,10 @@ body {
 	font-family: 'Calibri', sans-serif;
 }
 
+ul {
+    list-style-type: none;
+}
+
 .margin-top {
 	margin-top: 40px;
 }
@@ -34,8 +38,12 @@ body {
 	margin-top: 30px;
 }
 
-ul {
-	list-style-type: none;
+.divider{
+    position:absolute;
+    left:50%;
+    top:10%;
+    bottom:10%;
+    border-left:1px solid gray;
 }
 
 .btn-primary {
@@ -46,8 +54,8 @@ ul {
 
 .btn-primary:hover {
   	color: #fff;
-    background-color: #0099ef;
-    border-color: #0099ef;
+    background-color: #0088bc;
+    border-color: #0088bc;
 }
 
 .btn-success {

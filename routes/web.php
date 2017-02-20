@@ -13,7 +13,8 @@
 
 // User Routes
 
-Route::get('/', ['as' => 'users.index', 'uses' => 'UserController@index']);
+Route::get('/', ['as' => 'users.wip', 'uses' => 'UserController@wip']);
+Route::get('/index', ['as' => 'users.index', 'uses' => 'UserController@index']);
 Route::get('/create', ['as' => 'users.create', 'uses' => 'UserController@create']);
 Route::post('users', ['as' => 'users.store', 'uses' => 'UserController@store']);
 

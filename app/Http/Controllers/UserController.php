@@ -15,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
- 		return view('users.index');
+ 		$users = User::orderBy('uid','desc')->paginate(10);
+        return view('users.index')->withUsers($users);
     }
 
     /**
@@ -93,6 +94,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         // Users will not have this function
+    }
+
+    public function wip()
+    {
+        return view('users.wip');
     }
 
 }
