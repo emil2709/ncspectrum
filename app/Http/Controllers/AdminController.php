@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Admin;
+use App\User;
 use Session;
 
 class AdminController extends Controller
@@ -64,7 +65,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-
+        //$user = User::find($id);
+        return view('admins.edit');
     }
 
     /**
@@ -88,5 +90,11 @@ class AdminController extends Controller
     public function destroy($id)
     {
 
+    }
+
+    public function overview()
+    {
+        $users = User::orderBy('uid', 'desc')->paginate(10);
+        return view('admins.overview')->withUsers($users);
     }
 }

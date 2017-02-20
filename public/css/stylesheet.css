@@ -69,3 +69,7 @@ ul {
     background-color: #449d2f;
     border-color: #449d2f;
 }
+
+.ui-widget {
+    font-family: 'Calibri', sans-serif;
+}

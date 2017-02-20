@@ -42,6 +42,7 @@
 					@endforeach
 
 				</ul>
+				{!! $users->links(); !!}
 			</div>
 
 			<div class="divider"></div>
