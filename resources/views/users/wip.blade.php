@@ -1,4 +1,4 @@
-@extends('main')
+@extends('main_user')
 
 @section('title', '| Work In Progress Section')
 

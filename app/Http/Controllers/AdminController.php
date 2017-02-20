@@ -94,7 +94,9 @@ class AdminController extends Controller
 
     public function overview()
     {
-        $users = User::orderBy('uid', 'desc')->paginate(10);
-        return view('admins.overview')->withUsers($users);
+        //$users = User::orderBy('uid', 'desc')->paginate(10);
+        //return view('admins.overview')->withUsers($users);
+
+        return view('admins.admin');
     }
 }
