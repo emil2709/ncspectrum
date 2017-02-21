@@ -15,7 +15,7 @@
 		<div class="col-md-8 col-md-offset-2">
 
 			@foreach($users as $user)
-			<div class="accordion margin-top">
+			<div class="accordion">
 				<h3> {{$user->firstname}}{{$user->lastename}} </h3>
 				<div class="div">
 					<div class="col-md-7">
@@ -46,10 +46,6 @@
 			@endforeach
 
 			<div class="text-center">
-<<<<<<< HEAD
-				{!! $users->links(); !!}
-=======
->>>>>>> 9bc56faf91be17055574d7ba6a3a545295c9b861
 				<a href="{{ route('users.wip') }}" class="btn btn-default btn-block">BACK TO HOME</a>
 			</div>
 
