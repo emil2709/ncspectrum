@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">NC-Spectrum</a>
+      <a class="navbar-brand" href="{{route('users.wip')}}">NC-Spectrum</a>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">

@@ -71,10 +71,17 @@
 					</div>
 				</div>
 
-				<div class="form-group">
-					<div class="col-md-4 col-md-offset-2">
+				<div class="form-group btn-margin-top">
+					<div class="col-md-8 col-md-offset-2">
 						{{ Form::submit('SAVE', ['class' => 'btn btn-success btn-block']) }}
 					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-4 col-md-offset-2">
+						{!! Form::open(['route' => ['admins.destroyUser', $user->id], 'method' => 'DELETE']) !!}
+                  			{!! Form::submit('DELETE', ['class' => 'btn btn-danger btn-block']) !!}
+               			{!! Form::close() !!}
+                	</div>
 					<div class="col-md-4">
 						<a href="{{ route('admins.users') }}" class="btn btn-default btn-block">CANCEL</a>
 					</div>

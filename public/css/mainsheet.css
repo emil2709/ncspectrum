@@ -38,6 +38,10 @@ ul {
 	margin-top: 30px;
 }
 
+.alert-margin-top {
+    margin-top:10px;
+}
+
 .divider{
     position:absolute;
     left:50%;

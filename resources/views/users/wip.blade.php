@@ -21,6 +21,19 @@
 
 			<ul class="sortable draggable">
 
+			<li class="well col-md-6 col-md-offset-3">
+					<div class="row">
+						<div class="col-md-12">
+							<a href="{{ route('admins.users') }}" class="btn btn-primary btn-block">USERS</a>
+							<hr>
+							<p>
+								Admin kan nå legge til, endre og slette brukere. <br/>
+								<strong>URL: /admins/users</strong>
+							</p>
+						</div>
+					</div>
+				</li>
+
 				<li class="well col-md-6 col-md-offset-3">
 					<div class="row">
 						<div class="col-md-12">

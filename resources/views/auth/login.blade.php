@@ -37,9 +37,9 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group btn-margin-top">
 					<div class="col-md-4 col-md-offset-2">
-						{{ Form::submit('LOGIN', ['class' => 'btn btn-success btn-block']) }}
+						{{ Form::submit('LOGIN', ['class' => 'btn btn-primary btn-block']) }}
 					</div>
 					<div class="col-md-4">
 						<a href="{{ route('users.index') }}" class="btn btn-default btn-block">CANCEL</a>
