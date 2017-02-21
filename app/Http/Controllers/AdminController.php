@@ -99,4 +99,12 @@ class AdminController extends Controller
 
         return view('admins.admin');
     }
+
+    public function users()
+    {
+        //$posts = \DB::table('users')->get();
+        $posts = User::all();
+
+        return view('admins.users')->withPosts($posts);
+    }
 }

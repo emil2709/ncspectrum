@@ -24,3 +24,6 @@ Route::get('auth/login', ['as' => 'login', 'uses' => 'AdminController@index']);
 //Route::get('admins/overview', ['as' => 'admins.overview', 'uses' => 'AdminController@overview']);
 Route::get('admins/overview', ['as' => 'admins.overview', 'uses' => 'AdminController@overview']);
 Route::get('admins/{admin}/edit', ['as' => 'admins.edit', 'uses' => 'AdminController@edit']);
+
+
+Route::get('admins/users', 'AdminController@users');
