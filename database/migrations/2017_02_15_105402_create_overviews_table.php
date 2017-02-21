@@ -23,8 +23,8 @@ class CreateOverviewsTable extends Migration
             //$table->foreign('visit_id')->references('vid')->on('visits'); //Foreignkey from visitstable
             //$table->foreign('user_id')->references('uid')->on('users'); //Foreignkey from userstable
         Schema::table('overviews', function($table) {
-            $table->foreign('visit_id')->references('vid')->on('visits')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('user_id')->references('uid')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('visit_id')->references('id')->on('visits')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

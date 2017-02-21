@@ -22,7 +22,7 @@ class CreateStatusesTable extends Migration
         });
 
         Schema::table('statuses', function($table) {
-            $table->foreign('user_id')->references('uid')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
 
     }
