@@ -38,7 +38,7 @@
 						</div>
 					</div>
 					<div class="well col-md-5">
-						{!! Html::linkRoute('admins.edit', 'EDIT', [$user->uid], ['class' => 'btn btn-primary btn-block']) !!}
+						{!! Html::linkRoute('admins.edit', 'EDIT', [$user->id], ['class' => 'btn btn-primary btn-block']) !!}
 						<a href="#" class="btn btn-danger btn-block">DELETE</a>
 					</div>
 				</div>
