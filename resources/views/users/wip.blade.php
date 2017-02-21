@@ -28,7 +28,7 @@
 							<hr>
 							<p>
 								Admins oversiktsliste over brukere. <br/>
-								<strong>URL: /admins/overview</strong>
+								<strong>URL: /admins/dashboard</strong>
 							</p>
 						</div>
 					</div>

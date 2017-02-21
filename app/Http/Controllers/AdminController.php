@@ -94,12 +94,18 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('admins.admin');
+        return view('admins.dashboard');
     }
 
     public function users()
     {
         $posts = User::all();
         return view('admins.users')->withPosts($posts);
+    }
+
+    public function overview()
+    {
+        $users = User::all();
+        return view('admins.overview')->withUsers($users);
     }
 }

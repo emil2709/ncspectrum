@@ -1,57 +1,38 @@
 @extends('main_admin')
 
-@section('title', '| Overview')
+@section('title', '| Dashboard')
 
 @section('content')
-	
-	<div class="container">
 
-		<div class="margin-top" id="welcome">
-			<h1 class="text-center">Overview</h1>
-		</div>
+          <h1 class="page-header">Dashboard</h1>
 
-		<hr>
 
-		<div class="col-md-8 col-md-offset-2">
+           <!-- Her får vi bestemme om vi ønser placeholders eller ikke? kanskje her vi kan legge noen diagrammer? -->
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+          </div>
 
-			@foreach($users as $user)
-			<div class="accordion margin-top">
-				<h3> {{$user->firstname}}{{$user->lastename}} </h3>
-				<div class="div">
-					<div class="col-md-7">
-						<div class="col-md-12 form-group">
-							<label>Fullname: </label>
-							{{$user->firstname}}
-							{{$user->lastname}}
-						</div>
-						<div class="col-md-12 form-group">
-							<label>Phone: </label>
-							{{$user->phone}}
-						</div>
-						<div class="col-md-12 form-group">
-							<label>Email: </label>
-							{{$user->email}}
-						</div>
-						<div class="col-md-12 form-group">
-							<label>Company: </label>
-							{{$user->company}}
-						</div>
-					</div>
-					<div class="well col-md-5">
-						{!! Html::linkRoute('admins.edit', 'EDIT', [$user->uid], ['class' => 'btn btn-primary btn-block']) !!}
-						<a href="#" class="btn btn-danger btn-block">DELETE</a>
-					</div>
-				</div>
-			</div>
-			@endforeach
-
-			<div class="text-center">
-				{!! $users->links(); !!}
-				<a href="{{ route('users.wip') }}" class="btn btn-default btn-block">BACK TO HOME</a>
-			</div>
-
-		</div>
-
-	</div>
+        
+      </div>
+    </div>
 
 @endsection
