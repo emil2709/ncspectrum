@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	@include('partials._head')
+	@include('partials._adminhead')
 	
 	<body>
 	
