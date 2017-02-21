@@ -1,4 +1,4 @@
-@extends('main')
+@extends('main_admin')
 
 @section('title', '| Overview')
 
@@ -16,7 +16,7 @@
 
 			@foreach($users as $user)
 			<div class="accordion margin-top">
-				<h3> {{$user->firstname}}{{$user->lastename}}</h3>
+				<h3> {{$user->firstname}}{{$user->lastename}} </h3>
 				<div class="div">
 					<div class="col-md-7">
 						<div class="col-md-12 form-group">
