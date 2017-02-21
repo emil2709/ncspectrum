@@ -21,7 +21,7 @@
 	{{ Html::style('css/mainsheet.css') }}
 	{{ Html::style('css/usersheet.css') }}
 
-	<!-- Custom stylesheets will be added to their own relevant pages -->
+	<!-- Section used for pages that need specific additional css rules -->
     @yield('stylesheets')
 
 </head>

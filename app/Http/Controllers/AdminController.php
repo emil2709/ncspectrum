@@ -63,10 +63,21 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editUser($id)
     {
-        //$user = User::find($id);
-        return view('admins.edit');
+        $user = User::find($id);
+        return view('admins.edit')->withUser($user);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editAdmin($id)
+    {
+        //
     }
 
     /**
@@ -76,9 +87,32 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateUser(Request $request, $id)
     {
+        $user = User::find($id);
 
+        $user->firstname = $request->input('firstname');
+        $user->lastname = $request->input('lastname');
+        $user->phone = $request->input('phone');
+        $user->email= $request->input('email');
+        $user->company = $request->input('company');
+        $user->save();
+
+        Session::flash('success', "Changes has been made to the user.");
+
+        return redirect()->route('admins.users');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateAdmin(Request $request, $id)
+    {
+        //
     }
 
     /**
@@ -87,9 +121,13 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroyUser($id)
     {
+        $user = User::find($id);
+        $user->delete();
 
+        Session::flash('success', 'The User was successfully deleted!');
+        return redirect()->route('admins.users');
     }
 
     public function dashboard()
@@ -99,8 +137,8 @@ class AdminController extends Controller
 
     public function users()
     {
-        $posts = User::all();
-        return view('admins.users')->withPosts($posts);
+        $users = User::all();
+        return view('admins.users')->withUsers($users);
     }
 
     public function overview()

@@ -59,7 +59,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -82,7 +82,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Users will not have this function
+        //
     }
 
     /**

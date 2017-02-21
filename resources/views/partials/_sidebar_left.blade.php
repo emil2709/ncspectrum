@@ -1,6 +1,8 @@
 <div class="container-fluid">
   <div class="row">
+
     <div class="col-sm-3 col-lg-2 sidebar">
+
       <ul class="nav nav-sidebar">
         <!--<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li> -->
         <li><a href="/admins/dashboard">Overview</a></li>
@@ -18,6 +20,8 @@
         <li><a href="">Inne i operasjonssentral</a></li>
         <li><a href="">Videre</a></li>
       </ul>
+      
     </div>
+
   </div>
 </div>

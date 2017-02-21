@@ -11,7 +11,7 @@ Route::post('users', ['as' => 'users.store', 'uses' => 'UserController@store']);
 Route::get('auth/login', ['as' => 'login', 'uses' => 'AdminController@index']);
 Route::get('admins/overview', ['as' => 'admins.overview', 'uses' => 'AdminController@overview']);
 Route::get('admins/dashboard', ['as' => 'admins.dashboard', 'uses' => 'AdminController@dashboard']);
-Route::get('admins/{admin}/edit', ['as' => 'admins.edit', 'uses' => 'AdminController@edit']);
-
-
-Route::get('admins/users', 'AdminController@users');
+Route::get('admins/{user}/edit', ['as' => 'admins.editUser', 'uses' => 'AdminController@editUser']);
+Route::put('admins/{user}', ['as' => 'admins.updateUser', 'uses' => 'AdminController@updateUser']);
+Route::get('admins/users', ['as' => 'admins.users', 'uses' => 'AdminController@users']);
+Route::delete('admins/{user}', ['as' => 'admins.destroyUser', 'uses' => 'AdminController@destroyUser']);
