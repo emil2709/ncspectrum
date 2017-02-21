@@ -24,7 +24,7 @@
 				<li class="well col-md-6 col-md-offset-3">
 					<div class="row">
 						<div class="col-md-12">
-							<a href="{{ route('admins.overview') }}" class="btn btn-primary btn-block">ADMINS OVERVIEW</a>
+							<a href="{{ route('admins.dashboard') }}" class="btn btn-primary btn-block">ADMINS DASHBOARD</a>
 							<hr>
 							<p>
 								Admins oversiktsliste over brukere. <br/>

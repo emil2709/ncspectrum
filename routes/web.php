@@ -22,7 +22,7 @@ Route::post('users', ['as' => 'users.store', 'uses' => 'UserController@store']);
 
 Route::get('auth/login', ['as' => 'login', 'uses' => 'AdminController@index']);
 //Route::get('admins/overview', ['as' => 'admins.overview', 'uses' => 'AdminController@overview']);
-Route::get('admins/overview', ['as' => 'admins.overview', 'uses' => 'AdminController@overview']);
+Route::get('admins/dashboard', ['as' => 'admins.dashboard', 'uses' => 'AdminController@dashboard']);
 Route::get('admins/{admin}/edit', ['as' => 'admins.edit', 'uses' => 'AdminController@edit']);
 
 

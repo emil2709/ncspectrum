@@ -92,19 +92,14 @@ class AdminController extends Controller
 
     }
 
-    public function overview()
+    public function dashboard()
     {
-        //$users = User::orderBy('uid', 'desc')->paginate(10);
-        //return view('admins.overview')->withUsers($users);
-
         return view('admins.admin');
     }
 
     public function users()
     {
-        //$posts = \DB::table('users')->get();
         $posts = User::all();
-
         return view('admins.users')->withPosts($posts);
     }
 }
