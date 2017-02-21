@@ -46,10 +46,7 @@
 			@endforeach
 
 			<div class="text-center">
-<<<<<<< HEAD
 				{!! $users->links(); !!}
-=======
->>>>>>> 9bc56faf91be17055574d7ba6a3a545295c9b861
 				<a href="{{ route('users.wip') }}" class="btn btn-default btn-block">BACK TO HOME</a>
 			</div>
 
