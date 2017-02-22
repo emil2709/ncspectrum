@@ -1,6 +1,6 @@
 @extends('main_admin')
 
-@section('title', '| Create User')
+@section('title', '| Edit')
 
 @section('content')
 
