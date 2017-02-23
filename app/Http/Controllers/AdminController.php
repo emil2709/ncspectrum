@@ -52,9 +52,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showUser($id)
     {
-
+        $user = User::find($id);
+        return view('admins.show')->withUser($user);
     }
 
     /**

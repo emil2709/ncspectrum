@@ -95,9 +95,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-4 col-md-offset-2">
-						{!! Form::open(['route' => ['admins.destroyUser', $user->id], 'method' => 'DELETE']) !!}
-                  			{!! Form::submit('DELETE', ['class' => 'btn btn-danger btn-block']) !!}
-               			{!! Form::close() !!}
+						{!! Html::linkRoute('admins.showUser', 'DELETE', [$user->id], ['class' => 'btn btn-danger btn-block']) !!}
                 	</div>
 					<div class="col-md-4">
 						<a href="{{ route('admins.users') }}" class="btn btn-default btn-block">CANCEL</a>

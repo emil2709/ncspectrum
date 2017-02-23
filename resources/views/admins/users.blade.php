@@ -38,9 +38,7 @@
                 {!! Html::linkRoute('admins.editUser', 'EDIT', [$user->id], ['class' => 'btn btn-primary btn-block']) !!}
               </td>
               <td>
-                {!! Form::open(['route' => ['admins.destroyUser', $user->id], 'method' => 'DELETE']) !!}
-                  {!! Form::submit('DELETE', ['class' => 'btn btn-danger btn-block']) !!}
-                {!! Form::close() !!}
+                {!! Html::linkRoute('admins.showUser', 'DELETE', [$user->id], ['class' => 'btn btn-danger btn-block']) !!}
               </td>
             </tr>
         @endforeach

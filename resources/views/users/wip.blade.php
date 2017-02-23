@@ -21,7 +21,21 @@
 
 			<ul class="sortable draggable">
 
-			<li class="well col-md-6 col-md-offset-3">
+				<li class="well col-md-6 col-md-offset-3">
+					<div class="row">
+						<div class="col-md-12">
+							<p class="lead text-center">
+								Validering
+							</p>
+							<hr>
+							<p>
+								Validering ble lagt til å de mest relevante stedene, regex kan derimot forbedres.
+							</p>
+						</div>
+					</div>
+				</li>
+
+				<li class="well col-md-6 col-md-offset-3">
 					<div class="row">
 						<div class="col-md-12">
 							<a href="{{ route('admins.users') }}" class="btn btn-primary btn-block">USERS</a>
