@@ -7,8 +7,13 @@
 
 @endif
 
-{{--
-@if(count($error) > 0)
-
+@if (count($errors) > 0)
+    <div class="alert alert-danger alert-dismissable alert-margin-top" role="alert"">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
---}}

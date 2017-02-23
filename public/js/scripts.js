@@ -1,6 +1,4 @@
 
-// JQuery actions triggered on load
-
 $(document).ready(function(){
 
   // Functions triggered on load

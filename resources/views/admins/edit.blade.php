@@ -5,70 +5,86 @@
 @section('content')
 
 	<div class="col-md-10 col-md-offset-1">
-		{!! Form::model($user, ['route' => ['admins.updateUser', $user->id], 'method' => 'PUT', 'class' => 'well form-horizontal margin-top']) !!}
+		{!! Form::model($user, ['route' => ['admins.updateUser', $user->id], 'method' => 'PUT', 'data-toggle' => 'validator',
+				'class' => 'well form-horizontal margin-top']) !!}
 			
 			<fieldset>
 				
 				<legend class="text-center">CREATE USER</legend>
 
-				<div class="form-group">
+				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">
 						{{ Form::label('firstname', 'First Name:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							{{ Form::text('firstname', null, ['class' => 'form-control']) }}
+							{{ Form::text('firstname', null, ['class' => 'form-control',
+								'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå \-]{2,30}$"']) }}
 						</div>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
+					<div class="help-block with-errors"></div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">
 						{{ Form::label('lastname', 'Last Name:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							{{ Form::text('lastname', null, ['class' => 'form-control']) }}
+							{{ Form::text('lastname', null, ['class' => 'form-control',
+								'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå \-]{2,30}$"']) }}
 						</div>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
+					<div class="help-block with-errors"></div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">
 						{{ Form::label('phone', 'Phone:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-							{{ Form::text('phone', null, ['class' => 'form-control']) }}
+							{{ Form::text('phone', null, ['class' => 'form-control',
+								'required', 'minlength="8"', 'maxlength="8"', 'pattern="^[0-9]{8}$"']) }}
 						</div>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
+					<div class="help-block with-errors"></div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">
 						{{ Form::label('email', 'E-Mail:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-							{{ Form::text('email', null, ['class' => 'form-control']) }}
+							{{ Form::text('email', null, ['class' => 'form-control',
+								'required', 'pattern="^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$"']) }}
 						</div>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
+					<div class="help-block with-errors"></div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">
 						{{ Form::label('company', 'Company:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-							{{ Form::text('company', null, ['class' => 'form-control']) }}
+							{{ Form::text('company', null, ['class' => 'form-control',
+								'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$"']) }}
 						</div>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
+					<div class="help-block with-errors"></div>
 				</div>
 
 				<div class="form-group btn-margin-top">
