@@ -5,7 +5,7 @@
 @section('content')
 
 	<div class="col-md-8 col-md-offset-2">
-		{!! Form::open(['route' => 'users.store', 'class' => 'well form-horizontal margin-top']) !!}
+		{!! Form::open(['route' => 'users.store', 'class' => 'well form-horizontal margin-top', 'id' => 'createUser']) !!}
 			
 			<fieldset>
 				

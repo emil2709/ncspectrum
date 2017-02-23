@@ -8,5 +8,8 @@
 <!-- Latest compiled and minified JQueryUI -->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
+<!-- Laravel Javascript Validation -->
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+
 <!-- Our own script for various behaviours and actions -->
 {{ Html::script('js/scripts.js') }}

@@ -74,6 +74,7 @@
 				<div class="form-group btn-margin-top">
 					<div class="col-md-8 col-md-offset-2">
 						{{ Form::submit('SAVE', ['class' => 'btn btn-success btn-block']) }}
+						{{ Form::close() }}
 					</div>
 				</div>
 				<div class="form-group">
