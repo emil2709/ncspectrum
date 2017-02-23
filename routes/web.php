@@ -15,3 +15,4 @@ Route::get('admins/{user}/edit', ['as' => 'admins.editUser', 'uses' => 'AdminCon
 Route::put('admins/{user}', ['as' => 'admins.updateUser', 'uses' => 'AdminController@updateUser']);
 Route::get('admins/users', ['as' => 'admins.users', 'uses' => 'AdminController@users']);
 Route::delete('admins/{user}', ['as' => 'admins.destroyUser', 'uses' => 'AdminController@destroyUser']);
+
