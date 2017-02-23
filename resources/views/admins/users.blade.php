@@ -8,7 +8,14 @@
 
   <div class="table-responsive">
     <table class="table table-striped">
-
+        <div class="input-group custom-search-form">
+          <input type="text" name="search" class="form-control" placeholder="Search ...">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default-sm">
+              <i class="fa fa-search"></i>
+            </button>
+          </span>
+        </div>
       <thead>
         <tr>
           <th>Firstname</th>

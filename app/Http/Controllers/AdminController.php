@@ -139,6 +139,7 @@ class AdminController extends Controller
     {
         $users = User::all();
         return view('admins.users')->withUsers($users);
+
     }
 
     public function overview()
