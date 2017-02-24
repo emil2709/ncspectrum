@@ -146,7 +146,8 @@ class AdminController extends Controller
 
     public function users()
     {
-        $users = User::all();
+        $users = User::orderBy('firstname')->get();     //Alfabetisk på fornavn
+        //$users = User::latest()->get();               //Sorterer etter når de ble addet
         return view('admins.users')->withUsers($users);
 
     }
