@@ -46,62 +46,17 @@ class UserController extends Controller
             ]);
 
         $user = new User();
-    	$user->firstname = $request->firstname;
-    	$user->lastname = $request->lastname;
-    	$user->phone = $request->phone;
-    	$user->email = $request->email;
-    	$user->company = $request->company;
+    	$user->firstname = strtolower($request->firstname);
+    	$user->lastname = strtolower($request->lastname);
+    	$user->phone = strtolower($request->phone);
+    	$user->email = strtolower($request->email);
+    	$user->company = strtolower($request->company);
 
     	$user->save();
 
-        Session::flash('success', 'The user was successfully created!');
+        Session::flash('success', 'The User was successfully created!');
 
     	return redirect()->route('users.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        // Users will not have this function
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        // Users will not have this function
     }
 
     public function wip()

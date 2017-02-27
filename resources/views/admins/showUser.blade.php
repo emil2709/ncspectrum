@@ -43,12 +43,18 @@
 					<div>
 						<div class="col-md-6">
 							{!! Form::open(['route' => ['admins.destroyUser', $user->id], 'method' => 'DELETE']) !!}
-	                  			{!! Form::submit('DELETE', ['class' => 'btn btn-danger btn-block']) !!}
-	               			{!! Form::close() !!}
-	                	</div>
-						<div class="col-md-6">
-							<a href="{{ route('admins.users') }}" class="btn btn-default btn-block">CANCEL</a>
-						</div>
+		                  		{!! Form::submit('DELETE', ['class' => 'btn btn-danger btn-block']) !!}
+		               		{!! Form::close() !!}
+		                </div>
+		                @if($user->company != 'ncspectrum')
+							<div class="col-md-6">
+								<a href="{{ route('admins.guests') }}" class="btn btn-default btn-block">CANCEL</a>
+							</div>
+						@else
+							<div class="col-md-6">
+								<a href="{{ route('admins.employees') }}" class="btn btn-default btn-block">CANCEL</a>
+							</div>
+						@endif
 					</div>
 				</div>
 

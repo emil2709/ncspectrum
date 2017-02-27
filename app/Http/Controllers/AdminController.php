@@ -15,6 +15,7 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 	*/
+
     /**
      * Display a listing of the resource.
      *
@@ -23,6 +24,29 @@ class AdminController extends Controller
     public function index()
     {
  		return view('auth.login');
+    }
+
+    public function dashboard()
+    {
+        return view('admins.dashboard');
+    }
+
+    public function guests()
+    {
+        $guests = User::orderBy('firstname')->where('company','not like','ncspectrum')->get();
+        return view('admins.guests')->withGuests($guests);
+    }
+
+     public function employees()
+    {
+        $employees = User::orderBy('firstname')->where('company','like','ncspectrum')->get();
+        return view('admins.employees')->withEmployees($employees);
+    }
+
+     public function admins()
+    {
+        $admins = Admin::orderBy('firstname')->get();
+        return view('admins.admins')->withAdmins($admins);
     }
 
     /**
@@ -55,7 +79,18 @@ class AdminController extends Controller
     public function showUser($id)
     {
         $user = User::find($id);
-        return view('admins.show')->withUser($user);
+        return view('admins.showUser')->withUser($user);
+    }
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdmin($id)
+    {
+        //
     }
 
     /**
@@ -67,7 +102,7 @@ class AdminController extends Controller
     public function editUser($id)
     {
         $user = User::find($id);
-        return view('admins.edit')->withUser($user);
+        return view('admins.editUser')->withUser($user);
     }
 
     /**
@@ -100,16 +135,23 @@ class AdminController extends Controller
 
         $user = User::find($id);
 
-        $user->firstname = $request->input('firstname');
-        $user->lastname = $request->input('lastname');
-        $user->phone = $request->input('phone');
-        $user->email= $request->input('email');
-        $user->company = $request->input('company');
+        $user->firstname = strtolower($request->input('firstname'));
+        $user->lastname = strtolower($request->input('lastname'));
+        $user->phone = strtolower($request->input('phone'));
+        $user->email= strtolower($request->input('email'));
+        $user->company = strtolower($request->input('company'));
         $user->save();
 
-        Session::flash('success', "Changes has been made to the user.");
-
-        return redirect()->route('admins.users');
+        if($user->company != 'ncspectrum')
+        {
+            Session::flash('success', "Changes has been made to the Guest.");
+            return redirect()->route('admins.guests');
+        }
+        else
+        {
+            Session::flash('success', "Changes has been made to the Employee.");
+            return redirect()->route('admins.employees');
+        }
     }
 
     /**
@@ -133,28 +175,30 @@ class AdminController extends Controller
     public function destroyUser($id)
     {
         $user = User::find($id);
+        $company = $user->company;
         $user->delete();
 
-        Session::flash('success', 'The User was successfully deleted!');
-        return redirect()->route('admins.users');
+        if($company != 'ncspectrum')
+        {
+            Session::flash('success', 'The Guest was successfully deleted!');
+            return redirect()->route('admins.guests');
+        }
+        else
+        {
+            Session::flash('success', 'The Employee was successfully deleted!');
+            return redirect()->route('admins.employees');
+        }
     }
 
-    public function dashboard()
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyAdmin($id)
     {
-        return view('admins.dashboard');
+        //
     }
-
-    public function users()
-    {
-        $users = User::orderBy('firstname')->get();     //Alfabetisk på fornavn
-        //$users = User::latest()->get();               //Sorterer etter når de ble addet
-        return view('admins.users')->withUsers($users);
-
-    }
-
-    public function overview()
-    {
-        $users = User::all();
-        return view('admins.overview')->withUsers($users);
-    }
+    
 }

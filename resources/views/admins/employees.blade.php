@@ -1,14 +1,14 @@
 @extends('main_admin')
 
-@section('title', '| Users')
+@section('title', '| Employees')
 
 @section ('content')
   
-  <h2 class="sub-header">Users</h2>
+  <h2 class="sub-header">Employees</h2>
 
   <div class="table-responsive">
     <table class="table table-striped">
-        <div class="input-group custom-search-form">
+        <div class="input-group custom-search-form margin-bottom">
           <input type="text" name="search" class="form-control" placeholder="Search ...">
           <span class="input-group-btn">
             <button type="submit" class="btn btn-default-sm">
@@ -23,22 +23,24 @@
           <th>Phone</th>
           <th>Mail</th>
           <th>Company</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
 
       <tbody> 
-        @foreach ($users as $user)       
+        @foreach($employees as $employee)       
             <tr>
-              <td> {{ $user->firstname }} </td>
-              <td> {{ $user->lastname }} </td>
-              <td> {{ $user->phone }} </td>
-              <td> {{ $user->email }}</td>
-              <td> {{ $user->company }}</td>
+              <td> {{ $employee->firstname }} </td>
+              <td> {{ $employee->lastname }} </td>
+              <td> {{ $employee->phone }} </td>
+              <td> {{ $employee->email }}</td>
+              <td> {{ $employee->company }}</td>
               <td>
-                {!! Html::linkRoute('admins.editUser', 'EDIT', [$user->id], ['class' => 'btn btn-primary btn-block']) !!}
+                <a href="{{{ URL::route('admins.editUser', [$employee->id]) }}}"><span class="glyphicon glyphicon-edit"></span></a>
               </td>
               <td>
-                {!! Html::linkRoute('admins.showUser', 'DELETE', [$user->id], ['class' => 'btn btn-danger btn-block']) !!}
+                <a href="{{{ URL::route('admins.showUser', [$employee->id]) }}}"><span class="glyphicon glyphicon-trash"></span></a>
               </td>
             </tr>
         @endforeach

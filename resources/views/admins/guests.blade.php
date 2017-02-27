@@ -1,10 +1,10 @@
 @extends('main_admin')
 
-@section('title', '| Admins')
+@section('title', '| Guests')
 
 @section ('content')
   
-  <h2 class="sub-header">Admins</h2>
+  <h2 class="sub-header">Guests</h2>
 
   <div class="table-responsive">
     <table class="table table-striped">
@@ -20,23 +20,27 @@
         <tr>
           <th>Firstname</th>
           <th>Lastname</th>
+          <th>Phone</th>
           <th>Mail</th>
+          <th>Company</th>
           <th></th>
           <th></th>
         </tr>
       </thead>
 
       <tbody> 
-        @foreach($admins as $admin)       
+        @foreach($guests as $guest)       
             <tr>
-              <td> {{ $admin->firstname }} </td>
-              <td> {{ $admin->lastname }} </td>
-              <td> {{ $admin->email }} </td>
-              <td> 
-                <a href="#"><span class="glyphicon glyphicon-edit"></span></a> 
+              <td> {{ $guest->firstname }} </td>
+              <td> {{ $guest->lastname }} </td>
+              <td> {{ $guest->phone }} </td>
+              <td> {{ $guest->email }}</td>
+              <td> {{ $guest->company }}</td>
+              <td>
+                <a href="{{{ URL::route('admins.editUser', [$guest->id]) }}}"><span class="glyphicon glyphicon-edit"></span></a>
               </td>
-              <td> 
-                <a href="#"><span class="glyphicon glyphicon-trash"></span></a> 
+              <td>
+                <a href="{{{ URL::route('admins.showUser', [$guest->id]) }}}"><span class="glyphicon glyphicon-trash"></span></a>
               </td>
             </tr>
         @endforeach

@@ -52,7 +52,7 @@
 				<li class="well col-md-6 col-md-offset-3">
 					<div class="row">
 						<div class="col-md-12">
-							<a href="{{ route('admins.users') }}" class="btn btn-primary btn-block">USERS</a>
+							<a href="{{ route('admins.guests') }}" class="btn btn-primary btn-block">GUESTS</a>
 							<hr>
 							<p>
 								Admin kan nå legge til, endre og slette brukere. <br/>

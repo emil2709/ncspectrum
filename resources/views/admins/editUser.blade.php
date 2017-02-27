@@ -10,7 +10,7 @@
 			
 			<fieldset>
 				
-				<legend class="text-center">CREATE USER</legend>
+				<legend class="text-center">EDIT USER</legend>
 
 				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">
@@ -77,11 +77,20 @@
 						{{ Form::label('company', 'Company:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-							{{ Form::text('company', null, ['class' => 'form-control',
-								'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$"']) }}
-						</div>
+						@if($user->company != 'ncspectrum')
+							<div class="input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+								{{ Form::text('company', null, ['class' => 'form-control',
+									'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$"']) }}
+							</div>
+						@else
+							<div class="input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+								{{ Form::text('company', null, ['class' => 'form-control',
+									'required', 'readonly', 'minlength="2"', 'maxlength="30"', 
+									'pattern="^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$"',]) }}
+							</div>
+						@endif
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
 					<div class="help-block with-errors"></div>
@@ -98,7 +107,11 @@
 						{!! Html::linkRoute('admins.showUser', 'DELETE', [$user->id], ['class' => 'btn btn-danger btn-block']) !!}
                 	</div>
 					<div class="col-md-4">
-						<a href="{{ route('admins.users') }}" class="btn btn-default btn-block">CANCEL</a>
+						@if($user->company != 'ncspectrum')
+							<a href="{{ route('admins.guests') }}" class="btn btn-default btn-block">CANCEL</a>
+						@else
+							<a href="{{ route('admins.employees') }}" class="btn btn-default btn-block">CANCEL</a>
+						@endif
 					</div>
 				</div>
 

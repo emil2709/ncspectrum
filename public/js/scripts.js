@@ -6,6 +6,7 @@ $(document).ready(function(){
 
   // Interactive functions
   $(function(){
+
     	$(".sortable").sortable({
        		revert: true,
           connectWith: ".connectedSortable"
@@ -18,11 +19,9 @@ $(document).ready(function(){
      	});
 
      	$("ul, li").disableSelection();
-    });
 
-  $( ".accordion" ).accordion({
-    collapsible: true,
-    active: false
-  });
+      $( ".tabs" ).tabs();
+
+    });
 
 });
