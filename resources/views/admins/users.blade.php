@@ -4,7 +4,7 @@
 
 @section ('content')
   
-  <h2 class="sub-header">Visits</h2>
+  <h2 class="sub-header">Users</h2>
 
   <div class="table-responsive">
     <table class="table table-striped">

@@ -1,4 +1,5 @@
 <?php
+
 // User Routes
 
 Route::get('/', ['as' => 'users.wip', 'uses' => 'UserController@wip']);
