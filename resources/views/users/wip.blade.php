@@ -25,6 +25,21 @@
 					<div class="row">
 						<div class="col-md-12">
 							<p class="lead text-center">
+								New pages.
+							</p>
+							<hr>
+							<p>
+								La til tabellrepresentasjon av ansatte og admins. <br/>
+								Oppdaterte endre og slette knappene og gjorde dem om til ikoner.
+							</p>
+						</div>
+					</div>
+				</li>
+
+				<li class="well col-md-6 col-md-offset-3">
+					<div class="row">
+						<div class="col-md-12">
+							<p class="lead text-center">
 								Delete confirmation
 							</p>
 							<hr>
