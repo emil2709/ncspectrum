@@ -4,7 +4,7 @@ namespace App;
 
 class User extends Model
 {
-	public function statu()
+	public function status()
 	{
 		return $this->hasMany(Status::class);
 	}

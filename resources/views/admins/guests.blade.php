@@ -48,5 +48,11 @@
 
     </table>
   </div>
+  @foreach($guest->status as $status)
+  <ul>
+    <li>{{ $status->user_id }}</li>
+  </ul>
+  @endforeach
+
 
 @endsection
