@@ -14,16 +14,12 @@ class CreateStatusesTable extends Migration
     public function up()
     {
         Schema::create('statuses', function (Blueprint $table) {
-            $table->engine = "InnoDB";
-            $table->increments('id', false);
-            $table->integer('user_id')->unsigned();
+            $table->increments('id');
+            $table->integer('user_id');
             $table->string('status');
             $table->timestamps();
         });
 
-        Schema::table('statuses', function($table) {
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-        });
 
     }
 
