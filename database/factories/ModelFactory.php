@@ -36,10 +36,3 @@ $factory->define(App\Visit::class, function (Faker\Generator $faker) {
 		'comment' => $faker->state,
 	];
 });
-
-$factory->define(App\Overview::class, function (Faker\Generator $faker) {
-	return [
-		'visit_id' => $faker->numberbetween($min = 1, $max = 20),
-		'user_id' => $faker->numberBetween($min = 1, $max = 20),
-	];
-});
