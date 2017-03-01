@@ -200,5 +200,10 @@ class AdminController extends Controller
     {
         //
     }
-    
+    public function log()
+    {
+        $users = User::get();
+
+        return view ('admins.log', compact('users'));
+    }
 }

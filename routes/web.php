@@ -14,6 +14,7 @@ Route::get('admins/dashboard', ['as' => 'admins.dashboard', 'uses' => 'AdminCont
 Route::get('admins/{user}/edit', ['as' => 'admins.editUser', 'uses' => 'AdminController@editUser']);
 Route::put('admins/{user}', ['as' => 'admins.updateUser', 'uses' => 'AdminController@updateUser']);
 Route::get('admins/guests', ['as' => 'admins.guests', 'uses' => 'AdminController@guests']);
+Route::get('admins/log', ['as' => 'admins.log', 'uses' => 'AdminController@log']);
 Route::get('admins/employees', ['as' => 'admins.employees', 'uses' => 'AdminController@employees']);
 Route::get('admins/admins', ['as' => 'admins.admins', 'uses' => 'AdminController@admins']);
 Route::delete('admins/{user}', ['as' => 'admins.destroyUser', 'uses' => 'AdminController@destroyUser']);
