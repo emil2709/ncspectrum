@@ -107,3 +107,7 @@ body {
 .icon-bar {
   background-color: blue !important;
 }
+
+#notfound {
+  font-size:25px;
+}
