@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Visit extends Model
 {
-    public function visit()
+    public function users()
     {
-    	return $this->hasMany(Overview::class);
+    	return $this->belongsToMany('App\User');
     }
 }

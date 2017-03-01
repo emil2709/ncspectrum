@@ -4,13 +4,8 @@ namespace App;
 
 class User extends Model
 {
-	public function status()
+	public function visits()
 	{
-		return $this->hasMany(Status::class);
-	}
-
-	public function overview()
-	{
-		return $this->hasMany(Overview::class);
+		return $this->belongsToMany('App\Visit');
 	}
 }
