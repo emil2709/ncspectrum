@@ -23,16 +23,17 @@ $(document).ready(function(){
       $( ".tabs" ).tabs();
 
       $('#search').on('keyup',function(){
-        $value = $(this).val();
-
+        $search = $(this).val();
+        $type = $('#type').val();
         $.ajax({
           type: 'get',
           url: '/search',
-          data: {'search':$value},
+          data: {'search':$search,'type':$type},
           success:function(data)
           {
             $('#searchresult').html(data);
           }
+
         });
 
       });

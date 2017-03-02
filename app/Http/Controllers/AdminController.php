@@ -207,38 +207,73 @@ class AdminController extends Controller
         if($request->ajax())
         {
             $output = "";
-            $guests = DB::table('users')
-                ->where('firstname','LIKE','%'.$request->search.'%')
-                ->orWhere('lastname','LIKE','%'.$request->search.'%')
+            $users = DB::table('users')
+                ->where('firstname', 'like', '%'.$request->search.'%')
+                ->orWhere('lastname', 'like', '%'.$request->search.'%')
                 ->get();
 
-            if(count($guests) <= 0)
+            if($users)
             {
-                $output = "<div class='margin-top' id='notfound'><strong>".$request->search."</strong> Not Found</div>";
-                return Response($output);
-            }
-            else
-            {
-                foreach($guests as $guest)
+                if($request->type === "guest")
                 {
-                    $output.=
-                        '<tr>'.
-                            '<td>'.$guest->firstname.'</td>'.
-                            '<td>'.$guest->lastname.'</td>'.
-                            '<td>'.$guest->phone.'</td>'.
-                            '<td>'.$guest->email.'</td>'.
-                            '<td>'.$guest->company.'</td>'.
-                            '<td>'.
-                                '<a href="/admins/'.$guest->id.'/edit">'.
-                                '<span class="glyphicon glyphicon-edit"></span></a>'.
-                            '</td>'.
-                            '<td>'.
-                                '<a href="/admins/'.$guest->id.'">'.
-                                '<span class="glyphicon glyphicon-trash"></span></a>'.
-                            '</td>'.
-                        '</tr>';
+                    foreach($users as $user)
+                    {
+                        if($user->company !== "ncspectrum")
+                        {
+                            $output.=
+                            '<tr>'.
+                                '<td>'.$user->firstname.'</td>'.
+                                '<td>'.$user->lastname.'</td>'.
+                                '<td>'.$user->phone.'</td>'.
+                                '<td>'.$user->email.'</td>'.
+                                '<td>'.$user->company.'</td>'.
+                                '<td>'.
+                                    '<a href="/admins/'.$user->id.'/edit">'.
+                                    '<span class="glyphicon glyphicon-edit"></span></a>'.
+                                '</td>'.
+                                '<td>'.
+                                    '<a href="/admins/'.$user->id.'">'.
+                                    '<span class="glyphicon glyphicon-trash"></span></a>'.
+                                '</td>'.
+                            '</tr>';
+                        }
+                    }
                 }
-                return Response($output);
+                else
+                {
+                    foreach($users as $user)
+                    {
+                        if($user->company === "ncspectrum")
+                        {
+                            $output.=
+                            '<tr>'.
+                                '<td>'.$user->firstname.'</td>'.
+                                '<td>'.$user->lastname.'</td>'.
+                                '<td>'.$user->phone.'</td>'.
+                                '<td>'.$user->email.'</td>'.
+                                '<td>'.$user->company.'</td>'.
+                                '<td>'.
+                                    '<a href="/admins/'.$user->id.'/edit">'.
+                                    '<span class="glyphicon glyphicon-edit"></span></a>'.
+                                '</td>'.
+                                '<td>'.
+                                    '<a href="/admins/'.$user->id.'">'.
+                                    '<span class="glyphicon glyphicon-trash"></span></a>'.
+                                '</td>'.
+                            '</tr>';
+                        }
+                    }
+                }
+
+                if($output=="")
+                {
+                    $output = "<div class='margin-top' id='notfound'><strong>".$request->search."</strong> Not Found</div>";
+                    return Response($output);
+                }
+                else
+                {
+                    return Response($output);
+                }
             }
         }
     }
