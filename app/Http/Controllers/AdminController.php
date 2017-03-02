@@ -259,6 +259,7 @@ class AdminController extends Controller
                             ->where('company', 'not like', 'ncspectrum')
                             ->where('firstname', 'like', '%'.$search.'%')
                             ->orWhere('lastname', 'like', '%'.$search.'%')
+                            ->orWhere('company', 'like', '%'.$search.'%')
                             ->where('company', 'not like', 'ncspectrum')
                             ->get();
                     }
