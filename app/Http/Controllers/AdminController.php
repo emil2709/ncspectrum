@@ -316,6 +316,10 @@ class AdminController extends Controller
                                     '<a href="/admins/'.$user->id.'">'.
                                     '<span class="glyphicon glyphicon-trash"></span></a>'.
                                 '</td>'.
+                                '<td>'.
+                                    '<a href="/admins/'.$user->id.'/loguser">'.
+                                    '<span class="glyphicon glyphicon-th-list"></span></a>'.
+                                '</td>'.
                             '</tr>';
                 }
             }
