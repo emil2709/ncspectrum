@@ -12,7 +12,7 @@
       <div class="input-group margin-bottom">        
         <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
         <input type="text" id="search" class="form-control" placeholder="Search ...">
-        <input type="hidden" id="type" value="guest">
+        <input type="hidden" id="type" value="guests">
       </div>
 
       <thead>

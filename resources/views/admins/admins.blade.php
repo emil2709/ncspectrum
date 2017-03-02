@@ -12,6 +12,7 @@
       <div class="input-group margin-bottom">        
         <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
         <input type="text" id="search" class="form-control" placeholder="Search ...">
+        <input type="hidden" id="type" value="admins">
       </div>
 
       <thead>
@@ -24,7 +25,7 @@
         </tr>
       </thead>
 
-      <tbody> 
+      <tbody id="searchresult"> 
         @foreach($admins as $admin)       
             <tr>
               <td> {{ $admin->firstname }} </td>
