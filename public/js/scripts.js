@@ -22,6 +22,22 @@ $(document).ready(function(){
 
       $( ".tabs" ).tabs();
 
+      $('#search').on('keyup',function(){
+        $value = $(this).val();
+
+        $.ajax({
+          type: 'get',
+          url: '/search',
+          data: {'search':$value},
+          success:function(data)
+          {
+            $('#searchresult').html(data);
+          }
+        });
+
+      });
+
+
     });
 
 });

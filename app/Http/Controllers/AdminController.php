@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Admin;
 use App\User;
 use Session;
+use DB;
 
 class AdminController extends Controller
 {
@@ -201,4 +202,45 @@ class AdminController extends Controller
         //
     }
     
+    public function search(Request $request)
+    {        
+        if($request->ajax())
+        {
+            $output = "";
+            $guests = DB::table('users')
+                ->where('firstname','LIKE','%'.$request->search.'%')
+                ->orWhere('lastname','LIKE','%'.$request->search.'%')
+                ->get();
+
+            if(count($guests) <= 0)
+            {
+                $output = "<div class='margin-top' id='notfound'><strong>".$request->search."</strong> Not Found</div>";
+                return Response($output);
+            }
+            else
+            {
+                foreach($guests as $guest)
+                {
+                    $output.=
+                        '<tr>'.
+                            '<td>'.$guest->firstname.'</td>'.
+                            '<td>'.$guest->lastname.'</td>'.
+                            '<td>'.$guest->phone.'</td>'.
+                            '<td>'.$guest->email.'</td>'.
+                            '<td>'.$guest->company.'</td>'.
+                            '<td>'.
+                                '<a href="/admins/'.$guest->id.'/edit">'.
+                                '<span class="glyphicon glyphicon-edit"></span></a>'.
+                            '</td>'.
+                            '<td>'.
+                                '<a href="/admins/'.$guest->id.'">'.
+                                '<span class="glyphicon glyphicon-trash"></span></a>'.
+                            '</td>'.
+                        '</tr>';
+                }
+                return Response($output);
+            }
+        }
+    }
+
 }
