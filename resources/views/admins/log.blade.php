@@ -9,25 +9,18 @@
 	<thead>
 		<tr>
 			<th>Fistname</th>
-			<th>Lastname</th>
-			<th>Company</th>
 			<th>Date</th>
-			<th>From</th>
-			<th>To</th>
 		</tr>
 	</thead>
 	<tbody>
-		@foreach ($users as $user)
-			@foreach ($user->visits as $visit)
+		{{--@foreach ($users as $user)
 			<tr>
 				<td>{{ $user->firstname }}</td>
-				<td>{{ $user->lastname }}</td>
-				<td>{{ $user->company }}</td>
+
+		@endforeach--}}
+			@foreach ($users->visits as $visit)
 				<td>{{ $visit->date }}</td>
-				<td>{{ $visit->from }}</td>
-				<td>{{ $visit->to }}</td>
 			</tr>
-			@endforeach
 		@endforeach
 	</tbody>
 </table>
