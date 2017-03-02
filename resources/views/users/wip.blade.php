@@ -19,7 +19,7 @@
 
 			<hr>
 
-			<ul class="sortable draggable">
+			<ul class="boxlist" id="sortable">
 
 				<li class="well col-md-6 col-md-offset-3">
 					<div class="row">

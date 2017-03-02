@@ -1,44 +1,47 @@
 
 $(document).ready(function(){
 
-  // Functions triggered on load
   $("#welcome").hide().fadeIn(3000);
 
-  // Interactive functions
-  $(function(){
+  // Userinteractions
 
-    	$(".sortable").sortable({
-       		revert: true,
-          connectWith: ".connectedSortable"
-     	});
+  $("#outlist, #inlist").sortable({
+      revert: true,
+      connectWith: ".connectedSortable"
+  }).disableSelection();
+  
+  /*
+  $("#outlist-box").click(function(){
+    $('#inlist').append($(this).removeClass(this));
+    $(this).attr('id', 'inlist-box');
+  });
 
-     	$(".draggable").draggable({
-       		connectToSortable: ".sortable",
-       		revert: "invalid",
-          refreshPositions: true
-     	});
+  $("#inlist-box").click(function(){
+    $('#outlist').append($(this).removeClass(this));
+    $(this).attr('id', 'outlist-box');
+  });
+  */
 
-     	$("ul, li").disableSelection();
+  // tmp
+  $( ".tabs" ).tabs();
+  $( "#sortable" ).sortable();
+  $( "#sortable" ).disableSelection();
 
-      $( ".tabs" ).tabs();
+  // Admininteractions
 
-      $('#search').on('keyup',function(){
-        $search = $(this).val();
-        $type = $('#type').val();
-        $.ajax({
-          type: 'get',
-          url: '/search',
-          data: {'search':$search,'type':$type},
-          success:function(data)
-          {
-            $('#searchresult').html(data);
-          }
-
-        });
+  $('#search').on('keyup',function(){
+      $search = $(this).val();
+      $type = $('#type').val();
+      $.ajax({
+        type: 'get',
+        url: '/search',
+        data: {'search':$search,'type':$type},
+        success:function(data)
+        {
+          $('#searchresult').html(data);
+        }
 
       });
-
-
-    });
+  });
 
 });

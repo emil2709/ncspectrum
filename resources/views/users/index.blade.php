@@ -17,24 +17,31 @@
 					<h2 class="text-center">Out</h1>
 					<hr/>
 				</div>
-				<ul class="sortable draggable connectedSortable">
+				<ul id="outlist" class="connectedSortable boxlist">
 					@foreach($users as $user)
-					<li class="well">
+					<li id="outlist-box" class="userbox margin-bottom">
 						<div class="row">
 							<div class="col-md-12">
-								<div class="lead">
-									{{$user->firstname}}
-									{{$user->lastname}}
+								<div class="text-center lead">
+									<strong>
+										{{$user->firstname}}
+										{{$user->lastname}}
+									</strong>
 								</div>
-								<hr>
-								<div class="col-md-4">
+								<hr/>
+								<!--
+								<div class="col-md-2">
+									<label>Email: </label> <br/>
 									<label>Company: </label>
-									<label>Email: </label>
-
 								</div>
-								<div class="col-md-8">
-									{{$user->company}} <br/>
-									{{$user->email}}
+								<div class="col-md-9 col-md-offset-1">
+									{{$user->email}} <br/>
+									{{$user->company}}
+								</div>
+								-->
+								<div class="col-md-12 text-center">
+									{{$user->email}} <br/>
+									{{$user->company}}
 								</div>
 							</div>
 						</div>
@@ -42,30 +49,15 @@
 					@endforeach
 
 				</ul>
-				{!! $users->links(); !!}
+				
 			</div>
-
-			<div class="divider"></div>
 
 			<div class="col-md-5 col-md-offset-2">
 				<div class="margin-top" id="welcome">
 					<h2 class="text-center">In</h1>
 					<hr/>
 				</div>
-				<ul class="sortable draggable connectedSortable">
-					<li class="well">
-						<div class="row">
-							<div class="col-md-12">
-								<p class="lead">
-									Tmp
-								</p>
-								<hr>
-								<p>
-									Tmp
-								</p>
-							</div>
-						</div>
-					</li>
+				<ul id="inlist" class="connectedSortable boxlist">					
 				</ul>
 			</div>
 
