@@ -77,11 +77,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    /*public function showUser($id)
+    public function showUser($id)
     {
         $users = User::find($id);
         return view('admins.showUser')->withUser($users);
-    }*/
+    }
 
         /**
      * Display the specified resource.
@@ -208,11 +208,11 @@ class AdminController extends Controller
         return view ('admins.log', compact('users'));
     }
 
-    public function loguser($id)
+    public function logUser($id)
     {
         $users = User::find($id);
 
-        return view ('admins.loguser')->withUsers($users);
+        return view ('admins.logUser')->withUsers($users);
     }
 
 

@@ -4,7 +4,7 @@
 
 @section ('content')
 
-<h1>{{ $users->firstname }}</h1>
+<h1>{{ $users->firstname }} {{ $users->lastname }}</h1>
 
 <table class="table table-striped">
 	<thead>
