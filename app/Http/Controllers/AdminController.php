@@ -213,15 +213,23 @@ class AdminController extends Controller
     {        
         if($request->ajax())
         {
+            $search = $request->search;
             $type = $request->type;
             $output = "";
 
             if($type === 'admins')
             {
-                $admins = DB::table('admins')
-                    ->where('firstname', 'like', '%'.$request->search.'%')
-                    ->orWhere('lastname', 'like', '%'.$request->search.'%')
-                    ->get();
+                if($search != "")
+                {
+                    $admins = DB::table('admins')
+                        ->where('firstname', 'like', '%'.$search.'%')
+                        ->orWhere('lastname', 'like', '%'.$search.'%')
+                        ->get();
+                }
+                else
+                {
+                    $admins = Admin::orderBy('firstname')->get();
+                }
 
                 foreach($admins as $admin)
                 {
@@ -245,23 +253,36 @@ class AdminController extends Controller
             {
                 if($type === 'guests')
                 {
-                    $users = DB::table('users')
-                        ->where('company', 'not like', 'ncspectrum')
-                        ->where('firstname', 'like', '%'.$request->search.'%')
-                        ->orWhere('lastname', 'like', '%'.$request->search.'%')
-                        ->where('company', 'not like', 'ncspectrum')
-                        ->get();
-
+                    if($search != "")
+                    {
+                        $users = DB::table('users')
+                            ->where('company', 'not like', 'ncspectrum')
+                            ->where('firstname', 'like', '%'.$search.'%')
+                            ->orWhere('lastname', 'like', '%'.$search.'%')
+                            ->where('company', 'not like', 'ncspectrum')
+                            ->get();
+                    }
+                    else
+                    {
+                        $users = User::orderBy('firstname')->where('company','not like','ncspectrum')->get();
+                    }
 
                 }
                 else
                 {
-                    $users = DB::table('users')
-                        ->where('company', 'like', 'ncspectrum')
-                        ->where('firstname', 'like', '%'.$request->search.'%')
-                        ->orWhere('lastname', 'like', '%'.$request->search.'%')
-                        ->where('company', 'like', 'ncspectrum')
-                        ->get();
+                    if($search != "")
+                    {
+                        $users = DB::table('users')
+                            ->where('company', 'like', 'ncspectrum')
+                            ->where('firstname', 'like', '%'.$search.'%')
+                            ->orWhere('lastname', 'like', '%'.$search.'%')
+                            ->where('company', 'like', 'ncspectrum')
+                            ->get();
+                    }
+                    else
+                    {
+                        $users = User::orderBy('firstname')->where('company','like','ncspectrum')->get();
+                    }
                 }
 
                 foreach($users as $user)
@@ -285,9 +306,9 @@ class AdminController extends Controller
                 }
             }
 
-            if($output=="")
+            if($output == "")
             {
-                $output = "<div class='margin-top' id='notfound'><strong>".$request->search."</strong> Not Found</div>";
+                $output = "<div class='margin-top' id='notfound'><strong>".$search."</strong> Not Found</div>";
                 return Response($output);
             }
             else

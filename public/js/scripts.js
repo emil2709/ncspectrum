@@ -25,7 +25,6 @@ $(document).ready(function(){
       $('#search').on('keyup',function(){
         $search = $(this).val();
         $type = $('#type').val();
-        console.log($type);
         $.ajax({
           type: 'get',
           url: '/search',
