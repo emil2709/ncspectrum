@@ -8,14 +8,13 @@
 
   <div class="table-responsive">
     <table class="table table-striped">
-        <div class="input-group custom-search-form margin-bottom">
-          <input type="text" name="search" class="form-control" placeholder="Search ...">
-          <span class="input-group-btn">
-            <button type="submit" class="btn btn-default-sm">
-              <i class="fa fa-search"></i>
-            </button>
-          </span>
-        </div>
+
+      <div class="input-group margin-bottom">        
+        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        <input type="text" id="search" class="form-control" placeholder="Search ...">
+        <input type="hidden" id="type" value="employee">
+      </div>
+
       <thead>
         <tr>
           <th>Firstname</th>
@@ -28,7 +27,7 @@
         </tr>
       </thead>
 
-      <tbody> 
+      <tbody id="searchresult"> 
         @foreach($employees as $employee)       
             <tr>
               <td> {{ $employee->firstname }} </td>
