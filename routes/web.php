@@ -19,3 +19,5 @@ Route::get('admins/employees', ['as' => 'admins.employees', 'uses' => 'AdminCont
 Route::get('admins/admins', ['as' => 'admins.admins', 'uses' => 'AdminController@admins']);
 Route::delete('admins/{user}', ['as' => 'admins.destroyUser', 'uses' => 'AdminController@destroyUser']);
 Route::get('admins/{user}', ['as' => 'admins.showUser', 'uses' => 'AdminController@showUser']);
+
+Route::get('/search', ['as' => 'search', 'uses' => 'AdminController@search']);

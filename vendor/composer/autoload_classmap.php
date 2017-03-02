@@ -545,7 +545,6 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'StatusesTableSeeder' => $baseDir . '/database/seeds/StatusesTableSeeder.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
-    'User_visitTableSeeder' => $baseDir . '/database/seeds/User_visitTableSeeder.php',
     'UsersTableSeeder' => $baseDir . '/database/seeds/UsersTableSeeder.php',
     'VisitsTableSeeder' => $baseDir . '/database/seeds/VisitsTableSeeder.php',
 );

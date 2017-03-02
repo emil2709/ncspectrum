@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Admin;
 use App\User;
 use Session;
+use DB;
 
 class AdminController extends Controller
 {
@@ -205,5 +206,123 @@ class AdminController extends Controller
         $users = User::get();
 
         return view ('admins.log', compact('users'));
+    }
+
+
+    /**
+    * Function for livesearching the specified resource.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+    public function search(Request $request)
+    {        
+        if($request->ajax())
+        {
+            $search = $request->search;
+            $type = $request->type;
+            $output = "";
+
+            if($type === 'admins')
+            {
+                if($search != "")
+                {
+                    $admins = DB::table('admins')
+                        ->where('firstname', 'like', '%'.$search.'%')
+                        ->orWhere('lastname', 'like', '%'.$search.'%')
+                        ->get();
+                }
+                else
+                {
+                    $admins = Admin::orderBy('firstname')->get();
+                }
+
+                foreach($admins as $admin)
+                {
+                    $output.=
+                        '<tr>'.
+                            '<td>'.$admin->firstname.'</td>'.
+                            '<td>'.$admin->lastname.'</td>'.
+                            '<td>'.$admin->email.'</td>'.
+                            '<td>'.
+                                '<a href="#">'.
+                                '<span class="glyphicon glyphicon-edit"></span></a>'.
+                            '</td>'.
+                            '<td>'.
+                                '<a href="#">'.
+                                '<span class="glyphicon glyphicon-trash"></span></a>'.
+                            '</td>'.
+                        '</tr>';
+                }
+            }
+            else
+            {
+                if($type === 'guests')
+                {
+                    if($search != "")
+                    {
+                        $users = DB::table('users')
+                            ->where('company', 'not like', 'ncspectrum')
+                            ->where('firstname', 'like', '%'.$search.'%')
+                            ->orWhere('lastname', 'like', '%'.$search.'%')
+                            ->orWhere('company', 'like', '%'.$search.'%')
+                            ->where('company', 'not like', 'ncspectrum')
+                            ->get();
+                    }
+                    else
+                    {
+                        $users = User::orderBy('firstname')->where('company','not like','ncspectrum')->get();
+                    }
+
+                }
+                else
+                {
+                    if($search != "")
+                    {
+                        $users = DB::table('users')
+                            ->where('company', 'like', 'ncspectrum')
+                            ->where('firstname', 'like', '%'.$search.'%')
+                            ->orWhere('lastname', 'like', '%'.$search.'%')
+                            ->where('company', 'like', 'ncspectrum')
+                            ->get();
+                    }
+                    else
+                    {
+                        $users = User::orderBy('firstname')->where('company','like','ncspectrum')->get();
+                    }
+                }
+
+                foreach($users as $user)
+                {
+                    $output.=
+                            '<tr>'.
+                                '<td>'.$user->firstname.'</td>'.
+                                '<td>'.$user->lastname.'</td>'.
+                                '<td>'.$user->phone.'</td>'.
+                                '<td>'.$user->email.'</td>'.
+                                '<td>'.$user->company.'</td>'.
+                                '<td>'.
+                                    '<a href="/admins/'.$user->id.'/edit">'.
+                                    '<span class="glyphicon glyphicon-edit"></span></a>'.
+                                '</td>'.
+                                '<td>'.
+                                    '<a href="/admins/'.$user->id.'">'.
+                                    '<span class="glyphicon glyphicon-trash"></span></a>'.
+                                '</td>'.
+                            '</tr>';
+                }
+            }
+
+            if($output == "")
+            {
+                $output = "<div class='margin-top' id='notfound'><strong>".$search."</strong> Not Found</div>";
+                return Response($output);
+            }
+            else
+            {
+                return Response($output);
+            }   
+        }
+
     }
 }
