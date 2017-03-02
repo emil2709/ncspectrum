@@ -205,7 +205,7 @@ class AdminController extends Controller
     {
         $users = User::get();
 
-        return view ('admins.log', compact('users'));
+        return view ('admins.log')->withUsers($users);
     }
 
     public function logUser($id)
