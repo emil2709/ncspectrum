@@ -41,6 +41,9 @@
             <td>
               <a href="{{ URL::route('admins.showUser', [$guest->id]) }}"><span class="glyphicon glyphicon-trash"></span></a>
             </td>
+            <td>
+              <a href="{{ URL::route('admins.loguser', [$guest->id]) }}"><span class="glyphicon glyphicon-th-list"></span></a>
+            </td>
           </tr>
         @endforeach
       </tbody>

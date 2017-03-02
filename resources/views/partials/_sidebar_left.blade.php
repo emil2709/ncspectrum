@@ -27,8 +27,10 @@
         <li><a href="#">Create Visit</a></li>
       </ul>
       <ul class="nav nav-sidebar">
-        <li><a href="#">Status</a></li>
-        <li><a href="#">History</a></li>
+        <li><a href="">Status</a></li>
+        <li class="{{ Request::segment(2) === 'log' ? 'active' : null }}">
+          <a href="{{ route('admins.log') }}">Log</a>
+        </li>
         <li><a href="#">Database</a></li>
       </ul>
       

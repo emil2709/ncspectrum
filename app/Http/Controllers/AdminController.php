@@ -79,8 +79,8 @@ class AdminController extends Controller
      */
     public function showUser($id)
     {
-        $user = User::find($id);
-        return view('admins.showUser')->withUser($user);
+        $users = User::find($id);
+        return view('admins.showUser')->withUser($users);
     }
 
         /**
@@ -201,6 +201,19 @@ class AdminController extends Controller
     {
         //
     }
+    public function log()
+    {
+        $users = User::get();
+
+        return view ('admins.log', compact('users'));
+    }
+
+    public function logUser($id)
+    {
+        $users = User::find($id);
+
+        return view ('admins.logUser')->withUsers($users);
+    }
 
 
     /**
@@ -303,6 +316,10 @@ class AdminController extends Controller
                                     '<a href="/admins/'.$user->id.'">'.
                                     '<span class="glyphicon glyphicon-trash"></span></a>'.
                                 '</td>'.
+                                '<td>'.
+                                    '<a href="/admins/'.$user->id.'/loguser">'.
+                                    '<span class="glyphicon glyphicon-th-list"></span></a>'.
+                                '</td>'.
                             '</tr>';
                 }
             }
@@ -319,6 +336,4 @@ class AdminController extends Controller
         }
 
     }
-
-
 }
