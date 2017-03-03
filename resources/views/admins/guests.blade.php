@@ -37,7 +37,7 @@
             <td> {{ $guest->email }}</td>
             <td> {{ $guest->company }}</td>
             <td>
-              <a href="{{ URL::route('admins.loguser', [$guest->id]) }}"><span class="glyphicon glyphicon-th-list"></span></a>
+              <a href="{{ URL::route('admins.userlog', [$guest->id]) }}"><span class="glyphicon glyphicon-th-list"></span></a>
             </td>
             <td>
               <a href="{{ URL::route('admins.editUser', [$guest->id]) }}"><span class="glyphicon glyphicon-edit"></span></a>

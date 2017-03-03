@@ -24,11 +24,11 @@ $(document).ready(function(){
   */
 
   $('#usersearch').on('keyup',function(){
-      $search = $(this).val();
+      $usersearch = $(this).val();
       $.ajax({
         type: 'get',
         url: '/usersearch',
-        data: {'usersearch':$search},
+        data: {'usersearch':$usersearch},
         success:function(data)
         {
           $('#outlist').html(data);

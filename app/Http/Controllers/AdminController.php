@@ -208,11 +208,11 @@ class AdminController extends Controller
         return view ('admins.log', compact('users'));
     }
 
-    public function logUser($id)
+    public function userlog($id)
     {
         $users = User::find($id);
 
-        return view ('admins.logUser')->withUsers($users);
+        return view ('admins.userlog')->withUsers($users);
     }
 
     /**
@@ -308,6 +308,10 @@ class AdminController extends Controller
                                 '<td>'.$user->email.'</td>'.
                                 '<td>'.$user->company.'</td>'.
                                 '<td>'.
+                                    '<a href="/admins/'.$user->id.'/userlog">'.
+                                    '<span class="glyphicon glyphicon-th-list"></span></a>'.
+                                '</td>'.
+                                '<td>'.
                                     '<a href="/admins/'.$user->id.'/edit">'.
                                     '<span class="glyphicon glyphicon-edit"></span></a>'.
                                 '</td>'.
@@ -315,17 +319,13 @@ class AdminController extends Controller
                                     '<a href="/admins/'.$user->id.'">'.
                                     '<span class="glyphicon glyphicon-trash"></span></a>'.
                                 '</td>'.
-                                '<td>'.
-                                    '<a href="/admins/'.$user->id.'/loguser">'.
-                                    '<span class="glyphicon glyphicon-th-list"></span></a>'.
-                                '</td>'.
                             '</tr>';
                 }
             }
 
             if($output == "")
             {
-                $output = "<div class='margin-top' id='notfound'><strong>".$search."</strong> Not Found</div>";
+                $output = "<div class='margin-top' id='notfound'><strong>".$search."</strong> was not found</div>";
                 return Response($output);
             }
             else

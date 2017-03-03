@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Session;
+use DB;
 
 class UserController extends Controller
 {
@@ -69,7 +70,7 @@ class UserController extends Controller
     {        
         if($request->ajax())
         {
-            $search = $request->search;
+            $search = $request->usersearch;
             $output = "";
 
             if($search != "")
@@ -84,7 +85,7 @@ class UserController extends Controller
             }
             else
             {
-                $users = User::orderBy('firstname')->where('company','not like','ncspectrum')->get();
+                $users = User::orderBy('id', 'desc')->where('company','not like','ncspectrum')->get();
             }
 
             foreach($users as $user)
@@ -111,7 +112,7 @@ class UserController extends Controller
 
             if($output == "")
             {
-                $output = "<div class='margin-top' id='notfound'><strong>".$search."</strong> Not Found</div>";
+                $output = "<div class='margin-top text-center' id='notfound'><strong>".$search."</strong> was not found</div>";
                 return Response($output);
             }
             else

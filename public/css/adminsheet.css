@@ -17,22 +17,6 @@ body {
   border-bottom: 1px solid #eee;
 }
 
-a {
-    color: #00adef;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #55c43b;
-    text-decoration: none;
-}
-
-.input-group-addon {
-    background-color: #00adef;
-    border: #00adef;
-    color: #fff;
-}
-
 /*
  * Top navigation
  * Hide default border to remove 1px line.
@@ -82,6 +66,21 @@ a:hover {
   background-color: #00adef;
 }
 
+a {
+    color: #00adef;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #55c43b;
+    text-decoration: none;
+}
+
+.input-group-addon {
+    background-color: #00adef;
+    border: #00adef;
+    color: #fff;
+}
 
 /*
  * Main content
@@ -100,6 +99,9 @@ a:hover {
   margin-top: 0;
 }
 
+#notfound {
+  font-size:25px;
+}
 
 /*
  * Placeholder dashboard ideas
@@ -122,8 +124,4 @@ a:hover {
 
 .icon-bar {
   background-color: blue !important;
-}
-
-#notfound {
-  font-size:25px;
 }

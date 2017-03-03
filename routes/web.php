@@ -21,7 +21,7 @@ Route::get('admins/employees', ['as' => 'admins.employees', 'uses' => 'AdminCont
 Route::get('admins/admins', ['as' => 'admins.admins', 'uses' => 'AdminController@admins']);
 Route::get('admins/{user}', ['as' => 'admins.showUser', 'uses' => 'AdminController@showUser']);
 Route::get('/search', ['as' => 'search', 'uses' => 'AdminController@search']);
-Route::get('admins/{user}/loguser', ['as' => 'admins.loguser', 'uses' => 'AdminController@logUser']);
+Route::get('admins/{user}/userlog', ['as' => 'admins.userlog', 'uses' => 'AdminController@userlog']);
 
 // Put
 Route::put('admins/{user}', ['as' => 'admins.updateUser', 'uses' => 'AdminController@updateUser']);
