@@ -10,7 +10,7 @@
     <table class="table table-striped">
 
       <div class="input-group margin-bottom">        
-        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        <span class="input-group-addon" id="search-addon"><i class="glyphicon glyphicon-search"></i></span>
         <input type="text" id="search" class="form-control" placeholder="Search ...">
         <input type="hidden" id="type" value="guests">
       </div>
@@ -22,6 +22,7 @@
           <th>Phone</th>
           <th>Mail</th>
           <th>Company</th>
+          <th></th>
           <th></th>
           <th></th>
         </tr>
@@ -36,13 +37,13 @@
             <td> {{ $guest->email }}</td>
             <td> {{ $guest->company }}</td>
             <td>
+              <a href="{{ URL::route('admins.loguser', [$guest->id]) }}"><span class="glyphicon glyphicon-th-list"></span></a>
+            </td>
+            <td>
               <a href="{{ URL::route('admins.editUser', [$guest->id]) }}"><span class="glyphicon glyphicon-edit"></span></a>
             </td>
             <td>
               <a href="{{ URL::route('admins.showUser', [$guest->id]) }}"><span class="glyphicon glyphicon-trash"></span></a>
-            </td>
-            <td>
-              <a href="{{ URL::route('admins.loguser', [$guest->id]) }}"><span class="glyphicon glyphicon-th-list"></span></a>
             </td>
           </tr>
         @endforeach

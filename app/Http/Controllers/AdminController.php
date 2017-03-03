@@ -215,7 +215,6 @@ class AdminController extends Controller
         return view ('admins.logUser')->withUsers($users);
     }
 
-
     /**
     * Function for livesearching the specified resource.
     *

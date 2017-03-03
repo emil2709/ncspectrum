@@ -59,6 +59,69 @@ class UserController extends Controller
     	return redirect()->route('users.index');
     }
 
+    /**
+    * Function for livesearching the specified resource.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+    public function usersearch(Request $request)
+    {        
+        if($request->ajax())
+        {
+            $search = $request->search;
+            $output = "";
+
+            if($search != "")
+            {
+                $users = DB::table('users')
+                    ->where('company', 'not like', 'ncspectrum')
+                    ->where('firstname', 'like', '%'.$search.'%')
+                    ->orWhere('lastname', 'like', '%'.$search.'%')
+                    ->orWhere('company', 'like', '%'.$search.'%')
+                    ->where('company', 'not like', 'ncspectrum')
+                    ->get();
+            }
+            else
+            {
+                $users = User::orderBy('firstname')->where('company','not like','ncspectrum')->get();
+            }
+
+            foreach($users as $user)
+            {
+                $output.=
+                    '<li id="outlist-box" class="userbox">'.
+                        '<div class="row">'.
+                            '<div class="col-md-12">'.
+                                '<div class="text-center lead">'.
+                                    '<strong>'.
+                                        $user->firstname.
+                                        ' '.
+                                        $user->lastname.
+                                    '</strong>'.
+                                '</div>'.
+                                '<div class="col-md-12 text-center">'.
+                                    $user->email.'<br/>'.
+                                    $user->company.
+                                '</div>'.
+                            '</div>'.
+                        '</div>'.
+                    '</li>';
+            }
+
+            if($output == "")
+            {
+                $output = "<div class='margin-top' id='notfound'><strong>".$search."</strong> Not Found</div>";
+                return Response($output);
+            }
+            else
+            {
+                return Response($output);
+            }   
+        }
+
+    }
+
     public function wip()
     {
         return view('users.wip');

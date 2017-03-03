@@ -17,6 +17,22 @@ body {
   border-bottom: 1px solid #eee;
 }
 
+a {
+    color: #00adef;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #55c43b;
+    text-decoration: none;
+}
+
+.input-group-addon {
+    background-color: #00adef;
+    border: #00adef;
+    color: #fff;
+}
+
 /*
  * Top navigation
  * Hide default border to remove 1px line.
@@ -63,7 +79,7 @@ body {
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
   color: #fff;
-  background-color: #428bca;
+  background-color: #00adef;
 }
 
 

@@ -7,9 +7,10 @@ $(document).ready(function(){
 
   $("#outlist, #inlist").sortable({
       revert: true,
-      connectWith: ".connectedSortable"
+      connectWith: ".connectedSortable",
+      placeholder: "placeholder"
   }).disableSelection();
-  
+
   /*
   $("#outlist-box").click(function(){
     $('#inlist').append($(this).removeClass(this));
@@ -21,6 +22,20 @@ $(document).ready(function(){
     $(this).attr('id', 'outlist-box');
   });
   */
+
+  $('#usersearch').on('keyup',function(){
+      $search = $(this).val();
+      $.ajax({
+        type: 'get',
+        url: '/usersearch',
+        data: {'usersearch':$search},
+        success:function(data)
+        {
+          $('#outlist').html(data);
+        }
+
+      });
+  });
 
   // tmp
   $( ".tabs" ).tabs();

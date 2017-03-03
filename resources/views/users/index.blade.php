@@ -17,9 +17,14 @@
 					<h2 class="text-center">Out</h1>
 					<hr/>
 				</div>
+				<div class="input-group margin-bottom">        
+			       <span class="input-group-addon" id="search-addon"><i class="glyphicon glyphicon-search"></i></span>
+			       <input type="text" id="usersearch" class="form-control" placeholder="Search ...">
+			       <input type="hidden" id="type" value="guests">
+			    </div>
 				<ul id="outlist" class="connectedSortable boxlist">
 					@foreach($users as $user)
-					<li id="outlist-box" class="userbox margin-bottom">
+					<li id="outlist-box" class="userbox">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="text-center lead">
@@ -28,17 +33,6 @@
 										{{$user->lastname}}
 									</strong>
 								</div>
-								<hr/>
-								<!--
-								<div class="col-md-2">
-									<label>Email: </label> <br/>
-									<label>Company: </label>
-								</div>
-								<div class="col-md-9 col-md-offset-1">
-									{{$user->email}} <br/>
-									{{$user->company}}
-								</div>
-								-->
 								<div class="col-md-12 text-center">
 									{{$user->email}} <br/>
 									{{$user->company}}
