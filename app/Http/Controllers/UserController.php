@@ -81,11 +81,11 @@ class UserController extends Controller
                     ->orWhere('lastname', 'like', '%'.$search.'%')
                     ->orWhere('company', 'like', '%'.$search.'%')
                     ->where('company', 'not like', 'ncspectrum')
-                    ->get();
+                    ->paginate(5);
             }
             else
             {
-                $users = User::orderBy('id', 'desc')->where('company','not like','ncspectrum')->get();
+                $users = User::orderBy('id', 'desc')->where('company','not like','ncspectrum')->paginate(5);
             }
 
             foreach($users as $user)
