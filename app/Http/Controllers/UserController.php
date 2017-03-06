@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Status;
 use Session;
 use DB;
 
@@ -16,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
- 		$users = User::orderBy('id','desc')->paginate(5);
+ 		$users = User::orderBy('id','desc')->where('company','not like','ncspectrum')->paginate(5);
         return view('users.index')->withUsers($users);
     }
 
@@ -52,8 +53,7 @@ class UserController extends Controller
     	$user->phone = strtolower($request->phone);
     	$user->email = strtolower($request->email);
     	$user->company = strtolower($request->company);
-
-    	$user->save();
+        $user->save();
 
         Session::flash('success', 'The User was successfully created!');
 
@@ -79,9 +79,9 @@ class UserController extends Controller
                     ->where('company', 'not like', 'ncspectrum')
                     ->where('firstname', 'like', '%'.$search.'%')
                     ->orWhere('lastname', 'like', '%'.$search.'%')
-                    ->orWhere('company', 'like', '%'.$search.'%')
                     ->where('company', 'not like', 'ncspectrum')
-                    ->paginate(5);
+                    ->orWhere('company', 'like', '%'.$search.'%')
+                    ->get();
             }
             else
             {

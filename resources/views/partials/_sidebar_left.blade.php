@@ -23,7 +23,9 @@
       <ul class="nav nav-sidebar">
         <li><a href="#">Create Guest</a></li>
         <li><a href="#">Create Employee</a></li>
-        <li><a href="#">Create Admin</a></li>
+        <li class="{{ Request::segment(3) === 'admin' ? 'active' : null }}"">
+          <a href="{{ route('register') }}">Create Admin</a>
+        </li>
         <li><a href="#">Create Visit</a></li>
       </ul>
       <ul class="nav nav-sidebar">

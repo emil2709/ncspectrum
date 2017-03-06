@@ -22,8 +22,23 @@
 
 /* Active css-rules */
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
 	font-family: 'Calibri', sans-serif;
+    margin: 0 0 75px;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 75px;
+    width: 100%;
+    overflow:hidden;
 }
 
 .margin-top {

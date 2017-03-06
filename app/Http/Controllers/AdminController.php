@@ -55,9 +55,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createAdmin()
     {
-        
+        return view('auth.register');
     }
 
     /**
@@ -66,7 +66,7 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeAdmin(Request $request)
     {
 
     }
@@ -271,8 +271,8 @@ class AdminController extends Controller
                             ->where('company', 'not like', 'ncspectrum')
                             ->where('firstname', 'like', '%'.$search.'%')
                             ->orWhere('lastname', 'like', '%'.$search.'%')
-                            ->orWhere('company', 'like', '%'.$search.'%')
                             ->where('company', 'not like', 'ncspectrum')
+                            ->orWhere('company', 'like', '%'.$search.'%')
                             ->get();
                     }
                     else
