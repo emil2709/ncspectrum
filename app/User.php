@@ -14,6 +14,6 @@ class User extends Model
 
 	public function statuses()
 	{
-		return $this->hasMany('App\Status');
+		return $this->hasOne('App\Status');
 	}
 }
