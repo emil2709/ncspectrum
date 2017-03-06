@@ -22,12 +22,23 @@
 
 /* Active css-rules */
 
-body {
-	font-family: 'Calibri', sans-serif;
+html {
+    position: relative;
+    min-height: 100%;
 }
 
-ul {
-    list-style-type: none;
+body {
+	font-family: 'Calibri', sans-serif;
+    margin: 0 0 75px;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 75px;
+    width: 100%;
+    overflow:hidden;
 }
 
 .margin-top {
@@ -44,14 +55,6 @@ ul {
 
 .alert-margin-top {
     margin-top:10px;
-}
-
-.divider{
-    position:absolute;
-    left:50%;
-    top:10%;
-    bottom:10%;
-    border-left:1px solid gray;
 }
 
 .btn-primary {

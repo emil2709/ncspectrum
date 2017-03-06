@@ -19,7 +19,7 @@
 
 			<hr>
 
-			<ul class="sortable draggable">
+			<ul class="boxlist" id="sortable">
 
 				<li class="well col-md-6 col-md-offset-3">
 					<div class="row">
@@ -163,7 +163,7 @@
 				<li class="well col-md-6 col-md-offset-3">
 					<div class="row">
 						<div class="col-md-12">
-							<a href="{{ route('login') }}" class="btn btn-primary btn-block">ADMIN LOGIN</a>
+							<a href="{{route('login')}}" class="btn btn-primary btn-block">ADMIN LOGIN</a>
 							<hr>
 							<p>
 								Knappen for å logge inn som admin. <br/>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Status;
 use Session;
+use DB;
 
 class UserController extends Controller
 {
@@ -15,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
- 		$users = User::orderBy('id','desc')->paginate(5);
+ 		$users = User::orderBy('id','desc')->where('company','not like','ncspectrum')->paginate(5);
         return view('users.index')->withUsers($users);
     }
 
@@ -51,12 +53,74 @@ class UserController extends Controller
     	$user->phone = strtolower($request->phone);
     	$user->email = strtolower($request->email);
     	$user->company = strtolower($request->company);
-
-    	$user->save();
+        $user->save();
 
         Session::flash('success', 'The User was successfully created!');
 
     	return redirect()->route('users.index');
+    }
+
+    /**
+    * Function for livesearching the specified resource.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+    public function usersearch(Request $request)
+    {        
+        if($request->ajax())
+        {
+            $search = $request->usersearch;
+            $output = "";
+
+            if($search != "")
+            {
+                $users = DB::table('users')
+                    ->where('company', 'not like', 'ncspectrum')
+                    ->where('firstname', 'like', '%'.$search.'%')
+                    ->orWhere('lastname', 'like', '%'.$search.'%')
+                    ->where('company', 'not like', 'ncspectrum')
+                    ->orWhere('company', 'like', '%'.$search.'%')
+                    ->paginate(5);
+            }
+            else
+            {
+                $users = User::orderBy('id', 'desc')->where('company','not like','ncspectrum')->paginate(5);
+            }
+
+            foreach($users as $user)
+            {
+                $output.=
+                    '<li id="outlist-box" class="userbox">'.
+                        '<div class="row">'.
+                            '<div class="col-md-12">'.
+                                '<div class="text-center lead">'.
+                                    '<strong>'.
+                                        $user->firstname.
+                                        ' '.
+                                        $user->lastname.
+                                    '</strong>'.
+                                '</div>'.
+                                '<div class="col-md-12 text-center">'.
+                                    $user->email.'<br/>'.
+                                    $user->company.
+                                '</div>'.
+                            '</div>'.
+                        '</div>'.
+                    '</li>';
+            }
+
+            if($output == "")
+            {
+                $output = "<div class='margin-top text-center' id='notfound'><strong>".$search."</strong> was not found</div>";
+                return Response($output);
+            }
+            else
+            {
+                return Response($output);
+            }   
+        }
+
     }
 
     public function wip()

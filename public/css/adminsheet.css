@@ -63,9 +63,24 @@ body {
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
   color: #fff;
-  background-color: #428bca;
+  background-color: #00adef;
 }
 
+a {
+    color: #00adef;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #55c43b;
+    text-decoration: none;
+}
+
+.input-group-addon {
+    background-color: #00adef;
+    border: #00adef;
+    color: #fff;
+}
 
 /*
  * Main content
@@ -84,6 +99,9 @@ body {
   margin-top: 0;
 }
 
+#notfound {
+  font-size:25px;
+}
 
 /*
  * Placeholder dashboard ideas

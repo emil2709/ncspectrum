@@ -1,27 +1,62 @@
 
 $(document).ready(function(){
 
-  // Functions triggered on load
   $("#welcome").hide().fadeIn(3000);
 
-  // Interactive functions
-  $(function(){
+  // Userinteractions
 
-    	$(".sortable").sortable({
-       		revert: true,
-          connectWith: ".connectedSortable"
-     	});
+  $("#outlist, #inlist").sortable({
+      revert: true,
+      connectWith: ".connectedSortable",
+      placeholder: "placeholder"
+  }).disableSelection();
 
-     	$(".draggable").draggable({
-       		connectToSortable: ".sortable",
-       		revert: "invalid",
-          refreshPositions: true
-     	});
+  /*
+  $("#outlist-box").click(function(){
+    $('#inlist').append($(this).removeClass(this));
+    $(this).attr('id', 'inlist-box');
+  });
 
-     	$("ul, li").disableSelection();
+  $("#inlist-box").click(function(){
+    $('#outlist').append($(this).removeClass(this));
+    $(this).attr('id', 'outlist-box');
+  });
+  */
 
-      $( ".tabs" ).tabs();
+  $('#usersearch').on('keyup',function(){
+      $usersearch = $(this).val();
+      $.ajax({
+        type: 'get',
+        url: '/usersearch',
+        data: {'usersearch':$usersearch},
+        success:function(data)
+        {
+          $('#outlist').html(data);
+        }
 
-    });
+      });
+  });
+
+  // tmp
+  $( ".tabs" ).tabs();
+  $( "#sortable" ).sortable();
+  $( "#sortable" ).disableSelection();
+
+  // Admininteractions
+
+  $('#search').on('keyup',function(){
+      $search = $(this).val();
+      $type = $('#type').val();
+      $.ajax({
+        type: 'get',
+        url: '/search',
+        data: {'search':$search,'type':$type},
+        success:function(data)
+        {
+          $('#searchresult').html(data);
+        }
+
+      });
+  });
 
 });
