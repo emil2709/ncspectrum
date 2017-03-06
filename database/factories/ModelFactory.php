@@ -22,7 +22,7 @@ $factory->define(App\Admin::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Status::class, function (Faker\Generator $faker) {
 	return [
-		'user_id' => $faker->numberBetween($min = 1, $max = 20),
+		//'user_id' => $faker->biasedNumberBetween($min = 1, $max = 20, $function = 'sqrt'),
 		'status' => $faker->cityPrefix,
 	];
 });

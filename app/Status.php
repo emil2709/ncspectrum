@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
 {
-    public function user()
+    public function users()
     {
-    	return $this->hasOne(User::class);
+    	return $this->belongsTo('App\User');
     }
 }

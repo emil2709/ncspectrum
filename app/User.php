@@ -12,8 +12,8 @@ class User extends Model
 		return $this->belongsToMany('App\Visit')->orderBy('date', 'desc');
 	}
 
-	public function status()
-    {
-    	return $this->hasOne(Status::class);
-    }
+	public function statuses()
+	{
+		return $this->hasOne('App\Status');
+	}
 }
