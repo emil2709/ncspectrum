@@ -308,15 +308,15 @@ class AdminController extends Controller
                                 '<td>'.$user->email.'</td>'.
                                 '<td>'.$user->company.'</td>'.
                                 '<td>'.
-                                    '<a href="/admins/'.$user->id.'/userlog">'.
+                                    '<a href="/admin/'.$user->id.'/userlog">'.
                                     '<span class="glyphicon glyphicon-th-list"></span></a>'.
                                 '</td>'.
                                 '<td>'.
-                                    '<a href="/admins/'.$user->id.'/edit">'.
+                                    '<a href="/admin/'.$user->id.'/edit">'.
                                     '<span class="glyphicon glyphicon-edit"></span></a>'.
                                 '</td>'.
                                 '<td>'.
-                                    '<a href="/admins/'.$user->id.'">'.
+                                    '<a href="/admin/'.$user->id.'">'.
                                     '<span class="glyphicon glyphicon-trash"></span></a>'.
                                 '</td>'.
                             '</tr>';
