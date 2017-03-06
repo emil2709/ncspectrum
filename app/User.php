@@ -8,4 +8,9 @@ class User extends Model
 	{
 		return $this->belongsToMany('App\Visit');
 	}
+
+	public function statuses()
+	{
+		return $this->hasMany('App\Status');
+	}
 }
