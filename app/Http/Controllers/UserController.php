@@ -81,7 +81,7 @@ class UserController extends Controller
                     ->orWhere('lastname', 'like', '%'.$search.'%')
                     ->where('company', 'not like', 'ncspectrum')
                     ->orWhere('company', 'like', '%'.$search.'%')
-                    ->get();
+                    ->paginate(5);
             }
             else
             {
