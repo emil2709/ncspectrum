@@ -15,7 +15,7 @@
 </head>
 
 
-<h1>Velkommen til Log</h1>
+<h1>Log</h1>
 <table id="myTable" class="tablesorter">
 	<thead>
 		<tr>
