@@ -8,8 +8,11 @@
 		<div class="row col-md-12">
 
 			<div class="row" id="mainlogin">
-				<div class='col-md-1 col-md-offset-11'>
-					<a href='{{route('login')}}' class='btn btn-primary btn-block'>LOGIN</a>
+				<div class='col-md-1 col-md-offset-9'>
+					<a href='{{ route('login') }}' class='btn btn-primary btn-block'>LOGIN</a>
+				</div>
+				<div class='col-md-2'>
+					<a href='{{ route('users.create') }}' class='btn btn-primary btn-block'>CREATE NEW USER</a>
 				</div>
 			</div>
 
