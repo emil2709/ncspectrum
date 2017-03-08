@@ -18,6 +18,12 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+	<!-- Datatable i log-->
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.js"></script>-->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/b-1.2.4/b-html5-1.2.4/fh-3.1.2/r-2.1.1/se-1.2.0/datatables.min.css"/>
+	 
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/b-1.2.4/b-html5-1.2.4/fh-3.1.2/r-2.1.1/se-1.2.0/datatables.min.js"></script>
+	
 	<!-- Our own custom css rules -->
 	{{ Html::style('css/mainsheet.css') }}
 	{{ Html::style('css/adminsheet.css') }}
