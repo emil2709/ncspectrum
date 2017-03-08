@@ -136,14 +136,14 @@ class AdminController extends Controller
 
         $user = User::find($id);
 
-        $user->firstname = strtolower($request->input('firstname'));
-        $user->lastname = strtolower($request->input('lastname'));
-        $user->phone = strtolower($request->input('phone'));
+        $user->firstname = ucwords(strtolower($request->input('firstname')));
+        $user->lastname = ucwords(strtolower($request->input('lastname')));
+        $user->phone = $request->input('phone');
         $user->email= strtolower($request->input('email'));
-        $user->company = strtolower($request->input('company'));
+        $user->company = ucwords(strtolower($request->input('company')));
         $user->save();
 
-        if($user->company != 'ncspectrum')
+        if($user->company != 'Ncspectrum')
         {
             Session::flash('success', "Changes has been made to the Guest.");
             return redirect()->route('admins.guests');
@@ -179,7 +179,7 @@ class AdminController extends Controller
         $company = $user->company;
         $user->delete();
 
-        if($company != 'ncspectrum')
+        if($company != 'Ncspectrum')
         {
             Session::flash('success', 'The Guest was successfully deleted!');
             return redirect()->route('admins.guests');

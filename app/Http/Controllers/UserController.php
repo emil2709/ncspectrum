@@ -48,11 +48,11 @@ class UserController extends Controller
             ]);
 
         $user = new User();
-    	$user->firstname = $request->firstname;
-    	$user->lastname = $request->lastname;
+    	$user->firstname = ucwords(strtolower($request->firstname));
+    	$user->lastname = ucwords(strtolower($request->lastname));
     	$user->phone = $request->phone;
-    	$user->email = $request->email;
-    	$user->company = $request->company;
+    	$user->email = strtolower($request->email);
+    	$user->company = ucwords(strtolower($request->company));
         $user->save();
 
         Session::flash('success', 'The User was successfully created!');

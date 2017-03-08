@@ -77,7 +77,7 @@
 						{{ Form::label('company', 'Company:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
-						@if($user->company != 'ncspectrum')
+						@if($user->company != 'Ncspectrum')
 							<div class="input-group">
 								<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 								{{ Form::text('company', null, ['class' => 'form-control',
@@ -107,7 +107,7 @@
 						{!! Html::linkRoute('admins.showUser', 'DELETE', [$user->id], ['class' => 'btn btn-danger btn-block']) !!}
                 	</div>
 					<div class="col-md-4">
-						@if($user->company != 'ncspectrum')
+						@if($user->company != 'Ncspectrum')
 							<a href="{{ route('admins.guests') }}" class="btn btn-default btn-block">CANCEL</a>
 						@else
 							<a href="{{ route('admins.employees') }}" class="btn btn-default btn-block">CANCEL</a>

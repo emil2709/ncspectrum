@@ -19,6 +19,15 @@
 	background: #202020;
 }
 
+.outerpadding {
+    margin: 10px 10px 10px 0;
+}
+
+.wipbox {
+    list-style-type: none;
+    padding: 0;
+}
+
 
 /* Active css-rules */
 

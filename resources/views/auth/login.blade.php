@@ -12,27 +12,27 @@
 				<legend class="text-center">ADMIN LOGIN</legend>
 
 				<div class="form-group">
-					<div class="col-md-4 control-label">
+					<div class="col-md-2 col-md-offset-1 control-label">
 						{{ Form::label('username', 'Username:') }}
 					</div>
-					<div class="col-md-4 inputContainer">
+					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 							{{ Form::text('username', null, ['class' => 'form-control', 
-								'placeholder' => 'Enter Username here...']) }}
+								'placeholder' => 'Enter Username here ...']) }}
 						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<div class="col-md-4 control-label">
+					<div class="col-md-2 col-md-offset-1 control-label">
 						{{ Form::label('password', 'Password:') }}
 					</div>
-					<div class="col-md-4 inputContainer">
+					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 							{{ Form::password('password', ['class' => 'form-control', 
-								'placeholder' => 'Enter Password here...']) }}
+								'placeholder' => 'Enter Password here ...']) }}
 						</div>
 					</div>
 				</div>

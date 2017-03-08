@@ -17,7 +17,7 @@
 
       <thead>
         <tr>
-          <th>Firstname</th>d
+          <th>Firstname</th>
           <th>Lastname</th>
           <th>Mail</th>
           <th></th>

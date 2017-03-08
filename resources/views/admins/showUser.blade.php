@@ -53,7 +53,7 @@
 		                  		{!! Form::submit('DELETE', ['class' => 'btn btn-danger btn-block']) !!}
 		               		{!! Form::close() !!}
 		                </div>
-		                @if($user->company != 'ncspectrum')
+		                @if($user->company != 'Ncspectrum')
 							<div class="col-md-6">
 								<a href="{{ route('admins.guests') }}" class="btn btn-default btn-block">CANCEL</a>
 							</div>
