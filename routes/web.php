@@ -11,9 +11,27 @@ Route::get('/usersearch', ['as' => 'usersearch', 'uses' => 'UserController@users
 
 // Admin Routes
 
+//Authentication Routes
+Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
+Route::post('login', 'Auth\LoginController@login');
+Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+Route::post('logout', 'Auth\LoginController@logout');
+
+// Registration Routes 
+Route::get('admin/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);
+Route::post('admin/register', 'Auth\RegisterController@register');
+
+// Password Reset Routes
+Route::get('password/reset', ['as' => 'password.request', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
+Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
+Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+//Auth::routes();
+
 // Get
-Route::get('auth/login', ['as' => 'login', 'uses' => 'AdminController@index']);
-Route::get('admin/create/admin', ['as' => 'register', 'uses' => 'AdminController@createAdmin']);
+//Route::get('auth/login', ['as' => 'login', 'uses' => 'AdminController@index']);
+//Route::get('admin/create/admin', ['as' => 'register', 'uses' => 'AdminController@createAdmin']);
 
 Route::get('admin/dashboard', ['as' => 'admins.dashboard', 'uses' => 'AdminController@dashboard']);
 Route::get('admin/{user}/edit', ['as' => 'admins.editUser', 'uses' => 'AdminController@editUser']);

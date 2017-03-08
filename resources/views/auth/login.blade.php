@@ -5,7 +5,7 @@
 @section('content')
 	
 	<div class="col-md-8 col-md-offset-2">
-		{!! Form::open(['route' => 'login', 'method' => 'GET', 'class' => 'well form-horizontal margin-top']) !!}
+		{!! Form::open(['method' => 'GET', 'class' => 'well form-horizontal margin-top']) !!}
 			
 			<fieldset>
 				
@@ -13,13 +13,13 @@
 
 				<div class="form-group">
 					<div class="col-md-2 col-md-offset-1 control-label">
-						{{ Form::label('username', 'Username:') }}
+						{{ Form::label('email', 'Email:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							{{ Form::text('username', null, ['class' => 'form-control', 
-								'placeholder' => 'Enter Username here ...']) }}
+							{{ Form::email('email', null, ['class' => 'form-control', 
+								'placeholder' => 'Enter Email Address here ...']) }}
 						</div>
 					</div>
 				</div>
@@ -34,6 +34,15 @@
 							{{ Form::password('password', ['class' => 'form-control', 
 								'placeholder' => 'Enter Password here ...']) }}
 						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-2 col-md-offset-1">
+						{{ Form::label('remember', 'Remember me:') }}
+					</div>
+					<div class="col-md-6">
+							{{ Form::checkbox('remember') }}
 					</div>
 				</div>
 
