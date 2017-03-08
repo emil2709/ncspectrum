@@ -52,8 +52,18 @@ class UserController extends Controller
     	$user->lastname = ucwords(strtolower($request->lastname));
     	$user->phone = $request->phone;
     	$user->email = strtolower($request->email);
-    	$user->company = ucwords(strtolower($request->company));
+    	$user->company = strtolower($request->company);
         $user->save();
+
+        $visit = new \App\Visit();
+        //$visit->date = '2017';
+        //$visit->from = '20:20';
+        //$visit->to = '21:20';
+        $visit->company = strtolower($request->company);
+        $visit->comment = 'Det kommer damer';
+
+        $user->visits()->save($visit);
+    
 
         Session::flash('success', 'The User was successfully created!');
 
