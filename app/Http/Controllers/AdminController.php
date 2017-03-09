@@ -7,6 +7,7 @@ use App\Admin;
 use App\User;
 use Session;
 use DB;
+use Hash;
 
 class AdminController extends Controller
 {
@@ -181,7 +182,39 @@ class AdminController extends Controller
      */
     public function updateAdminPassword(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+                'currentPassword' => 'required|min:6|max:60|regex:/^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$/',
+                'password' => 'required|min:6|max:60|regex:/^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$/|confirmed',
+                'password_confirmation' => 'required|min:6|max:60|regex:/^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$/',
+            ]);
+
+        $admin = Admin::find($id);
+        $databasePassword = $admin->password;
+        $currentPassword = $request->input('currentPassword');
+        $newPassword = $request->input('password');
+
+        if(Hash::check($currentPassword, $databasePassword))
+        {
+            if(Hash::check($newPassword, $databasePassword))
+            {
+                Session::flash('error', 'The new password can not be equal to the current password.');
+                return redirect()->back();
+            }
+            else
+            {
+                $password = bcrypt($newPassword);
+                $admin->password = $password;
+                $admin->save();
+
+                Session::flash('success', 'The password has been successfully updated!');
+                return redirect()->route('admins.admins');
+            }
+        }
+        else
+        {
+            Session::flash('error', 'The current password is not correct.');
+            return redirect()->back();
+        }
     }
 
     /**

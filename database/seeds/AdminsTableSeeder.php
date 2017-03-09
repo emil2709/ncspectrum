@@ -12,15 +12,15 @@ class AdminsTableSeeder extends Seeder
     public function run()
     {
         DB::table('admins')->insert([
-            'firstname' => 'Erik',
-            'lastname' => 'Li',
-            'email' => 'erik@gmail.com',
+            'firstname' => 'Salieri',
+            'lastname' => 'Antonio',
+            'email' => 'salieri@gmail.com',
             'password' => bcrypt('pagh3377'),
         ]);
         DB::table('admins')->insert([
-            'firstname' => 'Emil',
-            'lastname' => 'Nedregård',
-            'email' => 'emil@gmail.com',
+            'firstname' => 'Amadeus',
+            'lastname' => 'Mozart',
+            'email' => 'amadeus@gmail.com',
             'password' => bcrypt('pagh3377'),
         ]);
     }
