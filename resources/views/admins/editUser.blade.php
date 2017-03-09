@@ -4,9 +4,9 @@
 
 @section('content')
 
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-md-12">
 		{!! Form::model($user, ['route' => ['admins.updateUser', $user->id], 'method' => 'PUT', 'data-toggle' => 'validator',
-				'class' => 'well form-horizontal margin-top']) !!}
+				'class' => 'form-horizontal margin-top']) !!}
 			
 			<fieldset>
 				

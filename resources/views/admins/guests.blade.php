@@ -37,13 +37,19 @@
             <td> {{ $guest->email }}</td>
             <td> {{ $guest->company }}</td>
             <td>
-              <a href="{{ URL::route('admins.editUser', [$guest->id]) }}"><span class="glyphicon glyphicon-edit"></span></a>
+              <a href="{{ URL::route('admins.editUser', [$guest->id]) }}" title="Edit">
+                <span class="glyphicon glyphicon-edit"></span>
+              </a>
             </td>
             <td>
-              <a href="{{ URL::route('admins.userlog', [$guest->id]) }}"><span class="glyphicon glyphicon-th-list"></span></a>
+              <a href="{{ URL::route('admins.userlog', [$guest->id]) }}" title="Log">
+                <span class="glyphicon glyphicon-th-list"></span>
+              </a>
             </td>
             <td>
-              <a href="{{ URL::route('admins.showUser', [$guest->id]) }}"><span class="glyphicon glyphicon-trash"></span></a>
+              <a href="{{ URL::route('admins.showUser', [$guest->id]) }}" title="Delete">
+                <span class="glyphicon glyphicon-trash"></span>
+              </a>
             </td>
           </tr>
         @endforeach

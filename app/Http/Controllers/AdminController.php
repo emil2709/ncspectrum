@@ -10,12 +10,11 @@ use DB;
 
 class AdminController extends Controller
 {
-    /*
+    
     public function __construct()
     {
         $this->middleware('auth');
     }
-	*/
 
     /**
      * Display a listing of the resource.
@@ -48,27 +47,6 @@ class AdminController extends Controller
     {
         $admins = Admin::orderBy('firstname')->get();
         return view('admins.admins')->withAdmins($admins);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createAdmin()
-    {
-        return view('auth.register');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storeAdmin(Request $request)
-    {
-
     }
 
     /**
@@ -114,7 +92,20 @@ class AdminController extends Controller
      */
     public function editAdmin($id)
     {
-        //
+        $admin = Admin::find($id);
+        return view('admins.editAdmin')->withAdmin($admin);
+    }
+
+     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editAdminPassword($id)
+    {
+        $admin = Admin::find($id);
+        return view('admins.editAdminPassword')->withAdmin($admin);
     }
 
     /**
@@ -163,6 +154,32 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function updateAdmin(Request $request, $id)
+    {
+        $this->validate($request, [
+                'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
+                'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
+                'email' => 'required|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/',
+            ]);
+
+        $admin = Admin::find($id);
+
+        $admin->firstname = ucwords(strtolower($request->input('firstname')));
+        $admin->lastname = ucwords(strtolower($request->input('lastname')));
+        $admin->email= strtolower($request->input('email'));
+        $admin->save();
+
+        Session::flash('success', "Changes has been made to the Admin.");
+        return redirect()->route('admins.dashboard');
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateAdminPassword(Request $request, $id)
     {
         //
     }
@@ -251,11 +268,15 @@ class AdminController extends Controller
                             '<td>'.$admin->lastname.'</td>'.
                             '<td>'.$admin->email.'</td>'.
                             '<td>'.
-                                '<a href="#">'.
+                                '<a href="admin_'.$admin->id.'/edit" title="Edit">'.
                                 '<span class="glyphicon glyphicon-edit"></span></a>'.
                             '</td>'.
                             '<td>'.
-                                '<a href="#">'.
+                                '<a href="admin_'.$admin->id.'/edit" title="Edit Password">'.
+                                '<span class="glyphicon glyphicon-lock"></span></a>'.
+                            '</td>'.
+                            '<td>'.
+                                '<a href="#" title="Delete">'.
                                 '<span class="glyphicon glyphicon-trash"></span></a>'.
                             '</td>'.
                         '</tr>';
@@ -308,15 +329,15 @@ class AdminController extends Controller
                                 '<td>'.$user->email.'</td>'.
                                 '<td>'.$user->company.'</td>'.
                                 '<td>'.
-                                    '<a href="/admin/'.$user->id.'/userlog">'.
-                                    '<span class="glyphicon glyphicon-th-list"></span></a>'.
-                                '</td>'.
-                                '<td>'.
-                                    '<a href="/admin/'.$user->id.'/edit">'.
+                                    '<a href="/admin/user_'.$user->id.'/edit" title="Edit">'.
                                     '<span class="glyphicon glyphicon-edit"></span></a>'.
                                 '</td>'.
                                 '<td>'.
-                                    '<a href="/admin/'.$user->id.'">'.
+                                    '<a href="/admin/'.$user->id.'/userlog" title="Log">'.
+                                    '<span class="glyphicon glyphicon-th-list"></span></a>'.
+                                '</td>'.
+                                '<td>'.
+                                    '<a href="/admin/user_'.$user->id.'/delete" title="Delete">'.
                                     '<span class="glyphicon glyphicon-trash"></span></a>'.
                                 '</td>'.
                             '</tr>';

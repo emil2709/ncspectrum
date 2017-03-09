@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Admin;
+use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -36,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -63,6 +64,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        Session::flash('success', 'The Admin was successfully created!');
+
         return Admin::create([
             'firstname' => ucwords($data['firstname']),
             'lastname' => ucwords($data['lastname']),

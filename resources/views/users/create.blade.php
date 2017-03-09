@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-md-10 col-md-offset-1">
 		{!! Form::open(['route' => 'users.store', 'class' => 'well form-horizontal margin-top', 'data-toggle' => 'validator']) !!}
 			
 			<fieldset>

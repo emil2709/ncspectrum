@@ -56,7 +56,7 @@
 					<div class="help-block with-errors"></div>
 				</div>
 
-				<div class="form-group has-feedback">
+				<div class="form-group">
 					<div class="col-md-3 control-label">
 						{{ Form::label('password', 'Password:') }}
 					</div>
@@ -66,12 +66,10 @@
 							{{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'Enter Password here ...',
 								'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
 						</div>
-						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
-					<div class="help-block with-errors"></div>
 				</div>
 
-				<div class="form-group has-feedback">
+				<div class="form-group">
 					<div class="col-md-3 control-label">
 						{{ Form::label('password_confirmation', 'Confirm Password:') }}
 					</div>
@@ -81,9 +79,7 @@
 							{{ Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirm Password ...',
 								'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
 						</div>
-						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
-					<div class="help-block with-errors"></div>
 				</div>
 
 				<div class="form-group btn-margin-top">

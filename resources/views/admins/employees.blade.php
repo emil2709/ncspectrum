@@ -36,10 +36,19 @@
               <td> {{ $employee->email }}</td>
               <td> {{ $employee->company }}</td>
               <td>
-                <a href="{{ URL::route('admins.editUser', [$employee->id]) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                <a href="{{ URL::route('admins.editUser', [$employee->id]) }}" title="Edit">
+                  <span class="glyphicon glyphicon-edit"></span>
+                </a>
               </td>
               <td>
-                <a href="{{ URL::route('admins.showUser', [$employee->id]) }}"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="#" title="Log">
+                  <span class="glyphicon glyphicon-th-list"></span>
+                </a>
+              </td>
+              <td>
+                <a href="{{ URL::route('admins.showUser', [$employee->id]) }}" title="Delete">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </a>
               </td>
             </tr>
         @endforeach

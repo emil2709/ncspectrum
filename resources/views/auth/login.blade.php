@@ -5,7 +5,7 @@
 @section('content')
 	
 	<div class="col-md-8 col-md-offset-2">
-		{!! Form::open(['method' => 'GET', 'class' => 'well form-horizontal margin-top']) !!}
+		{!! Form::open(['method' => 'POST', 'class' => 'well form-horizontal margin-top']) !!}
 			
 			<fieldset>
 				
@@ -38,20 +38,12 @@
 				</div>
 
 				<div class="form-group">
-					<div class="col-md-2 col-md-offset-1">
-						{{ Form::label('remember', 'Remember me:') }}
+					<div class="col-md-6 col-md-offset-3">
+						{{ Form::checkbox('remember') }}
+						{{ Form::label('remember', 'Remember me') }}
 					</div>
-					<div class="col-md-6">
-							{{ Form::checkbox('remember') }}
-					</div>
-				</div>
-
-				<div class="form-group btn-margin-top">
-					<div class="col-md-4 col-md-offset-2">
+					<div class="col-md-6 col-md-offset-3">
 						{{ Form::submit('LOGIN', ['class' => 'btn btn-primary btn-block']) }}
-					</div>
-					<div class="col-md-4">
-						<a href="{{ route('users.index') }}" class="btn btn-default btn-block">CANCEL</a>
 					</div>
 				</div>
 
