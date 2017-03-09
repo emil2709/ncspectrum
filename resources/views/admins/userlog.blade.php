@@ -9,7 +9,6 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th>Date</th>
 			<th>From</th>
 			<th>To</th>
 			<th>Comment</th>
@@ -18,8 +17,6 @@
 	<tbody class="searchresult">
 		@foreach ($users->visits as $visit)
 		<tr>
-			<td>{{ $visit->date }}</td>
-			<td>{{ $visit->from }}</td>
 			<td>{{ $visit->created_at }}</td>
 			<td>{{ $visit->updated_at }}</td>
 		</tr>

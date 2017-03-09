@@ -23,16 +23,16 @@ $factory->define(App\Admin::class, function (Faker\Generator $faker) {
 $factory->define(App\Status::class, function (Faker\Generator $faker) {
 	return [
 		//'user_id' => $faker->biasedNumberBetween($min = 1, $max = 20, $function = 'sqrt'),
-		'status' => $faker->cityPrefix,
+		'status' => $faker->boolean($chanceOfGettingTrue = 20),
 	];
 });
 
 $factory->define(App\Visit::class, function (Faker\Generator $faker) {
 	return [
-		'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
-		'from' => $faker->time($format = 'H:i:s', $max = 'now'),
-		'to' => $faker->time($format = 'H:i:s', $max = 'now'),
-		'company' => $faker->company,
+		//'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
+		//'from' => $faker->time($format = 'H:i:s', $max = 'now'),
+		//'to' => $faker->time($format = 'H:i:s', $max = 'now'),
+		//'company' => $faker->company,
 		'comment' => $faker->state,
 	];
 });

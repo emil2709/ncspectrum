@@ -60,9 +60,15 @@ class UserController extends Controller
         //$visit->from = '20:20';
         //$visit->to = '21:20';
         //$visit->company = strtolower($request->company);
-        $visit->comment = 'Det kommer damer';
+        //$visit->comment = 'Det kommer damer';
 
         $user->visits()->save($visit);
+
+        $status = new \App\Status();
+
+        $status->status = false;
+
+        $user->statuses()->save($status);
     
 
         Session::flash('success', 'The User was successfully created!');

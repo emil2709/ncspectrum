@@ -1,8 +1,6 @@
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-sm-3 col-lg-2 sidebar">
-
       <ul class="nav nav-sidebar">
         <li class="{{ Request::segment(2) === 'dashboard' ? 'active' : null }}">
           <a href="{{ route('admins.dashboard') }}">Dashboard</a>
@@ -36,7 +34,7 @@
         <li><a href="#">Database</a></li>
       </ul>
       
-    </div>
+   
 
   </div>
 </div>
