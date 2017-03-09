@@ -7,6 +7,7 @@
 	
 		@include('partials._nav')
 		<div class="col-sm-3 col-lg-2 sidebar">
+		
 			@include('partials._sidebar_left')
 		</div>
 
