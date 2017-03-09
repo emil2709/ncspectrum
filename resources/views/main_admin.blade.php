@@ -6,8 +6,11 @@
 	<body>
 	
 		@include('partials._nav')
-
-		@include('partials._sidebar_left')
+		<div class="col-sm-3 col-lg-2 sidebar">
+		
+			@include('partials._sidebar_left')
+			
+		</div>
 
 		<div class="container">
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

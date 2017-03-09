@@ -21,9 +21,9 @@
 			@foreach ($user->visits as $visit)
 			<td>{{ $user->firstname }}</td>
 			<td>{{ $user->lastname }}</td>
-			<td>{{ $visit->date }}</td>
-			<td>{{ $visit->from }}</td>
-			<td>{{ $visit->to }}</td>
+			<td>{{ $visit->created_at }}</td>
+			<td>{{ $visit->updated_at }}</td>
+			<td>{{ $visit->comment }}</td>
 		</tr>
 		@endforeach
 		@endforeach

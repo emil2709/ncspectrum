@@ -17,7 +17,7 @@ class CreateStatusesTable extends Migration
             //$table->increments('id');
             $table->increments('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('status');
+            $table->boolean('status');
             $table->timestamps();
         });
 
