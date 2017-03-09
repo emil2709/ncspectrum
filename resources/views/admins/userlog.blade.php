@@ -20,8 +20,8 @@
 		<tr>
 			<td>{{ $visit->date }}</td>
 			<td>{{ $visit->from }}</td>
-			<td>{{ $visit->to }}</td>
-			<td>{{ $visit->comment }}</td>
+			<td>{{ $visit->created_at }}</td>
+			<td>{{ $visit->updated_at }}</td>
 		</tr>
 		@endforeach
 	</tbody>

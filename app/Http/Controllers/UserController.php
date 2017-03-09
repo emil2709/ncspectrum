@@ -59,7 +59,7 @@ class UserController extends Controller
         //$visit->date = '2017';
         //$visit->from = '20:20';
         //$visit->to = '21:20';
-        $visit->company = strtolower($request->company);
+        //$visit->company = strtolower($request->company);
         $visit->comment = 'Det kommer damer';
 
         $user->visits()->save($visit);

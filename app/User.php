@@ -9,7 +9,7 @@ class User extends Model
 {
 	public function visits()
 	{
-		return $this->belongsToMany('App\Visit')->orderBy('date', 'desc');
+		return $this->belongsToMany('App\Visit')->orderBy('updated_at', 'desc');
 	}
 
 	public function statuses()

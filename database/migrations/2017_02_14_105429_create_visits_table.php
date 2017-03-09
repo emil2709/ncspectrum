@@ -15,10 +15,7 @@ class CreateVisitsTable extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->increments('id');
-            $table->NOW();
-            $table->CURTIME();
-            $table->string('to');
-            $table->string('company');
+            //$table->string('company');
             $table->string('comment');
             $table->timestamps();
         });
