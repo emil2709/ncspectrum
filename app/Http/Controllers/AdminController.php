@@ -8,6 +8,9 @@ use App\User;
 use Session;
 use DB;
 use Hash;
+use Auth;
+use Image;
+use File;
 
 class AdminController extends Controller
 {
@@ -27,24 +30,24 @@ class AdminController extends Controller
  		return view('auth.login');
     }
 
-    public function dashboard()
+    public function showDashboard()
     {
         return view('admins.dashboard');
     }
 
-    public function guests()
+    public function showGuests()
     {
         $guests = User::orderBy('firstname')->where('company','not like','ncspectrum')->get();
         return view('admins.guests')->withGuests($guests);
     }
 
-     public function employees()
+     public function showEmployees()
     {
         $employees = User::orderBy('firstname')->where('company','like','ncspectrum')->get();
         return view('admins.employees')->withEmployees($employees);
     }
 
-     public function admins()
+     public function showAdmins()
     {
         $admins = Admin::orderBy('firstname')->get();
         return view('admins.admins')->withAdmins($admins);
@@ -56,10 +59,22 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showUser($id)
+    public function showDeleteUser($id)
     {
         $users = User::find($id);
-        return view('admins.showUser')->withUser($users);
+        return view('admins.showDeleteUser')->withUser($users);
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showDeleteAdmin($id)
+    {
+        $admin = Admin::find($id);
+        return view('admins.showDeleteAdmin')->withAdmin($admin);
     }
 
         /**
@@ -244,25 +259,78 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyAdmin($id)
+    public function destroyAdmin(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+                'password' => 'required|min:6|max:60|regex:/^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$/|',
+            ]);
+
+        $admin = Admin::find($id);
+        $databasePassword = $admin->password;
+        $password = $request->input('password');
+
+        if(Hash::check($password, $databasePassword))
+        {
+            $admin->delete();
+
+            Session::flash('success', 'The Admin has been successfully deleted!');
+            return redirect()->route('admins.admins');
+        }
+        else
+        {
+            Session::flash('error', 'The password is not correct.');
+            return redirect()->back();
+        }
     }
-    public function log()
+
+    public function showLog()
     {
         $users = User::get();
 
         return view ('admins.log')->withUsers($users);
     }
 
-    public function userlog($id)
+    public function showUserlog($id)
     {
         $users = User::find($id);
 
         return view ('admins.userlog')->withUsers($users);
+    }
+
+    public function showProfile()
+    {
+        $admin = Auth::user();
+        return view('admins.profile')->withAdmin($admin);
+    }
+
+    public function updateAvatar(Request $request)
+    {
+            if($request->hasFile('avatar'))
+            {
+                $admin = Admin::find(Auth::user()->id);
+                $avatar = $request->file('avatar');
+                $filename = time().'.'.$avatar->getClientOriginalExtension();
+
+                if($admin->avatar !== 'default.jpg')
+                {
+                    $file = public_path('uploads/avatars/'.$admin->avatar);
+                    if(File::exists($file))
+                    {
+                        unlink($file);
+                    }
+                }
+
+                Image::make($avatar)->fit(300, 300)->save(public_path('uploads/avatars/'.$filename));
+
+                $admin = Auth::user();
+                $admin->avatar = $filename;
+                $admin->save();
+                return view('admins.profile')->withAdmin($admin);
+            }
     }
 
     /**
@@ -279,6 +347,7 @@ class AdminController extends Controller
             $type = $request->type;
             $output = "";
 
+            // If the search is for admins
             if($type === 'admins')
             {
                 if($search != "")
@@ -315,6 +384,11 @@ class AdminController extends Controller
                         '</tr>';
                 }
             }
+            /** 
+            * If the search is for either a guest or employee.
+            * In this case we use the word 'user' for both guests and employees. 
+            * We seperate between these two by looking at the company names. 
+            */
             else
             {
                 if($type === 'guests')

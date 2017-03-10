@@ -1,13 +1,19 @@
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- 
+Include all compiled plugins (below), or include individual files as needed.
+These scripts are scripts that are not dependant on other stylesheets or javascript files in order to work propery,
+hence placed at the bottom of the main sheets.
+-->
 
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Lastest compiled and minified JQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Latest compiled and minified Bootstrap JavaScript Plugins -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- Latest compiled and minified JQueryUI -->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<!-- Bootstrap Javascript Validator  -->
+<!-- JQuery UI Touch Punch
+<script src="jquery.ui.touch-punch.min.js"></script>
+-->
+<!-- Latest compiled and minifed Bootstrap Javascript Validator  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 
 <!-- Our own script for various behaviours and actions -->

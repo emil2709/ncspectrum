@@ -3,7 +3,7 @@
 @section('title', '| Admins')
 
 @section ('content')
-  
+
   <h2 class="sub-header">Admins</h2>
 
   <div class="table-responsive">
@@ -42,7 +42,7 @@
                 </a>
               </td>
               <td>
-                <a href="#" title="Delete">
+                <a href="{{ URL::route('admins.showDeleteAdmin', [$admin->id]) }}" title="Delete">
                   <span class="glyphicon glyphicon-trash"></span>
                 </a>
               </td>

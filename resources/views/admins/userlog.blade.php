@@ -1,8 +1,8 @@
-@extends ('main_admin')
+@extends('main_admin')
 
-@section ('title', '| Loguser')
+@section('title', '| Loguser')
 
-@section ('content')
+@section('content')
 
 <h1>{{ $users->firstname }} {{ $users->lastname }}</h1>
 
