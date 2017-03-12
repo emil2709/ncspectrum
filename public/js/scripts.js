@@ -59,4 +59,21 @@ $(document).ready(function(){
       });
   });
 
+  $('#updateAvatarToggle').click(function(){
+    $(this).hide();
+  });
+
+  $('#updateAvatarCancel').click(function(){
+    $('#updateAvatarToggle').delay(500).show(0);
+  });
+
+  $('#updateAvatarSave').click(function(){
+    var filename = $('#avatar').val();
+    if(filename == "")
+    {
+      return false;
+    }
+  });
+
+
 });

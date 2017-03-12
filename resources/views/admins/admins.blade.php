@@ -4,6 +4,8 @@
 
 @section ('content')
 
+@if(Auth::user()->id == 1)
+
   <h2 class="sub-header">Admins</h2>
 
   <div class="table-responsive">
@@ -52,5 +54,10 @@
 
     </table>
   </div>
+
+@else
+  @include('partials._offlimits')
+
+@endif
 
 @endsection

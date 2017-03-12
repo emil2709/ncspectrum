@@ -49,7 +49,7 @@ class AdminController extends Controller
 
      public function showAdmins()
     {
-        $admins = Admin::orderBy('firstname')->get();
+        $admins = Admin::orderBy('firstname')->where('id', '!=', 1)->get();
         return view('admins.admins')->withAdmins($admins);
     }
 
@@ -185,7 +185,14 @@ class AdminController extends Controller
         $admin->save();
 
         Session::flash('success', "Changes has been made to the Admin.");
-        return redirect()->route('admins.dashboard');
+        if(Auth::user()->id == 1)
+        {
+            return redirect()->route('admins.admins');
+        }
+        else
+        {
+            return redirect()->route('admins.showProfile');
+        }
     }
 
      /**
@@ -204,15 +211,25 @@ class AdminController extends Controller
             ]);
 
         $admin = Admin::find($id);
-        $databasePassword = $admin->password;
+        $sysadmin = Admin::find(1);
+
         $currentPassword = $request->input('currentPassword');
         $newPassword = $request->input('password');
+
+        if(Auth::user()->id == 1)
+        {
+            $databasePassword = $sysadmin->password;
+        }
+        else
+        {
+            $databasePassword = $admin->password;
+        }
 
         if(Hash::check($currentPassword, $databasePassword))
         {
             if(Hash::check($newPassword, $databasePassword))
             {
-                Session::flash('error', 'The new password can not be equal to the current password.');
+                Session::flash('error', 'The new password can not be equal to the System Administrator password.');
                 return redirect()->back();
             }
             else
@@ -222,7 +239,14 @@ class AdminController extends Controller
                 $admin->save();
 
                 Session::flash('success', 'The password has been successfully updated!');
-                return redirect()->route('admins.admins');
+                if(Auth::user()->id == 1)
+                {
+                    return redirect()->route('admins.admins');
+                }
+                else
+                {
+                    return redirect()->route('admins.showProfile');
+                }
             }
         }
         else
@@ -270,7 +294,9 @@ class AdminController extends Controller
             ]);
 
         $admin = Admin::find($id);
-        $databasePassword = $admin->password;
+        $sysadmin = Admin::find(1);
+
+        $databasePassword = $sysadmin->password;
         $password = $request->input('password');
 
         if(Hash::check($password, $databasePassword))
@@ -331,6 +357,11 @@ class AdminController extends Controller
                 $admin->save();
                 return view('admins.profile')->withAdmin($admin);
             }
+            else
+            {
+                Session::flash('error', 'You must upload a picture!');
+                return redirect()->back();
+            }
     }
 
     /**
@@ -353,13 +384,14 @@ class AdminController extends Controller
                 if($search != "")
                 {
                     $admins = DB::table('admins')
+                        ->where('id', '!=', 1)
                         ->where('firstname', 'like', '%'.$search.'%')
                         ->orWhere('lastname', 'like', '%'.$search.'%')
                         ->get();
                 }
                 else
                 {
-                    $admins = Admin::orderBy('firstname')->get();
+                    $admins = Admin::orderBy('firstname')->where('id', '!=', 1)->get();
                 }
 
                 foreach($admins as $admin)
