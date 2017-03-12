@@ -228,8 +228,15 @@ class AdminController extends Controller
         if(Hash::check($currentPassword, $databasePassword))
         {
             if(Hash::check($newPassword, $databasePassword))
-            {
-                Session::flash('error', 'The new password can not be equal to the System Administrator password.');
+            {        
+                if(Auth::user()->id == 1)
+                {
+                    Session::flash('error', 'The new password can not be equal to the System Administrator password.');
+                }
+                else
+                {
+                    Session::flash('error', 'The new password can not be equal to your current password.');
+                }
                 return redirect()->back();
             }
             else

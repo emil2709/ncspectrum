@@ -104,7 +104,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-4 col-md-offset-2">
-						{!! Html::linkRoute('admins.showUser', 'DELETE', [$user->id], ['class' => 'btn btn-danger btn-block']) !!}
+						{!! Html::linkRoute('admins.showDeleteUser', 'DELETE', [$user->id], ['class' => 'btn btn-danger btn-block']) !!}
                 	</div>
 					<div class="col-md-4">
 						@if($user->company != 'Ncspectrum')

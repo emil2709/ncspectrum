@@ -3,7 +3,7 @@
 @section('title', '| Create Admin')
 
 @section('content')
-
+@if(Auth::user()->id == 1)
 	<div class="col-md-12">
 		{!! Form::open(['class' => 'form-horizontal margin-top', 'data-toggle' => 'validator']) !!}
 			
@@ -100,5 +100,10 @@
 
 		{!! Form::close() !!}
 	</div>
+
+@else
+	@include('partials._offlimits')
+
+@endif
 
 @endsection
