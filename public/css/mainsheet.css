@@ -51,8 +51,8 @@ footer {
 }
 
 #error {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 
 .margin-top {
@@ -93,6 +93,12 @@ footer {
     color: #fff;
     background-color: #449d2f;
     border-color: #449d2f;
+}
+
+.input-group-addon {
+    background-color: #00adef;
+    border: #00adef;
+    color: #fff;
 }
 
 .ui-widget {

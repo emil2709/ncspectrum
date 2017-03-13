@@ -1,6 +1,6 @@
 @extends('main_admin')
 
-@section('title', '| Loguser')
+@section('title', '| Userlog')
 
 @section('content')
 
