@@ -4,9 +4,9 @@
 
 @section('content')
 
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-md-12">
 		{!! Form::model($user, ['route' => ['admins.updateUser', $user->id], 'method' => 'PUT', 'data-toggle' => 'validator',
-				'class' => 'well form-horizontal margin-top']) !!}
+				'class' => 'form-horizontal margin-top']) !!}
 			
 			<fieldset>
 				
@@ -104,7 +104,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-4 col-md-offset-2">
-						{!! Html::linkRoute('admins.showUser', 'DELETE', [$user->id], ['class' => 'btn btn-danger btn-block']) !!}
+						{!! Html::linkRoute('admins.showDeleteUser', 'DELETE', [$user->id], ['class' => 'btn btn-danger btn-block']) !!}
                 	</div>
 					<div class="col-md-4">
 						@if($user->company != 'Ncspectrum')

@@ -11,22 +11,47 @@ Route::get('/usersearch', ['as' => 'usersearch', 'uses' => 'UserController@users
 
 // Admin Routes
 
-// Get
-Route::get('auth/login', ['as' => 'login', 'uses' => 'AdminController@index']);
-Route::get('admin/create/admin', ['as' => 'register', 'uses' => 'AdminController@createAdmin']);
+//Authentication Routes
+Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
+Route::post('login', 'Auth\LoginController@login');
+Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+Route::post('logout', 'Auth\LoginController@logout');
 
-Route::get('admin/dashboard', ['as' => 'admins.dashboard', 'uses' => 'AdminController@dashboard']);
-Route::get('admin/{user}/edit', ['as' => 'admins.editUser', 'uses' => 'AdminController@editUser']);
-Route::get('admin/guests', ['as' => 'admins.guests', 'uses' => 'AdminController@guests']);
-Route::get('admin/log', ['as' => 'admins.log', 'uses' => 'AdminController@log']);
-Route::get('admin/employees', ['as' => 'admins.employees', 'uses' => 'AdminController@employees']);
-Route::get('admin/admins', ['as' => 'admins.admins', 'uses' => 'AdminController@admins']);
-Route::get('admin/{user}', ['as' => 'admins.showUser', 'uses' => 'AdminController@showUser']);
+// Registration Routes 
+Route::get('admin/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);
+Route::post('admin/register', 'Auth\RegisterController@register');
+
+// Password Reset Routes
+Route::get('password/reset', ['as' => 'password.request', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
+Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
+Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+//Auth::routes();
+
+// Get
+Route::get('admin/dashboard', ['as' => 'admins.dashboard', 'uses' => 'AdminController@showDashboard']);
+Route::get('admin/user_{user}/edit', ['as' => 'admins.editUser', 'uses' => 'AdminController@editUser']);
+Route::get('admin/admin_{admin}/edit', ['as' => 'admins.editAdmin', 'uses' => 'AdminController@editAdmin']);
+Route::get('admin/adminpassword_{admin}/edit', ['as' => 'admins.editAdminPassword', 'uses' => 'AdminController@editAdminPassword']);
+Route::get('admin/guests', ['as' => 'admins.guests', 'uses' => 'AdminController@showGuests']);
+Route::get('admin/log', ['as' => 'admins.log', 'uses' => 'AdminController@showLog']);
+Route::get('admin/employees', ['as' => 'admins.employees', 'uses' => 'AdminController@showEmployees']);
+Route::get('admin/admins', ['as' => 'admins.admins', 'uses' => 'AdminController@showAdmins']);
+Route::get('admin/user_{user}/delete', ['as' => 'admins.showDeleteUser', 'uses' => 'AdminController@showDeleteUser']);
+Route::get('admin/admin_{admin}/delete', ['as' => 'admins.showDeleteAdmin', 'uses' => 'AdminController@showDeleteAdmin']);
 Route::get('/search', ['as' => 'search', 'uses' => 'AdminController@search']);
-Route::get('admin/{user}/userlog', ['as' => 'admins.userlog', 'uses' => 'AdminController@userlog']);
+Route::get('admin/{user}/userlog', ['as' => 'admins.userlog', 'uses' => 'AdminController@showUserlog']);
+Route::get('admin/profile', ['as' => 'admins.showProfile', 'uses' => 'AdminController@showProfile']);
+
+// Post
+Route::post('admin/profile', ['as' => 'admins.updateAvatar', 'uses' => 'AdminController@updateAvatar']);
+Route::post('admin/admin/{admin}', ['as' => 'admins.destroyAdmin', 'uses' => 'AdminController@destroyAdmin']);
 
 // Put
-Route::put('admin/{user}', ['as' => 'admins.updateUser', 'uses' => 'AdminController@updateUser']);
+Route::put('admin/user_{user}', ['as' => 'admins.updateUser', 'uses' => 'AdminController@updateUser']);
+Route::put('admin/admin_{admin}', ['as' => 'admins.updateAdmin', 'uses' => 'AdminController@updateAdmin']);
+Route::put('admin/adminpassword_{admin}', ['as' => 'admins.updateAdminPassword', 'uses' => 'AdminController@updateAdminPassword']);
 
 // Delete
-Route::delete('admin/{user}', ['as' => 'admins.destroyUser', 'uses' => 'AdminController@destroyUser']);
+Route::delete('admin/user/{user}', ['as' => 'admins.destroyUser', 'uses' => 'AdminController@destroyUser']);

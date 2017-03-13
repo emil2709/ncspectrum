@@ -11,9 +11,11 @@
         <li class="{{ Request::segment(2) === 'employees' ? 'active' : null }}">
           <a href="{{ route('admins.employees') }}">Employees</a>
         </li>
-        <li class="{{ Request::segment(2) === 'admins' ? 'active' : null }}">
-          <a href="{{ route('admins.admins') }}">Admins</a>
-        </li>
+        @if(Auth::user()->id == 1)
+          <li class="{{ Request::segment(2) === 'admins' ? 'active' : null }}">
+            <a href="{{ route('admins.admins') }}">Admins</a>
+          </li>
+        @endif
         <li class="{{ Request::segment(2) === 'visits' ? 'active' : null }}">
           <a href="">Visits</a>
         </li>
@@ -21,9 +23,11 @@
       <ul class="nav nav-sidebar">
         <li><a href="#">Create Guest</a></li>
         <li><a href="#">Create Employee</a></li>
-        <li class="{{ Request::segment(3) === 'admin' ? 'active' : null }}"">
-          <a href="{{ route('register') }}">Create Admin</a>
-        </li>
+        @if(Auth::user()->id == 1)
+          <li class="{{ Request::segment(3) === 'admin' ? 'active' : null }}"">
+            <a href="{{ route('register') }}">Create Admin</a>
+          </li>
+        @endif
         <li><a href="#">Create Visit</a></li>
       </ul>
       <ul class="nav nav-sidebar">

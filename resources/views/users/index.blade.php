@@ -9,7 +9,7 @@
 
 			<div class="row" id="mainlogin">
 				<div class='col-md-1 col-md-offset-9'>
-					<a href='{{ route('login') }}' class='btn btn-primary btn-block'>LOGIN</a>
+					{{--<a href='{{ route('login') }}' class='btn btn-primary btn-block'>LOGIN</a>--}}
 				</div>
 				<div class='col-md-2'>
 					<a href='{{ route('users.create') }}' class='btn btn-primary btn-block'>CREATE NEW USER</a>

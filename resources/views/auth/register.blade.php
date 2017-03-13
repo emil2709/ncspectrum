@@ -3,7 +3,7 @@
 @section('title', '| Create Admin')
 
 @section('content')
-
+@if(Auth::user()->id == 1)
 	<div class="col-md-12">
 		{!! Form::open(['class' => 'form-horizontal margin-top', 'data-toggle' => 'validator']) !!}
 			
@@ -48,7 +48,7 @@
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-							{{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter E-Mail Address here ...',
+							{{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Enter E-Mail Address here ...',
 								'required', 'pattern="^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$"']) }}
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -63,8 +63,9 @@
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-							{{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'Enter Password here ...',
-								'required', 'minlength="5"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-.]{5,30}$"']) }}
+							{{ Form::password('password', ['class' => 'form-control', 'id' => 'password', 
+								'placeholder' => 'Enter Password here ...', 'required', 'minlength="6"', 
+								'maxlength="60"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
@@ -78,8 +79,8 @@
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-							{{ Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirm Password ...',
-								'required', 'minlength="5"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-.]{5,30}$"']) }}
+							{{ Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirm Password ...', 'data-match' => '#password', 'data-match-error' =>'The passwords does not match.', 
+								'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
@@ -99,5 +100,10 @@
 
 		{!! Form::close() !!}
 	</div>
+
+@else
+	@include('partials._offlimits')
+
+@endif
 
 @endsection

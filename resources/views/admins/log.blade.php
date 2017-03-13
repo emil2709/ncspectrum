@@ -1,8 +1,8 @@
-@extends ('main_admin')
+@extends('main_admin')
 
-@section ('title', '| Log')
+@section('title', '| Log')
 
-@section ('content')
+@section('content')
 
 <h1>Log</h1>
 <table id="myTable" class="tablesorter">

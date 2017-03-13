@@ -5,7 +5,7 @@
 @section('content')
 	
 	<div class="col-md-8 col-md-offset-2">
-		{!! Form::open(['route' => 'login', 'method' => 'GET', 'class' => 'well form-horizontal margin-top']) !!}
+		{!! Form::open(['method' => 'POST', 'class' => 'well form-horizontal margin-top']) !!}
 			
 			<fieldset>
 				
@@ -13,13 +13,13 @@
 
 				<div class="form-group">
 					<div class="col-md-2 col-md-offset-1 control-label">
-						{{ Form::label('username', 'Username:') }}
+						{{ Form::label('email', 'Email:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							{{ Form::text('username', null, ['class' => 'form-control', 
-								'placeholder' => 'Enter Username here ...']) }}
+							{{ Form::email('email', null, ['class' => 'form-control', 
+								'placeholder' => 'Enter Email Address here ...']) }}
 						</div>
 					</div>
 				</div>
@@ -37,12 +37,13 @@
 					</div>
 				</div>
 
-				<div class="form-group btn-margin-top">
-					<div class="col-md-4 col-md-offset-2">
-						{{ Form::submit('LOGIN', ['class' => 'btn btn-primary btn-block']) }}
+				<div class="form-group">
+					<div class="col-md-6 col-md-offset-3">
+						{{ Form::checkbox('remember') }}
+						{{ Form::label('remember', 'Remember me') }}
 					</div>
-					<div class="col-md-4">
-						<a href="{{ route('users.index') }}" class="btn btn-default btn-block">CANCEL</a>
+					<div class="col-md-6 col-md-offset-3">
+						{{ Form::submit('LOGIN', ['class' => 'btn btn-primary btn-block']) }}
 					</div>
 				</div>
 

@@ -3,7 +3,9 @@
 @section('title', '| Admins')
 
 @section ('content')
-  
+
+@if(Auth::user()->id == 1)
+
   <h2 class="sub-header">Admins</h2>
 
   <div class="table-responsive">
@@ -31,11 +33,20 @@
               <td> {{ $admin->firstname }} </td>
               <td> {{ $admin->lastname }} </td>
               <td> {{ $admin->email }} </td>
-              <td> 
-                <a href="#"><span class="glyphicon glyphicon-edit"></span></a> 
+              <td>
+                <a href="{{ URL::route('admins.editAdmin', [$admin->id]) }}" title="Edit">
+                  <span class="glyphicon glyphicon-edit"></span>
+                </a>
               </td>
-              <td> 
-                <a href="#"><span class="glyphicon glyphicon-trash"></span></a> 
+              <td>
+                <a href="{{ URL::route('admins.editAdminPassword', [$admin->id]) }}" title="Edit Password">
+                  <span class="glyphicon glyphicon-lock"></span>
+                </a>
+              </td>
+              <td>
+                <a href="{{ URL::route('admins.showDeleteAdmin', [$admin->id]) }}" title="Delete">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </a>
               </td>
             </tr>
         @endforeach
@@ -43,5 +54,10 @@
 
     </table>
   </div>
+
+@else
+  @include('partials._offlimits')
+
+@endif
 
 @endsection
