@@ -52,7 +52,7 @@ class UserController extends Controller
     	$user->lastname = ucwords(strtolower($request->lastname));
     	$user->phone = $request->phone;
     	$user->email = strtolower($request->email);
-    	$user->company = strtolower($request->company);
+    	$user->company = ucwords(strtolower($request->company));
         $user->save();
 
         $visit = new \App\Visit();
