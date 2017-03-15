@@ -1,6 +1,6 @@
 @extends('main_admin')
 
-@section('title', '| Edit Admin-Password')
+@section('title', '| Edit Admin Password')
 
 @section('content')
 

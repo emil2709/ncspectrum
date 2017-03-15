@@ -1,6 +1,6 @@
 <?php
 
-// User Routes
+/** User Routes **/
 
 Route::get('/', ['as' => 'users.wip', 'uses' => 'UserController@wip']);
 Route::get('/index', ['as' => 'users.index', 'uses' => 'UserController@index']);
@@ -9,7 +9,7 @@ Route::post('users', ['as' => 'users.store', 'uses' => 'UserController@store']);
 Route::get('/usersearch', ['as' => 'usersearch', 'uses' => 'UserController@usersearch']);
 
 
-// Admin Routes
+/** Admin Routes **/
 
 //Authentication Routes
 Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
@@ -26,8 +26,6 @@ Route::get('password/reset', ['as' => 'password.request', 'uses' => 'Auth\Forgot
 Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
 Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-
-//Auth::routes();
 
 // Get
 Route::get('admin/dashboard', ['as' => 'admins.dashboard', 'uses' => 'AdminController@showDashboard']);
