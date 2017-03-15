@@ -62,6 +62,7 @@ class AdminController extends Controller
     public function showDeleteUser($id)
     {
         $users = User::find($id);
+
         return view('admins.showDeleteUser')->withUser($users);
     }
 
@@ -273,6 +274,7 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         $company = $user->company;
+        $user->visits()->detach();
         $user->delete();
 
         if($company != 'Ncspectrum')
