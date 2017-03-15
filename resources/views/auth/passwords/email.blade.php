@@ -5,6 +5,14 @@
 @section('content')
 	
 	<div class="col-md-8 col-md-offset-2">
+
+		@if(session('status'))
+			<div class="alert alert-success alert-dismissable alert-margin-top" role="alert">
+	 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Success! </strong> <br/> {{ session('status') }}
+			</div>
+		@endif
+
 		{!! Form::open(['url' => 'password/email', 'method' => 'POST', 'class' => 'well form-horizontal margin-top', 
 			'data-toggle' => 'validator']) !!}
 			

@@ -16,13 +16,13 @@
 
 				<div class="form-group">
 					<div class="col-md-2 col-md-offset-1 control-label">
-						{{ Form::label('email', 'Email:') }}
+						{{ Form::label('email', 'Confirm Email:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-							{{ Form::email('email', $email, ['class' => 'form-control', 
-								'placeholder' => 'Enter Email Address here ...',
+							{{ Form::email('email', null, ['class' => 'form-control', 
+								'placeholder' => 'Confirm Email Address here ...',
 								'required', 'pattern="^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$"']) }}
 						</div>
 					</div>
