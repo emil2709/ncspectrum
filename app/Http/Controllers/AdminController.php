@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\User;
+use App\Status;
 use Session;
 use DB;
 use Hash;
@@ -275,6 +276,7 @@ class AdminController extends Controller
         $user = User::find($id);
         $company = $user->company;
         $user->visits()->detach();
+        $user->statuses()->delete();
         $user->delete();
 
         if($company != 'Ncspectrum')
