@@ -10,4 +10,9 @@ class Visit extends Model
     {
     	return $this->belongsToMany('App\User');
     }
+
+    public function employeesUsers()
+    {
+    	return $this->belongsTo('App\User', 'id');
+    }
 }
