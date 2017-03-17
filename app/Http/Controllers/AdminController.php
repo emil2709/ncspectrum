@@ -268,7 +268,7 @@ class AdminController extends Controller
         $this->validate($request, [
                 'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
                 'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
-                'phone' => 'required|unique:users,phone,'.$id.'|unique:users|min:8|max:8|regex:/^[0-9]{8}$/',
+                'phone' => 'required|unique:users,phone,'.$id.'|min:8|max:8|regex:/^[0-9]{8}$/',
                 'email' => 'required|unique:users,email,'.$id.
                     '|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/'
             ]);
@@ -396,7 +396,6 @@ class AdminController extends Controller
      */
     public function destroyGuest($id)
     {
-
         $guest = User::find($id);
         $user->visits()->detach();
         $user->statuses()->delete();
@@ -404,8 +403,6 @@ class AdminController extends Controller
 
         Session::flash('success', 'The Guest was successfully deleted!');
         return redirect()->route('admins.guests');
-
-
     }
 
     /**
