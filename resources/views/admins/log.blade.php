@@ -15,9 +15,9 @@
 		<tr>
 			<th>Fistname</th>
 			<th>Lastname</th>
-			<th>Date</th>
 			<th>From</th>
 			<th>To</th>
+			<th>Comment</th>
 		</tr>
 	</thead>
 	<tbody id="searchresult">
