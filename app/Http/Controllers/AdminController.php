@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\User;
+use App\Status;
 use Session;
 use DB;
 use Hash;
@@ -395,12 +396,15 @@ class AdminController extends Controller
      */
     public function destroyGuest($id)
     {
+
         $guest = User::find($id);
-        $guest->visits()->detach();
+        $user->visits()->detach();
+        $user->statuses()->delete();
         $guest->delete();
 
         Session::flash('success', 'The Guest was successfully deleted!');
         return redirect()->route('admins.guests');
+
 
     }
 
