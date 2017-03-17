@@ -29,27 +29,41 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 // Get
 Route::get('admin/dashboard', ['as' => 'admins.dashboard', 'uses' => 'AdminController@showDashboard']);
-Route::get('admin/user_{user}/edit', ['as' => 'admins.editUser', 'uses' => 'AdminController@editUser']);
-Route::get('admin/admin_{admin}/edit', ['as' => 'admins.editAdmin', 'uses' => 'AdminController@editAdmin']);
-Route::get('admin/adminpassword_{admin}/edit', ['as' => 'admins.editAdminPassword', 'uses' => 'AdminController@editAdminPassword']);
-Route::get('admin/guests', ['as' => 'admins.guests', 'uses' => 'AdminController@showGuests']);
-Route::get('admin/log', ['as' => 'admins.log', 'uses' => 'AdminController@showLog']);
-Route::get('admin/employees', ['as' => 'admins.employees', 'uses' => 'AdminController@showEmployees']);
-Route::get('admin/admins', ['as' => 'admins.admins', 'uses' => 'AdminController@showAdmins']);
-Route::get('admin/user_{user}/delete', ['as' => 'admins.showDeleteUser', 'uses' => 'AdminController@showDeleteUser']);
-Route::get('admin/admin_{admin}/delete', ['as' => 'admins.showDeleteAdmin', 'uses' => 'AdminController@showDeleteAdmin']);
-Route::get('/search', ['as' => 'search', 'uses' => 'AdminController@search']);
-Route::get('admin/{user}/userlog', ['as' => 'admins.userlog', 'uses' => 'AdminController@showUserlog']);
 Route::get('admin/profile', ['as' => 'admins.showProfile', 'uses' => 'AdminController@showProfile']);
 
+Route::get('admin/log', ['as' => 'admins.log', 'uses' => 'AdminController@showLog']);
+Route::get('admin/{user}/userlog', ['as' => 'admins.userlog', 'uses' => 'AdminController@showUserlog']);
+Route::get('admin/guests', ['as' => 'admins.guests', 'uses' => 'AdminController@showGuests']);
+Route::get('admin/employees', ['as' => 'admins.employees', 'uses' => 'AdminController@showEmployees']);
+Route::get('admin/admins', ['as' => 'admins.admins', 'uses' => 'AdminController@showAdmins']);
+
+Route::get('admin/guest/create', ['as' => 'admins.createGuest', 'uses' => 'AdminController@showCreateGuest']);
+Route::get('admin/employee/create', ['as' => 'admins.createEmployee', 'uses' => 'AdminController@showCreateEmployee']);
+
+Route::get('admin/guest/{guest}/edit', ['as' => 'admins.editGuest', 'uses' => 'AdminController@showEditGuest']);
+Route::get('admin/employee/{employee}/edit', ['as' => 'admins.editEmployee', 'uses' => 'AdminController@showEditEmployee']);
+Route::get('admin/admin/{admin}/edit', ['as' => 'admins.editAdmin', 'uses' => 'AdminController@showEditAdmin']);
+Route::get('admin/password/{admin}/edit', ['as' => 'admins.editAdminPassword', 'uses' => 'AdminController@showEditAdminPassword']);
+
+Route::get('admin/guest/{guest}/delete', ['as' => 'admins.showDeleteGuest', 'uses' => 'AdminController@showDeleteGuest']);
+Route::get('admin/employee/{employee}/delete', ['as' => 'admins.showDeleteEmployee', 'uses' => 'AdminController@showDeleteEmployee']);
+Route::get('admin/admin/{admin}/delete', ['as' => 'admins.showDeleteAdmin', 'uses' => 'AdminController@showDeleteAdmin']);
+
+Route::get('/search', ['as' => 'search', 'uses' => 'AdminController@search']);
+
+
 // Post
+Route::post('admin/guest/create', ['as' => 'admins.storeGuest', 'uses' => 'AdminController@storeGuest']);
+Route::post('admin/employee/create', ['as' => 'admins.storeEmployee', 'uses' => 'AdminController@storeEmployee']);
 Route::post('admin/profile', ['as' => 'admins.updateAvatar', 'uses' => 'AdminController@updateAvatar']);
-Route::post('admin/admin/{admin}', ['as' => 'admins.destroyAdmin', 'uses' => 'AdminController@destroyAdmin']);
+Route::post('admin/admin/{admin}/delete', ['as' => 'admins.destroyAdmin', 'uses' => 'AdminController@destroyAdmin']);
 
 // Put
-Route::put('admin/user_{user}', ['as' => 'admins.updateUser', 'uses' => 'AdminController@updateUser']);
-Route::put('admin/admin_{admin}', ['as' => 'admins.updateAdmin', 'uses' => 'AdminController@updateAdmin']);
-Route::put('admin/adminpassword_{admin}', ['as' => 'admins.updateAdminPassword', 'uses' => 'AdminController@updateAdminPassword']);
+Route::put('admin/guest/{guest}', ['as' => 'admins.updateGuest', 'uses' => 'AdminController@updateGuest']);
+Route::put('admin/employee/{employee}', ['as' => 'admins.updateEmployee', 'uses' => 'AdminController@updateEmployee']);
+Route::put('admin/admin/{admin}', ['as' => 'admins.updateAdmin', 'uses' => 'AdminController@updateAdmin']);
+Route::put('admin/password_{admin}', ['as' => 'admins.updateAdminPassword', 'uses' => 'AdminController@updateAdminPassword']);
 
 // Delete
-Route::delete('admin/user/{user}', ['as' => 'admins.destroyUser', 'uses' => 'AdminController@destroyUser']);
+Route::delete('admin/guest/{guest}', ['as' => 'admins.destroyGuest', 'uses' => 'AdminController@destroyGuest']);
+Route::delete('admin/employee/{employee}', ['as' => 'admins.destroyEmployee', 'uses' => 'AdminController@destroyEmployee']);

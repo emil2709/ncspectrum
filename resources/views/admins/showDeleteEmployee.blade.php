@@ -1,6 +1,6 @@
 @extends('main_admin')
 
-@section('title', '| Delete')
+@section('title', '| Delete Employee')
 
 @section('content')
 
@@ -22,25 +22,25 @@
 								<span><i class="glyphicon glyphicon-user"><strong>:</strong></i></span>
 							</div>
 							<div class="col-md-10">
-								<strong>{{$user->firstname}} {{$user->lastname}}</strong>
+								<strong>{{$employee->firstname}} {{$employee->lastname}}</strong>
 							</div>
 							<div class="col-md-2">
 								<span><i class="glyphicon glyphicon-phone"><strong>:</strong></i></span>
 							</div>
 							<div class="col-md-10">
-								<strong>{{$user->phone}}</strong>
+								<strong>{{$employee->phone}}</strong>
 							</div>
 							<div class="col-md-2">
 								<span><i class="glyphicon glyphicon-envelope"><strong>:</strong></i></span>
 							</div>
 							<div class="col-md-10">
-								<strong>{{$user->email}}</strong>
+								<strong>{{$employee->email}}</strong>
 							</div>
 							<div class="col-md-2">
 								<span><i class="glyphicon glyphicon-home"><strong>:</strong></i></span>
 							</div>
 							<div class="col-md-10">
-								<strong>{{$user->company}}</strong>
+								<strong>{{$employee->company}}</strong>
 							</div>
 						</div>
 					</div>
@@ -49,19 +49,13 @@
 
 					<div class="row">
 						<div class="col-md-6">
-							{!! Form::open(['route' => ['admins.destroyUser', $user->id], 'method' => 'DELETE']) !!}
+							{!! Form::open(['route' => ['admins.destroyEmployee', $employee->id], 'method' => 'DELETE']) !!}
 		                  		{!! Form::submit('DELETE', ['class' => 'btn btn-danger btn-block']) !!}
 		               		{!! Form::close() !!}
 		                </div>
-		                @if($user->company != 'Ncspectrum')
-							<div class="col-md-6">
-								<a href="{{ route('admins.guests') }}" class="btn btn-default btn-block">CANCEL</a>
-							</div>
-						@else
-							<div class="col-md-6">
-								<a href="{{ route('admins.employees') }}" class="btn btn-default btn-block">CANCEL</a>
-							</div>
-						@endif
+						<div class="col-md-6">
+							<a href="{{ route('admins.employees') }}" class="btn btn-default btn-block">CANCEL</a>
+						</div>
 					</div>
 
 				</div>

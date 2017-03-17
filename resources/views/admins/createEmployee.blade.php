@@ -1,16 +1,16 @@
 @extends('main_admin')
 
-@section('title', '| Create Admin')
+@section('title', '| Create Employee')
 
 @section('content')
-@if(Auth::user()->id == 1)
 
 	<div class="col-md-12">
-		{!! Form::open(['class' => 'form-horizontal margin-top', 'data-toggle' => 'validator']) !!}
+		{!! Form::open(['route' => 'admins.storeEmployee', 'class' => 'form-horizontal margin-top',
+			'data-toggle' => 'validator']) !!}
 			
 			<fieldset>
 				
-				<legend class="text-center">CREATE ADMIN</legend>
+				<legend class="text-center">CREATE EMPLOYEE</legend>
 
 				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">
@@ -44,44 +44,28 @@
 
 				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">
+						{{ Form::label('phone', 'Phone:') }}
+					</div>
+					<div class="col-md-6 inputContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+							{{ Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Enter Phone Number here ...',
+								'required', 'minlength="8"', 'maxlength="8"', 'pattern="^[0-9]{8}$"']) }}
+						</div>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+					</div>
+					<div class="help-block with-errors"></div>
+				</div>
+
+				<div class="form-group has-feedback">
+					<div class="col-md-3 control-label">
 						{{ Form::label('email', 'E-Mail:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-							{{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Enter E-Mail Address here ...',
+							{{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter E-Mail Address here ...',
 								'required', 'pattern="^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$"']) }}
-						</div>
-						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-					</div>
-					<div class="help-block with-errors"></div>
-				</div>
-
-				<div class="form-group has-feedback">
-					<div class="col-md-3 control-label">
-						{{ Form::label('password', 'Password:') }}
-					</div>
-					<div class="col-md-6 inputContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-							{{ Form::password('password', ['class' => 'form-control', 'id' => 'password', 
-								'placeholder' => 'Enter Password here ...', 'required', 'minlength="6"', 
-								'maxlength="60"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
-						</div>
-						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-					</div>
-					<div class="help-block with-errors"></div>
-				</div>
-
-				<div class="form-group has-feedback">
-					<div class="col-md-3 control-label">
-						{{ Form::label('password_confirmation', 'Confirm Password:') }}
-					</div>
-					<div class="col-md-6 inputContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-							{{ Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirm Password ...', 'data-match' => '#password', 'data-match-error' =>'The passwords does not match.', 
-								'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
@@ -93,7 +77,7 @@
 						{{ Form::submit('CREATE', ['class' => 'btn btn-primary btn-block']) }}
 					</div>
 					<div class="col-md-4">
-						<a href="{{ route('admins.dashboard') }}" class="btn btn-default btn-block">CANCEL</a>
+						<a href="{{ route('admins.employees') }}" class="btn btn-default btn-block">CANCEL</a>
 					</div>
 				</div>
 
@@ -101,10 +85,5 @@
 
 		{!! Form::close() !!}
 	</div>
-
-@else
-	@include('partials._offlimits')
-
-@endif
 
 @endsection

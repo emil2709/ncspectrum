@@ -21,10 +21,14 @@
         </li>
       </ul>
       <ul class="nav nav-sidebar">
-        <li><a href="#">Create Guest</a></li>
-        <li><a href="#">Create Employee</a></li>
+        <li class="{{ Request::segment(2) === 'guest' && Request::segment(3) === 'create' ? 'active' : null }}">
+          <a href="{{ route('admins.createGuest') }}">Create Guest</a>
+        </li>
+        <li class="{{ Request::segment(2) === 'employee' && Request::segment(3) === 'create' ? 'active' : null }}">
+          <a href="{{ route('admins.createEmployee') }}">Create Employee</a>
+        </li>
         @if(Auth::user()->id == 1)
-          <li class="{{ Request::segment(3) === 'admin' ? 'active' : null }}"">
+          <li class="{{ Request::segment(2) === 'register' ? 'active' : null }}"">
             <a href="{{ route('register') }}">Create Admin</a>
           </li>
         @endif
