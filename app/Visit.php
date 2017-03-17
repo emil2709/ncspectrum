@@ -13,6 +13,6 @@ class Visit extends Model
 
     public function employeesUsers()
     {
-    	return $this->belongsTo('App\User', 'id');
+    	return $this->belongsTo('App\User');
     }
 }

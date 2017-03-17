@@ -19,6 +19,6 @@ class User extends Model
 
 	public function employeesVisits()
 	{
-		return $this->hasMany('App\Visit', 'employee_id');
+		return $this->hasMany('App\Visit');
 	}
 }
