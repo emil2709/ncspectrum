@@ -1,16 +1,16 @@
 @extends('main_admin')
 
-@section('title', '| Edit')
+@section('title', '| Create Guest')
 
 @section('content')
 
 	<div class="col-md-12">
-		{!! Form::model($user, ['route' => ['admins.updateUser', $user->id], 'method' => 'PUT', 'data-toggle' => 'validator',
-				'class' => 'form-horizontal margin-top']) !!}
+		{!! Form::open(['route' => 'admins.storeGuest', 'class' => 'form-horizontal margin-top', 
+			'data-toggle' => 'validator']) !!}
 			
 			<fieldset>
 				
-				<legend class="text-center">EDIT USER</legend>
+				<legend class="text-center">CREATE GUEST</legend>
 
 				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">
@@ -19,7 +19,7 @@
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							{{ Form::text('firstname', null, ['class' => 'form-control',
+							{{ Form::text('firstname', null, ['class' => 'form-control', 'placeholder' => 'Enter First Name here ...',
 								'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå \-]{2,30}$"']) }}
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -34,7 +34,7 @@
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							{{ Form::text('lastname', null, ['class' => 'form-control',
+							{{ Form::text('lastname', null, ['class' => 'form-control', 'placeholder' => 'Enter Last Name here ...',
 								'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå \-]{2,30}$"']) }}
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -49,7 +49,7 @@
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-							{{ Form::text('phone', null, ['class' => 'form-control',
+							{{ Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Enter Phone Number here ...',
 								'required', 'minlength="8"', 'maxlength="8"', 'pattern="^[0-9]{8}$"']) }}
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -64,7 +64,7 @@
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-							{{ Form::text('email', null, ['class' => 'form-control',
+							{{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter E-Mail Address here ...',
 								'required', 'pattern="^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$"']) }}
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -77,41 +77,22 @@
 						{{ Form::label('company', 'Company:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
-						@if($user->company != 'Ncspectrum')
-							<div class="input-group">
-								<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-								{{ Form::text('company', null, ['class' => 'form-control',
-									'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$"']) }}
-							</div>
-						@else
-							<div class="input-group">
-								<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-								{{ Form::text('company', null, ['class' => 'form-control',
-									'required', 'readonly', 'minlength="2"', 'maxlength="30"', 
-									'pattern="^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$"',]) }}
-							</div>
-						@endif
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							{{ Form::text('company', null, ['class' => 'form-control', 'placeholder' => 'Enter Company Name here ...',
+								'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$"']) }}
+						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
 					<div class="help-block with-errors"></div>
 				</div>
 
 				<div class="form-group btn-margin-top">
-					<div class="col-md-8 col-md-offset-2">
-						{{ Form::submit('SAVE', ['class' => 'btn btn-success btn-block']) }}
-						{{ Form::close() }}
-					</div>
-				</div>
-				<div class="form-group">
 					<div class="col-md-4 col-md-offset-2">
-						{!! Html::linkRoute('admins.showDeleteUser', 'DELETE', [$user->id], ['class' => 'btn btn-danger btn-block']) !!}
-                	</div>
+						{{ Form::submit('CREATE', ['class' => 'btn btn-primary btn-block']) }}
+					</div>
 					<div class="col-md-4">
-						@if($user->company != 'Ncspectrum')
-							<a href="{{ route('admins.guests') }}" class="btn btn-default btn-block">CANCEL</a>
-						@else
-							<a href="{{ route('admins.employees') }}" class="btn btn-default btn-block">CANCEL</a>
-						@endif
+						<a href="{{ route('admins.guests') }}" class="btn btn-default btn-block">CANCEL</a>
 					</div>
 				</div>
 

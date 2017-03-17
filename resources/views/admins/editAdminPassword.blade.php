@@ -11,7 +11,7 @@
 			
 			<fieldset>
 				
-				<legend class="text-center margin-bottom">EDIT ADMIN-PASSWORD</legend>
+				<legend class="text-center">EDIT ADMIN-PASSWORD</legend>
 
 				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">

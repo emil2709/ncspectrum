@@ -37,7 +37,7 @@
             <td> {{ $guest->email }}</td>
             <td> {{ $guest->company }}</td>
             <td>
-              <a href="{{ URL::route('admins.editUser', [$guest->id]) }}" title="Edit">
+              <a href="{{ URL::route('admins.editGuest', [$guest->id]) }}" title="Edit">
                 <span class="glyphicon glyphicon-edit"></span>
               </a>
             </td>
@@ -47,7 +47,7 @@
               </a>
             </td>
             <td>
-              <a href="{{ URL::route('admins.showDeleteUser', [$guest->id]) }}" title="Delete">
+              <a href="{{ URL::route('admins.showDeleteGuest', [$guest->id]) }}" title="Delete">
                 <span class="glyphicon glyphicon-trash"></span>
               </a>
             </td>
