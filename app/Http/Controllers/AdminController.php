@@ -456,7 +456,7 @@ class AdminController extends Controller
 
     public function showLog()
     {
-        $users = User::get();
+        $users = User::orderBy('created_at', 'asc')->get();
 
         return view ('admins.log')->withUsers($users);
     }
