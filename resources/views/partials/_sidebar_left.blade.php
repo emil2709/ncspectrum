@@ -32,7 +32,9 @@
             <a href="{{ route('register') }}">Create Admin</a>
           </li>
         @endif
-        <li><a href="#">Create Visit</a></li>
+          <li class="{{ Request::segment(2) === 'visit' && Request::segment(3) === 'create' ? 'active' : null }}">
+            <a href="{{ route('admins.createVisit') }}">Create Visit</a>
+          </li>
       </ul>
       <ul class="nav nav-sidebar">
         <li><a href="">Status</a></li>

@@ -16,9 +16,4 @@ class User extends Model
 	{
 		return $this->hasOne('App\Status');
 	}
-
-	public function employeesVisits()
-	{
-		return $this->hasMany('App\Visit');
-	}
 }
