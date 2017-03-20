@@ -66,7 +66,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-md-4 col-md-offset-2">
-							{!! Html::linkRoute('admins.showDeleteAdmin', 'DELETE', [$admin->id], 
+							{!! Html::linkRoute('admins.deleteAdmin', 'DELETE', [$admin->id], 
 								['class' => 'btn btn-danger btn-block']) !!}
 	                	</div>
 						<div class="col-md-4">

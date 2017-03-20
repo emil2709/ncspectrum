@@ -65,7 +65,7 @@ class AdminController extends Controller
     {
         $guests = User::find($id);
 
-        return view('admins.showDeleteGuest')->withGuest($guests);
+        return view('admins.deleteGuest')->withGuest($guests);
     }
 
      /**
@@ -78,7 +78,7 @@ class AdminController extends Controller
     {
         $employees = User::find($id);
 
-        return view('admins.showDeleteEmployee')->withEmployee($employees);
+        return view('admins.deleteEmployee')->withEmployee($employees);
     }
 
      /**
@@ -90,7 +90,7 @@ class AdminController extends Controller
     public function showDeleteAdmin($id)
     {
         $admin = Admin::find($id);
-        return view('admins.showDeleteAdmin')->withAdmin($admin);
+        return view('admins.deleteAdmin')->withAdmin($admin);
     }
 
 
@@ -192,9 +192,8 @@ class AdminController extends Controller
 
         $guest->statuses()->save($status);
 
-        $this->guesthistory('create', $guest->firstname);
+        $this->userhistory('guest', 'create', $guest->firstname.' '.$guest->lastname);
     
-
         Session::flash('success', 'The Guest was successfully created!');
 
         return redirect()->route('admins.guests');
@@ -221,7 +220,9 @@ class AdminController extends Controller
         $employee->phone = $request->phone;
         $employee->email = strtolower($request->email);
         $employee->company = "NC-Spectrum";
-        $employee->save();    
+        $employee->save();
+
+        $this->userhistory('employee', 'create', $employee->firstname.' '.$employee->lastname);    
 
         Session::flash('success', 'The Employee was successfully created!');
 
@@ -255,6 +256,8 @@ class AdminController extends Controller
         $guest->company = ucwords(strtolower($request->input('company')));
         $guest->save();
 
+        $this->userhistory('guest', 'update', $guest->firstname.' '.$guest->lastname);
+
         Session::flash('success', "Changes has been made to the Guest.");
         return redirect()->route('admins.guests');
     }
@@ -285,6 +288,8 @@ class AdminController extends Controller
         $employee->company = 'NC-Spectrum';
         $employee->save();
 
+        $this->userhistory('employee', 'update', $employee->firstname.' '.$employee->lastname);
+
         Session::flash('success', "Changes has been made to the Employee.");
         return redirect()->route('admins.employees');
     }
@@ -312,7 +317,10 @@ class AdminController extends Controller
         $admin->email= strtolower($request->input('email'));
         $admin->save();
 
+        $this->adminhistory('update', $admin->firstname.' '.$admin->lastname);
+
         Session::flash('success', "Changes has been made to the Admin.");
+
         if(Auth::user()->id == 1)
         {
             return redirect()->route('admins.admins');
@@ -373,6 +381,8 @@ class AdminController extends Controller
                 $admin->password = $password;
                 $admin->save();
 
+                $this->adminhistory('password', $admin->firstname.' '.$admin->lastname);
+
                 Session::flash('success', 'The password has been successfully updated!');
                 if(Auth::user()->id == 1)
                 {
@@ -400,9 +410,11 @@ class AdminController extends Controller
     public function destroyGuest($id)
     {
         $guest = User::find($id);
-        $user->visits()->detach();
-        $user->statuses()->delete();
+        $guest->visits()->detach();
+        $guest->statuses()->delete();
         $guest->delete();
+
+        $this->userhistory('Guest', 'delete', $guest->firstname.' '.$guest->lastname);
 
         Session::flash('success', 'The Guest was successfully deleted!');
         return redirect()->route('admins.guests');
@@ -419,6 +431,8 @@ class AdminController extends Controller
         $employee = User::find($id);
         $employee->visits()->detach();
         $employee->delete();
+
+        $this->userhistory('Guest', 'delete', $employee->firstname.' '.$employee->lastname);
 
         Session::flash('success', 'The Employee was successfully deleted!');
         return redirect()->route('admins.employees');
@@ -447,6 +461,8 @@ class AdminController extends Controller
         {
             $admin->delete();
 
+            $this->adminhistory('delete', $admin->firstname.' '.$admin->lastname);
+
             Session::flash('success', 'The Admin has been successfully deleted!');
             return redirect()->route('admins.admins');
         }
@@ -473,7 +489,7 @@ class AdminController extends Controller
 
     public function showHistory()
     {
-        $history = History::orderBy('id', 'desc')->get();
+        $history = History::orderBy('id', 'desc')->paginate(20);
         return view('admins.history')->withHistory($history);
     }
 
@@ -505,6 +521,9 @@ class AdminController extends Controller
                 $admin = Auth::user();
                 $admin->avatar = $filename;
                 $admin->save();
+
+                $this->adminhistory('avatar', $admin->firstname.' '.$admin->lastname);                
+
                 return view('admins.profile')->withAdmin($admin);
             }
             else
@@ -515,29 +534,60 @@ class AdminController extends Controller
     }
 
 
-    public function guesthistory($type, $user)
+    public function userhistory($role, $type, $user)
     {
         $history = new History();
 
-        $data = '';
-        $admin = Auth::user()->firstname;
-        if(Auth::user()->lastname != '')
-        {
-            $admin .= ' '.Auth::user()->lastname;
-        }
+        $admin = trim(Auth::user()->firstname.' '.Auth::user()->lastname);
 
         switch ($type) 
         {
             case 'create':
-                $data = 'Guest '.$user.', has been created by Admin '.$admin.'.';
+                $status = 'created';
                 break;
             case 'update':
-                $data = 'Guest '.$user.', has been updated by Admin '.$admin.'.';
+                $status = 'updated';
                 break;
             case 'delete':
-                $data = 'Guest '.$user.', has been deleted by Admin '.$admin.'.';
+                $status = 'deleted';
                 break;
         }
+
+        $role = ucfirst(strtolower($role));
+
+        $data = 'Admin '.$admin.', '.$status.' '.$role.' '.$user.'.';
+
+        $history->type = $type;
+        $history->information = $data;
+        $history->save();
+    }
+
+    public function adminhistory($type, $user)
+    {
+        $history = new History();
+
+        $admin = trim(Auth::user()->firstname.' '.Auth::user()->lastname);
+        $user = trim($user);
+
+        switch ($type) 
+        {
+            case 'create':
+                $data = 'Admin '.$admin.', created Admin '.$user.'.';
+                break;
+            case 'update':
+                $data = 'Admin '.$admin.', updated Admin '.$user.'.';
+                break;
+            case 'delete':
+                $data = 'Admin '.$admin.', deleted Admin '.$user.'.';
+                break;
+            case 'avatar':
+                $data = 'Admin '.$admin.', changed Admin '.$user.'\'s avatar.';
+                break;
+            case 'password':
+                $data = 'Admin '.$admin.', updated Admin '.$user.'\'s password.';
+                break;
+        }
+
         $history->type = $type;
         $history->information = $data;
         $history->save();
@@ -692,6 +742,6 @@ class AdminController extends Controller
             }   
         }
     }
-    
+
 
 }

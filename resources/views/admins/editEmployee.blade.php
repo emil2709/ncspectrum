@@ -80,7 +80,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-4 col-md-offset-2">
-						{!! Html::linkRoute('admins.showDeleteEmployee', 'DELETE', [$employee->id], ['class' => 'btn btn-danger btn-block']) 
+						{!! Html::linkRoute('admins.deleteEmployee', 'DELETE', [$employee->id], ['class' => 'btn btn-danger btn-block']) 
 						!!}
                 	</div>
 					<div class="col-md-4">
