@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\User;
+use App\History;
 use App\Status;
 use Session;
 use DB;
@@ -190,6 +191,8 @@ class AdminController extends Controller
         $status->status = false;
 
         $guest->statuses()->save($status);
+
+        $this->guesthistory('create', $guest->firstname);
     
 
         Session::flash('success', 'The Guest was successfully created!');
@@ -468,6 +471,12 @@ class AdminController extends Controller
         return view ('admins.userlog')->withUsers($users);
     }
 
+    public function showHistory()
+    {
+        $history = History::orderBy('id', 'desc')->get();
+        return view('admins.history')->withHistory($history);
+    }
+
     public function showProfile()
     {
         $admin = Auth::user();
@@ -504,6 +513,37 @@ class AdminController extends Controller
                 return redirect()->back();
             }
     }
+
+
+    public function guesthistory($type, $user)
+    {
+        $history = new History();
+
+        $data = '';
+        $admin = Auth::user()->firstname;
+        if(Auth::user()->lastname != '')
+        {
+            $admin .= ' '.Auth::user()->lastname;
+        }
+
+        switch ($type) 
+        {
+            case 'create':
+                $data = 'Guest '.$user.', has been created by Admin '.$admin.'.';
+                break;
+            case 'update':
+                $data = 'Guest '.$user.', has been updated by Admin '.$admin.'.';
+                break;
+            case 'delete':
+                $data = 'Guest '.$user.', has been deleted by Admin '.$admin.'.';
+                break;
+        }
+        $history->type = $type;
+        $history->information = $data;
+        $history->save();
+    }
+
+
 
     /**
     * Function for livesearching the specified resource.
@@ -558,91 +598,87 @@ class AdminController extends Controller
                 }
             }
 
-            else
+            elseif($type === 'guests')
             {
-                if($type === 'guests')
+                if($search != "")
                 {
-                    if($search != "")
-                    {
-                        $guests = DB::table('users')
-                            ->where('company', 'not like', 'NC-Spectrum')
-                            ->where('firstname', 'like', '%'.$search.'%')
-                            ->orWhere('lastname', 'like', '%'.$search.'%')
-                            ->where('company', 'not like', 'NC-Spectrum')
-                            ->orWhere('company', 'like', '%'.$search.'%')
-                            ->get();
-                    }
-                    else
-                    {
-                        $guests = User::orderBy('firstname')->where('company','not like','NC-Spectrum')->get();
-                    }
-
-                    foreach($guests as $guest)
-                    {
-                        $output.=
-                                '<tr>'.
-                                    '<td>'.$guest->firstname.'</td>'.
-                                    '<td>'.$guest->lastname.'</td>'.
-                                    '<td>'.$guest->phone.'</td>'.
-                                    '<td>'.$guest->email.'</td>'.
-                                    '<td>'.$guest->company.'</td>'.
-                                    '<td>'.
-                                        '<a href="/admin/guest/'.$guest->id.'/edit" title="Edit">'.
-                                        '<span class="glyphicon glyphicon-edit"></span></a>'.
-                                    '</td>'.
-                                    '<td>'.
-                                        '<a href="/admin/'.$guest->id.'/userlog" title="Log">'.
-                                        '<span class="glyphicon glyphicon-th-list"></span></a>'.
-                                    '</td>'.
-                                    '<td>'.
-                                        '<a href="/admin/guest/'.$guest->id.'/delete" title="Delete">'.
-                                        '<span class="glyphicon glyphicon-trash"></span></a>'.
-                                    '</td>'.
-                                '</tr>';
-                    }
-
+                    $guests = DB::table('users')
+                        ->where('company', 'not like', 'NC-Spectrum')
+                        ->where('firstname', 'like', '%'.$search.'%')
+                        ->orWhere('lastname', 'like', '%'.$search.'%')
+                        ->where('company', 'not like', 'NC-Spectrum')
+                        ->orWhere('company', 'like', '%'.$search.'%')
+                        ->get();
                 }
                 else
                 {
-                    if($search != "")
-                    {
-                        $employees = DB::table('users')
-                            ->where('company', 'like', 'NC-Spectrum')
-                            ->where('firstname', 'like', '%'.$search.'%')
-                            ->orWhere('lastname', 'like', '%'.$search.'%')
-                            ->where('company', 'like', 'NC-Spectrum')
-                            ->get();
-                    }
-                    else
-                    {
-                        $employees = User::orderBy('firstname')->where('company','like','NC-Spectrum')->get();
-                    }
-
-                    foreach($employees as $employee)
-                    {
-                        $output.=
-                                '<tr>'.
-                                    '<td>'.$employee->firstname.'</td>'.
-                                    '<td>'.$employee->lastname.'</td>'.
-                                    '<td>'.$employee->phone.'</td>'.
-                                    '<td>'.$employee->email.'</td>'.
-                                    '<td>'.$employee->company.'</td>'.
-                                    '<td>'.
-                                        '<a href="/admin/employee/'.$employee->id.'/edit" title="Edit">'.
-                                        '<span class="glyphicon glyphicon-edit"></span></a>'.
-                                    '</td>'.
-                                    '<td>'.
-                                        '<a href="/admin/'.$employee->id.'/userlog" title="Log">'.
-                                        '<span class="glyphicon glyphicon-th-list"></span></a>'.
-                                    '</td>'.
-                                    '<td>'.
-                                        '<a href="/admin/employee/'.$employee->id.'/delete" title="Delete">'.
-                                        '<span class="glyphicon glyphicon-trash"></span></a>'.
-                                    '</td>'.
-                                '</tr>';
-                    }
+                    $guests = User::orderBy('firstname')->where('company','not like','NC-Spectrum')->get();
                 }
 
+                foreach($guests as $guest)
+                {
+                    $output.=
+                            '<tr>'.
+                                '<td>'.$guest->firstname.'</td>'.
+                                '<td>'.$guest->lastname.'</td>'.
+                                '<td>'.$guest->phone.'</td>'.
+                                '<td>'.$guest->email.'</td>'.
+                                '<td>'.$guest->company.'</td>'.
+                                '<td>'.
+                                    '<a href="/admin/guest/'.$guest->id.'/edit" title="Edit">'.
+                                    '<span class="glyphicon glyphicon-edit"></span></a>'.
+                                '</td>'.
+                                '<td>'.
+                                    '<a href="/admin/'.$guest->id.'/userlog" title="Log">'.
+                                    '<span class="glyphicon glyphicon-th-list"></span></a>'.
+                                '</td>'.
+                                '<td>'.
+                                    '<a href="/admin/guest/'.$guest->id.'/delete" title="Delete">'.
+                                    '<span class="glyphicon glyphicon-trash"></span></a>'.
+                                '</td>'.
+                            '</tr>';
+                }
+            }
+
+            else
+            {
+                if($search != "")
+                {
+                    $employees = DB::table('users')
+                        ->where('company', 'like', 'NC-Spectrum')
+                        ->where('firstname', 'like', '%'.$search.'%')
+                        ->orWhere('lastname', 'like', '%'.$search.'%')
+                        ->where('company', 'like', 'NC-Spectrum')
+                        ->get();
+                }
+                else
+                {
+                    $employees = User::orderBy('firstname')->where('company','like','NC-Spectrum')->get();
+                }
+
+                foreach($employees as $employee)
+                {
+                    $output.=
+                            '<tr>'.
+                                '<td>'.$employee->firstname.'</td>'.
+                                '<td>'.$employee->lastname.'</td>'.
+                                '<td>'.$employee->phone.'</td>'.
+                                '<td>'.$employee->email.'</td>'.
+                                '<td>'.$employee->company.'</td>'.
+                                '<td>'.
+                                    '<a href="/admin/employee/'.$employee->id.'/edit" title="Edit">'.
+                                    '<span class="glyphicon glyphicon-edit"></span></a>'.
+                                '</td>'.
+                                '<td>'.
+                                    '<a href="/admin/'.$employee->id.'/userlog" title="Log">'.
+                                    '<span class="glyphicon glyphicon-th-list"></span></a>'.
+                                '</td>'.
+                                '<td>'.
+                                    '<a href="/admin/employee/'.$employee->id.'/delete" title="Delete">'.
+                                    '<span class="glyphicon glyphicon-trash"></span></a>'.
+                                '</td>'.
+                            '</tr>';
+                }
             }
 
             if($output == "")
@@ -655,6 +691,7 @@ class AdminController extends Controller
                 return Response($output);
             }   
         }
-
     }
+    
+
 }

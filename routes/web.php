@@ -31,6 +31,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('admin/dashboard', ['as' => 'admins.dashboard', 'uses' => 'AdminController@showDashboard']);
 Route::get('admin/profile', ['as' => 'admins.showProfile', 'uses' => 'AdminController@showProfile']);
 
+Route::get('admin/history', ['as' => 'admins.history', 'uses' => 'AdminController@showHistory']);
 Route::get('admin/log', ['as' => 'admins.log', 'uses' => 'AdminController@showLog']);
 Route::get('admin/{user}/userlog', ['as' => 'admins.userlog', 'uses' => 'AdminController@showUserlog']);
 Route::get('admin/guests', ['as' => 'admins.guests', 'uses' => 'AdminController@showGuests']);
