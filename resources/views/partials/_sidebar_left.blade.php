@@ -39,7 +39,9 @@
         <li class="{{ Request::segment(2) === 'log' ? 'active' : null }}">
           <a href="{{ route('admins.log') }}">Log</a>
         </li>
-        <li><a href="#">Database</a></li>
+        <li class="{{ Request::segment(2) === 'history' ? 'active' : null }}">
+          <a href="{{ route('admins.history') }}">History</a>
+        </li>
       </ul>
       
    
