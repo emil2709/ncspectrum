@@ -17,7 +17,13 @@ class UserController extends Controller
      */
     public function index()
     {
- 		$users = User::orderBy('id','desc')->where('company','not like','ncspectrum')->paginate(5);
+        $users = DB::table('users')
+            ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+            ->where('status', false)
+            ->where('company','not like','NC-Spectrum')
+            ->orderBy('id','desc')
+            ->paginate(5);
+        
         return view('users.index')->withUsers($users);
     }
 
@@ -55,22 +61,10 @@ class UserController extends Controller
     	$user->company = ucwords(strtolower($request->company));
         $user->save();
 
-        $visit = new \App\Visit();
-        //$visit->date = '2017';
-        //$visit->from = '20:20';
-        //$visit->to = '21:20';
-        //$visit->company = strtolower($request->company);
-        //$visit->comment = 'Det kommer damer';
-
-        $user->visits()->save($visit);
-
         $status = new \App\Status();
-
         $status->status = false;
-
         $user->statuses()->save($status);
     
-
         Session::flash('success', 'The User was successfully created!');
 
     	return redirect()->route('users.index');
@@ -91,17 +85,45 @@ class UserController extends Controller
 
             if($search != "")
             {
+                /*
                 $users = DB::table('users')
-                    ->where('company', 'not like', 'ncspectrum')
+                    ->where('company', 'not like', 'NC-Spectrum')
                     ->where('firstname', 'like', '%'.$search.'%')
                     ->orWhere('lastname', 'like', '%'.$search.'%')
-                    ->where('company', 'not like', 'ncspectrum')
+                    ->where('company', 'not like', 'NC-Spectrum')
                     ->orWhere('company', 'like', '%'.$search.'%')
+                    ->paginate(5);
+                */
+                /*
+                    $users = User::whereHas('statuses', function($query){$query->where('status', false);})
+                        ->orderBy('id','desc')
+                        ->where('firstname', 'like', '%'.$search.'%')
+                        ->orWhere('lastname', 'like', '%'.$search.'%')
+                        ->where('company','not like','NC-Spectrum')
+                        ->orWhere('company', 'like', '%'.$search.'%')
+                        ->paginate(5);
+                */
+
+                $users = DB::table('users')
+                    ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+
+                    ->where('firstname', 'like', '%'.$search.'%')
+                    ->orWhere('lastname', 'like', '%'.$search.'%')
+                    ->where('company','not like','NC-Spectrum')
+                    ->where('status', false)
+                    ->orWhere('company', 'like', '%'.$search.'%')
+                    ->where('company','not like','NC-Spectrum')
+                    ->orderBy('id','desc')
                     ->paginate(5);
             }
             else
             {
-                $users = User::orderBy('id', 'desc')->where('company','not like','ncspectrum')->paginate(5);
+                $users = DB::table('users')
+                    ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+                    ->where('status', false)
+                    ->where('company','not like','NC-Spectrum')
+                    ->orderBy('id','desc')
+                    ->paginate(5);
             }
 
             foreach($users as $user)
