@@ -414,7 +414,7 @@ class AdminController extends Controller
         $guest->statuses()->delete();
         $guest->delete();
 
-        $this->userhistory('Guest', 'delete', $guest->firstname.' '.$guest->lastname);
+        $this->userhistory('guest', 'delete', $guest->firstname.' '.$guest->lastname);
 
         Session::flash('success', 'The Guest was successfully deleted!');
         return redirect()->route('admins.guests');
@@ -432,7 +432,7 @@ class AdminController extends Controller
         $employee->visits()->detach();
         $employee->delete();
 
-        $this->userhistory('Guest', 'delete', $employee->firstname.' '.$employee->lastname);
+        $this->userhistory('employee', 'delete', $employee->firstname.' '.$employee->lastname);
 
         Session::flash('success', 'The Employee was successfully deleted!');
         return redirect()->route('admins.employees');
@@ -592,8 +592,6 @@ class AdminController extends Controller
         $history->information = $data;
         $history->save();
     }
-
-
 
     /**
     * Function for livesearching the specified resource.
