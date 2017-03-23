@@ -21,8 +21,8 @@
 .placeholder { 
 	background-color: #f5f5f5;
     border: 1px solid #e3e3e3;
-	height: 110px; 
-	width:433px;
+	height: 111px; 
+	width:446px;
 	margin-bottom: 30px;
 }
 
@@ -32,4 +32,8 @@
 
 #notfound {
     font-size:25px;
+}
+
+#usersearch-div {
+    float:left;
 }

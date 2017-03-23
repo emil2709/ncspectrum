@@ -1,6 +1,12 @@
 
 $(document).ready(function(){
 
+  window.userid;
+  window.counter = 0;
+  window.users = new Array();
+  window.onload = checkinCheck();
+  window.CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
   $("#welcome").hide().fadeIn(3000);
 
   // Userinteractions
@@ -10,6 +16,70 @@ $(document).ready(function(){
       connectWith: ".connectedSortable",
       placeholder: "placeholder"
   }).disableSelection();
+
+  $("#outlist").sortable({
+      start: function(event, ui){
+        userid = ui.item.children('#userid').html();
+      },
+      receive: function(){
+        var index = users.indexOf(userid);
+        users.splice(index,1);
+        counter--;
+        checkinCheck();
+        console.log(users);
+      }
+  });
+
+  $("#inlist").sortable({
+      start: function(event, ui){
+        userid = ui.item.children('#userid').html();
+      },
+      receive: function(){
+        users[counter++] = userid;
+        checkinCheck();
+        console.log(users);
+      }
+  });
+
+ function checkinCheck()
+  {
+      console.log(users.length);
+      if(users.length <= 0)
+      {
+        $("#checkin-btn").attr('disabled', true);
+      }
+      else
+      {
+        $("#checkin-btn").attr('disabled', false);
+      }
+  }
+
+  $('#checkin-btn').click(function(){
+      console.log(users + " HERE ");
+      $.ajax({
+          /* the route pointing to the post function */
+          url: '/visit',
+          type: 'POST',
+          /* send the csrf-token and the input to the controller */
+          data: {_token: CSRF_TOKEN,message:users},
+          dataType: 'JSON'
+      }); 
+  });
+
+  function checkout()
+  {
+      $userid = userid;
+      $.ajax({
+          type: 'get',
+          url: '/checkout',
+          data: {'checkout':$userid},
+          success:function(data)
+          {
+            //
+          }
+
+        });
+  }
 
   /*
   $("#outlist-box").click(function(){
@@ -60,19 +130,19 @@ $(document).ready(function(){
   });
 
   $('#updateAvatarToggle').click(function(){
-    $(this).hide();
+      $(this).hide();
   });
 
   $('#updateAvatarCancel').click(function(){
-    $('#updateAvatarToggle').delay(500).show(0);
+      $('#updateAvatarToggle').delay(500).show(0);
   });
 
   $('#updateAvatarSave').click(function(){
-    var filename = $('#avatar').val();
-    if(filename == "")
-    {
-      return false;
-    }
+      var filename = $('#avatar').val();
+      if(filename == "")
+      {
+        return false;
+      }
   });
 
 

@@ -70,6 +70,30 @@ class UserController extends Controller
     	return redirect()->route('users.index');
     }
 
+    public function userlist(Request $request)
+    {
+        $users = $data[users];
+                return view('users.visit')->withUsers($users);
+    }
+
+    public function visit(Request $request)
+    {
+        $response = array(
+          'status' => 'success',
+          'msg' => $request->message,
+        );
+      $users = response()->json($response); 
+      return view('users.visit')->withUsers($users);
+    }
+
+    public function checkout(Request $request)
+    {
+        if($request->ajax())
+        {
+
+        }
+    }
+
     /**
     * Function for livesearching the specified resource.
     *
@@ -85,25 +109,6 @@ class UserController extends Controller
 
             if($search != "")
             {
-                /*
-                $users = DB::table('users')
-                    ->where('company', 'not like', 'NC-Spectrum')
-                    ->where('firstname', 'like', '%'.$search.'%')
-                    ->orWhere('lastname', 'like', '%'.$search.'%')
-                    ->where('company', 'not like', 'NC-Spectrum')
-                    ->orWhere('company', 'like', '%'.$search.'%')
-                    ->paginate(5);
-                */
-                /*
-                    $users = User::whereHas('statuses', function($query){$query->where('status', false);})
-                        ->orderBy('id','desc')
-                        ->where('firstname', 'like', '%'.$search.'%')
-                        ->orWhere('lastname', 'like', '%'.$search.'%')
-                        ->where('company','not like','NC-Spectrum')
-                        ->orWhere('company', 'like', '%'.$search.'%')
-                        ->paginate(5);
-                */
-
                 $users = DB::table('users')
                     ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
 
@@ -130,6 +135,7 @@ class UserController extends Controller
             {
                 $output.=
                     '<li id="outlist-box" class="userbox">'.
+                    '<div id="userid">'.$user->id.'</div>'.
                         '<div class="row">'.
                             '<div class="col-md-12">'.
                                 '<div class="text-center lead">'.

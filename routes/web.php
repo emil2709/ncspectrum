@@ -7,6 +7,9 @@ Route::get('/index', ['as' => 'users.index', 'uses' => 'UserController@index']);
 Route::get('/create', ['as' => 'users.create', 'uses' => 'UserController@create']);
 Route::post('users', ['as' => 'users.store', 'uses' => 'UserController@store']);
 Route::get('/usersearch', ['as' => 'usersearch', 'uses' => 'UserController@usersearch']);
+//Route::post('/userlist', ['as' => 'userlist', 'uses' => 'UserController@userlist']);
+Route::post('/visit', ['as' => 'users.visit', 'uses' => 'UserController@visit']);
+Route::get('/checkout', ['as' => 'checkout', 'uses' => 'UserController@checkout']);
 
 
 /** Admin Routes **/
