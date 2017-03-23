@@ -100,6 +100,14 @@ class UserController extends Controller
     {
         $users = $request->users;
         $employees = $request->employees;
+
+        Log::info($users);
+        Log::info($employees);
+
+        // Create visit with users and employee here
+
+        return redirect()->route('users.index');
+
     }
 
     public function checkin(Request $request)
