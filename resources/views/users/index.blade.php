@@ -30,9 +30,7 @@
 			       <input type="text" id="usersearch" class="form-control" placeholder="Name ...">
 			    </div>
 				<div class="col-md-5 pull-right"> 
-			    	{!! Form::open(['route' => 'users.visit']) !!}
-			        	{{ Form::submit('CHECK IN', ['class' => 'btn btn-success btn-block', 'id' => 'checkin-btn']) }}
-			        {!! Form::close() !!}
+			        {{ Form::submit('CHECK IN', ['class' => 'btn btn-success btn-block', 'id' => 'checkin-btn']) }}
 			    </div>
 			</div>
 			

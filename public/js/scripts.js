@@ -21,12 +21,14 @@ $(document).ready(function(){
       start: function(event, ui){
         userid = ui.item.children('#userid').html();
       },
-      receive: function(){
+      receive: function(event, ui){
+        console.log(userid);
         var index = users.indexOf(userid);
         users.splice(index,1);
         counter--;
         checkinCheck();
-        console.log(users);
+        checkout();
+        $(ui.item).switchClass( "userbox-in", "userbox", 1000 );
       }
   });
 
@@ -34,16 +36,17 @@ $(document).ready(function(){
       start: function(event, ui){
         userid = ui.item.children('#userid').html();
       },
-      receive: function(){
+      receive: function(event, ui){
+        console.log(userid);
         users[counter++] = userid;
         checkinCheck();
-        console.log(users);
+        checkin();
+        $(ui.item).switchClass( "userbox", "userbox-in", 1000 );
       }
   });
 
  function checkinCheck()
   {
-      console.log(users.length);
       if(users.length <= 0)
       {
         $("#checkin-btn").attr('disabled', true);
@@ -54,31 +57,42 @@ $(document).ready(function(){
       }
   }
 
-  $('#checkin-btn').click(function(){
-      console.log(users + " HERE ");
+   $("#checkin-btn").click(function(){
       $.ajax({
-          /* the route pointing to the post function */
-          url: '/visit',
-          type: 'POST',
-          /* send the csrf-token and the input to the controller */
-          data: {_token: CSRF_TOKEN,message:users},
-          dataType: 'JSON'
+          url: '/userlist',
+          type: 'post',
+          data: {_token: CSRF_TOKEN, data:users},
+          dataType: 'JSON',
+          success: function(){
+            location.href = "/visit";
+          }
       }); 
-  });
+    });
+
+  function checkin()
+  {
+      $.ajax({
+          url: '/checkin',
+          type: 'post',
+          data: {_token: CSRF_TOKEN, data:userid},
+          dataType: 'JSON',
+          success: function(){
+            console.log('checkin done');
+          }
+      });
+  }
 
   function checkout()
   {
-      $userid = userid;
       $.ajax({
-          type: 'get',
           url: '/checkout',
-          data: {'checkout':$userid},
-          success:function(data)
-          {
-            //
+          type: 'post',
+          data: {_token: CSRF_TOKEN, data:userid},
+          dataType: 'JSON',
+          success: function(){
+            console.log('checkout done');
           }
-
-        });
+      });
   }
 
   /*

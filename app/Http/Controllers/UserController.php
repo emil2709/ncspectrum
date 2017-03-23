@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
 use App\User;
 use App\Status;
 use Session;
@@ -43,7 +45,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeUser(Request $request)
     {
     	$this->validate($request, [
                 'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
@@ -72,26 +74,56 @@ class UserController extends Controller
 
     public function userlist(Request $request)
     {
-        $users = $data[users];
-                return view('users.visit')->withUsers($users);
+        $users = $request->data;
+        session()->put('userlist', $users);
+
+        return response()->json();
     }
 
     public function visit(Request $request)
     {
-        $response = array(
-          'status' => 'success',
-          'msg' => $request->message,
-        );
-      $users = response()->json($response); 
-      return view('users.visit')->withUsers($users);
+        $userlist = session()->get('userlist');
+        $users = array();
+
+        for($i=0;$i<count($userlist);$i++)
+        {
+            $user = User::find($userlist[$i]);
+            array_push($users, $user);
+        }
+
+        $employees = User::orderBy('firstname')->where('company','NC-Spectrum')->get();
+
+        return view('users.visit', compact('users', 'employees'));      
+    }
+
+    public function storeVisit(Request $request)
+    {
+        $users = $request->users;
+        $employees = $request->employees;
+    }
+
+    public function checkin(Request $request)
+    {
+        $userid = $request->data;
+
+        $user = DB::table('users')
+                ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+                ->where('id', $userid)
+                ->update(['status' => true]);
+
+        return response()->json();
     }
 
     public function checkout(Request $request)
     {
-        if($request->ajax())
-        {
+        $userid = $request->data;
 
-        }
+        $user = DB::table('users')
+                ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+                ->where('id', $userid)
+                ->update(['status' => false]);
+
+        return response()->json();
     }
 
     /**
@@ -112,6 +144,7 @@ class UserController extends Controller
                 $users = DB::table('users')
                     ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
 
+                    ->where('status', false)
                     ->where('firstname', 'like', '%'.$search.'%')
                     ->orWhere('lastname', 'like', '%'.$search.'%')
                     ->where('company','not like','NC-Spectrum')
