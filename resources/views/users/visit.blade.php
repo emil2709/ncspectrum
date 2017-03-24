@@ -12,15 +12,13 @@
 				<legend class="text-center">VISIT</legend>
 
 				<div class="row">
-					<div class="row">
-						@foreach($users as $user)
-							<div class="col-md-12 text-center">
-								<span id="names">{{$user->firstname}} {{$user->lastname}}</span>
-								<span> - {{$user->company}}</span>
-								{{ Form::hidden('users[]', $user->id) }}
-							</div>
-						@endforeach
-					</div>
+					@foreach($users as $user)
+						<div class="col-md-12 text-center">
+							<span id="names">{{$user->firstname}} {{$user->lastname}}</span>
+							<span> - {{$user->company}}</span>
+							{{ Form::hidden('users[]', $user->id) }}
+						</div>
+					@endforeach
 				</div>
 
 				<hr/>

@@ -47,6 +47,7 @@ $(document).ready(function(){
 
  function checkinCheck()
   {
+      console.log($('#inlist').size);
       if(users.length <= 0)
       {
         $("#checkin-btn").attr('disabled', true);

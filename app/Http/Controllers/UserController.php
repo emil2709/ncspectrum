@@ -19,14 +19,21 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')
+        $usersout = DB::table('users')
             ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
             ->where('status', false)
             ->where('company','not like','NC-Spectrum')
             ->orderBy('id','desc')
             ->paginate(5);
         
-        return view('users.index')->withUsers($users);
+        $usersin = DB::table('users')
+            ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+            ->where('status', true)
+            ->where('company','not like','NC-Spectrum')
+            ->orderBy('id','desc')
+            ->get();
+
+        return view('users.index', compact('usersout', 'usersin'));
     }
 
     /**

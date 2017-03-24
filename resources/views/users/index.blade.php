@@ -37,20 +37,20 @@
 			<div class="row">
 				<div class="col-md-5">
 					<ul id="outlist" class="connectedSortable boxlist">
-						@foreach($users as $user)
+						@foreach($usersout as $userout)
 							<li id="outlist-box" class="userbox">
-								<div id="userid" hidden>{{$user->id}}</div>
+								<div id="userid" hidden>{{$userout->id}}</div>
 								<div class="row">
 									<div class="col-md-12">
 										<div class="text-center lead">
 											<strong>
-												{{$user->firstname}}
-												{{$user->lastname}}
+												{{$userout->firstname}}
+												{{$userout->lastname}}
 											</strong>
 										</div>
 										<div class="col-md-12 text-center">
-											{{$user->email}} <br/>
-											{{$user->company}}
+											{{$userout->email}} <br/>
+											{{$userout->company}}
 										</div>
 									</div>
 								</div>
@@ -60,7 +60,26 @@
 				</div>
 
 				<div class="col-md-5 col-md-offset-2">
-					<ul id="inlist" class="connectedSortable boxlist">					
+					<ul id="inlist" class="connectedSortable boxlist">	
+					@foreach($usersin as $userin)
+							<li id="outlist-box" class="userbox-in">
+								<div id="userid" hidden>{{$userin->id}}</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="text-center lead">
+											<strong>
+												{{$userin->firstname}}
+												{{$userin->lastname}}
+											</strong>
+										</div>
+										<div class="col-md-12 text-center">
+											{{$userin->email}} <br/>
+											{{$userin->company}}
+										</div>
+									</div>
+								</div>
+							</li>
+						@endforeach				
 					</ul>
 				</div>
 			</div>
