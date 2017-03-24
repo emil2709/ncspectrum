@@ -117,7 +117,7 @@ class UserController extends Controller
 
     }
 
-    public function checkin(Request $request)
+    public function statusin(Request $request)
     {
         $userid = $request->data;
 
@@ -129,7 +129,7 @@ class UserController extends Controller
         return response()->json();
     }
 
-    public function checkout(Request $request)
+    public function statusout(Request $request)
     {
         $userid = $request->data;
 

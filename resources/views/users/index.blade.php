@@ -37,49 +37,49 @@
 			<div class="row">
 				<div class="col-md-5">
 					<ul id="outlist" class="connectedSortable boxlist">
-						@foreach($usersout as $userout)
-							<li id="outlist-box" class="userbox">
-								<div id="userid" hidden>{{$userout->id}}</div>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="text-center lead">
-											<strong>
-												{{$userout->firstname}}
-												{{$userout->lastname}}
-											</strong>
-										</div>
-										<div class="col-md-12 text-center">
-											{{$userout->email}} <br/>
-											{{$userout->company}}
-										</div>
+					@foreach($usersout as $userout)
+						<li class="userbox">
+							<div id="userid">{{$userout->id}}</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="text-center lead">
+										<strong>
+											{{$userout->firstname}}
+											{{$userout->lastname}}
+										</strong>
+									</div>
+									<div class="col-md-12 text-center">
+										{{$userout->email}} <br/>
+										{{$userout->company}}
 									</div>
 								</div>
-							</li>
-						@endforeach
+							</div>
+						</li>
+					@endforeach
 					</ul>	
 				</div>
 
 				<div class="col-md-5 col-md-offset-2">
-					<ul id="inlist" class="connectedSortable boxlist">	
+					<ul id="inlist" class="connectedSortable boxlist">		
 					@foreach($usersin as $userin)
-							<li id="outlist-box" class="userbox-in">
-								<div id="userid" hidden>{{$userin->id}}</div>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="text-center lead">
-											<strong>
-												{{$userin->firstname}}
-												{{$userin->lastname}}
-											</strong>
-										</div>
-										<div class="col-md-12 text-center">
-											{{$userin->email}} <br/>
-											{{$userin->company}}
-										</div>
+						<li class="userbox-in">
+							<div id="userid" >{{$userin->id}}</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="text-center lead">
+										<strong>
+											{{$userin->firstname}}
+											{{$userin->lastname}}
+										</strong>
+									</div>
+									<div class="col-md-12 text-center">
+										{{$userin->email}} <br/>
+										{{$userin->company}}
 									</div>
 								</div>
-							</li>
-						@endforeach				
+							</div>
+						</li>
+					@endforeach					
 					</ul>
 				</div>
 			</div>

@@ -8,8 +8,8 @@ Route::get('/create', ['as' => 'users.create', 'uses' => 'UserController@create'
 Route::post('user', ['as' => 'users.storeUser', 'uses' => 'UserController@storeUser']);
 Route::get('/usersearch', ['as' => 'usersearch', 'uses' => 'UserController@usersearch']);
 Route::post('/userlist', 'UserController@userlist');
-Route::post('/checkin', 'UserController@checkin');
-Route::post('/checkout', 'UserController@checkout');
+Route::post('/statusin', 'UserController@statusin');
+Route::post('/statusout', 'UserController@statusout');
 Route::get('/visit', ['as' => 'users.visit', 'uses' => 'UserController@visit']);
 Route::post('/visit', ['as' => 'users.storeVisit', 'uses' => 'UserController@storeVisit']);
 Route::get('/checkout', ['as' => 'checkout', 'uses' => 'UserController@checkout']);
