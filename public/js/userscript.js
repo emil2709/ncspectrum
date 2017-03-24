@@ -10,7 +10,7 @@ $(document).ready(function(){
     console.log(window.location.pathname);
     setInterval(function() {
       location.reload();
-    }, 60 * 1000); // 60 * 1000 milsec
+    }, 900 * 1000); // 60 * 1000 milsec
   }
 
   /** Temp functions **/
