@@ -505,6 +505,13 @@ class AdminController extends Controller
         return view ('admins.userlog')->withUsers($users);
     }
 
+    public function employeeLog()
+    {
+        $visits = Visit::get();
+
+        return view ('admins.eployeelog')->withVisits($visits);
+    }
+
     public function showHistory()
     {
         $history = History::orderBy('id', 'desc')->paginate(20);
