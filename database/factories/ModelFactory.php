@@ -33,6 +33,8 @@ $factory->define(App\Visit::class, function (Faker\Generator $faker) {
 		//'from' => $faker->time($format = 'H:i:s', $max = 'now'),
 		//'to' => $faker->time($format = 'H:i:s', $max = 'now'),
 		//'company' => $faker->company,
+        'employee_firstname' => $faker->firstName,
+        'employee_lastname' => $faker->lastName,
 		'comment' => $faker->state,
 	];
 });

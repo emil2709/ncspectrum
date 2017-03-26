@@ -15,7 +15,8 @@ class CreateVisitsTable extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('employee')->nullable();
+            $table->string('employee_firstname');
+            $table->string('employee_lastname');
             $table->string('comment');
             $table->string('from')->nullable();
             $table->string('to')->nullable();
