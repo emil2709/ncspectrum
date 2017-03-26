@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\User;
+use App\History;
 use App\Status;
 use App\Visit;
 use Session;
@@ -65,7 +66,7 @@ class AdminController extends Controller
     {
         $guests = User::find($id);
 
-        return view('admins.showDeleteGuest')->withGuest($guests);
+        return view('admins.deleteGuest')->withGuest($guests);
     }
 
      /**
@@ -78,7 +79,7 @@ class AdminController extends Controller
     {
         $employees = User::find($id);
 
-        return view('admins.showDeleteEmployee')->withEmployee($employees);
+        return view('admins.deleteEmployee')->withEmployee($employees);
     }
 
      /**
@@ -90,7 +91,7 @@ class AdminController extends Controller
     public function showDeleteAdmin($id)
     {
         $admin = Admin::find($id);
-        return view('admins.showDeleteAdmin')->withAdmin($admin);
+        return view('admins.deleteAdmin')->withAdmin($admin);
     }
 
 
@@ -208,8 +209,9 @@ class AdminController extends Controller
         $status->status = false;
 
         $guest->statuses()->save($status);
-    
 
+        $this->userhistory('guest', 'create', $guest->firstname.' '.$guest->lastname);
+    
         Session::flash('success', 'The Guest was successfully created!');
 
         return redirect()->route('admins.guests');
@@ -236,7 +238,9 @@ class AdminController extends Controller
         $employee->phone = $request->phone;
         $employee->email = strtolower($request->email);
         $employee->company = "NC-Spectrum";
-        $employee->save();    
+        $employee->save();
+
+        $this->userhistory('employee', 'create', $employee->firstname.' '.$employee->lastname);    
 
         Session::flash('success', 'The Employee was successfully created!');
 
@@ -270,6 +274,8 @@ class AdminController extends Controller
         $guest->company = ucwords(strtolower($request->input('company')));
         $guest->save();
 
+        $this->userhistory('guest', 'update', $guest->firstname.' '.$guest->lastname);
+
         Session::flash('success', "Changes has been made to the Guest.");
         return redirect()->route('admins.guests');
     }
@@ -300,6 +306,8 @@ class AdminController extends Controller
         $employee->company = 'NC-Spectrum';
         $employee->save();
 
+        $this->userhistory('employee', 'update', $employee->firstname.' '.$employee->lastname);
+
         Session::flash('success', "Changes has been made to the Employee.");
         return redirect()->route('admins.employees');
     }
@@ -327,7 +335,10 @@ class AdminController extends Controller
         $admin->email= strtolower($request->input('email'));
         $admin->save();
 
+        $this->adminhistory('update', $admin->firstname.' '.$admin->lastname);
+
         Session::flash('success', "Changes has been made to the Admin.");
+
         if(Auth::user()->id == 1)
         {
             return redirect()->route('admins.admins');
@@ -388,6 +399,8 @@ class AdminController extends Controller
                 $admin->password = $password;
                 $admin->save();
 
+                $this->adminhistory('password', $admin->firstname.' '.$admin->lastname);
+
                 Session::flash('success', 'The password has been successfully updated!');
                 if(Auth::user()->id == 1)
                 {
@@ -415,9 +428,11 @@ class AdminController extends Controller
     public function destroyGuest($id)
     {
         $guest = User::find($id);
-        $user->visits()->detach();
-        $user->statuses()->delete();
+        $guest->visits()->detach();
+        $guest->statuses()->delete();
         $guest->delete();
+
+        $this->userhistory('guest', 'delete', $guest->firstname.' '.$guest->lastname);
 
         Session::flash('success', 'The Guest was successfully deleted!');
         return redirect()->route('admins.guests');
@@ -434,6 +449,8 @@ class AdminController extends Controller
         $employee = User::find($id);
         $employee->visits()->detach();
         $employee->delete();
+
+        $this->userhistory('employee', 'delete', $employee->firstname.' '.$employee->lastname);
 
         Session::flash('success', 'The Employee was successfully deleted!');
         return redirect()->route('admins.employees');
@@ -462,6 +479,8 @@ class AdminController extends Controller
         {
             $admin->delete();
 
+            $this->adminhistory('delete', $admin->firstname.' '.$admin->lastname);
+
             Session::flash('success', 'The Admin has been successfully deleted!');
             return redirect()->route('admins.admins');
         }
@@ -474,7 +493,7 @@ class AdminController extends Controller
 
     public function showLog()
     {
-        $users = User::get();
+        $users = User::orderBy('created_at', 'asc')->get();
 
         return view ('admins.log')->withUsers($users);
     }
@@ -484,6 +503,12 @@ class AdminController extends Controller
         $users = User::find($id);
 
         return view ('admins.userlog')->withUsers($users);
+    }
+
+    public function showHistory()
+    {
+        $history = History::orderBy('id', 'desc')->paginate(20);
+        return view('admins.history')->withHistory($history);
     }
 
     public function showProfile()
@@ -514,6 +539,9 @@ class AdminController extends Controller
                 $admin = Auth::user();
                 $admin->avatar = $filename;
                 $admin->save();
+
+                $this->adminhistory('avatar', $admin->firstname.' '.$admin->lastname);                
+
                 return view('admins.profile')->withAdmin($admin);
             }
             else
@@ -521,6 +549,66 @@ class AdminController extends Controller
                 Session::flash('error', 'You must upload a picture!');
                 return redirect()->back();
             }
+    }
+
+
+    public function userhistory($role, $type, $user)
+    {
+        $history = new History();
+
+        $admin = trim(Auth::user()->firstname.' '.Auth::user()->lastname);
+
+        switch ($type) 
+        {
+            case 'create':
+                $status = 'created';
+                break;
+            case 'update':
+                $status = 'updated';
+                break;
+            case 'delete':
+                $status = 'deleted';
+                break;
+        }
+
+        $role = ucfirst(strtolower($role));
+
+        $data = 'Admin '.$admin.', '.$status.' '.$role.' '.$user.'.';
+
+        $history->type = $type;
+        $history->information = $data;
+        $history->save();
+    }
+
+    public function adminhistory($type, $user)
+    {
+        $history = new History();
+
+        $admin = trim(Auth::user()->firstname.' '.Auth::user()->lastname);
+        $user = trim($user);
+
+        switch ($type) 
+        {
+            case 'create':
+                $data = 'Admin '.$admin.', created Admin '.$user.'.';
+                break;
+            case 'update':
+                $data = 'Admin '.$admin.', updated Admin '.$user.'.';
+                break;
+            case 'delete':
+                $data = 'Admin '.$admin.', deleted Admin '.$user.'.';
+                break;
+            case 'avatar':
+                $data = 'Admin '.$admin.', changed Admin '.$user.'\'s avatar.';
+                break;
+            case 'password':
+                $data = 'Admin '.$admin.', updated Admin '.$user.'\'s password.';
+                break;
+        }
+
+        $history->type = $type;
+        $history->information = $data;
+        $history->save();
     }
 
     /**
@@ -576,91 +664,87 @@ class AdminController extends Controller
                 }
             }
 
-            else
+            elseif($type === 'guests')
             {
-                if($type === 'guests')
+                if($search != "")
                 {
-                    if($search != "")
-                    {
-                        $guests = DB::table('users')
-                            ->where('company', 'not like', 'NC-Spectrum')
-                            ->where('firstname', 'like', '%'.$search.'%')
-                            ->orWhere('lastname', 'like', '%'.$search.'%')
-                            ->where('company', 'not like', 'NC-Spectrum')
-                            ->orWhere('company', 'like', '%'.$search.'%')
-                            ->get();
-                    }
-                    else
-                    {
-                        $guests = User::orderBy('firstname')->where('company','not like','NC-Spectrum')->get();
-                    }
-
-                    foreach($guests as $guest)
-                    {
-                        $output.=
-                                '<tr>'.
-                                    '<td>'.$guest->firstname.'</td>'.
-                                    '<td>'.$guest->lastname.'</td>'.
-                                    '<td>'.$guest->phone.'</td>'.
-                                    '<td>'.$guest->email.'</td>'.
-                                    '<td>'.$guest->company.'</td>'.
-                                    '<td>'.
-                                        '<a href="/admin/guest/'.$guest->id.'/edit" title="Edit">'.
-                                        '<span class="glyphicon glyphicon-edit"></span></a>'.
-                                    '</td>'.
-                                    '<td>'.
-                                        '<a href="/admin/'.$guest->id.'/userlog" title="Log">'.
-                                        '<span class="glyphicon glyphicon-th-list"></span></a>'.
-                                    '</td>'.
-                                    '<td>'.
-                                        '<a href="/admin/guest/'.$guest->id.'/delete" title="Delete">'.
-                                        '<span class="glyphicon glyphicon-trash"></span></a>'.
-                                    '</td>'.
-                                '</tr>';
-                    }
-
+                    $guests = DB::table('users')
+                        ->where('company', 'not like', 'NC-Spectrum')
+                        ->where('firstname', 'like', '%'.$search.'%')
+                        ->orWhere('lastname', 'like', '%'.$search.'%')
+                        ->where('company', 'not like', 'NC-Spectrum')
+                        ->orWhere('company', 'like', '%'.$search.'%')
+                        ->get();
                 }
                 else
                 {
-                    if($search != "")
-                    {
-                        $employees = DB::table('users')
-                            ->where('company', 'like', 'NC-Spectrum')
-                            ->where('firstname', 'like', '%'.$search.'%')
-                            ->orWhere('lastname', 'like', '%'.$search.'%')
-                            ->where('company', 'like', 'NC-Spectrum')
-                            ->get();
-                    }
-                    else
-                    {
-                        $employees = User::orderBy('firstname')->where('company','like','NC-Spectrum')->get();
-                    }
-
-                    foreach($employees as $employee)
-                    {
-                        $output.=
-                                '<tr>'.
-                                    '<td>'.$employee->firstname.'</td>'.
-                                    '<td>'.$employee->lastname.'</td>'.
-                                    '<td>'.$employee->phone.'</td>'.
-                                    '<td>'.$employee->email.'</td>'.
-                                    '<td>'.$employee->company.'</td>'.
-                                    '<td>'.
-                                        '<a href="/admin/employee/'.$employee->id.'/edit" title="Edit">'.
-                                        '<span class="glyphicon glyphicon-edit"></span></a>'.
-                                    '</td>'.
-                                    '<td>'.
-                                        '<a href="/admin/'.$employee->id.'/userlog" title="Log">'.
-                                        '<span class="glyphicon glyphicon-th-list"></span></a>'.
-                                    '</td>'.
-                                    '<td>'.
-                                        '<a href="/admin/employee/'.$employee->id.'/delete" title="Delete">'.
-                                        '<span class="glyphicon glyphicon-trash"></span></a>'.
-                                    '</td>'.
-                                '</tr>';
-                    }
+                    $guests = User::orderBy('firstname')->where('company','not like','NC-Spectrum')->get();
                 }
 
+                foreach($guests as $guest)
+                {
+                    $output.=
+                            '<tr>'.
+                                '<td>'.$guest->firstname.'</td>'.
+                                '<td>'.$guest->lastname.'</td>'.
+                                '<td>'.$guest->phone.'</td>'.
+                                '<td>'.$guest->email.'</td>'.
+                                '<td>'.$guest->company.'</td>'.
+                                '<td>'.
+                                    '<a href="/admin/guest/'.$guest->id.'/edit" title="Edit">'.
+                                    '<span class="glyphicon glyphicon-edit"></span></a>'.
+                                '</td>'.
+                                '<td>'.
+                                    '<a href="/admin/'.$guest->id.'/userlog" title="Log">'.
+                                    '<span class="glyphicon glyphicon-th-list"></span></a>'.
+                                '</td>'.
+                                '<td>'.
+                                    '<a href="/admin/guest/'.$guest->id.'/delete" title="Delete">'.
+                                    '<span class="glyphicon glyphicon-trash"></span></a>'.
+                                '</td>'.
+                            '</tr>';
+                }
+            }
+
+            else
+            {
+                if($search != "")
+                {
+                    $employees = DB::table('users')
+                        ->where('company', 'like', 'NC-Spectrum')
+                        ->where('firstname', 'like', '%'.$search.'%')
+                        ->orWhere('lastname', 'like', '%'.$search.'%')
+                        ->where('company', 'like', 'NC-Spectrum')
+                        ->get();
+                }
+                else
+                {
+                    $employees = User::orderBy('firstname')->where('company','like','NC-Spectrum')->get();
+                }
+
+                foreach($employees as $employee)
+                {
+                    $output.=
+                            '<tr>'.
+                                '<td>'.$employee->firstname.'</td>'.
+                                '<td>'.$employee->lastname.'</td>'.
+                                '<td>'.$employee->phone.'</td>'.
+                                '<td>'.$employee->email.'</td>'.
+                                '<td>'.$employee->company.'</td>'.
+                                '<td>'.
+                                    '<a href="/admin/employee/'.$employee->id.'/edit" title="Edit">'.
+                                    '<span class="glyphicon glyphicon-edit"></span></a>'.
+                                '</td>'.
+                                '<td>'.
+                                    '<a href="/admin/'.$employee->id.'/userlog" title="Log">'.
+                                    '<span class="glyphicon glyphicon-th-list"></span></a>'.
+                                '</td>'.
+                                '<td>'.
+                                    '<a href="/admin/employee/'.$employee->id.'/delete" title="Delete">'.
+                                    '<span class="glyphicon glyphicon-trash"></span></a>'.
+                                '</td>'.
+                            '</tr>';
+                }
             }
 
             if($output == "")
@@ -673,6 +757,7 @@ class AdminController extends Controller
                 return Response($output);
             }   
         }
-
     }
+
+
 }

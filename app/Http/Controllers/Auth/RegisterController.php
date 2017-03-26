@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Admin;
-use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -64,6 +64,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        app('App\Http\Controllers\AdminController')->adminhistory('create', $data['firstname'].' '.$data['lastname']);
+
         Session::flash('success', 'The Admin was successfully created!');
 
         return Admin::create([

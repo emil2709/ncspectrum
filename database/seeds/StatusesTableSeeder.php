@@ -11,6 +11,6 @@ class StatusesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Status::class, 15)->create();
+        factory(App\Status::class, 20)->create();
     }
 }

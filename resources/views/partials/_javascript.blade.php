@@ -10,9 +10,9 @@ hence placed at the bottom of the main sheets.
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- Latest compiled and minified JQueryUI -->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<!-- JQuery UI Touch Punch
-<script src="jquery.ui.touch-punch.min.js"></script>
--->
+<!-- JQuery UI Touch Punch -->
+{{ Html::script('js/jquery.ui.touch-punch.min.js') }}
+
 <!-- Latest compiled and minifed Bootstrap Javascript Validator  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 

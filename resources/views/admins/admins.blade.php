@@ -44,7 +44,7 @@
                 </a>
               </td>
               <td>
-                <a href="{{ URL::route('admins.showDeleteAdmin', [$admin->id]) }}" title="Delete">
+                <a href="{{ URL::route('admins.deleteAdmin', [$admin->id]) }}" title="Delete">
                   <span class="glyphicon glyphicon-trash"></span>
                 </a>
               </td>
