@@ -507,7 +507,7 @@ class AdminController extends Controller
 
     public function employeeLog()
     {
-        $visits = Visit::get();
+        $visits = Visit::orderBy("from")->get();
 
         return view ('admins.eployeelog')->withVisits($visits);
     }
