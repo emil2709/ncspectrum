@@ -6,7 +6,7 @@
 
 @if(Auth::user()->id == 1)
 
-  <h2 class="sub-header">Admins</h2>
+  <h2 class="sub-header">Administrators</h2>
 
   <div class="table-responsive">
     <table class="table table-striped">
