@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use App\User;
 use App\Status;
@@ -106,12 +105,17 @@ class UserController extends Controller
     public function storeVisit(Request $request)
     {
         $users = $request->users;
-        $employees = $request->employees;
+        $employee = $request->employees;
 
-        Log::info($users);
-        Log::info($employees);
+        /*
+        foreach($users as $user)
+        {}
 
-        // Create visit with users and employee here
+         Her kan du kode visit-opprettelsen. Users og ansatt ligger i variabelene ovenfor. 
+         Hvis du trenger users hver for seg, bruk foreach-en ovenfor.
+        */
+
+        Session::flash('success', 'The Visit has been successfully registered!');
 
         return redirect()->route('users.index');
 
@@ -183,7 +187,7 @@ class UserController extends Controller
             {
                 $output.=
                     '<li id="outlist-box" class="userbox">'.
-                    '<div id="userid">'.$user->id.'</div>'.
+                    '<div id="userid" hidden>'.$user->id.'</div>'.
                         '<div class="row">'.
                             '<div class="col-md-12">'.
                                 '<div class="text-center lead">'.

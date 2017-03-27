@@ -7,11 +7,16 @@ $(document).ready(function(){
 
   if(window.location.pathname == "/index")
   {
-    console.log(window.location.pathname);
     setInterval(function() {
       location.reload();
     }, 900 * 1000); // 60 * 1000 milsec
   }
+
+  window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove(); 
+      });
+  }, 4000);
 
   /** Temp functions **/
 
@@ -25,8 +30,27 @@ $(document).ready(function(){
   $("#outlist, #inlist").sortable({
     revert: true,
     connectWith: ".connectedSortable",
-    placeholder: "placeholder"
+    placeholder: "placeholder",
+    helper: "clone"
   }).disableSelection();
+  
+  /*
+  $("#outlist #out").on('click',function(event){
+    console.log('clicked');
+    //$('#inlist').append($(this).removeClass(this));
+    //$(this).switchClass( "userbox", "userbox-in", 1000 );
+    var id = $('#outlist #userid[id]:first').html();
+    console.log(id);
+    console.log(event.target);
+  });
+
+  $("#in").click(function(event, ui){
+    $('.userbox-in').append($(this).removeClass(this));
+    $(ui.item).switchClass( "userbox", "userbox-in", 1000 );
+    document.getElementById('one').id = 'two'
+    $(this).attr('class', 'userbox');
+  });
+  */
 
   $("#outlist").sortable({
     start: function(event, ui){
@@ -37,8 +61,8 @@ $(document).ready(function(){
       statusout();
       checkinCheck();
       $(ui.item).switchClass( "userbox-in", "userbox", 1000 );
-    }
-  });
+    },
+  }).disableSelection();
 
   $("#inlist").sortable({
     start: function(event, ui){
@@ -50,7 +74,7 @@ $(document).ready(function(){
       checkinCheck();
       $(ui.item).switchClass( "userbox", "userbox-in", 1000 );
     }
-  });
+  }).disableSelection();
 
   function startup()
   {
@@ -119,8 +143,6 @@ $(document).ready(function(){
     {
       counter = 0;
     }
-    console.log(users);
-    console.log('Counter: '+counter);
     sessionStorage.counter = counter;
     sessionStorage.users = JSON.stringify(users);
   }
@@ -159,18 +181,6 @@ $(document).ready(function(){
         dataType: 'JSON'
     });
   }
-
-  /*
-  $("#outlist-box").click(function(){
-    $('#inlist').append($(this).removeClass(this));
-    $(this).attr('id', 'inlist-box');
-  });
-
-  $("#inlist-box").click(function(){
-    $('#outlist').append($(this).removeClass(this));
-    $(this).attr('id', 'outlist-box');
-  });
-  */
 
   $('#usersearch').on('keyup',function(){
     $usersearch = $(this).val();

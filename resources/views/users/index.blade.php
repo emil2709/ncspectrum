@@ -38,8 +38,8 @@
 				<div class="col-md-5">
 					<ul id="outlist" class="connectedSortable boxlist">
 					@foreach($usersout as $userout)
-						<li class="userbox">
-							<div id="userid">{{$userout->id}}</div>
+						<li class="userbox" id="out">
+							<div id="userid" hidden>{{$userout->id}}</div>
 							<div class="row">
 								<div class="col-md-12">
 									<div class="text-center lead">
@@ -62,8 +62,8 @@
 				<div class="col-md-5 col-md-offset-2">
 					<ul id="inlist" class="connectedSortable boxlist">		
 					@foreach($usersin as $userin)
-						<li class="userbox-in">
-							<div id="userid" >{{$userin->id}}</div>
+						<li class="userbox-in" id="in">
+							<div id="userid" hidden>{{$userin->id}}</div>
 							<div class="row">
 								<div class="col-md-12">
 									<div class="text-center lead">
