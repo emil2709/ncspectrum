@@ -39,9 +39,8 @@ $(document).ready(function(){
     console.log('clicked');
     //$('#inlist').append($(this).removeClass(this));
     //$(this).switchClass( "userbox", "userbox-in", 1000 );
-    var id = $('#outlist #userid[id]:first').html();
-    console.log(id);
-    console.log(event.target);
+    console.log(document.getElementById('#out #userid').html());
+    //console.log(event.target);
   });
 
   $("#in").click(function(event, ui){
