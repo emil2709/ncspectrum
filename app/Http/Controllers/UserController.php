@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\User;
 use App\Status;
 use Session;
@@ -17,8 +18,21 @@ class UserController extends Controller
      */
     public function index()
     {
- 		$users = User::orderBy('id','desc')->where('company','not like','ncspectrum')->paginate(5);
-        return view('users.index')->withUsers($users);
+        $usersout = DB::table('users')
+            ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+            ->where('status', false)
+            ->where('company','not like','NC-Spectrum')
+            ->orderBy('id','desc')
+            ->paginate(5);
+        
+        $usersin = DB::table('users')
+            ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+            ->where('status', true)
+            ->where('company','not like','NC-Spectrum')
+            ->orderBy('id','desc')
+            ->get();
+
+        return view('users.index', compact('usersout', 'usersin'));
     }
 
     /**
@@ -37,7 +51,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeUser(Request $request)
     {
     	$this->validate($request, [
                 'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
@@ -55,25 +69,80 @@ class UserController extends Controller
     	$user->company = ucwords(strtolower($request->company));
         $user->save();
 
-        $visit = new \App\Visit();
-        //$visit->date = '2017';
-        //$visit->from = '20:20';
-        //$visit->to = '21:20';
-        //$visit->company = strtolower($request->company);
-        //$visit->comment = 'Det kommer damer';
-
-        $user->visits()->save($visit);
-
         $status = new \App\Status();
-
         $status->status = false;
-
         $user->statuses()->save($status);
     
-
         Session::flash('success', 'The User was successfully created!');
 
     	return redirect()->route('users.index');
+    }
+
+    public function userlist(Request $request)
+    {
+        $users = $request->data;
+        session()->put('userlist', $users);
+
+        return response()->json();
+    }
+
+    public function visit(Request $request)
+    {
+        $userlist = session()->get('userlist');
+        $users = array();
+
+        for($i=0;$i<count($userlist);$i++)
+        {
+            $user = User::find($userlist[$i]);
+            array_push($users, $user);
+        }
+
+        $employees = User::orderBy('firstname')->where('company','NC-Spectrum')->get();
+
+        return view('users.visit', compact('users', 'employees'));      
+    }
+
+    public function storeVisit(Request $request)
+    {
+        $users = $request->users;
+        $employee = $request->employees;
+
+        /*
+        foreach($users as $user)
+        {}
+
+         Her kan du kode visit-opprettelsen. Users og ansatt ligger i variabelene ovenfor. 
+         Hvis du trenger users hver for seg, bruk foreach-en ovenfor.
+        */
+
+        Session::flash('success', 'The Visit has been successfully registered!');
+
+        return redirect()->route('users.index');
+
+    }
+
+    public function statusin(Request $request)
+    {
+        $userid = $request->data;
+
+        $user = DB::table('users')
+                ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+                ->where('id', $userid)
+                ->update(['status' => true]);
+
+        return response()->json();
+    }
+
+    public function statusout(Request $request)
+    {
+        $userid = $request->data;
+
+        $user = DB::table('users')
+                ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+                ->where('id', $userid)
+                ->update(['status' => false]);
+
+        return response()->json();
     }
 
     /**
@@ -92,22 +161,33 @@ class UserController extends Controller
             if($search != "")
             {
                 $users = DB::table('users')
-                    ->where('company', 'not like', 'ncspectrum')
+                    ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+
+                    ->where('status', false)
                     ->where('firstname', 'like', '%'.$search.'%')
                     ->orWhere('lastname', 'like', '%'.$search.'%')
-                    ->where('company', 'not like', 'ncspectrum')
+                    ->where('company','not like','NC-Spectrum')
+                    ->where('status', false)
                     ->orWhere('company', 'like', '%'.$search.'%')
+                    ->where('company','not like','NC-Spectrum')
+                    ->orderBy('id','desc')
                     ->paginate(5);
             }
             else
             {
-                $users = User::orderBy('id', 'desc')->where('company','not like','ncspectrum')->paginate(5);
+                $users = DB::table('users')
+                    ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+                    ->where('status', false)
+                    ->where('company','not like','NC-Spectrum')
+                    ->orderBy('id','desc')
+                    ->paginate(5);
             }
 
             foreach($users as $user)
             {
                 $output.=
                     '<li id="outlist-box" class="userbox">'.
+                    '<div id="userid" hidden>'.$user->id.'</div>'.
                         '<div class="row">'.
                             '<div class="col-md-12">'.
                                 '<div class="text-center lead">'.
