@@ -17,7 +17,6 @@ class CreateVisitsTable extends Migration
             $table->increments('id');
             $table->string('employee_firstname');
             $table->string('employee_lastname');
-            $table->string('comment');
             $table->string('from')->nullable();
             $table->string('to')->nullable();
             $table->timestamps();

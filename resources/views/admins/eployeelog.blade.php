@@ -15,7 +15,6 @@
 		<tr>
 			<th>Firstname</th>
 			<th>Lastname</th>
-			<th>Comment</th>
 			<th>From</th>
 			<th>To</th>
 		</tr>
@@ -25,7 +24,6 @@
 			@foreach ($visits as $visit)
 			<td>{{ $visit->employee_firstname }}</td>
 			<td>{{ $visit->employee_lastname }}</td>
-			<td>{{ $visit->comment }}</td>
 			<td>{{ $visit->from }}</td>
 			<td>{{ $visit->to }}</td>
 		</tr>
