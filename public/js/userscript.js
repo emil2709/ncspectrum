@@ -25,10 +25,10 @@ $(document).ready(function(){
   $( "#sortable" ).sortable();
   $( "#sortable" ).disableSelection();
 
- $('#printer').click(function(){
+  $('#printer').click(function(){
     console.log(sessionStorage.users);
     console.log(sessionStorage.counter);
- });
+  });
 
   /** Userinteractions **/
 
