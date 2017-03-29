@@ -34,44 +34,57 @@ $(document).ready(function(){
     helper: "clone"
   }).disableSelection();
   
-  /*
   $("#outlist #out").on('click',function(event){
-    console.log('clicked');
-    //$('#inlist').append($(this).removeClass(this));
-    //$(this).switchClass( "userbox", "userbox-in", 1000 );
-    console.log(document.getElementById('#out #userid').html());
-    //console.log(event.target);
+    console.log('clicked outlist');
+    sessionStorage.userid = $(this).children('#userid').html();
+    console.log(sessionStorage.userid);
+    $('#inlist').append($(this).removeClass(this));
+    $(this).switchClass( "userbox", "userbox-in", 1000 );
+    $(this).attr('id','in');
+    checkin();
+    statusin();
+    checkinCheck();
   });
 
-  $("#in").click(function(event, ui){
-    $('.userbox-in').append($(this).removeClass(this));
-    $(ui.item).switchClass( "userbox", "userbox-in", 1000 );
-    document.getElementById('one').id = 'two'
-    $(this).attr('class', 'userbox');
+  $("#inlist #in").on('click',function(event){
+    console.log('clicked inlist');
+    sessionStorage.userid = $(this).children('#userid').html();
+    console.log(sessionStorage.userid);
+    $('#outlist').append($(this).removeClass(this));
+    $(this).switchClass( "userbox-in", "userbox", 1000 );
+    $(this).attr('id','out');
+    checkout();
+    statusout();
+    checkinCheck();
   });
-  */
 
   $("#outlist").sortable({
     start: function(event, ui){
+      console.log('outlist start');
       sessionStorage.userid = ui.item.children('#userid').html();
     },
     receive: function(event, ui){
+      console.log('outlist recieve');
       checkout();
       statusout();
       checkinCheck();
       $(ui.item).switchClass( "userbox-in", "userbox", 1000 );
+      $(ui.item).attr('id','out');
     },
   }).disableSelection();
 
   $("#inlist").sortable({
     start: function(event, ui){
+      console.log('inlist start');
       sessionStorage.userid = ui.item.children('#userid').html();
     },
     receive: function(event, ui){
+      console.log('inlist recieve');
       checkin();
       statusin();
       checkinCheck();
       $(ui.item).switchClass( "userbox", "userbox-in", 1000 );
+      $(ui.item).attr('id','in');
     }
   }).disableSelection();
 

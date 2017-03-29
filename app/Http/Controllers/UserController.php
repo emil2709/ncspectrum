@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Input;
 use App\User;
 use App\Status;
 use Session;
@@ -60,6 +60,13 @@ class UserController extends Controller
                 'email' => 'required|unique:users|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/',
                 'company' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$/'
             ]);
+        
+        $company = strtolower($request->company);
+        if (in_array($company, array('nc spectrum', 'nc-spectrum', 'nc.spectrum', 'ncspectrum')))
+        {
+            Session::flash('error', 'The company name is invalid.');
+            return redirect()->back()->withInput(Input::all());
+        }
 
         $user = new User();
     	$user->firstname = ucwords(strtolower($request->firstname));
@@ -186,7 +193,7 @@ class UserController extends Controller
             foreach($users as $user)
             {
                 $output.=
-                    '<li id="outlist-box" class="userbox">'.
+                    '<li class="userbox" id="out">'.
                     '<div id="userid" hidden>'.$user->id.'</div>'.
                         '<div class="row">'.
                             '<div class="col-md-12">'.

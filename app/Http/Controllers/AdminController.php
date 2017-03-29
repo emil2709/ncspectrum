@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Admin;
 use App\User;
 use App\History;
@@ -169,6 +170,13 @@ class AdminController extends Controller
                 'company' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$/'
             ]);
 
+        $company = strtolower($request->company);
+        if (in_array($company, array('nc spectrum', 'nc-spectrum', 'nc.spectrum', 'ncspectrum')))
+        {
+            Session::flash('error', 'The company name is invalid.');
+            return redirect()->back()->withInput(Input::all());
+        }
+
         $guest = new User();
         $guest->firstname = ucwords(strtolower($request->firstname));
         $guest->lastname = ucwords(strtolower($request->lastname));
@@ -247,8 +255,14 @@ class AdminController extends Controller
                 'company' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$/'
             ]);
 
-        $guest = User::find($id);
+        $company = strtolower($request->company);
+        if (in_array($company, array('nc spectrum', 'nc-spectrum', 'nc.spectrum', 'ncspectrum')))
+        {
+            Session::flash('error', 'The company name is invalid.');
+            return redirect()->back()->withInput(Input::all());
+        }
 
+        $guest = User::find($id);
         $guest->firstname = ucwords(strtolower($request->input('firstname')));
         $guest->lastname = ucwords(strtolower($request->input('lastname')));
         $guest->phone = $request->input('phone');
