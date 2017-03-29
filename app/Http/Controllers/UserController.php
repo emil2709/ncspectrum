@@ -87,8 +87,8 @@ class UserController extends Controller
 
     public function userlist(Request $request)
     {
-        $users = $request->data;
-        session()->put('userlist', $users);
+        $userlist = $request->data;
+        session()->put('userlist', $userlist);
 
         return response()->json();
     }
@@ -97,6 +97,12 @@ class UserController extends Controller
     {
         $userlist = session()->get('userlist');
         $users = array();
+
+        if(empty($userlist))
+        {
+            Session::flash('error', 'You must check-in users before creating a visit.');
+            return redirect()->route('users.index');
+        }
 
         for($i=0;$i<count($userlist);$i++)
         {
@@ -113,6 +119,12 @@ class UserController extends Controller
     {
         $users = $request->users;
         $employee = $request->employees;
+
+        if($employee == null)
+        {
+            Session::flash('error', 'You must choose an employee before continuing!');
+            return redirect()->route('users.index');
+        } 
 
         /*
         foreach($users as $user)
@@ -143,6 +155,13 @@ class UserController extends Controller
     public function statusout(Request $request)
     {
         $userid = $request->data;
+        $userlist = session()->get('userlist');
+        if(!empty($userlist))
+        {
+            $index = array_search($userid, $userlist);
+            array_splice($userlist,$index,1);
+            session()->put('userlist', $userlist);
+        }
 
         $user = DB::table('users')
                 ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')

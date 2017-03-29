@@ -25,6 +25,11 @@ $(document).ready(function(){
   $( "#sortable" ).sortable();
   $( "#sortable" ).disableSelection();
 
+ $('#printer').click(function(){
+    console.log(sessionStorage.users);
+    console.log(sessionStorage.counter);
+ });
+
   /** Userinteractions **/
 
   $("#outlist, #inlist").sortable({
@@ -34,11 +39,9 @@ $(document).ready(function(){
     helper: "clone"
   }).disableSelection();
   
-  $("#outlist #out").on('click',function(event){
-    console.log('clicked outlist');
+  $("#outlist").on('click','#out',function(event){
     sessionStorage.userid = $(this).children('#userid').html();
-    console.log(sessionStorage.userid);
-    $('#inlist').append($(this).removeClass(this));
+    $('#inlist').prepend($(this).removeClass(this));
     $(this).switchClass( "userbox", "userbox-in", 1000 );
     $(this).attr('id','in');
     checkin();
@@ -46,11 +49,9 @@ $(document).ready(function(){
     checkinCheck();
   });
 
-  $("#inlist #in").on('click',function(event){
-    console.log('clicked inlist');
+  $("#inlist").on('click','#in', function(event){
     sessionStorage.userid = $(this).children('#userid').html();
-    console.log(sessionStorage.userid);
-    $('#outlist').append($(this).removeClass(this));
+    $('#outlist').prepend($(this).removeClass(this));
     $(this).switchClass( "userbox-in", "userbox", 1000 );
     $(this).attr('id','out');
     checkout();
@@ -60,11 +61,9 @@ $(document).ready(function(){
 
   $("#outlist").sortable({
     start: function(event, ui){
-      console.log('outlist start');
       sessionStorage.userid = ui.item.children('#userid').html();
     },
     receive: function(event, ui){
-      console.log('outlist recieve');
       checkout();
       statusout();
       checkinCheck();
@@ -75,11 +74,9 @@ $(document).ready(function(){
 
   $("#inlist").sortable({
     start: function(event, ui){
-      console.log('inlist start');
       sessionStorage.userid = ui.item.children('#userid').html();
     },
     receive: function(event, ui){
-      console.log('inlist recieve');
       checkin();
       statusin();
       checkinCheck();
@@ -113,6 +110,9 @@ $(document).ready(function(){
     if(sessionStorage.listlength <= 0)
     {
       $("#checkin-btn").attr('disabled', true);
+      sessionStorage.counter = 0;
+      var users = new Array();
+      sessionStorage.users = JSON.stringify(users);
     }
     else
     {
@@ -148,7 +148,6 @@ $(document).ready(function(){
     var users = JSON.parse(sessionStorage.users);
     var index = users.indexOf(sessionStorage.userid);
     var counter = Number(sessionStorage.counter);
-
     users.splice(index,1);
     counter--;
     if(counter < 0)
