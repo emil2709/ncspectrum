@@ -13,7 +13,7 @@
         </li>
         @if(Auth::user()->id == 1)
           <li class="{{ Request::segment(2) === 'admins' ? 'active' : null }}">
-            <a href="{{ route('admins.admins') }}">Admins</a>
+            <a href="{{ route('admins.admins') }}">Administrators</a>
           </li>
         @endif
         <li class="{{ Request::segment(2) === 'visits' ? 'active' : null }}">

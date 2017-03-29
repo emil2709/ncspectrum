@@ -25,6 +25,11 @@ $(document).ready(function(){
   $( "#sortable" ).sortable();
   $( "#sortable" ).disableSelection();
 
+ $('#printer').click(function(){
+    console.log(sessionStorage.users);
+    console.log(sessionStorage.counter);
+ });
+
   /** Userinteractions **/
 
   $("#outlist, #inlist").sortable({
@@ -34,23 +39,25 @@ $(document).ready(function(){
     helper: "clone"
   }).disableSelection();
   
-  /*
-  $("#outlist #out").on('click',function(event){
-    console.log('clicked');
-    //$('#inlist').append($(this).removeClass(this));
-    //$(this).switchClass( "userbox", "userbox-in", 1000 );
-    var id = $('#outlist #userid[id]:first').html();
-    console.log(id);
-    console.log(event.target);
+  $("#outlist").on('click','#out',function(event){
+    sessionStorage.userid = $(this).children('#userid').html();
+    $('#inlist').prepend($(this).removeClass(this));
+    $(this).switchClass( "userbox", "userbox-in", 1000 );
+    $(this).attr('id','in');
+    checkin();
+    statusin();
+    checkinCheck();
   });
 
-  $("#in").click(function(event, ui){
-    $('.userbox-in').append($(this).removeClass(this));
-    $(ui.item).switchClass( "userbox", "userbox-in", 1000 );
-    document.getElementById('one').id = 'two'
-    $(this).attr('class', 'userbox');
+  $("#inlist").on('click','#in', function(event){
+    sessionStorage.userid = $(this).children('#userid').html();
+    $('#outlist').prepend($(this).removeClass(this));
+    $(this).switchClass( "userbox-in", "userbox", 1000 );
+    $(this).attr('id','out');
+    checkout();
+    statusout();
+    checkinCheck();
   });
-  */
 
   $("#outlist").sortable({
     start: function(event, ui){
@@ -61,6 +68,7 @@ $(document).ready(function(){
       statusout();
       checkinCheck();
       $(ui.item).switchClass( "userbox-in", "userbox", 1000 );
+      $(ui.item).attr('id','out');
     },
   }).disableSelection();
 
@@ -73,6 +81,7 @@ $(document).ready(function(){
       statusin();
       checkinCheck();
       $(ui.item).switchClass( "userbox", "userbox-in", 1000 );
+      $(ui.item).attr('id','in');
     }
   }).disableSelection();
 
@@ -101,6 +110,9 @@ $(document).ready(function(){
     if(sessionStorage.listlength <= 0)
     {
       $("#checkin-btn").attr('disabled', true);
+      sessionStorage.counter = 0;
+      var users = new Array();
+      sessionStorage.users = JSON.stringify(users);
     }
     else
     {
@@ -136,7 +148,6 @@ $(document).ready(function(){
     var users = JSON.parse(sessionStorage.users);
     var index = users.indexOf(sessionStorage.userid);
     var counter = Number(sessionStorage.counter);
-
     users.splice(index,1);
     counter--;
     if(counter < 0)
