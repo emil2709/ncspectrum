@@ -56,6 +56,12 @@ class AdminController extends Controller
         return view('admins.admins')->withAdmins($admins);
     }
 
+    public function showVisits()
+    {
+        $visits = Visit::get();
+        return view('admins.visits')->withVisits($visits);
+    }
+
     /**
      * Display the specified resource.
      *

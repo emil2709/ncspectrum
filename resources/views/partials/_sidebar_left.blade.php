@@ -17,7 +17,7 @@
           </li>
         @endif
         <li class="{{ Request::segment(2) === 'visits' ? 'active' : null }}">
-          <a href="">Visits</a>
+          <a href="{{ route('admins.visits') }}">Visits</a>
         </li>
       </ul>
       <ul class="nav nav-sidebar">
