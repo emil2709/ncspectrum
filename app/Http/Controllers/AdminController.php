@@ -511,6 +511,13 @@ class AdminController extends Controller
         return view ('admins.userlog')->withUsers($users);
     }
 
+    public function showEmployeeLog($id)
+    {
+        $users = User::find($id);
+
+        return view ('admins.userlog')->withUsers($users);
+    }
+
     public function employeeLog()
     {
         $visits = Visit::orderBy("from")->get();
