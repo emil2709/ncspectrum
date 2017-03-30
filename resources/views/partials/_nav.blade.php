@@ -18,7 +18,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
               aria-expanded="false" id="navbar-avatar-spacing">
             <img src="/uploads/avatars/{{ Auth::user()->avatar }}" id="navbar-avatar"/> 
-            Hello, {{ Auth::user()->firstname }}!
+            Hello, {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}!
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">

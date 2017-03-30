@@ -35,5 +35,6 @@ $factory->define(App\Visit::class, function (Faker\Generator $faker) {
 		//'company' => $faker->company,
         'employee_firstname' => $faker->firstName,
         'employee_lastname' => $faker->lastName,
+
 	];
 });
