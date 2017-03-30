@@ -569,7 +569,7 @@ class AdminController extends Controller
 
         $role = ucfirst(strtolower($role));
 
-        $data = 'Admin '.$admin.', '.$status.' '.$role.' '.$user.'.';
+        $data = 'Admin: '.$admin.', '.$status.' '.$role.': '.$user.'.';
 
         $history->type = $type;
         $history->information = $data;
@@ -586,19 +586,19 @@ class AdminController extends Controller
         switch ($type) 
         {
             case 'create':
-                $data = 'Admin '.$admin.', created Admin '.$user.'.';
+                $data = 'Admin '.$admin.', created Admin: '.$user.'.';
                 break;
             case 'update':
-                $data = 'Admin '.$admin.', updated Admin '.$user.'.';
+                $data = 'Admin '.$admin.', updated Admin: '.$user.'.';
                 break;
             case 'delete':
-                $data = 'Admin '.$admin.', deleted Admin '.$user.'.';
+                $data = 'Admin '.$admin.', deleted Admin: '.$user.'.';
                 break;
             case 'avatar':
-                $data = 'Admin '.$admin.', changed Admin '.$user.'\'s avatar.';
+                $data = 'Admin '.$admin.', changed Admin: '.$user.'\'s avatar.';
                 break;
             case 'password':
-                $data = 'Admin '.$admin.', updated Admin '.$user.'\'s password.';
+                $data = 'Admin '.$admin.', updated Admin: '.$user.'\'s password.';
                 break;
         }
 

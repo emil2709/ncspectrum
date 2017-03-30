@@ -1,12 +1,12 @@
 
 $(document).ready(function(){
 
-  window.sessionStorage;
-  window.CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-  window.onload = startup();
-
   if(window.location.pathname == "/index")
   {
+    window.sessionStorage;
+    window.CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    window.onload = startup();
+    
     setInterval(function() {
       location.reload();
     }, 900 * 1000); // 60 * 1000 milsec
@@ -21,13 +21,13 @@ $(document).ready(function(){
   /** Temp functions **/
 
   $("#welcome").hide().fadeIn(3000);
-  $( ".tabs" ).tabs();
-  $( "#sortable" ).sortable();
-  $( "#sortable" ).disableSelection();
+  $(".tabs" ).tabs();
+  $("#sortable" ).sortable();
+  $("#sortable" ).disableSelection();
 
   $('#printer').click(function(){
-    console.log(sessionStorage.users);
     console.log(sessionStorage.counter);
+    console.log(sessionStorage.users); 
   });
 
   /** Userinteractions **/
@@ -101,7 +101,6 @@ $(document).ready(function(){
         sessionStorage.users = JSON.stringify(users);
     }
     checkinCheck();
-    listsync();
   }
 
  function checkinCheck()
@@ -110,9 +109,7 @@ $(document).ready(function(){
     if(sessionStorage.listlength <= 0)
     {
       $("#checkin-btn").attr('disabled', true);
-      sessionStorage.counter = 0;
-      var users = new Array();
-      sessionStorage.users = JSON.stringify(users);
+      listsync();
     }
     else
     {
@@ -122,6 +119,7 @@ $(document).ready(function(){
 
   function listsync()
   {
+    /*
     if($('#inlist').length)
     {
       if(sessionStorage.listlength < 1)
@@ -131,6 +129,10 @@ $(document).ready(function(){
         sessionStorage.counter = 0;
       }
     }
+    */
+    newusers = new Array();
+    sessionStorage.users = JSON.stringify(newusers);
+    sessionStorage.counter = 0;
   }
 
   function checkin()

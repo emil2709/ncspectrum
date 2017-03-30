@@ -11,6 +11,9 @@
 				<div class='col-md-2 pull-right'>
 					<a href='{{ route('users.create') }}' class='btn btn-primary btn-block'>CREATE NEW USER</a>
 				</div>
+				<div class='col-md-2 pull-right'>
+					<button id="printer" class='btn btn-primary btn-block'>PRINTER</button>
+				</div>
 			</div>
 
 			<div class="row margin-top">
