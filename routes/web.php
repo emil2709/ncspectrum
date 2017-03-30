@@ -52,7 +52,7 @@ Route::get('admin/admin/{admin}/delete', ['as' => 'admins.deleteAdmin', 'uses' =
 Route::get('admin/log', ['as' => 'admins.log', 'uses' => 'AdminController@showLog']);
 Route::get('admin/eployeeLog', ['as' => 'admins.employeelog', 'uses' => 'AdminController@employeeLog']);
 Route::get('admin/{user}/userlog', ['as' => 'admins.userlog', 'uses' => 'AdminController@showUserlog']);
-Route::get('admin/{employee}/employeelog', ['as' => 'admins.employeelog', 'uses' => 'AdminController@showEmployeeLog']);
+Route::get('admin/{user}/showemployeelogging', ['as' => 'admins.employeelogging', 'uses' => 'AdminController@showemployeelogging']);
 Route::get('admin/history', ['as' => 'admins.history', 'uses' => 'AdminController@showHistory']);
 Route::get('/search', ['as' => 'search', 'uses' => 'AdminController@search']);
 

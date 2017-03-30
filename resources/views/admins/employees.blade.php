@@ -41,7 +41,7 @@
                 </a>
               </td>
               <td>
-                <a href="{{ URL::route('admins.employeelog') }}" title="Log">
+                <a href="{{ URL::route('admins.employeelogging', [$employee->id]) }}" title="Log">
                   <span class="glyphicon glyphicon-th-list"></span>
                 </a>
               </td>
