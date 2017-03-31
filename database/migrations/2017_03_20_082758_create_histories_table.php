@@ -17,7 +17,7 @@ class CreateHistoriesTable extends Migration
             $table->increments('id');
             $table->string('type');
             $table->string('information');
-            $table->timestamps();
+            $table->string('created_at');
         });
     }
 

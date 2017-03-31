@@ -1,6 +1,6 @@
 @extends('main_admin')
 
-@section('title', '| Delete')
+@section('title', '| Delete Administrator')
 
 @section('content')
 
