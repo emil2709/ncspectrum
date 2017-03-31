@@ -112,14 +112,6 @@ class AdminController extends Controller
         return view('admins.createEmployee');
     }
 
-    public function showCreateVisit()
-    {
-        $users = User::where('company', '=', 'NC-Spectrum')->get();
-
-        return view('admins.createVisit')->withUsers($users);
-    }
-
-
     /**
      * Show the form for editing the specified resource.
      *

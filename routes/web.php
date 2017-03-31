@@ -44,7 +44,6 @@ Route::get('admin/visits', ['as' => 'admins.visits', 'uses' => 'AdminController@
 
 Route::get('admin/guest/create', ['as' => 'admins.createGuest', 'uses' => 'AdminController@showCreateGuest']);
 Route::get('admin/employee/create', ['as' => 'admins.createEmployee', 'uses' => 'AdminController@showCreateEmployee']);
-Route::get('admin/visit/create', ['as' => 'admins.createVisit', 'uses' => 'AdminController@showCreateVisit']);
 
 Route::get('admin/guest/{guest}/edit', ['as' => 'admins.editGuest', 'uses' => 'AdminController@showEditGuest']);
 Route::get('admin/employee/{employee}/edit', ['as' => 'admins.editEmployee', 'uses' => 'AdminController@showEditEmployee']);
