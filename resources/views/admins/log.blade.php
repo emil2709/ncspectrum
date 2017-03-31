@@ -15,9 +15,9 @@
 			<tr>
 				<th>Fistname</th>
 				<th>Lastname</th>
+				<th>Company</th>
 				<th>From</th>
 				<th>To</th>
-				<th>Comment</th>
 			</tr>
 		</thead>
 		<tbody id="searchresult">
@@ -26,6 +26,7 @@
 				<tr>
 					<td>{{ $user->firstname }}</td>
 					<td>{{ $user->lastname }}</td>
+					<td>{{ $user->company }}</td>
 					<td>{{ $visit->from }}</td>
 					<td>{{ $visit->to }}</td>
 				</tr>
