@@ -40,9 +40,11 @@ Route::get('admin/profile', ['as' => 'admins.showProfile', 'uses' => 'AdminContr
 Route::get('admin/guests', ['as' => 'admins.guests', 'uses' => 'AdminController@showGuests']);
 Route::get('admin/employees', ['as' => 'admins.employees', 'uses' => 'AdminController@showEmployees']);
 Route::get('admin/admins', ['as' => 'admins.admins', 'uses' => 'AdminController@showAdmins']);
+Route::get('admin/visits', ['as' => 'admins.visits', 'uses' => 'AdminController@showVisits']);
 
 Route::get('admin/guest/create', ['as' => 'admins.createGuest', 'uses' => 'AdminController@showCreateGuest']);
 Route::get('admin/employee/create', ['as' => 'admins.createEmployee', 'uses' => 'AdminController@showCreateEmployee']);
+Route::get('admin/visit/create', ['as' => 'admins.createVisit', 'uses' => 'AdminController@showCreateVisit']);
 
 Route::get('admin/guest/{guest}/edit', ['as' => 'admins.editGuest', 'uses' => 'AdminController@showEditGuest']);
 Route::get('admin/employee/{employee}/edit', ['as' => 'admins.editEmployee', 'uses' => 'AdminController@showEditEmployee']);
@@ -61,6 +63,7 @@ Route::get('/search', ['as' => 'search', 'uses' => 'AdminController@search']);
 // Post
 Route::post('admin/guest/create', ['as' => 'admins.storeGuest', 'uses' => 'AdminController@storeGuest']);
 Route::post('admin/employee/create', ['as' => 'admins.storeEmployee', 'uses' => 'AdminController@storeEmployee']);
+Route::post('admin/visit/create', ['as' => 'admins.storeVisit', 'uses' => 'AdminController@storeVisit']);
 Route::post('admin/profile', ['as' => 'admins.updateAvatar', 'uses' => 'AdminController@updateAvatar']);
 Route::post('admin/admin/{admin}/delete', ['as' => 'admins.destroyAdmin', 'uses' => 'AdminController@destroyAdmin']);
 

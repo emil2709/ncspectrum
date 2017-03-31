@@ -11,7 +11,6 @@
 		<tr>
 			<th>From</th>
 			<th>To</th>
-			<th>Comment</th>
 		</tr>
 	</thead>
 	<tbody class="searchresult">

@@ -8,6 +8,7 @@ use App\Admin;
 use App\User;
 use App\History;
 use App\Status;
+use App\Visit;
 use Session;
 use DB;
 use Hash;
@@ -54,6 +55,12 @@ class AdminController extends Controller
     {
         $admins = Admin::orderBy('firstname')->where('id', '!=', 1)->get();
         return view('admins.admins')->withAdmins($admins);
+    }
+
+    public function showVisits()
+    {
+        $visits = Visit::get();
+        return view('admins.visits')->withVisits($visits);
     }
 
     /**
@@ -105,6 +112,13 @@ class AdminController extends Controller
         return view('admins.createEmployee');
     }
 
+    public function showCreateVisit()
+    {
+        $users = User::where('company', '=', 'NC-Spectrum')->get();
+
+        return view('admins.createVisit')->withUsers($users);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -153,6 +167,16 @@ class AdminController extends Controller
         $admin = Admin::find($id);
         return view('admins.editAdminPassword')->withAdmin($admin);
     }
+
+    public function storeVisit(Request $request)
+    {
+        $this->validate($request, [
+
+        ]);
+
+        $visit = new Visit();
+    }
+
 
     /**
      * Store a newly created resource in storage.
