@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Carbon\Carbon;
 use App\Admin;
 use App\User;
 use App\History;
@@ -40,19 +41,19 @@ class AdminController extends Controller
 
     public function showGuests()
     {
-        $guests = User::orderBy('firstname')->where('company','<>','NC-Spectrum')->get();
+        $guests = User::orderBy('firstname')->where('company','<>','NC-Spectrum')->paginate(20);
         return view('admins.guests')->withGuests($guests);
     }
 
      public function showEmployees()
     {
-        $employees = User::orderBy('firstname')->where('company','NC-Spectrum')->get();
+        $employees = User::orderBy('firstname')->where('company','NC-Spectrum')->paginate(20);
         return view('admins.employees')->withEmployees($employees);
     }
 
      public function showAdmins()
     {
-        $admins = Admin::orderBy('firstname')->where('id', '!=', 1)->get();
+        $admins = Admin::orderBy('firstname')->where('id', '!=', 1)->paginate(20);
         return view('admins.admins')->withAdmins($admins);
     }
 
@@ -573,6 +574,7 @@ class AdminController extends Controller
 
         $history->type = $type;
         $history->information = $data;
+        $history->created_at = Carbon::now();
         $history->save();
     }
 
@@ -604,6 +606,7 @@ class AdminController extends Controller
 
         $history->type = $type;
         $history->information = $data;
+        $history->created_at = Carbon::now();
         $history->save();
     }
 

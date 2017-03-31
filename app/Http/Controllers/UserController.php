@@ -123,7 +123,7 @@ class UserController extends Controller
         if($employee == null)
         {
             Session::flash('error', 'You must choose an employee before continuing!');
-            return redirect()->route('users.index');
+            return redirect()->route('users.visit');
         } 
 
         /*

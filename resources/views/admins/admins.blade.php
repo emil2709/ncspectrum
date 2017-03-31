@@ -54,6 +54,10 @@
 
     </table>
   </div>
+  
+  <div>
+    {{ $admins->links() }}
+  </div>
 
 @else
   @include('partials._offlimits')
