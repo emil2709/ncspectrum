@@ -18,6 +18,8 @@
 				<th>Company</th>
 				<th>From</th>
 				<th>To</th>
+				<th>Created_at</th>
+				<th>Updated_at</th>
 			</tr>
 		</thead>
 		<tbody id="searchresult">
@@ -29,6 +31,8 @@
 					<td>{{ $user->company }}</td>
 					<td>{{ $visit->from }}</td>
 					<td>{{ $visit->to }}</td>
+					<td>{{ $visit->created_at }}</td>
+					<td>{{ $visit->updated_at }}</td>
 				</tr>
 			@endforeach
 			@endforeach
