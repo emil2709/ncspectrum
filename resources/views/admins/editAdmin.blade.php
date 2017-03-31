@@ -1,6 +1,6 @@
 @extends('main_admin')
 
-@section('title', '| Edit Admin')
+@section('title', '| Edit Administrator')
 
 @section('content')
 
@@ -11,7 +11,7 @@
 			
 			<fieldset>
 				
-				<legend class="text-center">EDIT ADMIN</legend>
+				<legend class="text-center">EDIT ADMINISTRATOR</legend>
 
 				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">

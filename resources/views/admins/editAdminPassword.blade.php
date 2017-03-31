@@ -1,6 +1,6 @@
 @extends('main_admin')
 
-@section('title', '| Edit Admin Password')
+@section('title', '| Edit Administrator Password')
 
 @section('content')
 
@@ -11,7 +11,7 @@
 			
 			<fieldset>
 				
-				<legend class="text-center">EDIT ADMIN-PASSWORD</legend>
+				<legend class="text-center">EDIT ADMINISTRATOR PASSWORD</legend>
 
 				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">

@@ -56,5 +56,9 @@
       </tbody>
     </table>
   </div>
+  
+  <div>
+    {{ $guests->links() }}
+  </div>
 
 @endsection

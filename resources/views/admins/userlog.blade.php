@@ -13,7 +13,7 @@
 			<th>To</th>
 		</tr>
 	</thead>
-	<tbody class="searchresult">
+	<tbody>
 		@foreach ($users->visits as $visit)
 		<tr>
 			<td>{{ $visit->created_at }}</td>

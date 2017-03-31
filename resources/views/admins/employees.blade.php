@@ -58,5 +58,9 @@
 
     </table>
   </div>
+  
+  <div>
+    {{ $employees->links() }}
+  </div>
 
 @endsection

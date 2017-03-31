@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Carbon\Carbon;
 use App\Admin;
 use App\User;
 use App\History;
@@ -41,19 +42,19 @@ class AdminController extends Controller
 
     public function showGuests()
     {
-        $guests = User::orderBy('firstname')->where('company','<>','NC-Spectrum')->get();
+        $guests = User::orderBy('firstname')->where('company','<>','NC-Spectrum')->paginate(20);
         return view('admins.guests')->withGuests($guests);
     }
 
      public function showEmployees()
     {
-        $employees = User::orderBy('firstname')->where('company','NC-Spectrum')->get();
+        $employees = User::orderBy('firstname')->where('company','NC-Spectrum')->paginate(20);
         return view('admins.employees')->withEmployees($employees);
     }
 
      public function showAdmins()
     {
-        $admins = Admin::orderBy('firstname')->where('id', '!=', 1)->get();
+        $admins = Admin::orderBy('firstname')->where('id', '!=', 1)->paginate(20);
         return view('admins.admins')->withAdmins($admins);
     }
 
@@ -593,10 +594,11 @@ class AdminController extends Controller
 
         $role = ucfirst(strtolower($role));
 
-        $data = 'Admin '.$admin.', '.$status.' '.$role.' '.$user.'.';
+        $data = 'Admin: '.$admin.', '.$status.' '.$role.': '.$user.'.';
 
         $history->type = $type;
         $history->information = $data;
+        $history->created_at = Carbon::now();
         $history->save();
     }
 
@@ -610,24 +612,25 @@ class AdminController extends Controller
         switch ($type) 
         {
             case 'create':
-                $data = 'Admin '.$admin.', created Admin '.$user.'.';
+                $data = 'Admin '.$admin.', created Admin: '.$user.'.';
                 break;
             case 'update':
-                $data = 'Admin '.$admin.', updated Admin '.$user.'.';
+                $data = 'Admin '.$admin.', updated Admin: '.$user.'.';
                 break;
             case 'delete':
-                $data = 'Admin '.$admin.', deleted Admin '.$user.'.';
+                $data = 'Admin '.$admin.', deleted Admin: '.$user.'.';
                 break;
             case 'avatar':
-                $data = 'Admin '.$admin.', changed Admin '.$user.'\'s avatar.';
+                $data = 'Admin '.$admin.', changed Admin: '.$user.'\'s avatar.';
                 break;
             case 'password':
-                $data = 'Admin '.$admin.', updated Admin '.$user.'\'s password.';
+                $data = 'Admin '.$admin.', updated Admin: '.$user.'\'s password.';
                 break;
         }
 
         $history->type = $type;
         $history->information = $data;
+        $history->created_at = Carbon::now();
         $history->save();
     }
 
