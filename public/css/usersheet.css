@@ -14,15 +14,30 @@
 }
 
 .userbox:hover {
-	background-color: #55c43b;
-    border-color: #55c43b;
+    background-color: #0088bc;
+    border-color: #0088bc;
 }
+
+.userbox-in {
+    background-color: #55c43b;
+    border-color: #55c43b;
+    box-shadow: 0px 0px 6px 0px #888888;
+    padding: 10px 10px 10px 10px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+@-ms-keyframes wiggle{0%{-ms-transform:rotate(3deg);}50%{-ms-transform:rotate(-3deg);}100%{-ms-transform:rotate(3deg);}}
+@-moz-keyframes wiggle{0%{-moz-transform:rotate(3deg);}50%{-moz-transform:rotate(-3deg);}100%{-moz-transform:rotate(3deg);}}
+@-webkit-keyframes wiggle{0%{-webkit-transform:rotate(3deg);}50%{-webkit-transform:rotate(-3deg);}100%{-webkit-transform:rotate(3deg);}}
+@keyframes wiggle{0%{transform:rotate(3deg);}50%{transform:rotate(-3deg);}100%{transform:rotate(3deg);}}
+.userbox-in:hover{-ms-animation:wiggle .3s 2;-moz-animation:wiggle .3s 2;-webkit-animation:wiggle .3s 2;animation:wiggle .3s 2;}
 
 .placeholder { 
 	background-color: #f5f5f5;
     border: 1px solid #e3e3e3;
-	height: 110px; 
-	width:433px;
+	height: 111px; 
+	width:100%;
 	margin-bottom: 30px;
 }
 
@@ -31,5 +46,13 @@
 }
 
 #notfound {
+    font-size:25px;
+}
+
+#usersearch-div {
+    float:left;
+}
+
+#names {
     font-size:25px;
 }

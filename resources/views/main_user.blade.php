@@ -15,7 +15,7 @@
 
 		@include('partials._footer')
 	
-		@include('partials._javascript')	
+		@include('partials._userjavascript')	
 
 	</body>
 
