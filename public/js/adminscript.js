@@ -1,3 +1,5 @@
+window.toggled = false;
+
 window.setTimeout(function() {
   $(".alert").fadeTo(500, 0).slideUp(500, function(){
     $(this).remove(); 
@@ -24,7 +26,7 @@ $('#updateAvatarToggle').click(function(){
 });
 
 $('#updateAvatarCancel').click(function(){
-  $('#updateAvatarToggle').delay(500).show(0);
+  $('#updateAvatarToggle').delay(600).show(0);
 });
 
 $('#updateAvatarSave').click(function(){
@@ -33,6 +35,23 @@ $('#updateAvatarSave').click(function(){
   {
     return false;
   }
+});
+
+$(".guest-expansion").hide();
+
+$(".guest-expansion-btn").click(function(event) 
+{
+  if(toggled == false)
+  {
+    $(this).siblings('.faint-placeholder').hide();
+    toggled = true;
+  }
+  else
+  {
+    $(this).siblings('.faint-placeholder').delay(600).show(0);
+    toggled = false;
+  }
+  $(this).siblings('.guest-expansion').slideToggle('slow');
 });
 
 function sortTable(n) 

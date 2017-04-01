@@ -501,11 +501,30 @@ class AdminController extends Controller
         return view ('admins.log')->withUsers($users);
     }
 
-    public function showUserlog($id)
+    public function showGuestVisits($id)
     {
-        $users = User::find($id);
+        $user = User::find($id);
 
-        return view ('admins.userlog')->withUsers($users);
+        return view ('admins.guestvisits')->withUser($user);
+    }
+
+    public function showEmployeeVisits($id)
+    {
+        $employee = User::find($id);
+
+        $visits = DB::table('visits')
+                    ->where('employee_firstname','=', $employee->firstname)
+                    ->where('employee_lastname','=', $employee->lastname)
+                    ->get();
+
+        $guests = new Array();
+        foreach($visits as $visit)
+        {   
+            $guest
+        }
+
+
+        return view ('admins.employeevisits', compact('employee', 'visits'));
     }
 
     public function showHistory()
@@ -700,7 +719,7 @@ class AdminController extends Controller
                                     '<span class="glyphicon glyphicon-edit"></span></a>'.
                                 '</td>'.
                                 '<td>'.
-                                    '<a href="/admin/'.$guest->id.'/userlog" title="Log">'.
+                                    '<a href="/admin/guest/'.$guest->id.'/visits" title="Guest Visits">'.
                                     '<span class="glyphicon glyphicon-th-list"></span></a>'.
                                 '</td>'.
                                 '<td>'.
@@ -741,7 +760,7 @@ class AdminController extends Controller
                                     '<span class="glyphicon glyphicon-edit"></span></a>'.
                                 '</td>'.
                                 '<td>'.
-                                    '<a href="/admin/'.$employee->id.'/userlog" title="Log">'.
+                                    '<a href="/admin/employee/'.$employee->id.'/visits" title="Employee Visits">'.
                                     '<span class="glyphicon glyphicon-th-list"></span></a>'.
                                 '</td>'.
                                 '<td>'.
