@@ -28,9 +28,11 @@
 						<span class="glyphicon glyphicon-menu-hamburger"></span>
 					</a>
 					<p class="guest-expansion">
-						Jensen Solberg Hansen<br/>
-						Morten Haugesund <br/>
-						oedoedeodeoedeodioeidoiedieo
+						@foreach($visitguests[$visit->id] as $guests=>$guest)
+							
+							{{$guest->firstname}} {{$guest->lastname}} <br/>
+							
+						@endforeach
 					</p>
 				</td>
 			</tr>

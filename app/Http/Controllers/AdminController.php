@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use App\Admin;
 use App\User;
@@ -517,14 +518,29 @@ class AdminController extends Controller
                     ->where('employee_lastname','=', $employee->lastname)
                     ->get();
 
-        $guests = new Array();
+        $guests = array();
+        $visitguests = array();
         foreach($visits as $visit)
         {   
-            $guest
+            $guestrows = DB::table('user_visit')
+                ->where('visit_id', $visit->id)
+                ->get();
+
+            foreach($guestrows as $row)
+            {
+                $guest = DB::table('users')
+                ->where('id', $row->user_id)
+                ->get();
+
+                array_push($guests, $guest);
+            }
+            $visitguests[$visit->id][] = $guests;
+            $guests = array();
         }
 
+        Log::info($visitguests);
 
-        return view ('admins.employeevisits', compact('employee', 'visits'));
+        return view ('admins.employeevisits', compact('employee', 'visits', 'visitguests'));
     }
 
     public function showHistory()
