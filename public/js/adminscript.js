@@ -41,15 +41,13 @@ $(".guest-expansion").hide();
 
 $(".guest-expansion-btn").click(function(event) 
 {
-  if(toggled == false)
+  if($(this).siblings('.faint-placeholder').is(':visible'))
   {
-    $(this).siblings('.faint-placeholder').hide();
-    toggled = true;
+    $(this).siblings('.faint-placeholder').hide();  
   }
   else
   {
     $(this).siblings('.faint-placeholder').delay(600).show(0);
-    toggled = false;
   }
   $(this).siblings('.guest-expansion').slideToggle('slow');
 });

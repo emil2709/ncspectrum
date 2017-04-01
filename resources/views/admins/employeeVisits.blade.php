@@ -28,10 +28,10 @@
 						<span class="glyphicon glyphicon-menu-hamburger"></span>
 					</a>
 					<p class="guest-expansion">
-						@foreach($visitguests[$visit->id] as $guests=>$guest)
-							
-							{{$guest->firstname}} {{$guest->lastname}} <br/>
-							
+						@foreach($visitguests[$visit->id] as $guests)
+							@foreach($guests as $guest)
+								{{$guest[0]->firstname}} {{$guest[0]->lastname}}<br/>
+							@endforeach
 						@endforeach
 					</p>
 				</td>
