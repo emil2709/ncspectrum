@@ -32,17 +32,11 @@
             <a href="{{ route('register') }}">Create Admin</a>
           </li>
         @endif
-          <li class="{{ Request::segment(2) === 'visit' && Request::segment(3) === 'create' ? 'active' : null }}">
-            <a href="{{ route('admins.createVisit') }}">Create Visit</a>
-          </li>
       </ul>
       <ul class="nav nav-sidebar">
         <li><a href="">Status</a></li>
         <li class="{{ Request::segment(2) === 'log' ? 'active' : null }}">
           <a href="{{ route('admins.log') }}">Log</a>
-        </li>
-        <li class="{{ Request::segment(2) === 'history' ? 'active' : null }}">
-          <a href="{{ route('admins.history') }}">History</a>
         </li>
       </ul>
       

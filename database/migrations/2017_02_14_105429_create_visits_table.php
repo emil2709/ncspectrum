@@ -20,8 +20,6 @@ class CreateVisitsTable extends Migration
             $table->string('employee_lastname');
             $table->string('from')->nullable();
             $table->string('to')->nullable();
-
-            $table->timestamps();
         });
     }
 

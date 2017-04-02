@@ -64,7 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        app('App\Http\Controllers\AdminController')->adminhistory('create', $data['firstname'].' '.$data['lastname']);
+        app('App\Http\Controllers\AdminController')->adminlog('create', $data['firstname'].' '.$data['lastname']);
 
         Session::flash('success', 'The Admin was successfully created!');
 
