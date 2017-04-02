@@ -54,10 +54,9 @@ Route::get('admin/guest/{guest}/delete', ['as' => 'admins.deleteGuest', 'uses' =
 Route::get('admin/employee/{employee}/delete', ['as' => 'admins.deleteEmployee', 'uses' => 'AdminController@showDeleteEmployee']);
 Route::get('admin/admin/{admin}/delete', ['as' => 'admins.deleteAdmin', 'uses' => 'AdminController@showDeleteAdmin']);
 
-Route::get('admin/log', ['as' => 'admins.log', 'uses' => 'AdminController@showLog']);
 Route::get('admin/guest/{user}/visits', ['as' => 'admins.guestvisits', 'uses' => 'AdminController@showGuestVisits']);
 Route::get('admin/employee/{employee}/visits', ['as' => 'admins.employeevisits', 'uses' => 'AdminController@showEmployeeVisits']);
-Route::get('admin/history', ['as' => 'admins.history', 'uses' => 'AdminController@showHistory']);
+Route::get('admin/log', ['as' => 'admins.log', 'uses' => 'AdminController@showLog']);
 Route::get('/search', ['as' => 'search', 'uses' => 'AdminController@search']);
 
 // Post
