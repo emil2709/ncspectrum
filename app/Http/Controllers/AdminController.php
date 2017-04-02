@@ -62,7 +62,28 @@ class AdminController extends Controller
     public function showVisits()
     {
         $visits = Visit::get();
-        return view('admins.visits')->withVisits($visits);
+
+        $guests = array();
+        $visitguests = array();
+        foreach($visits as $visit)
+        {   
+            $guestrows = DB::table('user_visit')
+                ->where('visit_id', $visit->id)
+                ->get();
+
+            foreach($guestrows as $row)
+            {
+                $guest = DB::table('users')
+                ->where('id', $row->user_id)
+                ->get();
+
+                array_push($guests, $guest);
+            }
+            $visitguests[$visit->id][] = $guests;
+            $guests = array();
+        }
+
+        return view('admins.visits', compact('visits', 'visitguests'));
     }
 
     /**
@@ -537,8 +558,6 @@ class AdminController extends Controller
             $visitguests[$visit->id][] = $guests;
             $guests = array();
         }
-
-        Log::info($visitguests);
 
         return view ('admins.employeevisits', compact('employee', 'visits', 'visitguests'));
     }
