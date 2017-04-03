@@ -41,11 +41,9 @@
                 </a>
               </td>
               <td>
-                {{--<a href="{{ URL::route('admins.employeelogging', [$employee->id]) }}" title="Log">
+                <a href="{{ URL::route('admins.employeevisits', [$employee->id]) }}" title="Employee Visits">
                   <span class="glyphicon glyphicon-th-list"></span>
-                </a>
-                  Legger til denne når jeg finner ut hvordan jeg gjør det
-                --}} 
+                </a>              
               </td>
               <td>
                 <a href="{{ URL::route('admins.deleteEmployee', [$employee->id]) }}" title="Delete">

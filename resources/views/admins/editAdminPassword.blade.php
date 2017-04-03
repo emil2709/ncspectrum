@@ -15,7 +15,7 @@
 
 				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">
-						{{ Form::label('currentPassword', 'Current Password:') }}
+						{{ Form::label('currentPassword', 'Password:') }}
 					</div>
 					<div class="col-md-6 inputContainer">
 						<div class="input-group">

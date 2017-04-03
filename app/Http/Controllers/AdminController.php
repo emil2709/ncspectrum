@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 use App\Admin;
 use App\User;
-use App\History;
+use App\Log;
 use App\Status;
 use App\Visit;
 use Session;
@@ -61,7 +61,28 @@ class AdminController extends Controller
     public function showVisits()
     {
         $visits = Visit::get();
-        return view('admins.visits')->withVisits($visits);
+
+        $guests = array();
+        $visitguests = array();
+        foreach($visits as $visit)
+        {   
+            $guestrows = DB::table('user_visit')
+                ->where('visit_id', $visit->id)
+                ->get();
+
+            foreach($guestrows as $row)
+            {
+                $guest = DB::table('users')
+                ->where('id', $row->user_id)
+                ->get();
+
+                array_push($guests, $guest);
+            }
+            $visitguests[$visit->id][] = $guests;
+            $guests = array();
+        }
+
+        return view('admins.visits', compact('visits', 'visitguests'));
     }
 
     /**
@@ -191,7 +212,7 @@ class AdminController extends Controller
         $guest->email = strtolower($request->email);
         $guest->company = ucwords(strtolower($request->company));
         $guest->save();
-
+        /*
         $visit = new \App\Visit();
         //$visit->date = '2017';
         //$visit->from = '20:20';
@@ -200,14 +221,14 @@ class AdminController extends Controller
         //$visit->comment = 'Det kommer damer';
 
         $guest->visits()->save($visit);
-
+        */
         $status = new \App\Status();
 
         $status->status = false;
 
         $guest->statuses()->save($status);
 
-        $this->userhistory('guest', 'create', $guest->firstname.' '.$guest->lastname);
+        $this->userlog('guest', 'create', $guest->firstname.' '.$guest->lastname);
     
         Session::flash('success', 'The Guest was successfully created!');
 
@@ -237,7 +258,7 @@ class AdminController extends Controller
         $employee->company = "NC-Spectrum";
         $employee->save();
 
-        $this->userhistory('employee', 'create', $employee->firstname.' '.$employee->lastname);    
+        $this->userlog('employee', 'create', $employee->firstname.' '.$employee->lastname);    
 
         Session::flash('success', 'The Employee was successfully created!');
 
@@ -277,7 +298,7 @@ class AdminController extends Controller
         $guest->company = ucwords(strtolower($request->input('company')));
         $guest->save();
 
-        $this->userhistory('guest', 'update', $guest->firstname.' '.$guest->lastname);
+        $this->userlog('guest', 'update', $guest->firstname.' '.$guest->lastname);
 
         Session::flash('success', "Changes has been made to the Guest.");
         return redirect()->route('admins.guests');
@@ -309,7 +330,7 @@ class AdminController extends Controller
         $employee->company = 'NC-Spectrum';
         $employee->save();
 
-        $this->userhistory('employee', 'update', $employee->firstname.' '.$employee->lastname);
+        $this->userlog('employee', 'update', $employee->firstname.' '.$employee->lastname);
 
         Session::flash('success', "Changes has been made to the Employee.");
         return redirect()->route('admins.employees');
@@ -338,7 +359,7 @@ class AdminController extends Controller
         $admin->email= strtolower($request->input('email'));
         $admin->save();
 
-        $this->adminhistory('update', $admin->firstname.' '.$admin->lastname);
+        $this->adminlog('update', $admin->firstname.' '.$admin->lastname);
 
         Session::flash('success', "Changes has been made to the Admin.");
 
@@ -402,7 +423,7 @@ class AdminController extends Controller
                 $admin->password = $password;
                 $admin->save();
 
-                $this->adminhistory('password', $admin->firstname.' '.$admin->lastname);
+                $this->adminlog('password', $admin->firstname.' '.$admin->lastname);
 
                 Session::flash('success', 'The password has been successfully updated!');
                 if(Auth::user()->id == 1)
@@ -435,7 +456,7 @@ class AdminController extends Controller
         $guest->statuses()->delete();
         $guest->delete();
 
-        $this->userhistory('guest', 'delete', $guest->firstname.' '.$guest->lastname);
+        $this->userlog('guest', 'delete', $guest->firstname.' '.$guest->lastname);
 
         Session::flash('success', 'The Guest was successfully deleted!');
         return redirect()->route('admins.guests');
@@ -453,7 +474,7 @@ class AdminController extends Controller
         $employee->visits()->detach();
         $employee->delete();
 
-        $this->userhistory('employee', 'delete', $employee->firstname.' '.$employee->lastname);
+        $this->userlog('employee', 'delete', $employee->firstname.' '.$employee->lastname);
 
         Session::flash('success', 'The Employee was successfully deleted!');
         return redirect()->route('admins.employees');
@@ -482,7 +503,7 @@ class AdminController extends Controller
         {
             $admin->delete();
 
-            $this->adminhistory('delete', $admin->firstname.' '.$admin->lastname);
+            $this->adminlog('delete', $admin->firstname.' '.$admin->lastname);
 
             Session::flash('success', 'The Admin has been successfully deleted!');
             return redirect()->route('admins.admins');
@@ -494,24 +515,49 @@ class AdminController extends Controller
         }
     }
 
+    public function showGuestVisits($id)
+    {
+        $user = User::find($id);
+
+        return view ('admins.guestvisits')->withUser($user);
+    }
+
+    public function showEmployeeVisits($id)
+    {
+        $employee = User::find($id);
+
+        $visits = DB::table('visits')
+                    ->where('employee_firstname','=', $employee->firstname)
+                    ->where('employee_lastname','=', $employee->lastname)
+                    ->get();
+
+        $guests = array();
+        $visitguests = array();
+        foreach($visits as $visit)
+        {   
+            $guestrows = DB::table('user_visit')
+                ->where('visit_id', $visit->id)
+                ->get();
+
+            foreach($guestrows as $row)
+            {
+                $guest = DB::table('users')
+                ->where('id', $row->user_id)
+                ->get();
+
+                array_push($guests, $guest);
+            }
+            $visitguests[$visit->id][] = $guests;
+            $guests = array();
+        }
+
+        return view ('admins.employeevisits', compact('employee', 'visits', 'visitguests'));
+    }
+
     public function showLog()
     {
-        $users = User::orderBy('created_at', 'asc')->get();
-
-        return view ('admins.log')->withUsers($users);
-    }
-
-    public function showUserlog($id)
-    {
-        $users = User::find($id);
-
-        return view ('admins.userlog')->withUsers($users);
-    }
-
-    public function showHistory()
-    {
-        $history = History::orderBy('id', 'desc')->paginate(20);
-        return view('admins.history')->withHistory($history);
+        $log = Log::orderBy('id', 'desc')->paginate(20);
+        return view('admins.log')->withLog($log);
     }
 
     public function showProfile()
@@ -543,7 +589,7 @@ class AdminController extends Controller
                 $admin->avatar = $filename;
                 $admin->save();
 
-                $this->adminhistory('avatar', $admin->firstname.' '.$admin->lastname);                
+                $this->adminlog('avatar', $admin->firstname.' '.$admin->lastname);                
 
                 return view('admins.profile')->withAdmin($admin);
             }
@@ -555,9 +601,9 @@ class AdminController extends Controller
     }
 
 
-    public function userhistory($role, $type, $user)
+    public function userlog($role, $type, $user)
     {
-        $history = new History();
+        $log = new Log();
 
         $admin = trim(Auth::user()->firstname.' '.Auth::user()->lastname);
 
@@ -578,15 +624,15 @@ class AdminController extends Controller
 
         $data = 'Admin: '.$admin.', '.$status.' '.$role.': '.$user.'.';
 
-        $history->type = $type;
-        $history->information = $data;
-        $history->created_at = Carbon::now();
-        $history->save();
+        $log->type = $type;
+        $log->information = $data;
+        $log->created_at = Carbon::now();
+        $log->save();
     }
 
-    public function adminhistory($type, $user)
+    public function adminlog($type, $user)
     {
-        $history = new History();
+        $log = new Log();
 
         $admin = trim(Auth::user()->firstname.' '.Auth::user()->lastname);
         $user = trim($user);
@@ -594,26 +640,26 @@ class AdminController extends Controller
         switch ($type) 
         {
             case 'create':
-                $data = 'Admin '.$admin.', created Admin: '.$user.'.';
+                $data = 'Admin: '.$admin.', created Admin: '.$user.'.';
                 break;
             case 'update':
-                $data = 'Admin '.$admin.', updated Admin: '.$user.'.';
+                $data = 'Admin: '.$admin.', updated Admin: '.$user.'.';
                 break;
             case 'delete':
-                $data = 'Admin '.$admin.', deleted Admin: '.$user.'.';
+                $data = 'Admin: '.$admin.', deleted Admin: '.$user.'.';
                 break;
             case 'avatar':
-                $data = 'Admin '.$admin.', changed Admin: '.$user.'\'s avatar.';
+                $data = 'Admin: '.$admin.', changed Admin: '.$user.'\'s avatar.';
                 break;
             case 'password':
-                $data = 'Admin '.$admin.', updated Admin: '.$user.'\'s password.';
+                $data = 'Admin: '.$admin.', updated Admin: '.$user.'\'s password.';
                 break;
         }
 
-        $history->type = $type;
-        $history->information = $data;
-        $history->created_at = Carbon::now();
-        $history->save();
+        $log->type = $type;
+        $log->information = $data;
+        $log->created_at = Carbon::now();
+        $log->save();
     }
 
     /**
@@ -700,7 +746,7 @@ class AdminController extends Controller
                                     '<span class="glyphicon glyphicon-edit"></span></a>'.
                                 '</td>'.
                                 '<td>'.
-                                    '<a href="/admin/'.$guest->id.'/userlog" title="Log">'.
+                                    '<a href="/admin/guest/'.$guest->id.'/visits" title="Guest Visits">'.
                                     '<span class="glyphicon glyphicon-th-list"></span></a>'.
                                 '</td>'.
                                 '<td>'.
@@ -741,7 +787,7 @@ class AdminController extends Controller
                                     '<span class="glyphicon glyphicon-edit"></span></a>'.
                                 '</td>'.
                                 '<td>'.
-                                    '<a href="/admin/'.$employee->id.'/userlog" title="Log">'.
+                                    '<a href="/admin/employee/'.$employee->id.'/visits" title="Employee Visits">'.
                                     '<span class="glyphicon glyphicon-th-list"></span></a>'.
                                 '</td>'.
                                 '<td>'.
