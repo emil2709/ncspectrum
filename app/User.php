@@ -12,7 +12,7 @@ class User extends Model
 		return $this->belongsToMany('App\Visit');
 	}
 
-	public function statuses()
+	public function status()
 	{
 		return $this->hasOne('App\Status');
 	}
