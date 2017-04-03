@@ -70,7 +70,7 @@
 		        @endif
     		</td>
     		<td>
-    			<button type="button" class="btn btn-primary">Default</button>
+    		 <a href="{{ action('AdminController@update/{$user->status->id}/') }}"</a>
 
     		</td>
 		</tr>

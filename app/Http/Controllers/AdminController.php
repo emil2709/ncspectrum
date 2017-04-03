@@ -561,6 +561,11 @@ class AdminController extends Controller
         return view ('admins.status')->withUsers($users);
     }
 
+    public function changeStatus()
+    {
+        
+    }
+
     public function showLog()
     {
         $log = Log::orderBy('id', 'desc')->paginate(20);

@@ -57,6 +57,7 @@ Route::get('admin/admin/{admin}/delete', ['as' => 'admins.deleteAdmin', 'uses' =
 Route::get('admin/guest/{user}/visits', ['as' => 'admins.guestvisits', 'uses' => 'AdminController@showGuestVisits']);
 Route::get('admin/employee/{employee}/visits', ['as' => 'admins.employeevisits', 'uses' => 'AdminController@showEmployeeVisits']);
 Route::get('admin/status', ['as' => 'admins.status', 'uses' => 'AdminController@showStatus']);
+Route::get('update/{id}', array('as' => 'delete', 'uses' => 'AdminController@changeStatus'));
 Route::get('admin/log', ['as' => 'admins.log', 'uses' => 'AdminController@showLog']);
 Route::get('/search', ['as' => 'search', 'uses' => 'AdminController@search']);
 
