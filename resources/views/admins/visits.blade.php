@@ -27,8 +27,8 @@
       <tbody id="searchresult">
         @foreach($visits as $visit)
         	<tr>
-            <td>{{ $visit->from }}</td>
-            <td>{{ $visit->to }}</td>
+            <td>{{ date('H:i - j.m Y', strtotime($visit->from)) }}</td>
+            <td>{{ date('H:i - j.m Y', strtotime($visit->to)) }}</td>
         		<td>{{ $visit->employee_firstname }} {{ $visit->employee_lastname }}</td>
             <td>
               <span class="faint-placeholder"><i>(View All Attending Guests)</i></span>
@@ -48,6 +48,10 @@
       </tbody>
 
   </table>
+</div>
+
+<div>
+    {{ $visits->links() }}
 </div>
 
 @endsection

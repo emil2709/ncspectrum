@@ -36,6 +36,27 @@
 						</select>
 					</div>
 				</div>
+				<div class="form-group">
+					<div class="col-md-3 control-label">
+						{{ Form::label('time', 'How Long?') }}
+					</div>
+					<div class="col-md-3 inputContainer">
+						<select required class="form-control" name="hours">
+							<option selected disabled>Hours</option>
+							@for($i=0;$i<25;$i++)
+								<option value="{{$i}}">{{$i}}</option>	
+							@endfor
+						</select>
+					</div>
+					<div class="col-md-3 inputContainer">
+						<select required class="form-control" name="minutes">
+							<option selected disabled>Minutes</option>
+							@for($i=0;$i<60;$i=$i+10)
+								<option value="{{$i}}">{{$i}}</option>	
+							@endfor
+						</select>
+					</div>
+				</div>
 
 				<hr/>
 

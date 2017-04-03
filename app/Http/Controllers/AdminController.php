@@ -60,7 +60,7 @@ class AdminController extends Controller
 
     public function showVisits()
     {
-        $visits = Visit::get();
+        $visits = Visit::paginate(20);
 
         $guests = array();
         $visitguests = array();
@@ -212,16 +212,7 @@ class AdminController extends Controller
         $guest->email = strtolower($request->email);
         $guest->company = ucwords(strtolower($request->company));
         $guest->save();
-        /*
-        $visit = new \App\Visit();
-        //$visit->date = '2017';
-        //$visit->from = '20:20';
-        //$visit->to = '21:20';
-        //$visit->company = strtolower($request->company);
-        //$visit->comment = 'Det kommer damer';
-
-        $guest->visits()->save($visit);
-        */
+       
         $status = new \App\Status();
 
         $status->status = false;
