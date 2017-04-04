@@ -10,12 +10,6 @@
   <div class="table-responsive">
     <table class="table table-striped">
 
-      <div class="input-group margin-bottom">        
-        <span class="input-group-addon" id="search-addon"><i class="glyphicon glyphicon-search"></i></span>
-        <input type="text" id="search" class="form-control" placeholder="Search ...">
-        <input type="hidden" id="type" value="guests">
-      </div>
-
       <thead>
       	<tr>
       		<th onclick="sort_table(people, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Firstname
