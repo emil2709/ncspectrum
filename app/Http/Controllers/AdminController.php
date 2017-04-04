@@ -557,7 +557,7 @@ class AdminController extends Controller
     public function showStatus()
     {
         $users = User::with('status')->get();
-
+        
         return view ('admins.status')->withUsers($users);
     }
 

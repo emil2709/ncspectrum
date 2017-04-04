@@ -23,6 +23,7 @@
       </thead>
       <tbody id="people">
       	<tr>
+        
       	@foreach ($users as $user)
 		    <td>{{ $user->firstname }} </td>
 		    <td>{{ $user->lastname }}</td>
