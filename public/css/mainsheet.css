@@ -83,6 +83,12 @@ footer {
     border-color: #0088bc;
 }
 
+.btn-primary:focus {
+    color: #fff;
+    background-color: #0088bc;
+    border-color: #0088bc;
+}
+
 .btn-success {
     color: #fff;
     background-color: #55c43b;
@@ -90,6 +96,12 @@ footer {
 }
 
 .btn-success:hover {
+    color: #fff;
+    background-color: #449d2f;
+    border-color: #449d2f;
+}
+
+.btn-success:focus {
     color: #fff;
     background-color: #449d2f;
     border-color: #449d2f;

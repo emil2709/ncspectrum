@@ -42,4 +42,8 @@
 	</table>
 </div>
 
+<div>
+    {{ $visits->links() }}
+ </div>
+
 @endsection

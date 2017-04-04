@@ -16,6 +16,7 @@ use Hash;
 use Auth;
 use Image;
 use File;
+use Illuminate\Support\Facades\Log as Logger;
 
 class AdminController extends Controller
 {
@@ -60,7 +61,7 @@ class AdminController extends Controller
 
     public function showVisits()
     {
-        $visits = Visit::paginate(20);
+        $visits = Visit::orderBy('id','desc')->paginate(20);
 
         $guests = array();
         $visitguests = array();
@@ -509,8 +510,9 @@ class AdminController extends Controller
     public function showGuestVisits($id)
     {
         $user = User::find($id);
+        $visits = $user->visits()->orderBy('id','desc')->paginate(20);
 
-        return view ('admins.guestvisits')->withUser($user);
+        return view ('admins.guestvisits', compact('user', 'visits'));
     }
 
     public function showEmployeeVisits($id)
@@ -520,7 +522,8 @@ class AdminController extends Controller
         $visits = DB::table('visits')
                     ->where('employee_firstname','=', $employee->firstname)
                     ->where('employee_lastname','=', $employee->lastname)
-                    ->get();
+                    ->orderBy('id','desc')
+                    ->paginate(20);
 
         $guests = array();
         $visitguests = array();

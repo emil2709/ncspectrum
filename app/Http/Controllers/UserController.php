@@ -130,9 +130,9 @@ class UserController extends Controller
             Session::flash('error', 'You must choose an employee before continuing!');
             return redirect()->route('users.visit');
         }
-        if($hours == null && $minutes == null)
+        if(($hours == null && $minutes == null) || ($hours == 0 && $minutes == 0))
         {
-            Session::flash('error', 'You must set the visit time in either hours or minutes before continuing!');
+            Session::flash('error', 'You must set the visit time before continuing!');
             return redirect()->route('users.visit');
         } 
 

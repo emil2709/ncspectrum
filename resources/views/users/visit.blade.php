@@ -5,7 +5,8 @@
 @section('content')
 
 	<div class="col-md-10 col-md-offset-1">
-		{!! Form::open(['route' => 'users.storeVisit', 'class' => 'well form-horizontal margin-top', 'data-toggle' => 'validator']) !!}
+		{!! Form::open(['route' => 'users.storeVisit', 'class' => 'well form-horizontal margin-top', 'data-toggle' => 'validator', 
+			'onsubmit' => 'checkinsubmit()']) !!}
 			
 			<fieldset>
 				
@@ -41,7 +42,7 @@
 						{{ Form::label('time', 'How Long?') }}
 					</div>
 					<div class="col-md-3 inputContainer">
-						<select required class="form-control" name="hours">
+						<select required class="form-control" name="hours" id="hours">
 							<option selected disabled>Hours</option>
 							@for($i=0;$i<25;$i++)
 								<option value="{{$i}}">{{$i}}</option>	
@@ -49,7 +50,7 @@
 						</select>
 					</div>
 					<div class="col-md-3 inputContainer">
-						<select required class="form-control" name="minutes">
+						<select required class="form-control" name="minutes" id="minutes">
 							<option selected disabled>Minutes</option>
 							@for($i=0;$i<60;$i=$i+10)
 								<option value="{{$i}}">{{$i}}</option>	
@@ -62,7 +63,7 @@
 
 				<div class="form-group btn-margin-top">
 					<div class="col-md-4 col-md-offset-2">
-						{{ Form::submit('CHECK IN', ['class' => 'btn btn-primary btn-block']) }}
+						{{ Form::submit('CHECK IN', ['class' => 'btn btn-primary btn-block', 'id' => 'checkin-submit']) }}
 					</div>
 					<div class="col-md-4">
 						<a href="{{ route('users.index') }}" class="btn btn-default btn-block">CANCEL</a>
