@@ -561,6 +561,17 @@ class AdminController extends Controller
         return view ('admins.status')->withUsers($users);
     }
 
+    public function checkOut($id)
+    {
+        $status = Status::find($id);
+
+        $stauts->status = 0;
+
+        $status->save();
+
+        return view ('admins.status');
+    }
+
     public function changeStatus()
     {
         
