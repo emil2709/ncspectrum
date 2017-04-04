@@ -25,15 +25,15 @@
 				<td>
 					<span class="faint-placeholder"><i>(View All Attending Guests)</i></span>
 					<a class="pull-right guest-expansion-btn" title="View Guests">
-						<span class="glyphicon glyphicon-menu-hamburger"></span>
+						<span class="glyphicon glyphicon-menu-hamburger" id="expansion-icon"></span>
 					</a>
-					<p class="guest-expansion">
+					<div class="guest-expansion">
 						@foreach($visitguests[$visit->id] as $guests)
 							@foreach($guests as $guest)
-								{{$guest[0]->firstname}} {{$guest[0]->lastname}}<br/>
+								{{$guest[0]->firstname}} {{$guest[0]->lastname}} <br/>
 							@endforeach
 						@endforeach
-					</p>
+					</div>
 				</td>
 			</tr>
 			@endforeach
@@ -41,5 +41,9 @@
 
 	</table>
 </div>
+
+<div>
+    {{ $visits->links() }}
+ </div>
 
 @endsection

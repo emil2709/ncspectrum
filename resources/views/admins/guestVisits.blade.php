@@ -18,7 +18,7 @@
 		</thead>
 
 		<tbody> 
-			@foreach ($user->visits as $visit)
+			@foreach ($visits as $visit)
 			<tr>
 				<td>{{ date('H:i - j.m Y', strtotime($visit->from)) }}</td>
 				<td>{{ date('H:i - j.m Y', strtotime($visit->to)) }}</td>
@@ -28,6 +28,10 @@
 		</tbody>
 
 	</table>
+</div>
+
+<div>
+    {{ $visits->links() }}
 </div>
 
 @endsection

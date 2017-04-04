@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
 
   <div class="container-fluid">
 
@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ route('users.wip') }}">NC-Spectrum</a>
+      <a class="navbar-brand" href="{{ route('users.index') }}">NC-Spectrum</a>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
@@ -23,7 +23,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><a href="{{ route('admins.showProfile') }}">Profile</a></li>
-            <li><a href="/">Userpage</a></li>
+            <li><a href="{{ route('users.index') }}">User Homepage</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="{{ route('logout') }}">Logout</a></li>
           </ul>

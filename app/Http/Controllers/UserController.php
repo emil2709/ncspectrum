@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 use App\User;
 use App\Status;
+use App\Visit;
 use Session;
 use DB;
 
@@ -117,27 +120,45 @@ class UserController extends Controller
 
     public function storeVisit(Request $request)
     {
-        $users = $request->users;
-        $employee = $request->employees;
+        $userids = $request->users;
+        $employeeid = $request->employees;
+        $hours = $request->hours;
+        $minutes = $request->minutes;
 
-        if($employee == null)
+        if($employeeid == null)
         {
             Session::flash('error', 'You must choose an employee before continuing!');
             return redirect()->route('users.visit');
+        }
+        if(($hours == null && $minutes == null) || ($hours == 0 && $minutes == 0))
+        {
+            Session::flash('error', 'You must set the visit time before continuing!');
+            return redirect()->route('users.visit');
         } 
 
-        /*
-        foreach($users as $user)
-        {}
+        $employee = User::find($employeeid);
 
-         Her kan du kode visit-opprettelsen. Users og ansatt ligger i variabelene ovenfor. 
-         Hvis du trenger users hver for seg, bruk foreach-en ovenfor.
-        */
+        $visit = new Visit();
+        $visit->employee_firstname = $employee->firstname;
+        $visit->employee_lastname = $employee->lastname;
+
+        $visit->from = Carbon::now();
+        $to = Carbon::now();
+        $to = $to->addHour($hours);
+        $to = $to->addMinutes($minutes);
+        $visit->to = $to;
+
+        $visit->save();
+
+        foreach($userids as $userid)
+        {       
+            $user = User::find($userid);
+            $user->visits()->save($visit);
+        }
 
         Session::flash('success', 'The Visit has been successfully registered!');
 
         return redirect()->route('users.index');
-
     }
 
     public function statusin(Request $request)
