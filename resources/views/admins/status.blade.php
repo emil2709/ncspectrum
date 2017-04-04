@@ -39,7 +39,7 @@
     		</td>
     		<td>
           @if ($user->status->status === 1)
-            <a href="{{ URL::route('admins.checkOut', [$user->status->id]) }}" title="Change Status">
+            <a href="{{ URL::route('admins.checkOut', [$user->id]) }}" title="Change Status">
                 <button class="btn btn-primary">Change status</button>
             </a>
           @endif

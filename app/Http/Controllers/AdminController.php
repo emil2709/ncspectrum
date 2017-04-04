@@ -563,18 +563,14 @@ class AdminController extends Controller
 
     public function checkOut($id)
     {
-        $status = Status::find($id);
+        $users = User::find($id);
+        //dd($user->status);
+        $userstatus = $users->status;
+        $userstatus->status = 0;
 
-        $stauts->status = 0;
+        $users->save();
 
-        $status->save();
-
-        return view ('admins.status');
-    }
-
-    public function changeStatus()
-    {
-        
+        return redirect('admin/status');
     }
 
     public function showLog()
