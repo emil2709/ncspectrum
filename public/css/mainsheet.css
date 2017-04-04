@@ -109,8 +109,60 @@ footer {
 
 .input-group-addon {
     background-color: #00adef;
-    border: #00adef;
+    border-color: #00adef;
     color: #fff;
+}
+
+.form-control {
+    border-color: #00adef;
+}
+
+.has-success 
+.input-group-addon {
+    color: #fff;
+    background-color: #55c43b;
+    border-color: #55c43b;
+}
+
+.has-success 
+.form-control {
+    border-color: #55c43b;
+}
+
+.has-success 
+.form-control-feedback {
+    color: #55c43b;
+}
+
+.has-success 
+.control-label {
+    color: #55c43b;
+}
+
+.has-error 
+.input-group-addon {
+    color: #fff;
+    background-color: #ef4200;
+    border-color: #ef4200;
+}
+
+.has-error 
+.form-control {
+    border-color: #ef4200;
+}
+
+.has-error 
+.form-control-feedback {
+    color: #ef4200;
+}
+
+.has-error
+.control-label {
+    color: #ef4200;
+}
+
+.help-block.with-errors {
+    color: #ef4200;
 }
 
 .pagination>.active>span 

@@ -7,6 +7,45 @@ body {
   padding-top: 50px;
 }
 
+.navbar-default {
+    background-color: #00adef;
+    border-color: #00adef;
+}
+
+.navbar-default .navbar-brand {
+  color: #fff;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: black;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: black;
+}
+
+.navbar-default 
+.navbar-nav>.open>a, 
+.navbar-default 
+.navbar-nav>.open>a:focus, 
+.navbar-default 
+.navbar-nav>.open>a:hover {
+    color: black;
+    background-color: #00adef;
+}
+
+.dropdown-menu {
+  /*background-color: #00adef;*/
+}
+
+.dropdown-menu>li>a:hover {
+  /*color: #55c43b;*/
+}
 
 /*
  * Global add-ons
