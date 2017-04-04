@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 
-  if(window.location.pathname == "/index")
+  if(window.location.pathname == "/")
   {
     window.sessionStorage;
     window.CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

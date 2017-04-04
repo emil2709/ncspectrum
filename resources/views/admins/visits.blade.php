@@ -7,13 +7,7 @@
 <h2 class="sub-header">Visits</h2>
 
 <div class="table-responsive">
-  <table class="table table-striped">
-
-    <div class="input-group margin-bottom">        
-      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-      <input type="text" id="search" class="form-control" placeholder="Search ...">
-      <input type="hidden" id="type" value="employees">
-    </div>
+  <table class="table table-striped margin-top">
 
     <thead>
     	<tr>
@@ -24,7 +18,7 @@
     	</tr>
     </thead>
 
-      <tbody id="searchresult">
+      <tbody>
         @foreach($visits as $visit)
         	<tr>
             <td>{{ date('H:i - j.m Y', strtotime($visit->from)) }}</td>
@@ -33,7 +27,7 @@
             <td>
               <span class="faint-placeholder"><i>(View All Attending Guests)</i></span>
               <a class="pull-right guest-expansion-btn" title="View Guests">
-                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                <span class="glyphicon glyphicon-menu-hamburger" id="expansion-icon"></span>
               </a>
               <p class="guest-expansion">
                 @foreach($visitguests[$visit->id] as $guests)

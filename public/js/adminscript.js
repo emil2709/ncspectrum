@@ -43,11 +43,13 @@ $(".guest-expansion-btn").click(function(event)
 {
   if($(this).siblings('.faint-placeholder').is(':visible'))
   {
-    $(this).siblings('.faint-placeholder').hide();  
+    $(this).siblings('.faint-placeholder').hide();
+    $(this).children('#expansion-icon').css('color', '#55c43b');
   }
   else
   {
     $(this).siblings('.faint-placeholder').delay(600).show(0);
+    $(this).children('#expansion-icon').css('color', '#00adef');
   }
   $(this).siblings('.guest-expansion').slideToggle('slow');
 });
