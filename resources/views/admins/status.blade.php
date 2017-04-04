@@ -38,9 +38,12 @@
 		        @endif
     		</td>
     		<td>
-          <a href="{{ URL::route('admins.changeStatus', [$user->id]) }}" title="Change Status">
+          @if ($user->status->status === 1)
+            <button>Check out</button>
+          @endif
+          {{--<a href="{{ $user->status->toogleBoolean() }}" title="Change Status">
                 <button class="btn btn-primary">Change status</button>
-              </a>
+              </a>--}}
     		</td>
 		</tr>
 @endforeach
