@@ -16,7 +16,7 @@
 
 			<div class="col-md-6 margin-top">
 				<div class="col-md-12">
-					<h2 class="text-center">CHECK OUT</h1>
+					<h2 class="text-center">CHECK-OUT</h1>
 					<hr/>
 				</div>
 				<div class="col-md-12 margin-bottom">
@@ -52,7 +52,7 @@
 
 			<div class="col-md-6 margin-top">
 				<div class="col-md-12">
-					<h2 class="text-center">CHECK IN</h1>
+					<h2 class="text-center">CHECK-IN</h1>
 					<hr/>
 				</div>
 				<div class="col-md-12 margin-bottom">

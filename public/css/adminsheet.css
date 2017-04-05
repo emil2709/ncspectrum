@@ -187,6 +187,19 @@ a:hover {
   cursor: pointer;
 }
 
+#checkedin {
+  color: #55c43b;
+}
+
+#checkout {
+  color: #fff;
+}
+
+#sortableTable-icon {
+  font-size: 12px;
+  cursor: pointer;
+}
+
 /*
  * Placeholder dashboard ideas
  */

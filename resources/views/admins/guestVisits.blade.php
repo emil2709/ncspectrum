@@ -7,13 +7,13 @@
 <h2 class="sub-header">{{ $user->firstname }} {{ $user->lastname }}</h2>
 
 <div class="table-responsive">
-	<table class="table table-striped margin-top">
+	<table class="table table-striped margin-top" id="sortableTable">
 
 		<thead>
 			<tr>
 			  <th>From</th>
 			  <th>To</th>
-			  <th>Employee</th>
+			  <th>Employee<span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon" onclick="sortTable(0)"></th>
 			</tr>
 		</thead>
 

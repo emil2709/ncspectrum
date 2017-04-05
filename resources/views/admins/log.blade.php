@@ -11,7 +11,7 @@
 
       <thead>
         <tr>
-          <th onclick="sortTable(0)"> Type<span class="glyphicon glyphicon-sort"></span> </th>
+          <th>Type<span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon" onclick="sortTable(0)"></span></th>
           <th>Information</th>
           <th>Time</th>
         </tr>

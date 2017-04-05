@@ -4,44 +4,44 @@
 
 @section ('content')
 
+<h2 class="sub-header"><span class="rainbow">Status</span></h2>
 
-<h2 class="sub-header">Status</h2>
+<div class="table-responsive">
+  <table class="table table-striped margin-top" id="sortableTable">
 
-  <div class="table-responsive">
-    <table class="table table-striped">
+    <thead>
+    	<tr>
+    		<th>
+          Firstname<span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon" onclick="sortTable(0)"></span>
+        </th>
+        <th>
+          Lastname<span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon" onclick="sortTable(1)"></span>
+        </th>
+        <th>Status</th>
+        <th></th>
+    	</tr>
+    </thead>
 
-      <thead>
-      	<tr>
-      		<th onclick="sort_table(people, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Firstname
-      		<span class="glyphicon glyphicon-arrow-down"></span></th>
-            <th onclick="sort_table(people, 1, asc2); asc2 *= -1; asc3 = 1; asc1 = 1;">Lastname
-            <span class="glyphicon glyphicon-arrow-down"></span></th>
-            <th onclick="sort_table(people, 2, asc3); asc3 *= -1; asc1 = 1; asc2 = 1;">Status
-            <span class="glyphicon glyphicon-arrow-down"></span></th>
-            <th>Change</th>
-      	</tr>
-      </thead>
-      <tbody id="people">
-      	<tr>
-        
-      	@foreach ($users as $user)
-		    <td>{{ $user->firstname }} </td>
-		    <td>{{ $user->lastname }}</td>
-		    <td>
-		        @if ($user->status)
-					{{ $user->status->status }}
-		        @endif
-    		</td>
-    		<td>
-          @if ($user->status->status === 1)
-            <a href="{{ URL::route('admins.checkOut', [$user->id]) }}" title="Change Status">
-                <button class="btn btn-primary">Change status</button>
+    <tbody>
+    	@foreach ($users as $user)
+        <tr>
+          <td>{{ $user->firstname }}</td>
+          <td>{{ $user->lastname }}</td>
+          <td>
+            <span class="glyphicon glyphicon-ok" id="checkedin" title="Checked-in"></span>
+          </td>
+  		    <td>   
+            <a href="{{ URL::route('admins.checkout', [$user->id]) }}" title="Check-out Guest">
+              <button class="btn btn-xs btn-danger btn-block">
+                <span class="glyphicon glyphicon-log-out" id="checkout"></span>CHECK-OUT
+              </button>
             </a>
-          @endif
-          
-    		</td>
-		</tr>
-@endforeach
-      </tbody>
+  		    </td>
+        </tr>
+        @endforeach
+    </tbody>
+
+  </table>
+</div>
 
 @endsection

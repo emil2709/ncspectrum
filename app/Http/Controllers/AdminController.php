@@ -550,15 +550,26 @@ class AdminController extends Controller
 
     public function showStatus()
     {
-        $users = User::with('status')->get();
+        $users = DB::table('users')
+            ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+            ->where('status','1')
+            ->get();
         
         return view ('admins.status')->withUsers($users);
     }
 
-    public function checkOut($id)
+    public function checkout($id)
     {
-        $users = User::find($id);
-        $users->status()->update(['status' => 0]);
+        $user = User::find($id);
+        $user->status()->update(['status' => false, 'updated_at' => Carbon::now()]);
+
+        $userlist = session()->get('userlist');
+        if(!empty($userlist))
+        {
+            $index = array_search($id, $userlist);
+            array_splice($userlist,$index,1);
+            session()->put('userlist', $userlist);
+        }
 
         return redirect('admin/status');
     }

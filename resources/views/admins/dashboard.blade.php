@@ -4,7 +4,7 @@
 
 @section('content')
 
-          <h1 class="page-header"><span class="unicorn" style='font-size:50px;'>DASHBOARD - HOVER ME</span></h1>
+          <h1 class="page-header">Dashboard</h1>
 
 
            <!-- Her får vi bestemme om vi ønser placeholders eller ikke? kanskje her vi kan legge noen diagrammer? -->

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Log as Logger;
 use Carbon\Carbon;
 use App\User;
 use App\Status;
@@ -88,14 +88,6 @@ class UserController extends Controller
     	return redirect()->route('users.index');
     }
 
-    public function userlist(Request $request)
-    {
-        $userlist = $request->data;
-        session()->put('userlist', $userlist);
-
-        return response()->json();
-    }
-
     public function visit(Request $request)
     {
         $userlist = session()->get('userlist');
@@ -161,6 +153,14 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
+    public function userlist(Request $request)
+    {
+        $userlist = $request->data;
+        session()->put('userlist', $userlist);
+
+        return response()->json();
+    }
+
     public function statusin(Request $request)
     {
         $userid = $request->data;
@@ -168,7 +168,7 @@ class UserController extends Controller
         $user = DB::table('users')
                 ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
                 ->where('id', $userid)
-                ->update(['status' => true]);
+                ->update(['status' => true, 'statuses.updated_at' => Carbon::now()]);
 
         return response()->json();
     }
@@ -187,7 +187,7 @@ class UserController extends Controller
         $user = DB::table('users')
                 ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
                 ->where('id', $userid)
-                ->update(['status' => false]);
+                ->update(['status' => false, 'statuses.updated_at' => Carbon::now()]);
 
         return response()->json();
     }

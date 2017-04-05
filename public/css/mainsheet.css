@@ -107,6 +107,24 @@ footer {
     border-color: #449d2f;
 }
 
+.btn-danger {
+    color: #fff;
+    background-color: #ef4200;
+    border-color: #ef4200;
+}
+
+.btn-danger:hover {
+    color: #fff;
+    background-color: #bc3400;
+    border-color: #bc3400;
+}
+
+.btn-danger:focus {
+    color: #fff;
+    background-color: #bc3400;
+    border-color: #bc3400;
+}
+
 .input-group-addon {
     background-color: #00adef;
     border-color: #00adef;
@@ -163,6 +181,16 @@ footer {
 
 .help-block.with-errors {
     color: #ef4200;
+}
+
+.panel-danger {
+    border-color: #ef4200;
+}
+
+.panel-danger>.panel-heading {
+    color: #fff;
+    background-color: #ef4200;
+    border-color: #ef4200;
 }
 
 .pagination>.active>span 
