@@ -189,10 +189,13 @@ a:hover {
 
 #checkedin {
   color: #55c43b;
+  font-size: 15px;
+  margin-left: 10px;
 }
 
 #checkout {
   color: #fff;
+  font-size: 11px;
 }
 
 #sortableTable-icon {

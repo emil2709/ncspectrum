@@ -33,7 +33,7 @@
   		    <td>   
             <a href="{{ URL::route('admins.checkout', [$user->id]) }}" title="Check-out Guest">
               <button class="btn btn-xs btn-danger btn-block">
-                <span class="glyphicon glyphicon-log-out" id="checkout"></span>CHECK-OUT
+                CHECK-OUT <span class="glyphicon glyphicon-log-out" id="checkout"></span>
               </button>
             </a>
   		    </td>
