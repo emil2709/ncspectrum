@@ -548,6 +548,21 @@ class AdminController extends Controller
         return view ('admins.employeevisits', compact('employee', 'visits', 'visitguests'));
     }
 
+    public function showStatus()
+    {
+        $users = User::with('status')->get();
+        
+        return view ('admins.status')->withUsers($users);
+    }
+
+    public function checkOut($id)
+    {
+        $users = User::find($id);
+        $users->status()->update(['status' => 0]);
+
+        return redirect('admin/status');
+    }
+
     public function showLog()
     {
         $log = Log::orderBy('id', 'desc')->paginate(20);

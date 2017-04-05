@@ -34,7 +34,9 @@
         @endif
       </ul>
       <ul class="nav nav-sidebar">
-        <li><a href="">Status</a></li>
+         <li class="{{ Request::segment(2) === 'status' ? 'active' : null }}">
+          <a href="{{ route('admins.status') }}">Status</a>
+        </li>
         <li class="{{ Request::segment(2) === 'log' ? 'active' : null }}">
           <a href="{{ route('admins.log') }}">Log</a>
         </li>

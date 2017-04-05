@@ -27,6 +27,7 @@
 	<!-- Our own custom css rules -->
 	{{ Html::style('css/mainsheet.css') }}
 	{{ Html::style('css/adminsheet.css') }}
+	{{ Html::script('js/sort.js') }}
 
 	<!-- Section used for pages that need specific additional css rules -->
     @yield('stylesheets')
