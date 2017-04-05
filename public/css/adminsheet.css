@@ -183,6 +183,10 @@ a:hover {
   color: #bababa;
 }
 
+#expansion-icon {
+  cursor: pointer;
+}
+
 /*
  * Placeholder dashboard ideas
  */
