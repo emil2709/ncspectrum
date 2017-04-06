@@ -14,16 +14,7 @@
 	<!-- JQuery UI -->
 	<!-- Latest compiled CSS -->
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-	
-	<!-- Datatables -->
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/b-1.2.4/b-html5-1.2.4/fh-3.1.2/r-2.1.1/se-1.2.0/datatables.min.css"/> 
-
-	<!-- Datatables -->
-	<!-- Latest compiled and minified JavaScript -->
-	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/b-1.2.4/b-html5-1.2.4/fh-3.1.2/r-2.1.1/se-1.2.0/datatables.min.js"></script>
-	
+		
 	<!-- Our own custom css rules -->
 	{{ Html::style('css/mainsheet.css') }}
 	{{ Html::style('css/adminsheet.css') }}

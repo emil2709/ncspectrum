@@ -217,8 +217,9 @@ class AdminController extends Controller
         $status = new \App\Status();
 
         $status->status = false;
+        $status->updated_at = Carbon::now();
 
-        $guest->statuses()->save($status);
+        $guest->status()->save($status);
 
         $this->userlog('guest', 'create', $guest->firstname.' '.$guest->lastname);
     
@@ -445,7 +446,7 @@ class AdminController extends Controller
     {
         $guest = User::find($id);
         $guest->visits()->detach();
-        $guest->statuses()->delete();
+        $guest->status()->delete();
         $guest->delete();
 
         $this->userlog('guest', 'delete', $guest->firstname.' '.$guest->lastname);

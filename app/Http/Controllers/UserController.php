@@ -255,7 +255,7 @@ class UserController extends Controller
 
             if($output == "")
             {
-                $output = "<div class='margin-top text-center' id='notfound'><strong>".$search."</strong> was not found</div>";
+                $output = "<div class='margin-top text-center' id='notfound'><i><strong>".$search."</strong> was not found</i></div>";
                 return Response($output);
             }
             else

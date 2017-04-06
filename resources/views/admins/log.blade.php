@@ -7,13 +7,13 @@
   <h2 class="sub-header">Log</h2>
 
   <div class="table-responsive">
-    <table class="table table-striped margin-top" id="sortableTable">
+    <table class="table table-striped margin-top tablesorter" id="myTable">
 
       <thead>
         <tr>
-          <th>Type<span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon" onclick="sortTable(0)"></span></th>
-          <th>Information</th>
-          <th>Time</th>
+          <th class="sortable-header">Type <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></span></th>
+          <th class="not-sortable">Information</th>
+          <th class="sortable-header">Time <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></th>
         </tr>
       </thead>
 
@@ -22,7 +22,7 @@
             <tr>
               <td> {{ strtoupper($entry->type) }} </td>
               <td> {{ $entry->information }} </td>
-              <td> {{ date('H:i - j.m Y', strtotime($entry->created_at)) }} </td>
+              <td> {{ date('j.m Y - H:i', strtotime($entry->created_at)) }} </td>
             </tr>
         @endforeach
       </tbody>

@@ -7,21 +7,21 @@
 <h2 class="sub-header">{{ $employee->firstname }} {{ $employee->lastname }}</h2>
 
 <div class="table-responsive">
-	<table class="table table-striped margin-top">
+	<table class="table table-striped margin-top tablesorter" id="myTable">
 
 		<thead>
 			<tr>
-			  <th>From</th>
-			  <th>To</th>
-			  <th width="300px">Guests</th>
+			  <th class="sortable-header">From <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></th>
+			  <th class="sortable-header">To <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></th>
+			  <th class="not-sortable" id="col-sm">Guests</th>
 			</tr>
 		</thead>
 		
 		<tbody> 
 			@foreach ($visits as $visit)
 			<tr>
-				<td>{{ date('H:i - j.m Y', strtotime($visit->from)) }}</td>
-				<td>{{ date('H:i - j.m Y', strtotime($visit->to)) }}</td>
+				<td>{{ date('j.m Y - H:i', strtotime($visit->from)) }}</td>
+				<td>{{ date('j.m Y - H:i', strtotime($visit->to)) }}</td>
 				<td>
 					<span class="faint-placeholder"><i>(View All Attending Guests)</i></span>
 					<a class="pull-right guest-expansion-btn" title="View Guests">
