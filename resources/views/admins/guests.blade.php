@@ -22,9 +22,9 @@
           <th class="sortable-header">Phone <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></span></th>
           <th class="sortable-header">Mail <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></span></th>
           <th class="sortable-header">Company <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></span></th>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th class="not-sortable"></th>
+          <th class="not-sortable"></th>
+          <th class="not-sortable"></th>
         </tr>
       </thead>
 

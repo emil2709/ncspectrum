@@ -7,23 +7,23 @@
 <h2 class="sub-header">Status</h2>
 
 <div class="table-responsive">
-  <table class="table table-striped margin-top" id="sortableTable">
+  <table class="table table-striped margin-top tablesorter" id="myTable">
 
     <thead>
     	<tr>
-    		<th>
-          Firstname<span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon" onclick="sortTable(0)"></span>
+    		<th class="sortable-header"> 
+          Firstname <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></span>
         </th>
-        <th>
-          Lastname<span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon" onclick="sortTable(1)"></span>
+        <th class="sortable-header">
+          Lastname <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></span>
         </th>
-        <th>Status</th>
-        <th></th>
+        <th class="not-sortable">Status</th>
+        <th class="not-sortable"></th>
     	</tr>
     </thead>
 
     <tbody>
-    	@foreach ($users as $user)
+    	@foreach($users as $user)
         <tr>
           <td>{{ $user->firstname }}</td>
           <td>{{ $user->lastname }}</td>

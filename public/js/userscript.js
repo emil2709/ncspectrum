@@ -8,7 +8,7 @@ $(document).ready(function(){
     window.onload = startup();
     
     setInterval(function() {
-      location.reload();
+      location.reload(true);
     }, 900 * 1000); // 60 * 1000 milsec
   }
 
