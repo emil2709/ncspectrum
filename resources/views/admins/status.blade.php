@@ -4,7 +4,7 @@
 
 @section ('content')
 
-<h2 class="sub-header"><span class="rainbow">Status</span></h2>
+<h2 class="sub-header">Status</h2>
 
 <div class="table-responsive">
   <table class="table table-striped margin-top" id="sortableTable">

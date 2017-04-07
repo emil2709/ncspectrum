@@ -43,19 +43,19 @@ class AdminController extends Controller
 
     public function showGuests()
     {
-        $guests = User::orderBy('firstname')->where('company','<>','NC-Spectrum')->paginate(20);
+        $guests = User::orderBy('id', 'desc')->where('company','<>','NC-Spectrum')->paginate(20);
         return view('admins.guests')->withGuests($guests);
     }
 
      public function showEmployees()
     {
-        $employees = User::orderBy('firstname')->where('company','NC-Spectrum')->paginate(20);
+        $employees = User::orderBy('id', 'desc')->where('company','NC-Spectrum')->paginate(20);
         return view('admins.employees')->withEmployees($employees);
     }
 
      public function showAdmins()
     {
-        $admins = Admin::orderBy('firstname')->where('id', '!=', 1)->paginate(20);
+        $admins = Admin::orderBy('id', 'desc')->where('id', '!=', 1)->paginate(20);
         return view('admins.admins')->withAdmins($admins);
     }
 
@@ -195,7 +195,7 @@ class AdminController extends Controller
                 'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
                 'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
                 'phone' => 'required|unique:users|min:8|max:8|regex:/^[0-9]{8}$/',
-                'email' => 'required|unique:users|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/',
+                'email' => 'required|unique:users|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/',
                 'company' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$/'
             ]);
 
@@ -240,7 +240,7 @@ class AdminController extends Controller
                 'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
                 'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
                 'phone' => 'required|unique:users|min:8|max:8|regex:/^[0-9]{8}$/',
-                'email' => 'required|unique:users|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/'
+                'email' => 'required|unique:users|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/'
             ]);
 
         $employee = new User();
@@ -268,11 +268,11 @@ class AdminController extends Controller
     public function updateGuest(Request $request, $id)
     {
         $this->validate($request, [
-                'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
+                'firstname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
                 'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
                 'phone' => 'required|unique:users,phone,'.$id.'|min:8|max:8|regex:/^[0-9]{8}$/',
                 'email' => 'required|unique:users,email,'.$id.
-                    '|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/',
+                    '|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/',
                 'company' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$/'
             ]);
 
@@ -311,7 +311,7 @@ class AdminController extends Controller
                 'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
                 'phone' => 'required|unique:users,phone,'.$id.'|min:8|max:8|regex:/^[0-9]{8}$/',
                 'email' => 'required|unique:users,email,'.$id.
-                    '|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/'
+                    '|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/'
             ]);
 
         $employee = User::find($id);
@@ -342,7 +342,7 @@ class AdminController extends Controller
                 'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
                 'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
                 'email' => 'required|unique:admins,email,'.$id.
-                    '|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/'
+                    '|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/'
             ]);
 
         $admin = Admin::find($id);
@@ -358,7 +358,15 @@ class AdminController extends Controller
 
         if(Auth::user()->id == 1)
         {
-            return redirect()->route('admins.admins');
+            if(Auth::user()->id == $id)
+            {
+                return redirect()->route('admins.showProfile');
+            }
+            else
+            {
+                return redirect()->route('admins.admins');
+            }
+
         }
         else
         {
@@ -421,7 +429,14 @@ class AdminController extends Controller
                 Session::flash('success', 'The password has been successfully updated!');
                 if(Auth::user()->id == 1)
                 {
-                    return redirect()->route('admins.admins');
+                    if(Auth::user()->id == $id)
+                    {
+                        return redirect()->route('admins.showProfile');
+                    }
+                    else
+                    {
+                        return redirect()->route('admins.admins');
+                    }
                 }
                 else
                 {
@@ -554,6 +569,7 @@ class AdminController extends Controller
         $users = DB::table('users')
             ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
             ->where('status','1')
+            ->orderBy('firstname')
             ->get();
         
         return view ('admins.status')->withUsers($users);
