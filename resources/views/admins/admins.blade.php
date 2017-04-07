@@ -9,7 +9,7 @@
   <h2 class="sub-header">Administrators</h2>
 
   <div class="table-responsive">
-    <table class="table table-striped" id="sortableTable">
+    <table class="table table-striped tablesorter" id="myTable">
         
       <div class="input-group margin-bottom">        
         <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
@@ -19,9 +19,9 @@
 
       <thead>
         <tr>
-          <th>Firstname <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon" onclick="sortTable(0)"></span></th>
-          <th>Lastname <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon" onclick="sortTable(1)"></span></th>
-          <th>Mail <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon" onclick="sortTable(2)"></span></th>
+          <th class="sortable-header">Firstname <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></span></th>
+          <th class="sortable-header">Lastname <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></span></th>
+          <th class="sortable-header">Mail <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></span></th>
           <th></th>
           <th></th>
         </tr>

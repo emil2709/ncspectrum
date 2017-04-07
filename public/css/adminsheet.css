@@ -198,9 +198,16 @@ a:hover {
   font-size: 11px;
 }
 
+.sortable-header {
+  cursor: pointer;
+}
+
 #sortableTable-icon {
   font-size: 12px;
-  cursor: pointer;
+}
+
+#col-sm {
+  width: 300px;
 }
 
 /*

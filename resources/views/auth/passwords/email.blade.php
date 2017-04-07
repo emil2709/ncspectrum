@@ -4,11 +4,10 @@
 
 @section('content')
 	
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-md-10 col-md-offset-1">
 
 		@if(session('status'))
-			<div class="alert alert-success alert-dismissable alert-margin-top" role="alert">
-	 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<div class="alert alert-success alert-margin-top" role="alert">
 				<strong>Success! </strong> <br/> {{ session('status') }}
 			</div>
 		@endif
@@ -21,15 +20,12 @@
 				<legend class="text-center">Send Reset Request</legend>
 
 				<div class="form-group">
-					<div class="col-md-2 col-md-offset-1 control-label">
-						{{ Form::label('email', 'Email:') }}
-					</div>
-					<div class="col-md-6 inputContainer">
+					<div class="col-md-6 col-md-offset-3 inputContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 							{{ Form::email('email', null, ['class' => 'form-control', 
 								'placeholder' => 'Enter Email Address here ...',
-								'required', 'pattern="^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$"']) }}
+								'required', 'pattern="^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$"']) }}
 						</div>
 					</div>
 				</div>

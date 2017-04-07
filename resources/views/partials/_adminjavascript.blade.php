@@ -13,5 +13,5 @@ hence placed at the bottom of the main sheets.
 
 <!-- Our own script for various behaviours and actions -->
 {{ Html::script('js/adminscript.js') }}
-{{ Html::script('js/sort.js') }}
+{{ Html::script('js/jquery.tablesorter.min.js') }}
 

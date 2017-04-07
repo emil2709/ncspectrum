@@ -193,6 +193,18 @@ footer {
     border-color: #ef4200;
 }
 
+.alert-success {
+    color: #fff;
+    background-color: #55c43b;
+    border-color: #55c43b;
+}
+
+.alert-danger {
+    color: #fff;
+    background-color: #ef4200;
+    border-color: #ef4200;
+}
+
 .pagination>.active>span 
 {
     background-color: #00adef;

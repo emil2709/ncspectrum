@@ -73,7 +73,11 @@
 					</div>
 					<div class="col-md-4">
 						@if(Auth::user()->id == 1)
-							<a href="{{ route('admins.admins') }}" class="btn btn-default btn-block">CANCEL</a>
+							@if(Auth::user()->id == $admin->id)
+								<a href="{{ route('admins.showProfile') }}" class="btn btn-default btn-block">CANCEL</a>
+							@else
+								<a href="{{ route('admins.admins') }}" class="btn btn-default btn-block">CANCEL</a>
+							@endif
 						@else
 							<a href="{{ route('admins.showProfile') }}" class="btn btn-default btn-block">CANCEL</a>
 						@endif

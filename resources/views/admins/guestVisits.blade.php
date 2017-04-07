@@ -7,21 +7,21 @@
 <h2 class="sub-header">{{ $user->firstname }} {{ $user->lastname }}</h2>
 
 <div class="table-responsive">
-	<table class="table table-striped margin-top" id="sortableTable">
+	<table class="table table-striped margin-top tablesorter" id="myTable">
 
 		<thead>
 			<tr>
-			  <th>From</th>
-			  <th>To</th>
-			  <th>Employee<span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon" onclick="sortTable(0)"></th>
+			  <th class="sortable-header">From <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></th>
+			  <th class="sortable-header">To <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></th>
+			  <th class="sortable-header">Employee <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></th>
 			</tr>
 		</thead>
 
 		<tbody> 
 			@foreach ($visits as $visit)
 			<tr>
-				<td>{{ date('H:i - j.m Y', strtotime($visit->from)) }}</td>
-				<td>{{ date('H:i - j.m Y', strtotime($visit->to)) }}</td>
+				<td>{{ date('j.m Y - H:i', strtotime($visit->from)) }}</td>
+				<td>{{ date('j.m Y - H:i', strtotime($visit->to)) }}</td>
 				<td>{{ $visit->employee_firstname }}  {{$visit->employee_lastname}} </td>
 			</tr>
 			@endforeach

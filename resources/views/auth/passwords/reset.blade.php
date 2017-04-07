@@ -4,7 +4,7 @@
 
 @section('content')
 	
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-md-10 col-md-offset-1">
 		{!! Form::open(['url' => 'password/reset', 'method' => 'POST', 'class' => 'well form-horizontal margin-top',
 			'data-toggle' => 'validator']) !!}
 			
@@ -23,7 +23,7 @@
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 							{{ Form::email('email', null, ['class' => 'form-control', 
 								'placeholder' => 'Enter Email Address here ...',
-								'required', 'pattern="^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$"']) }}
+								'required', 'pattern="^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$"']) }}
 						</div>
 					</div>
 				</div>

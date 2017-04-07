@@ -60,7 +60,7 @@ class UserController extends Controller
                 'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
                 'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
                 'phone' => 'required|unique:users|min:8|max:8|regex:/^[0-9]{8}$/',
-                'email' => 'required|unique:users|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/',
+                'email' => 'required|unique:users|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/',
                 'company' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$/'
             ]);
         
@@ -81,7 +81,7 @@ class UserController extends Controller
 
         $status = new \App\Status();
         $status->status = false;
-        $user->statuses()->save($status);
+        $user->status()->save($status);
     
         Session::flash('success', 'The User was successfully created!');
 
@@ -255,7 +255,7 @@ class UserController extends Controller
 
             if($output == "")
             {
-                $output = "<div class='margin-top text-center' id='notfound'><strong>".$search."</strong> was not found</div>";
+                $output = "<div class='margin-top text-center' id='notfound'><i><strong>".$search."</strong> was not found</i></div>";
                 return Response($output);
             }
             else
