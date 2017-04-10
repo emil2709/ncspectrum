@@ -1,52 +1,64 @@
-
 $(document).ready(function(){
 
-  if(window.location.pathname == "/")
-  {
-    window.sessionStorage;
-    window.CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    window.onload = startup();
-    
-    setInterval(function() {
-      location.reload(true);
-    }, 900 * 1000); // 60 * 1000 milsec
-  }
-
+  /**
+   * Dynamic Alerts
+   *
+   * This global timeout is set to make the Bootstrap alerts more dynamic.
+   * After a set time of appearance the alert boxes will begin to slide up and disappear. 
+   * This function is global and will toggle on every page where the alerts appear.
+   */
   window.setTimeout(function() {
       $(".alert").fadeTo(500, 0).slideUp(500, function(){
           $(this).remove(); 
       });
   }, 4000);
+  
+  /**
+   * Page Check
+   *
+   * This function is only ran on the page with URL "/", aka the index/home page in order to
+   * set some startup values and do some pageload-checks.
+   * 
+   * SessionStorage: Session variable is set in order to store and transfer values across all fucntions.
+   * CSRF-token: Set in order for the communication between fontend and backend to work properly.
+   * Function "startup()": Runs on every page-load in order to check some startup values and synchronize.
+   * Function "SetInterval()":" will reload the page every 15min in order to synchronize the frontend 
+   * checkin/checkout statuses with the ones in the database.
+   */
+  if(window.location.pathname == "/")
+  {
+    window.sessionStorage;
+    window.CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    window.onload = startup();
+  
+    setInterval(function() {
+      location.reload(true);
+    }, 900 * 1000); // 60 * 1000 milsec
+  }
 
-  /** Userinteractions **/
-
+  /**
+   * Drag and Drop Connection
+   *
+   * This function is used to connect the two check-in/-out lists and drag and drop elements among them.
+   * Revert: The element will return to its original place if not dropped in an acceptable area.
+   * ConnectedWith: Name of the class the lists are connected to. They are connected to each other.
+   * Placeholder: Name of the class that adds CSS to the placehodlers.
+   * Helper: Used in order to differentiate "drag and drop" and simple "click".
+   * Found on: http://api.jqueryui.com/
+   */
   $("#outlist, #inlist").sortable({
     revert: true,
     connectWith: ".connectedSortable",
     placeholder: "placeholder",
     helper: "clone"
   }).disableSelection();
-  
-  $("#outlist").on('click','#out',function(event){
-    sessionStorage.userid = $(this).children('#userid').html();
-    $('#inlist').prepend($(this).removeClass(this));
-    $(this).switchClass( "userbox", "userbox-in", 1000 );
-    $(this).attr('id','in');
-    checkin();
-    statusin();
-    checkinCheck();
-  });
 
-  $("#inlist").on('click','#in', function(event){
-    sessionStorage.userid = $(this).children('#userid').html();
-    $('#outlist').prepend($(this).removeClass(this));
-    $(this).switchClass( "userbox-in", "userbox", 1000 );
-    $(this).attr('id','out');
-    checkout();
-    statusout();
-    checkinCheck();
-  });
-
+  /**
+   * Drag and Drop Checkout-list
+   *
+   * Sets the actions that are to be done on list-item start and receive.
+   * 
+   */
   $("#outlist").sortable({
     start: function(event, ui){
       sessionStorage.userid = ui.item.children('#userid').html();
@@ -72,6 +84,26 @@ $(document).ready(function(){
       $(ui.item).attr('id','in');
     }
   }).disableSelection();
+  
+  $("#outlist").on('click','#out',function(event){
+    sessionStorage.userid = $(this).children('#userid').html();
+    $('#inlist').prepend($(this).removeClass(this));
+    $(this).switchClass( "userbox", "userbox-in", 1000 );
+    $(this).attr('id','in');
+    checkin();
+    statusin();
+    checkinCheck();
+  });
+
+  $("#inlist").on('click','#in', function(event){
+    sessionStorage.userid = $(this).children('#userid').html();
+    $('#outlist').prepend($(this).removeClass(this));
+    $(this).switchClass( "userbox-in", "userbox", 1000 );
+    $(this).attr('id','out');
+    checkout();
+    statusout();
+    checkinCheck();
+  });
 
   function startup()
   {
@@ -137,19 +169,6 @@ $(document).ready(function(){
     sessionStorage.users = JSON.stringify(users);
   }
 
-    $("#checkin-btn").click(function(){
-      var users = JSON.parse(sessionStorage.users);
-      $.ajax({
-        url: '/userlist',
-        type: 'post',
-        data: {_token: CSRF_TOKEN, data: users},
-        dataType: 'JSON',
-        success: function(){
-          location.href = "/visit";
-        }
-      }); 
-    });
-
   function statusin()
   {
     var userid = sessionStorage.userid;
@@ -172,6 +191,19 @@ $(document).ready(function(){
     });
   }
 
+  $("#checkin-btn").click(function(){
+    var users = JSON.parse(sessionStorage.users);
+    $.ajax({
+      url: '/userlist',
+      type: 'post',
+      data: {_token: CSRF_TOKEN, data: users},
+      dataType: 'JSON',
+      success: function(){
+        location.href = "/visit";
+      }
+    }); 
+  });
+
   $('#usersearch').on('keyup',function(){
     $usersearch = $(this).val();
     $.ajax({
@@ -186,15 +218,3 @@ $(document).ready(function(){
   });
 
 });
-
-  /** Temp functions **/
-
-  $("#welcome").hide().fadeIn(3000);
-  $(".tabs" ).tabs();
-  $("#sortable" ).sortable();
-  $("#sortable" ).disableSelection();
-
-  $('#printer').click(function(){
-    console.log(sessionStorage.counter);
-    console.log(sessionStorage.users); 
-  });
