@@ -161,6 +161,12 @@ class UserController extends Controller
         return response()->json();
     }
 
+    public function listsync(Request $request)
+    {
+        $users = session()->get('userlist');
+        return Response($users);
+    }
+
     public function statusin(Request $request)
     {
         $userid = $request->data;
