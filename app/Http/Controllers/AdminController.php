@@ -38,7 +38,12 @@ class AdminController extends Controller
 
     public function showDashboard()
     {
-        return view('admins.dashboard');
+        $users = User::where('company', '!=', 'NC-spectrum')->count();
+        $employees = User::where('company', '=', 'NC-spectrum')->count();
+        $visits = Visit::count();
+        $log = Log::count();
+
+        return view('admins.dashboard', compact('users', 'employees', 'visits', 'log'));
     }
 
     public function showGuests()
