@@ -221,6 +221,7 @@ $(document).ready(function(){
         {
           // Upon success means the backend variables are updated, so we fetch the variables from backend and apply them to the
           // frontend variables to keep them synchronized.
+          console.log(data);
           sessionStorage.users = JSON.stringify(data);
           sessionStorage.counter = data.length;
         }

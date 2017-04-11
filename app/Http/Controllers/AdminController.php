@@ -27,7 +27,9 @@ class AdminController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Administrator Login
+     *
+     *
      *
      * @return \Illuminate\Http\Response
      */
@@ -36,29 +38,119 @@ class AdminController extends Controller
  		return view('auth.login');
     }
 
+    /**
+     * Dashboard
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function showDashboard()
     {
         return view('admins.dashboard');
     }
 
+    /**
+     * Guests Overview
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function showGuests()
     {
         $guests = User::orderBy('id', 'desc')->where('company','<>','NC-Spectrum')->paginate(20);
         return view('admins.guests')->withGuests($guests);
     }
 
-     public function showEmployees()
+    /**
+     * Guest Visits
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showGuestVisits($id)
+    {
+        $user = User::find($id);
+        $visits = $user->visits()->orderBy('id','desc')->paginate(20);
+
+        return view ('admins.guestvisits', compact('user', 'visits'));
+    }
+
+    /**
+     * Employees Overview
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showEmployees()
     {
         $employees = User::orderBy('id', 'desc')->where('company','NC-Spectrum')->paginate(20);
         return view('admins.employees')->withEmployees($employees);
     }
 
-     public function showAdmins()
+    /**
+     * Employee Visits
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showEmployeeVisits($id)
+    {
+        $employee = User::find($id);
+
+        $visits = DB::table('visits')
+                    ->where('employee_firstname','=', $employee->firstname)
+                    ->where('employee_lastname','=', $employee->lastname)
+                    ->orderBy('id','desc')
+                    ->paginate(20);
+
+        $guests = array();
+        $visitguests = array();
+        foreach($visits as $visit)
+        {   
+            $guestrows = DB::table('user_visit')
+                ->where('visit_id', $visit->id)
+                ->get();
+
+            foreach($guestrows as $row)
+            {
+                $guest = DB::table('users')
+                ->where('id', $row->user_id)
+                ->get();
+
+                array_push($guests, $guest);
+            }
+            $visitguests[$visit->id][] = $guests;
+            $guests = array();
+        }
+
+        return view ('admins.employeevisits', compact('employee', 'visits', 'visitguests'));
+    }
+
+    /**
+     * Admins Overview
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdmins()
     {
         $admins = Admin::orderBy('id', 'desc')->where('id', '!=', 1)->paginate(20);
         return view('admins.admins')->withAdmins($admins);
     }
 
+    /**
+     * Vists Overview
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function showVisits()
     {
         $visits = Visit::orderBy('id','desc')->paginate(20);
@@ -87,58 +179,78 @@ class AdminController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Administrator Profile
      *
-     * @param  int  $id
+     *
+     *
      * @return \Illuminate\Http\Response
      */
-    public function showDeleteGuest($id)
+    public function showProfile()
     {
-        $guests = User::find($id);
-
-        return view('admins.deleteGuest')->withGuest($guests);
+        $admin = Auth::user();
+        return view('admins.profile')->withAdmin($admin);
     }
 
-     /**
-     * Display the specified resource.
+    /**
+     * Status Overview
      *
-     * @param  int  $id
+     *
+     *
      * @return \Illuminate\Http\Response
      */
-    public function showDeleteEmployee($id)
+    public function showStatus()
     {
-        $employees = User::find($id);
-
-        return view('admins.deleteEmployee')->withEmployee($employees);
+        $users = DB::table('users')
+            ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+            ->where('status','1')
+            ->orderBy('firstname')
+            ->get();
+        
+        return view ('admins.status')->withUsers($users);
     }
 
-     /**
-     * Display the specified resource.
+    /**
+     * Log Overview
      *
-     * @param  int  $id
+     *
+     *
      * @return \Illuminate\Http\Response
      */
-    public function showDeleteAdmin($id)
+    public function showLog()
     {
-        $admin = Admin::find($id);
-        return view('admins.deleteAdmin')->withAdmin($admin);
+        $log = Log::orderBy('id', 'desc')->paginate(20);
+        return view('admins.log')->withLog($log);
     }
 
-
+    /**
+     * Guest Creation Page
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function showCreateGuest()
     {
         return view('admins.createGuest');
     }
 
+    /**
+     * Employee Creation Page
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function showCreateEmployee()
     {
         return view('admins.createEmployee');
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Guest Edit Page
      *
-     * @param  int  $id
+     *
+     *
      * @return \Illuminate\Http\Response
      */
     public function showEditGuest($id)
@@ -148,9 +260,10 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Employee Edit Page
      *
-     * @param  int  $id
+     *
+     *
      * @return \Illuminate\Http\Response
      */
     public function showEditEmployee($id)
@@ -160,9 +273,10 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Administrator Edit Page
      *
-     * @param  int  $id
+     *
+     *
      * @return \Illuminate\Http\Response
      */
     public function showEditAdmin($id)
@@ -171,16 +285,58 @@ class AdminController extends Controller
         return view('admins.editAdmin')->withAdmin($admin);
     }
 
-     /**
-     * Show the form for editing the specified resource.
+    /**
+     * Administrator Password Edit Page
      *
-     * @param  int  $id
+     *
+     *
      * @return \Illuminate\Http\Response
      */
     public function showEditAdminPassword($id)
     {
         $admin = Admin::find($id);
         return view('admins.editAdminPassword')->withAdmin($admin);
+    }
+
+    /**
+     * Guest Deletion Page
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showDeleteGuest($id)
+    {
+        $guests = User::find($id);
+
+        return view('admins.deleteGuest')->withGuest($guests);
+    }
+
+    /**
+     * Employee Deletion Page
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showDeleteEmployee($id)
+    {
+        $employees = User::find($id);
+
+        return view('admins.deleteEmployee')->withEmployee($employees);
+    }
+
+    /**
+     * Administrator Deletion Page
+     *
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showDeleteAdmin($id)
+    {
+        $admin = Admin::find($id);
+        return view('admins.deleteAdmin')->withAdmin($admin);
     }
 
     /**
@@ -523,58 +679,6 @@ class AdminController extends Controller
         }
     }
 
-    public function showGuestVisits($id)
-    {
-        $user = User::find($id);
-        $visits = $user->visits()->orderBy('id','desc')->paginate(20);
-
-        return view ('admins.guestvisits', compact('user', 'visits'));
-    }
-
-    public function showEmployeeVisits($id)
-    {
-        $employee = User::find($id);
-
-        $visits = DB::table('visits')
-                    ->where('employee_firstname','=', $employee->firstname)
-                    ->where('employee_lastname','=', $employee->lastname)
-                    ->orderBy('id','desc')
-                    ->paginate(20);
-
-        $guests = array();
-        $visitguests = array();
-        foreach($visits as $visit)
-        {   
-            $guestrows = DB::table('user_visit')
-                ->where('visit_id', $visit->id)
-                ->get();
-
-            foreach($guestrows as $row)
-            {
-                $guest = DB::table('users')
-                ->where('id', $row->user_id)
-                ->get();
-
-                array_push($guests, $guest);
-            }
-            $visitguests[$visit->id][] = $guests;
-            $guests = array();
-        }
-
-        return view ('admins.employeevisits', compact('employee', 'visits', 'visitguests'));
-    }
-
-    public function showStatus()
-    {
-        $users = DB::table('users')
-            ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
-            ->where('status','1')
-            ->orderBy('firstname')
-            ->get();
-        
-        return view ('admins.status')->withUsers($users);
-    }
-
     public function checkout($id)
     {
         $user = User::find($id);
@@ -589,18 +693,6 @@ class AdminController extends Controller
         }
 
         return redirect('admin/status');
-    }
-
-    public function showLog()
-    {
-        $log = Log::orderBy('id', 'desc')->paginate(20);
-        return view('admins.log')->withLog($log);
-    }
-
-    public function showProfile()
-    {
-        $admin = Auth::user();
-        return view('admins.profile')->withAdmin($admin);
     }
 
     public function updateAvatar(Request $request)
