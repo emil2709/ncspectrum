@@ -7,6 +7,7 @@ Route::get('/create', ['as' => 'users.create', 'uses' => 'UserController@create'
 Route::post('user', ['as' => 'users.storeUser', 'uses' => 'UserController@storeUser']);
 Route::get('/usersearch', ['as' => 'usersearch', 'uses' => 'UserController@usersearch']);
 Route::get('/listsync', ['as' => 'listsync', 'uses' => 'UserController@listsync']);
+Route::get('/autosync', 'UserController@autosync');
 Route::post('/userlist', 'UserController@userlist');
 Route::post('/statusin', 'UserController@statusin');
 Route::post('/statusout', 'UserController@statusout');

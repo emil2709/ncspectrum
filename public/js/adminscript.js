@@ -104,9 +104,9 @@ $(".guest-expansion-btn").click(function(event)
  * This function is connected to the "AdminController" with method "search()".
  */
 $('#search').on('keyup',function(){
-  // Gets the values/letters that is typed in the livesearch-field
+  // Gets the values/letters that is typed in the livesearch-field.
   $search = $(this).val();
-  // Sends the values to the controller to preform a livesearch
+  // Sends the values to the controller to preform a livesearch.
   $type = $('#type').val();
   $.ajax({
     type: 'get',
@@ -114,7 +114,7 @@ $('#search').on('keyup',function(){
     data: {'search':$search,'type':$type},
     success:function(data)
     {
-      // Result will replace the contents of the written ID
+      // Result will replace the contents of the written ID.
       $('#searchresult').html(data);
     }
 

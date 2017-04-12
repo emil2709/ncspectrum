@@ -1,6 +1,30 @@
 $(document).ready(function(){
 
   /**
+   * Page Check
+   *
+   * This function is only ran on the page with URL "/", aka the index/home page in order to
+   * set some startup values and do some pageload-checks.
+   * 
+   * SessionStorage: Session variable is set in order to store and transfer values across all fucntions.
+   * CSRF-token: Set in order for the communication between fontend and backend to work properly.
+   * Function "startup()": Runs on every page-load in order to check some startup values and synchronize.
+   * Function "SetInterval()": Will run two backup functions in a set interval and check if there any missmatches,
+   * if there are, the functions will try to fix the errors and refresh the page.
+   */
+  if(window.location.pathname == "/")
+  {
+    window.sessionStorage;
+    window.CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    window.onload = startup();
+  
+    setInterval(function() {
+      listsync();
+      autosync();
+    }, 10 * 1000); // 60 * 1000 milsec
+  }
+
+  /**
    * Dynamic Alerts
    *
    * This global timeout is set to make the Bootstrap alerts more dynamic.
@@ -12,29 +36,6 @@ $(document).ready(function(){
           $(this).remove(); 
       });
   }, 4000);
-  
-  /**
-   * Page Check
-   *
-   * This function is only ran on the page with URL "/", aka the index/home page in order to
-   * set some startup values and do some pageload-checks.
-   * 
-   * SessionStorage: Session variable is set in order to store and transfer values across all fucntions.
-   * CSRF-token: Set in order for the communication between fontend and backend to work properly.
-   * Function "startup()": Runs on every page-load in order to check some startup values and synchronize.
-   * Function "SetInterval()": will reload the page every 15min in order to synchronize the frontend 
-   * checkin/checkout statuses with the ones in the database.
-   */
-  if(window.location.pathname == "/")
-  {
-    window.sessionStorage;
-    window.CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    window.onload = startup();
-  
-    setInterval(function() {
-      location.reload(true);
-    }, 900 * 1000); // 60 * 1000 milsec
-  }
 
   /**
    * Drag and Drop Connection
@@ -156,6 +157,11 @@ $(document).ready(function(){
         var users = new Array();
         sessionStorage.users = JSON.stringify(users);
     }
+     if(!sessionStorage.visitors)
+    {
+        var visitors = new Array();
+        sessionStorage.visitors = JSON.stringify(visitors);
+    }
     checkinCheck();
   }
 
@@ -183,49 +189,6 @@ $(document).ready(function(){
     else
     {
       $("#checkin-btn").attr('disabled', false);
-    }
-    if((listlength <= 0) || (listlength != users.length))
-    {
-      listsync();
-    }
-  }
-
-  /**
-   * List Synchronize
-   *
-   * This function is called whenever the inlist is empty or the inlist length and users arraylength 
-   * does not match. This is done in order to properly synchronize the client-sided variables and arrays.
-   * This is mostly used as a backup function incase someone changes the checkin status of one or more users in the backend. 
-   * The backend status change will not get registered in the frontend variables and arrays, so to keep both backend and frontend 
-   * variables consistent and synchronized this function is called.
-   * This function is connected to the "UserController" with method "listsync()".
-   * 
-   */
-  function listsync()
-  {
-    var listlength = sessionStorage.listlength;
-    var users = JSON.parse(sessionStorage.users);
-
-    if(listlength <= 0)
-    {
-      newusers = new Array();
-      sessionStorage.users = JSON.stringify(newusers);
-      sessionStorage.counter = 0;
-    }
-    else
-    {
-      $.ajax({
-        type: 'get',
-        url: '/listsync',
-        success:function(data)
-        {
-          // Upon success means the backend variables are updated, so we fetch the variables from backend and apply them to the
-          // frontend variables to keep them synchronized.
-          console.log(data);
-          sessionStorage.users = JSON.stringify(data);
-          sessionStorage.counter = data.length;
-        }
-      });
     }
   }
 
@@ -266,6 +229,7 @@ $(document).ready(function(){
     }
     sessionStorage.counter = counter;
     sessionStorage.users = JSON.stringify(users);
+    sessionStorage.visitors = sessionStorage.users;
   }
 
   /**
@@ -325,11 +289,78 @@ $(document).ready(function(){
       data: {_token: CSRF_TOKEN, data: users},
       dataType: 'JSON',
       success: function(){
+        sessionStorage.visitors = sessionStorage.users;
         location.href = "/visit";
       }
     }); 
   });
 
+  /**
+   * Automatic Synchronization
+   *
+   * This function is called in a set interval (function with timer on top of the script).
+   * The purpose of this script is to check if the frontend arrays match with the backend ones.
+   * If there is a missmatch where the backend array is shorter than the frontend ones, that
+   * probably means an administrator have manually checked someone out and will proceed to
+   * fetch the up-to-date array from the backend and update the frontend variables before refreshing the page.
+   * This function is connected to the "UserController" with method "autosync()".
+   */
+  function autosync()
+  {
+    var visitors = JSON.parse(sessionStorage.visitors);
+    $.ajax({
+      type: 'get',
+      url: '/autosync',
+      success:function(data)
+      {
+        // If there is a missmatch between backend and frontend array length.
+        if(data.length < visitors.length)
+        {
+          // Updates the frontend variables with the up-to-date backend ones.
+          sessionStorage.users = JSON.stringify(data);
+          sessionStorage.visitors = JSON.stringify(data);
+          sessionStorage.counter = data.length;
+          location.reload(true);
+        }
+      }
+    });
+  }
+
+  /**
+   * List Synchronize
+   *
+   * This function is called in a set interval (function with timer on top of the script).
+   * The whole purpose of this function is to check if there are any missmatches in the various tracking variables.
+   * If there are any missmatches, there is probably a unfixable usermade or administratormade error and 
+   * the fucntion will send an AJAX request to usercontroller and reset the backend variables
+   * before reseting the frontend variables and refresh the page. 
+   * This function is connected to the "UserController" with method "listsync()".
+   */
+  function listsync()
+  {
+    var listlength = sessionStorage.listlength;
+    var visitors = JSON.parse(sessionStorage.visitors);
+    var users = JSON.parse(sessionStorage.users);
+
+    // If there are any unfixable missmatches.
+    if((listlength != visitors.length) && (listlength != users.length))
+    {
+      $.ajax({
+        type: 'get',
+        url: '/listsync',
+        success:function(data)
+        {
+          // Resets all the variables before refreshing the page.
+          newusers = new Array();
+          sessionStorage.users = JSON.stringify(newusers);
+          newvisitors = new Array();
+          sessionStorage.visitors = JSON.stringify(newvisitors);
+          sessionStorage.counter = 0;
+          location.reload(true);
+        }
+      });
+    }
+  }
 
   /**
    * Livesearch 
@@ -340,16 +371,16 @@ $(document).ready(function(){
    * This function is connected to the "UserController" with method "usersearch()".
    */
   $('#usersearch').on('keyup',function(){
-    // Gets the values/letters that is typed in the livesearch-field
+    // Gets the values/letters that is typed in the livesearch-field.
     $usersearch = $(this).val();
-    // Sends the values to the controller to preform a livesearch
+    // Sends the values to the controller to preform a livesearch.
     $.ajax({
       type: 'get',
       url: '/usersearch',
       data: {'usersearch':$usersearch},
       success:function(data)
       {
-        // Result will replace the contents of the written ID
+        // Result will replace the contents of the written ID.
         $('#outlist').html(data);
       }
     });
@@ -363,5 +394,6 @@ $('#printer').click(function()
       console.log("LIST: "+sessionStorage.listlength);
       console.log("ARRAY: "+users.length);
       console.log("COUNTER: " +sessionStorage.counter);
-      console.log(sessionStorage.users);
+      console.log("USERS: "+sessionStorage.users);
+      console.log("VISITORS: "+sessionStorage.visitors);
 });

@@ -722,7 +722,7 @@ class AdminController extends Controller
         }
         else
         {
-            Session::flash('error', 'The current password is not correct.');
+            Session::flash('error', 'The password is not correct.');
             return redirect()->back();
         }
     }
@@ -911,25 +911,21 @@ class AdminController extends Controller
 
         // Trims away unnecessary spaces.
         $admin = trim(Auth::user()->firstname.' '.Auth::user()->lastname);
+        $role = ucfirst(strtolower($role));
 
-        // Checks the status/log type.
+       // Creates the log entry based on the status/log type.
         switch ($type) 
         {
             case 'create':
-                $status = 'created';
+                $data = 'Admin: '.$admin.', created '.$role.': '.$user.'.';
                 break;
             case 'update':
-                $status = 'updated';
+                $data = 'Admin: '.$admin.', updated '.$role.': '.$user.'.';
                 break;
             case 'delete':
-                $status = 'deleted';
+                $data = 'Admin: '.$admin.', deleted '.$role.': '.$user.'.';
                 break;
         }
-
-        $role = ucfirst(strtolower($role));
-
-        // Creates the log entry.
-        $data = 'Admin: '.$admin.', '.$status.' '.$role.': '.$user.'.';
 
         // Creates and saves the log entry.
         $log->type = $type;
@@ -1145,7 +1141,11 @@ class AdminController extends Controller
             // If the output is empty, means the search did not find any matches.
             if($output == "")
             {
-                $output = "<div class='margin-top' id='notfound'><strong>".$search."</strong> was not found</div>";
+                $output = "<td colspan='5' id='notfound'>".
+                            "<div class='margin-top text-center'>".
+                                "<i><strong><u>".$search."</u></strong> was not found</i>".
+                            "</div>".
+                          "</td>";
                 return Response($output);
             }
             else

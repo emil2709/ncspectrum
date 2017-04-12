@@ -22,7 +22,7 @@
 				<div class="col-md-12 margin-bottom">
 					<div class="input-group" id="usersearch-div">        
 				       <span class="input-group-addon" id="search-addon"><i class="glyphicon glyphicon-search"></i></span>
-				       <input type="text" id="usersearch" class="form-control" placeholder="Name ...">
+				       <input type="text" id="usersearch" class="form-control" placeholder="Search ...">
 				    </div>
 				</div>
 				<div class="col-md-12">

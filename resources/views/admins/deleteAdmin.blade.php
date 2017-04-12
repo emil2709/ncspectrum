@@ -4,7 +4,7 @@
 
 @section('content')
 
-@if(Auth::user()->id == 1 || Auth::user()->id == $admin->id)
+@if(Auth::user()->id == 1 && $admin->id != 1)
 	<div class="col-md-10 col-md-offset-1 panel-group">
 		<div class="panel panel-danger margin-top">
 
@@ -16,16 +16,26 @@
 				{!! Form::open(['route' => ['admins.destroyAdmin', $admin->id], 
 					'method' => 'POST', 'data-toggle' => 'validator']) !!}
 					<div class="row">
-						<h4 class="text-center">Are you sure?</h4>
+						<h3 class="text-center">Are you sure?</h3>
 						<hr/>
 						<div class="cold-md-10 col-md-offset-1">
-							<div class="col-md-12">
-								<strong>{{$admin->firstname}} {{$admin->lastname}}</strong>
+							<div>
+								<div class="col-md-1">
+									<span><i class="glyphicon glyphicon-user delete-icon"></i></span>
+								</div>
+								<div class="col-md-11">
+									<strong>{{$admin->firstname}} {{$admin->lastname}}</strong>
+								</div>
 							</div>
-							<div class="col-md-12 margin-bottom">
-								<strong>{{$admin->email}}</strong>
+							<div>
+								<div class="col-md-1">
+									<span><i class="glyphicon glyphicon-envelope delete-icon"></i></span>
+								</div>
+								<div class="col-md-11 margin-bottom">
+									<strong>{{$admin->email}}</strong>
+								</div>
 							</div>
-							<div class="form-group has-feedback">
+							<div class="form-group">
 								<div class="col-md-12 control-label">
 									{{ Form::label('password', 'Confirm deletion by entering your password:') }}
 								</div>
@@ -35,9 +45,7 @@
 										{{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'System Administrator Password ...', 'required', 'minlength="6"', 'maxlength="60"', 
 											'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
 									</div>
-									<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 								</div>
-								<div class="help-block with-errors"></div>
 							</div>
 						</div>
 					</div>

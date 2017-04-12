@@ -39,6 +39,9 @@ class UserController extends Controller
             ->orderBy('id','desc')
             ->get();
 
+            $userlist = session()->get('userlist');
+            Logger::info($userlist);
+
         return view('users.index', compact('usersout', 'usersin'));
     }
 
@@ -219,24 +222,6 @@ class UserController extends Controller
     }
 
     /**
-     * List Synchronization
-     *
-     * This method is called from an AJAX request.
-     * Whenever there is a missmatch in the various frontend variables that keeps track of who is checked in or out,
-     * that probably means an admin has changed one or multiple users stauses. 
-     * That means the backend variables are up-to-date while the frontend variables needs to be updated, so
-     * an AJAX request is sent from frontend and we respond with the updated variables. 
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function listsync(Request $request)
-    {
-        $users = session()->get('userlist');
-        return Response($users);
-    }
-
-    /**
      * Status in
      *
      * This method is called upon by an AJAX request whenever a user checks in.
@@ -288,6 +273,60 @@ class UserController extends Controller
                 ->update(['status' => false, 'statuses.updated_at' => Carbon::now()]);
 
         return response()->json();
+    }
+
+    /**
+     * Automatic Synchronization
+     *
+     * This method is called from an AJAX request.
+     * This method is called in a set interval (set in userscript.js).
+     * The whole purpose is to send the backend userlist to the frontend to 
+     * synchronize and see if there are any missmatches. 
+     * By missmatch this method is refering to if an administrator manually checks out a guest,
+     * in that case the backend array is updated, but the frontend variables are not.
+     * Hence we need to send the backend array to update the frontend variables.
+     * 
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function autosync(Request $request)
+    {
+        $userlist = session()->get('userlist');
+        return response($userlist);
+    }
+
+    /**
+     * List Synchronization
+     *
+     * This method is called from an AJAX request.
+     * Whenever there is a missmatch in the various frontend variables that keeps track of who is checked in or out,
+     * there is probably an error which can not be fixed unless we reset the variables.
+     * This is most likely caused by an unforseen user error or administrator error.
+     * This method will reset the backend variables and statuses, and respond to the AJAX request so the
+     * frontend variables also get reset before refreshing the users homepage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function listsync(Request $request)
+    {
+        // Fetches the backend array of checked in users.
+        $userlist = session()->get('userlist');
+
+        // Changes their status to false.
+        foreach($userlist as $userid)
+        {
+            $user = DB::table('users')
+                ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+                ->where('id', $userid)
+                ->update(['status' => false, 'statuses.updated_at' => Carbon::now()]);
+        }
+
+        // Creates a new empty array.
+        $reset = array();
+        session()->put('userlist', $reset);
+        return Response('reset');
     }
 
     /**
@@ -364,7 +403,9 @@ class UserController extends Controller
             // If no users are found.
             if($output == "")
             {
-                $output = "<div class='margin-top text-center' id='notfound'><i><strong>".$search."</strong> was not found</i></div>";
+                $output = "<div class='margin-top text-center' id='notfound'>".
+                            "<i><strong><u>".$search."</u></strong> was not found</i>".
+                          "</div>";
                 return Response($output);
             }
             // One or more users found.
