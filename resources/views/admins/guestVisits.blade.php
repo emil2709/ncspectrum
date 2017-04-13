@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h2 class="sub-header">{{ $user->firstname }} {{ $user->lastname }}</h2>
+<h2 class="sub-header">{{ $guest->firstname }} {{ $guest->lastname }}</h2>
 
 <div class="table-responsive">
 	<table class="table table-striped margin-top tablesorter" id="myTable">
