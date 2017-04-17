@@ -60,6 +60,4 @@
 </script>
 {{ Html::script('js/cake-highcharts.js') }}
 
-
-
 @endsection

@@ -5,8 +5,8 @@
 @section('content')
 
 	<div class="col-md-10 col-md-offset-1">
-		{!! Form::open(['route' => 'users.storeVisit', 'class' => 'well form-horizontal margin-top', 'data-toggle' => 'validator', 
-			'onsubmit' => 'checkinsubmit()']) !!}
+		{!! Form::open(['route' => 'users.storeVisit', 'class' => 'well form-horizontal margin-top', 
+			'data-toggle' => 'validator']) !!}
 			
 			<fieldset>
 				
