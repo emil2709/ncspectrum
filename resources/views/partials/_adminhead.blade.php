@@ -14,6 +14,7 @@
 	<!-- JQuery UI -->
 	<!-- Latest compiled CSS -->
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
 		
 	<!-- Our own custom css rules -->
 	{{ Html::style('css/mainsheet.css') }}

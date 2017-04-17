@@ -11,6 +11,7 @@ hence placed at the bottom of the main sheets.
 <!-- Latest compiled and minifed Bootstrap Javascript Validator  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 
+
 <!-- Our own script for various behaviours and actions -->
 {{ Html::script('js/adminscript.js') }}
 {{ Html::script('js/jquery.tablesorter.min.js') }}

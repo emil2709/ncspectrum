@@ -42,8 +42,13 @@ class AdminController extends Controller
         $employees = User::where('company', '=', 'NC-spectrum')->count();
         $visits = Visit::count();
         $log = Log::count();
+        $statuses = DB::table('users')
+            ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+            ->where('status','1')
+            ->orderBy('firstname')
+            ->get();
 
-        return view('admins.dashboard', compact('users', 'employees', 'visits', 'log'));
+        return view('admins.dashboard', compact('users', 'employees', 'visits', 'log', 'statuses'));
     }
 
     public function showGuests()
