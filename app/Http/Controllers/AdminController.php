@@ -40,6 +40,7 @@ class AdminController extends Controller
     {
         $users = User::where('company', '!=', 'NC-spectrum')->count();
         $employees = User::where('company', '=', 'NC-spectrum')->count();
+        $admins = Admin::count();
         $visits = Visit::count();
         $log = Log::count();
         $statuses = DB::table('users')
@@ -48,7 +49,7 @@ class AdminController extends Controller
             ->orderBy('firstname')
             ->get();
 
-        return view('admins.dashboard', compact('users', 'employees', 'visits', 'log', 'statuses'));
+        return view('admins.dashboard', compact('users', 'employees', 'visits', 'log', 'statuses', 'admins'));
     }
 
     public function showGuests()

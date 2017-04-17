@@ -1,6 +1,5 @@
 Highcharts.chart('container', {
 
-
 chart: {
     type: 'pie',
     options3d: {
@@ -9,7 +8,7 @@ chart: {
     }
 },
 title: {
-    text: 'Active users and employees registered in the system'
+    text: 'Users, employees and admins'
 },
 subtitle: {
     text: 'NC-Spectrum'
@@ -20,11 +19,14 @@ plotOptions: {
         depth: 45
     }
 },
+colors : ['#00adef', '#c5e837', '#55c43b'],
+
 series: [{
     name: 'Amount',
     data: [
-        ['Users', 33],
-        ['Employees', 3],
+        ['Users', users],
+        ['Employees', employees],
+        ['Administrators', admins],
     ]
   }]
 });

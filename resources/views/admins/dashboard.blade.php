@@ -5,22 +5,27 @@
 @section('content')
   <h1 class="page-header">Dashboard</h1>
 
-    <div class="col-xs-6 col-sm-3 placeholder">
+    <div class="col-xs-6 col-sm-2 placeholder">
       <span class="glyphicon glyphicon-user"></span>
-      <h4>Registered users</h4>
+      <h4>Guests</h4>
       <a href="guests">{{ $users }}</a>
     </div>
-    <div class="col-xs-6 col-sm-3 placeholder">
+    <div class="col-xs-6 col-sm-2 placeholder">
     <span class="glyphicon glyphicon-th-list"></span>
-      <h4>Registered employees</h4>
+      <h4>Employees</h4>
       <a href="guests">{{ $employees }}</a>
     </div>
     <div class="col-xs-6 col-sm-3 placeholder">
+    <span class="glyphicon glyphicon-hand-up"></span>  
+      <h4>Administrators</h4>
+      <a href="admins">{{ $admins }}</a>
+    </div>
+    <div class="col-xs-6 col-sm-2 placeholder">
     <span class="glyphicon glyphicon-star-empty"></span>
       <h4>Visits</h4>
       <a href="visits">{{ $visits }}</a>
     </div>
-    <div class="col-xs-6 col-sm-3 placeholder">
+    <div class="col-xs-6 col-sm-2 placeholder">
     <span class="glyphicon glyphicon-globe"></span>
       <h4>Log </h4>
       <a href="log">{{ $log }}</a>
@@ -33,7 +38,7 @@
     <div id="container" style="height: 350px"></div>
   </div>
 
-  <div class="col-md-4 col-sm-4" style="border:thin">
+  <div class="col-md-3 col-sm-3" style="border:thin">
   <h4>Checked-in</h4>
   <table class="table margin-top tablesorter" id="myTable">
     @foreach ($statuses as $status)
@@ -47,13 +52,14 @@
 
   </div>
 
+<script type="text/javascript">
+  var users = {{ json_encode($users) }};
+  var employees = {{ json_encode($employees) }};
+  var admins = {{ json_encode($admins) }};
 
-
-  
-
-   
-
-
+</script>
 {{ Html::script('js/cake-highcharts.js') }}
+
+
 
 @endsection
