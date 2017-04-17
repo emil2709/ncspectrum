@@ -30,8 +30,46 @@
               <a href="log">{{ $log }}</a>
             </div>
           </div>
+          <!-- Highchart -->
+          <script src="https://code.highcharts.com/highcharts.js"></script>
+          <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+          <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+          <div id="container" style="height: 400px"></div>
         
       </div>
     </div>
+
+<script>
+      Highcharts.chart('container', {
+      //var php_users = {{ $users }}
+      chart: {
+          type: 'pie',
+          options3d: {
+              enabled: true,
+              alpha: 45
+          }
+      },
+      title: {
+          text: 'Contents of Highsoft\'s weekly fruit delivery'
+      },
+      subtitle: {
+          text: '3D donut in Highcharts'
+      },
+      plotOptions: {
+          pie: {
+              innerSize: 100,
+              depth: 45
+          }
+      },
+      series: [{
+          name: 'Amount',
+          data: [
+              ['Users', 2],
+              ['Employees', 3],
+          ]
+      }]
+  });
+</script>
 
 @endsection
