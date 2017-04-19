@@ -358,7 +358,7 @@ $(document).ready(function(){
           newvisitors = new Array();
           sessionStorage.visitors = JSON.stringify(newvisitors);
           sessionStorage.counter = 0;
-                    alert('An error occured. Please try again.');
+                    //alert('An error occured. Please try again.');
           location.reload(true);
         }
       });
