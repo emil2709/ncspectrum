@@ -11,8 +11,6 @@ class VisitsTableSeeder extends Seeder
      */
     public function run()
     {
-        /*factory(App\Visit::class, 10)->create()->each(function ($u) {
-        	$u->users()->save(factory(App\User::class)->make());
-        });*/
+        //
     }
 }
