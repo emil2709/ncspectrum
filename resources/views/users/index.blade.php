@@ -9,9 +9,6 @@
 				<div class='col-md-2 pull-right'>
 					<a href='{{ route('users.create') }}' class='btn btn-primary btn-block'>CREATE NEW USER</a>
 				</div>
-				<div class='col-md-2 pull-right'>
-					<a id="printer" class='btn btn-primary btn-block'>PRINT</a>
-				</div>
 			</div>
 
 			<div class="col-md-6 margin-top">

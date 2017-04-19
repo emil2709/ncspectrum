@@ -21,6 +21,7 @@ $(document).ready(function(){
     setInterval(function() {
       listsync();
       autosync();
+      console.log('check');
     }, 10 * 1000); // 60 * 1000 milsec
   }
 
@@ -345,6 +346,7 @@ $(document).ready(function(){
     // If there are any unfixable missmatches.
     if((listlength != visitors.length) && (listlength != users.length))
     {
+      console.log('listsync');
       $.ajax({
         type: 'get',
         url: '/listsync',
@@ -356,6 +358,7 @@ $(document).ready(function(){
           newvisitors = new Array();
           sessionStorage.visitors = JSON.stringify(newvisitors);
           sessionStorage.counter = 0;
+                    alert('An error occured. Please try again.');
           location.reload(true);
         }
       });
@@ -386,14 +389,4 @@ $(document).ready(function(){
     });
   });
 
-});
-
-$('#printer').click(function()
-{
-      var users = JSON.parse(sessionStorage.users);
-      console.log("LIST: "+sessionStorage.listlength);
-      console.log("ARRAY: "+users.length);
-      console.log("COUNTER: " +sessionStorage.counter);
-      console.log("USERS: "+sessionStorage.users);
-      console.log("VISITORS: "+sessionStorage.visitors);
 });

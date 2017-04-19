@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Log as Logger;
 use Carbon\Carbon;
 use App\User;
 use App\Status;
@@ -40,7 +39,6 @@ class UserController extends Controller
             ->get();
 
             $userlist = session()->get('userlist');
-            Logger::info($userlist);
 
         return view('users.index', compact('usersout', 'usersin'));
     }
@@ -181,12 +179,15 @@ class UserController extends Controller
         $visit->employee_firstname = $employee->firstname;
         $visit->employee_lastname = $employee->lastname;
 
-        $visit->from = Carbon::now();
-        $to = Carbon::now();
+        // Records the most recent visit date-time into a session variable
+        $now = Carbon::now();
+        session()->put('latestVisit', $now);
+
+        $visit->from = $now;
+        $to = Carbon::now();;
         $to = $to->addHour($hours);
         $to = $to->addMinutes($minutes);
         $visit->to = $to;
-
         $visit->save();
 
         // Each participating user will acquire a row with the newly created visit's id.
@@ -326,7 +327,7 @@ class UserController extends Controller
         // Creates a new empty array.
         $reset = array();
         session()->put('userlist', $reset);
-        return Response('reset');
+        return Response('');
     }
 
     /**

@@ -7,49 +7,54 @@
   <h2 class="sub-header">Dashboard</h2>
   <div class="row margin-top">
     <div class="col-xs-6 col-sm-2 placeholder">
-      <span class="glyphicon glyphicon-user"></span>
       <h4>Guests</h4>
-      <a href="{{route('admins.guests')}}">{{ $users }}</a>
+      <span class="glyphicon glyphicon-user"></span>
+      <a href="{{route('admins.guests')}}" class="pull-right">{{ $guests }}</a>
     </div>
 
     <div class="col-xs-6 col-sm-2 placeholder">
-      <span class="glyphicon glyphicon-th-list"></span>
       <h4>Employees</h4>
-      <a href="{{route('admins.employees')}}">{{ $employees }}</a>
+      <span class="glyphicon glyphicon-briefcase"></span>
+      <a href="{{route('admins.employees')}}" class="pull-right">{{ $employees }}</a>
     </div>
 
-    <div class="col-xs-6 col-sm-3 placeholder">
-      <span class="glyphicon glyphicon-hand-up"></span>  
+    <div class="col-xs-6 col-sm-2 placeholder">  
       <h4>Administrators</h4>
-      <a href="{{route('admins.admins')}}">{{ $admins }}</a>
-    </div>
-
-    <div class="col-xs-6 col-sm-2 placeholder">
       <span class="glyphicon glyphicon-star-empty"></span>
-      <h4>Visits</h4>
-      <a href="{{route('admins.visits')}}">{{ $visits }}</a>
+      <a href="{{route('admins.admins')}}" class="pull-right">{{ $admins }}</a>
     </div>
 
     <div class="col-xs-6 col-sm-2 placeholder">
-      <span class="glyphicon glyphicon-globe"></span>
-      <h4>Log</h4>
-      <a href="{{route('admins.log')}}">{{ $log }}</a>
+      <h4>Visits</h4>
+      <span class="glyphicon glyphicon-home"></span>
+      <a href="{{route('admins.visits')}}" class="pull-right">{{ $visits }}</a>
+    </div>
+
+    <div class="col-xs-6 col-sm-2 placeholder">
+      <h4>Log entries</h4>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      <a href="{{route('admins.log')}}" class="pull-right">{{ $log }}</a>
+    </div>
+
+    <div class="col-xs-6 col-sm-2 placeholder">
+      <h4>Latest Visit</h4>
+      {{ date('j-m-Y - H:i', strtotime($latestVisit)) }}</a>
     </div>
   </div>
 
   <!-- Highchart -->
   <div class="row margin-top">
     <div class="col-md-7 col-sm-1">
-      <div id="container" style="height: 300px"></div>
+      <div id="piechart" style="height: 330px"></div>
     </div>
 
-    <div class="col-md-3 col-sm-3" style="border:thin">
-      <h4>Checked-in</h4>
-      <table class="table margin-top tablesorter" id="myTable">
+    <div class="col-md-5 col-sm-3 text-center" style="border:thin">
+      <caption class="text-center"><h4>Checked-In Guests</h4></caption>
+      <table class="table" id="dashboard-status">
         @foreach ($statuses as $status)
           <tr>
-            <td>{{ $status->firstname }}</td>
-            <td>{{ $status->lastname }}</td>
+            <td>{{ $status->firstname }} {{ $status->lastname }}</td>
+            <td>{{ $status->company }}</td>
           </tr>
         @endforeach
       </table>
@@ -59,7 +64,7 @@
 
   <!-- JavaScript -->
   <script type="text/javascript">
-    var users = {{ json_encode($users) }};
+    var guests = {{ json_encode($guests) }};
     var employees = {{ json_encode($employees) }};
     var admins = {{ json_encode($admins) }};
   </script>

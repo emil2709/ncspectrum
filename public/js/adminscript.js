@@ -24,6 +24,13 @@ $(document).ready(function(){
   $("#myTable").tablesorter({dateFormat: "uk"}); 
 }); 
 
+$(document).ready(function(){ 
+  if($('#dashboard-status tr').length == 0)
+  {
+    $('#dashboard-status').html('<tr><td class="faint-placeholder"><i>(Currently no checked-in guests)</i></td></tr>');
+  }
+});
+
 /**
  * Upload Avatar Button 
  *

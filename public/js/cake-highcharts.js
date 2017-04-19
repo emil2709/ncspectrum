@@ -1,4 +1,4 @@
-Highcharts.chart('container', {
+Highcharts.chart('piechart', {
 
 chart: {
     type: 'pie',
@@ -8,10 +8,10 @@ chart: {
     }
 },
 title: {
-    text: 'Users, employees and admins'
+    text: 'NC-Spectrum'
 },
 subtitle: {
-    text: 'NC-Spectrum'
+    text: 'Guests, Employees and Administrators'
 },
 plotOptions: {
     pie: {
@@ -19,14 +19,16 @@ plotOptions: {
         depth: 45
     }
 },
-colors : ['#00adef', '#c5e837', '#55c43b'],
-
 series: [{
     name: 'Amount',
     data: [
-        ['Users', users],
+        ['Guests', guests],
         ['Employees', employees],
         ['Administrators', admins],
     ]
-  }]
+  }],
+colors : ['#00adef', '#c5e837', '#55c43b'],
+credits: { enabled: false },
+exporting: { enabled: false },
+
 });

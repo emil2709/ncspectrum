@@ -17,6 +17,9 @@
         <th class="sortable-header">
           Lastname <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></span>
         </th>
+        <th class="sortable-header">
+          Company <span class="glyphicon glyphicon-resize-vertical" id="sortableTable-icon"></span>
+        </th>
         <th class="not-sortable">Status</th>
         <th class="not-sortable"></th>
     	</tr>
@@ -27,6 +30,7 @@
         <tr>
           <td>{{ $user->firstname }}</td>
           <td>{{ $user->lastname }}</td>
+          <td>{{ $user->company }}</td>
           <td>
             <span class="glyphicon glyphicon-ok" id="checkedin" title="Checked-in"></span>
           </td>

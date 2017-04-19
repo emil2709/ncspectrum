@@ -16,7 +16,6 @@ use Hash;
 use Auth;
 use Image;
 use File;
-use Illuminate\Support\Facades\Log as Logger;
 
 class AdminController extends Controller
 {
@@ -48,13 +47,14 @@ class AdminController extends Controller
     /**
      * Dashboard
      *
-     * This method returns the homepage for Administrators, the Dashboard.
+     * This method returns the Administrator Dashboard along with some statistics
+     * fetched from the database.
      *
      * @return \Illuminate\Http\Response
      */
     public function showDashboard()
     {
-        $users = User::where('company', '!=', 'NC-spectrum')->count();
+        $guests = User::where('company', '!=', 'NC-spectrum')->count();
         $employees = User::where('company', '=', 'NC-spectrum')->count();
         $admins = Admin::count();
         $visits = Visit::count();
@@ -64,8 +64,8 @@ class AdminController extends Controller
             ->where('status','1')
             ->orderBy('firstname')
             ->get();
-
-        return view('admins.dashboard', compact('users', 'employees', 'visits', 'log', 'statuses', 'admins'));
+        $latestVisit = session()->get('latestVisit');
+        return view('admins.dashboard', compact('guests', 'employees', 'admins', 'visits', 'statuses', 'log', 'latestVisit'));
     }
 
     /**

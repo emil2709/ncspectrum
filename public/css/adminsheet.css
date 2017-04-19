@@ -8,6 +8,10 @@ body {
   padding-top: 50px;
 }
 
+caption {
+  color: black;
+}
+
 /*** Navigation Bar ***/
 
 .navbar-default {
@@ -21,7 +25,7 @@ body {
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: black;
+    color: #fff;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -29,7 +33,7 @@ body {
 }
 
 .navbar-default .navbar-nav>li>a:hover {
-    color: black;
+    color:black;
 }
 
 .navbar-default 
@@ -42,12 +46,12 @@ body {
     background-color: #00adef;
 }
 
-.dropdown-menu {
-  /*background-color: #00adef;*/
+.dropdown-menu>li>a {
+  color: #00adef;
 }
 
 .dropdown-menu>li>a:hover {
-  /*color: #55c43b;*/
+  color: #55c43b;
 }
 
 /*
