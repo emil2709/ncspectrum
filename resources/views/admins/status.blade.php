@@ -2,7 +2,7 @@
 
 @section('title', '| Status')
 
-@section ('content')
+@section('content')
 
 <h2 class="sub-header">Status</h2>
 

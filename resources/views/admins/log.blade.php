@@ -2,7 +2,7 @@
 
 @section('title', '| History')
 
-@section ('content')
+@section('content')
   
   <h2 class="sub-header">Log</h2>
 

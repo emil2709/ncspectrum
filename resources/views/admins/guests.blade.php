@@ -2,7 +2,7 @@
 
 @section('title', '| Guests')
 
-@section ('content')
+@section('content')
   
   <h2 class="sub-header">Guests</h2>
 

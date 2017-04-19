@@ -2,7 +2,7 @@
 
 @section('title', '| Employees')
 
-@section ('content')
+@section('content')
   
   <h2 class="sub-header">Employees</h2>
 
