@@ -11,10 +11,11 @@
 			<h2>{{$admin->firstname}} {{$admin->lastname}}</h2>
 			<p>{{$admin->email}}</p>
 			{{Form::button('Upload Avatar', ['data-toggle' => 'collapse', 'data-target' => '#updateAvatar', 
-			'class' => 'btn btn-sm btn-default', 'id' => 'updateAvatarToggle'])}}
+				'class' => 'btn btn-sm btn-default', 'id' => 'updateAvatarToggle'])}}
 
 			<div class="collapse"  id="updateAvatar">
-				{{Form::open(['route' => 'admins.updateAvatar', 'enctype' => 'multipart/form-data', 'method' => 'POST', 'data-toggle' => 'validator'])}}
+				{{Form::open(['route' => 'admins.updateAvatar', 'enctype' => 'multipart/form-data', 'method' => 'POST', 
+					'data-toggle' => 'validator'])}}
 					{{Form::label('Upload Profile Picture')}}
 					{{Form::file('avatar', ['id' => 'avatar'])}}
 					{{Form::submit('SAVE', ['class' => 'btn btn-xs btn-success', 'id' => 'updateAvatarSave' ])}}

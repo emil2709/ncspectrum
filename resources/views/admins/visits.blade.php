@@ -45,7 +45,7 @@
 </div>
 
 <div>
-    {{ $visits->links() }}
+  {{ $visits->links() }}
 </div>
 
 @endsection

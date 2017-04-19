@@ -39,6 +39,7 @@
 			</fieldset>
 
 		{!! Form::close() !!}
+		
 	</div>
 
 @endsection

@@ -1,5 +1,4 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-
   <div class="container-fluid">
 
     <div class="navbar-header">
@@ -28,8 +27,8 @@
             <li><a href="{{ route('logout') }}">Logout</a></li>
           </ul>
         </li>
+      </ul>
     </div>
 
   </div>
-
 </nav>

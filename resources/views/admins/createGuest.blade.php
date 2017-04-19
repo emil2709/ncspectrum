@@ -98,5 +98,4 @@
 
 	{!! Form::close() !!}
 
-
 @endsection

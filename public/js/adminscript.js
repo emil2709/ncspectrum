@@ -1,11 +1,17 @@
 /**
+ * Administrator JavaScript
+ *
+ * This JavaScript Sheet contains JavasSript that is only used on Administrator pages.
+ */
+
+/**
  * Dynamic Alerts
  *
  * This global timeout is set to make the Bootstrap alerts more dynamic.
  * After a set time of appearance the alert boxes will begin to slide up and disappear. 
  * This function is global and will toggle on every page where the alerts appear.
  */
-window.setTimeout(function() {
+window.setTimeout(function(){
   $(".alert").fadeTo(500, 0).slideUp(500, function(){
     $(this).remove(); 
   });
@@ -24,6 +30,14 @@ $(document).ready(function(){
   $("#myTable").tablesorter({dateFormat: "uk"}); 
 }); 
 
+/**
+ * Checked-In List Placeholder
+ *
+ * A function that runs after the document has finished loading. 
+ * This function is used on the small dashboard list that shows guests that are currently checked in. 
+ * If there are no checked-in guests this function will trigger and display a placeholder text-notification 
+ * in the list and say there are currently no checked in guests.
+ */
 $(document).ready(function(){ 
   if($('#dashboard-status tr').length == 0)
   {
@@ -76,7 +90,6 @@ $('#updateAvatarSave').click(function(){
  */
 $(".guest-expansion").hide();
 
-
 /**
  * Guestlist Section Toggle
  *
@@ -86,8 +99,7 @@ $(".guest-expansion").hide();
  * appearance of the guestlist section and placeholder text respectively.
  * This function is used in "employeeVisits.blade.php" and "visits.blade.php".
  */
-$(".guest-expansion-btn").click(function(event) 
-{
+$(".guest-expansion-btn").click(function(event){
   if($(this).siblings('.faint-placeholder').is(':visible'))
   {
     $(this).siblings('.faint-placeholder').hide();
@@ -124,6 +136,5 @@ $('#search').on('keyup',function(){
       // Result will replace the contents of the written ID.
       $('#searchresult').html(data);
     }
-
   });
 });

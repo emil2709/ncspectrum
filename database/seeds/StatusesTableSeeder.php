@@ -7,6 +7,8 @@ class StatusesTableSeeder extends Seeder
     /**
      * Run the database seeds.
      *
+     * Creates 20 random statuses (true/false) for the Status Table.
+     *
      * @return void
      */
     public function run()

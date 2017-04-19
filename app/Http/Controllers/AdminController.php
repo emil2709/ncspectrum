@@ -65,6 +65,7 @@ class AdminController extends Controller
             ->orderBy('firstname')
             ->get();
         $latestVisit = session()->get('latestVisit');
+
         return view('admins.dashboard', compact('guests', 'employees', 'admins', 'visits', 'statuses', 'log', 'latestVisit'));
     }
 
@@ -272,7 +273,6 @@ class AdminController extends Controller
      *
      * This fetches the whole 'logs' table and returns the fetched information to the logs overview.
      * 
-     *
      * @return \Illuminate\Http\Response
      */
     public function showLog()
@@ -458,7 +458,6 @@ class AdminController extends Controller
         $this->userlog('guest', 'create', $guest->firstname.' '.$guest->lastname);
     
         Session::flash('success', 'The Guest was successfully created!');
-
         return redirect()->route('admins.guests');
     }
 
@@ -494,7 +493,6 @@ class AdminController extends Controller
         $this->userlog('employee', 'create', $employee->firstname.' '.$employee->lastname);    
 
         Session::flash('success', 'The Employee was successfully created!');
-
         return redirect()->route('admins.employees');
     }
 
@@ -631,7 +629,6 @@ class AdminController extends Controller
             {
                 return redirect()->route('admins.admins');
             }
-
         }
         else
         {
@@ -639,7 +636,7 @@ class AdminController extends Controller
         }
     }
 
-     /**
+    /**
      * Administrator Password Update
      *
      * This method validates and updates the administrator password.
@@ -1165,6 +1162,5 @@ class AdminController extends Controller
             }   
         }
     }
-
 
 }

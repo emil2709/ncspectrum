@@ -1,3 +1,9 @@
+/**
+ * Dashboard Diagram / Statistics
+ *
+ * This JavaScript Sheet contains the code for the Dashboard PieChart.
+ */
+
 Highcharts.chart('piechart', {
 
 chart: {

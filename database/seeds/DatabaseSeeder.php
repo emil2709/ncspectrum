@@ -6,6 +6,9 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * 
+     * Base Seeder that is called on database seeding.
+     * This Seeder calls the other Seeders defined in the run() method.
      *
      * @return void
      */
@@ -14,6 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(AdminsTableSeeder::class);
         $this->call(StatusesTableSeeder::class);
-        $this->call(VisitsTableSeeder::class);
+        //$this->call(VisitsTableSeeder::class);
     }
 }

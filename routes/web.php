@@ -113,4 +113,3 @@ Route::put('admin/password_{admin}', ['as' => 'admins.updateAdminPassword', 'use
 Route::delete('admin/guest/{guest}', ['as' => 'admins.destroyGuest', 'uses' => 'AdminController@destroyGuest']);
 Route::delete('admin/employee/{employee}', ['as' => 'admins.destroyEmployee', 'uses' => 'AdminController@destroyEmployee']);
 Route::post('admin/admin/{admin}/delete', ['as' => 'admins.destroyAdmin', 'uses' => 'AdminController@destroyAdmin']);
-

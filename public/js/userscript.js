@@ -1,3 +1,10 @@
+/**
+ * User JavaScript
+ *
+ * This JavaScript Sheet contains JavasSript that is only used on User/Guest pages.
+ */
+
+// All the JavaScript-functions loads when the page has successfully finished loading.
 $(document).ready(function(){
 
   /**
@@ -18,7 +25,7 @@ $(document).ready(function(){
     window.CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     window.onload = startup();
   
-    setInterval(function() {
+    setInterval(function(){
       listsync();
       autosync();
       console.log('check');
@@ -32,7 +39,7 @@ $(document).ready(function(){
    * After a set time of appearance the alert boxes will begin to slide up and disappear. 
    * This function is global and will toggle on every page where the alerts appear.
    */
-  window.setTimeout(function() {
+  window.setTimeout(function(){
       $(".alert").fadeTo(500, 0).slideUp(500, function(){
           $(this).remove(); 
       });
@@ -76,7 +83,6 @@ $(document).ready(function(){
       $(ui.item).attr('id','out');
     },
   }).disableSelection();
-
 
   /**
    * Drag and Drop Checkin-list
@@ -147,21 +153,21 @@ $(document).ready(function(){
   {
     if(!sessionStorage.listlength)
     {
-        sessionStorage.listlength = 0;
+      sessionStorage.listlength = 0;
     }
     if(!sessionStorage.counter)
     {
-        sessionStorage.counter = 0;
+      sessionStorage.counter = 0;
     }
     if(!sessionStorage.users)
     {
-        var users = new Array();
-        sessionStorage.users = JSON.stringify(users);
+      var users = new Array();
+      sessionStorage.users = JSON.stringify(users);
     }
      if(!sessionStorage.visitors)
     {
-        var visitors = new Array();
-        sessionStorage.visitors = JSON.stringify(visitors);
+      var visitors = new Array();
+      sessionStorage.visitors = JSON.stringify(visitors);
     }
     checkinCheck();
   }
@@ -312,8 +318,7 @@ $(document).ready(function(){
     $.ajax({
       type: 'get',
       url: '/autosync',
-      success:function(data)
-      {
+      success: function(data){
         // If there is a missmatch between backend and frontend array length.
         if(data.length < visitors.length)
         {
@@ -346,19 +351,16 @@ $(document).ready(function(){
     // If there are any unfixable missmatches.
     if((listlength != visitors.length) && (listlength != users.length))
     {
-      console.log('listsync');
       $.ajax({
         type: 'get',
         url: '/listsync',
-        success:function(data)
-        {
+        success: function(data){
           // Resets all the variables before refreshing the page.
           newusers = new Array();
           sessionStorage.users = JSON.stringify(newusers);
           newvisitors = new Array();
           sessionStorage.visitors = JSON.stringify(newvisitors);
           sessionStorage.counter = 0;
-                    //alert('An error occured. Please try again.');
           location.reload(true);
         }
       });
@@ -380,8 +382,8 @@ $(document).ready(function(){
     $.ajax({
       type: 'get',
       url: '/usersearch',
-      data: {'usersearch':$usersearch},
-      success:function(data)
+      data: {'usersearch': $usersearch},
+      success: function(data)
       {
         // Result will replace the contents of the written ID.
         $('#outlist').html(data);

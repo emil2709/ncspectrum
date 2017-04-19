@@ -1,3 +1,9 @@
+/**
+ * Main CSS Sheet
+ *
+ * This sheet is for CSS that is used across the whole application.
+ */
+
 html {
     position: relative;
     min-height: 100%;
@@ -167,19 +173,16 @@ footer {
     border-color: #ef4200;
 }
 
-.pagination>.active>span 
-{
+.pagination>.active>span {
     background-color: #00adef;
     border-color: #00adef;
 }
 
-.pagination>li>a
-{
+.pagination>li>a {
     color: #00adef;
 }
 
-.pagination>li>a:hover
-{
+.pagination>li>a:hover {
     color: #55c43b;
 }
 

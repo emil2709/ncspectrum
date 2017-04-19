@@ -19,23 +19,23 @@
 		
 		<tbody> 
 			@foreach ($visits as $visit)
-			<tr>
-				<td>{{ date('j.m Y - H:i', strtotime($visit->from)) }}</td>
-				<td>{{ date('j.m Y - H:i', strtotime($visit->to)) }}</td>
-				<td>
-					<span class="faint-placeholder"><i>(View All Attending Guests)</i></span>
-					<a class="pull-right guest-expansion-btn" title="View Guests">
-						<span class="glyphicon glyphicon-menu-hamburger" id="expansion-icon"></span>
-					</a>
-					<div class="guest-expansion">
-						@foreach($visitguests[$visit->id] as $guests)
-							@foreach($guests as $guest)
-								{{$guest[0]->firstname}} {{$guest[0]->lastname}} <br/>
+				<tr>
+					<td>{{ date('j.m Y - H:i', strtotime($visit->from)) }}</td>
+					<td>{{ date('j.m Y - H:i', strtotime($visit->to)) }}</td>
+					<td>
+						<span class="faint-placeholder"><i>(View All Attending Guests)</i></span>
+						<a class="pull-right guest-expansion-btn" title="View Guests">
+							<span class="glyphicon glyphicon-menu-hamburger" id="expansion-icon"></span>
+						</a>
+						<div class="guest-expansion">
+							@foreach($visitguests[$visit->id] as $guests)
+								@foreach($guests as $guest)
+									{{$guest[0]->firstname}} {{$guest[0]->lastname}} <br/>
+								@endforeach
 							@endforeach
-						@endforeach
-					</div>
-				</td>
-			</tr>
+						</div>
+					</td>
+				</tr>
 			@endforeach
 		</tbody>
 

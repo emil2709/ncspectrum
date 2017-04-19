@@ -2,7 +2,7 @@
 
 @section('title', '| Admins')
 
-@section ('content')
+@section('content')
 
 @if(Auth::user()->id == 1)
 

@@ -13,14 +13,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 	<!-- JQuery UI -->
-	<!-- Latest compiled and minified CSS -->
+	<!-- Latest compiled CSS -->
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
 	<!-- Our own custom css rules -->
 	{{ Html::style('css/mainsheet.css') }}
 	{{ Html::style('css/usersheet.css') }}
-
-	<!-- Section used for pages that need specific additional css rules -->
-    @yield('stylesheets')
 
 </head>

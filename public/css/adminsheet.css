@@ -1,3 +1,10 @@
+/**
+ * Administrator CSS Sheet
+ * 
+ * This sheet is for CSS that is used specifically on Administrator pages.
+ */
+
+
 /*** Base Structure ***/
 
 /* 
@@ -12,11 +19,11 @@ caption {
   color: black;
 }
 
-/*** Navigation Bar ***/
+/*** Top Navigation Bar ***/
 
 .navbar-default {
-    background-color: #00adef;
-    border-color: #00adef;
+  background-color: #00adef;
+  border-color: #00adef;
 }
 
 .navbar-default .navbar-brand {
@@ -25,15 +32,15 @@ caption {
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: #fff;
+  color: #fff;
 }
 
 .navbar-default .navbar-nav>li>a {
-    color: #fff;
+  color: #fff;
 }
 
 .navbar-default .navbar-nav>li>a:hover {
-    color:black;
+  color:black;
 }
 
 .navbar-default 
@@ -42,8 +49,8 @@ caption {
 .navbar-nav>.open>a:focus, 
 .navbar-default 
 .navbar-nav>.open>a:hover {
-    color: black;
-    background-color: #00adef;
+  color: black;
+  background-color: #00adef;
 }
 
 .dropdown-menu>li>a {
@@ -193,10 +200,6 @@ a:hover {
   padding: 30px;
 }
 
-#expansion-icon {
-  cursor: pointer;
-}
-
 #checkedin {
   color: #55c43b;
   font-size: 15px;
@@ -210,6 +213,10 @@ a:hover {
 
 #sortableTable-icon {
   font-size: 12px;
+}
+
+#expansion-icon {
+  cursor: pointer;
 }
 
 #col-sm {

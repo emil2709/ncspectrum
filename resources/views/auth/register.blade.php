@@ -3,6 +3,7 @@
 @section('title', '| Create Admin')
 
 @section('content')
+
 @if(Auth::user()->id == 1)
 
 	<h2 class="sub-header text-center"> Create Administrator</h2>
@@ -101,6 +102,7 @@
 
 @else
 	@include('partials._offlimits')
+	
 @endif
 
 @endsection

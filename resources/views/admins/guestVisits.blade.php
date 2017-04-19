@@ -19,11 +19,11 @@
 
 		<tbody> 
 			@foreach ($visits as $visit)
-			<tr>
-				<td>{{ date('j.m Y - H:i', strtotime($visit->from)) }}</td>
-				<td>{{ date('j.m Y - H:i', strtotime($visit->to)) }}</td>
-				<td>{{ $visit->employee_firstname }}  {{$visit->employee_lastname}} </td>
-			</tr>
+				<tr>
+					<td>{{ date('j.m Y - H:i', strtotime($visit->from)) }}</td>
+					<td>{{ date('j.m Y - H:i', strtotime($visit->to)) }}</td>
+					<td>{{ $visit->employee_firstname }}  {{$visit->employee_lastname}} </td>
+				</tr>
 			@endforeach
 		</tbody>
 

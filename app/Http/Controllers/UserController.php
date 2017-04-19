@@ -31,6 +31,7 @@ class UserController extends Controller
             ->orderBy('id','desc')
             ->paginate(5);
         
+        // Laravels Eloquent Database query
         $usersin = DB::table('users')
             ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
             ->where('status', true)
@@ -137,7 +138,6 @@ class UserController extends Controller
         $user->status()->save($status);
     
         Session::flash('success', 'The User was successfully created!');
-
     	return redirect()->route('users.index');
     }
 
@@ -145,7 +145,6 @@ class UserController extends Controller
      * Visit Creation
      *
      * This method is used to store a newly created visit.
-     *
      *
      * @param  \Illuminate\Http\Request  $request
      * @return string
@@ -183,6 +182,7 @@ class UserController extends Controller
         $now = Carbon::now();
         session()->put('latestVisit', $now);
 
+        // Registers the current time and the time the visit is ending
         $visit->from = $now;
         $to = Carbon::now();;
         $to = $to->addHour($hours);
@@ -199,7 +199,6 @@ class UserController extends Controller
         }
 
         Session::flash('success', 'The Visit has been successfully registered!');
-
         return redirect()->route('users.index');
     }
 
@@ -287,7 +286,6 @@ class UserController extends Controller
      * in that case the backend array is updated, but the frontend variables are not.
      * Hence we need to send the backend array to update the frontend variables.
      * 
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -327,6 +325,7 @@ class UserController extends Controller
         // Creates a new empty array.
         $reset = array();
         session()->put('userlist', $reset);
+
         return Response('');
     }
 
@@ -416,4 +415,5 @@ class UserController extends Controller
             }   
         }
     }
+    
 }

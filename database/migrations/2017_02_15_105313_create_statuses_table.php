@@ -19,8 +19,6 @@ class CreateStatusesTable extends Migration
             $table->boolean('status');
             $table->string('updated_at')->nullable();
         });
-
-
     }
 
     /**
