@@ -36,8 +36,7 @@
 										</strong>
 									</div>
 									<div class="col-md-12 text-center">
-										{{$userout->email}} <br/>
-										{{$userout->company}}
+										<i>{{$userout->company}}</i>
 									</div>
 								</div>
 							</div>
@@ -53,9 +52,7 @@
 				<hr/>
 			</div>
 			<div class="col-md-12 margin-bottom">
-				<div> 
-			        {{ Form::submit('CHECK IN', ['class' => 'btn btn-success btn-block', 'id' => 'checkin-btn']) }}
-			    </div>
+			    {{ Form::button('CREATE VISIT', ['class' => 'btn btn-success btn-block ', 'id' => 'checkin-btn']) }}
 			</div>
 			<div class="col-md-12">
 				<ul id="inlist" class="connectedSortable boxlist">		
@@ -71,8 +68,7 @@
 									</strong>
 								</div>
 								<div class="col-md-12 text-center">
-									{{$userin->email}} <br/>
-									{{$userin->company}}
+									<i>{{$userin->company}}</i>
 								</div>
 							</div>
 						</div>

@@ -259,13 +259,27 @@ class AdminController extends Controller
      */
     public function showStatus()
     {
+        // Fetches all the users that have status to true, aka checked in.
         $users = DB::table('users')
             ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
             ->where('status','1')
             ->orderBy('firstname')
             ->get();
-        
-        return view ('admins.status')->withUsers($users);
+
+        $visitors = session()->get('visitors');
+        $invisit = array();
+
+        // Matches up with the visitors array to only show the ones that has checked in AND
+        // created or is in, a visit.
+        for($i = 0; $i < count($users); $i++)
+        {
+            if(in_array($users[$i]->id, $visitors))
+            {
+                array_push($invisit, $users[$i]);
+            } 
+        }
+
+        return view ('admins.status')->withUsers($invisit);
     }
 
     /**
@@ -615,7 +629,7 @@ class AdminController extends Controller
         // Creates a log entry of this.
         $this->adminlog('update', $admin->firstname.' '.$admin->lastname);
 
-        Session::flash('success', "Changes has been made to the Admin.");
+        Session::flash('success', "Changes has been made to the Administrator.");
 
         // If the current logged in Administrator is the Super Administrator.
         if(Auth::user()->id == 1)
@@ -814,7 +828,7 @@ class AdminController extends Controller
             // Creates a log entry of this.
             $this->adminlog('delete', $admin->firstname.' '.$admin->lastname);
 
-            Session::flash('success', 'The Admin has been successfully deleted!');
+            Session::flash('success', 'The Administrator has been successfully deleted!');
             return redirect()->route('admins.admins');
         }
         else
@@ -828,7 +842,7 @@ class AdminController extends Controller
      * Status check-out
      *
      * This method is called whenever an Administrator manually checks out a guest.
-     * This method will update the guests status and remove the guest id from the backend session variable
+     * This method will update the guests status and remove the guest id from the backend session arrays
      * that keeps track of who is checked-in.
      * Note this session variable is mostly used in the UserController.
      *
@@ -841,13 +855,27 @@ class AdminController extends Controller
         $guest = User::find($id);
         $guest->status()->update(['status' => false, 'updated_at' => Carbon::now()]);
 
-        // Fetches the session variable that keeps track of who's checked-in and removes the given guest id from the array.
+        // Fetches the session variable that keeps track of who's checked-in and removes the given guest id from the arrays.
         $userlist = session()->get('userlist');
+        $visitors = session()->get('visitors');
+
         if(!empty($userlist))
         {
-            $index = array_search($id, $userlist);
-            array_splice($userlist,$index,1);
-            session()->put('userlist', $userlist);
+            $index = array_search($guest->id, $userlist);
+            if($index !== false)
+            {
+                array_splice($userlist,$index,1);
+                session()->put('userlist', $userlist);
+            }
+        }
+        if(!empty($visitors))
+        {
+            $index = array_search($guest->id, $visitors);
+            if($index !== false)
+            {
+                array_splice($visitors,$index,1);
+                session()->put('visitors', $visitors);
+            }
         }
 
         return redirect('admin/status');

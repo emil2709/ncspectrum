@@ -39,8 +39,6 @@ class UserController extends Controller
             ->orderBy('id','desc')
             ->get();
 
-            $userlist = session()->get('userlist');
-
         return view('users.index', compact('usersout', 'usersin'));
     }
 
@@ -137,7 +135,7 @@ class UserController extends Controller
         $status->status = false;
         $user->status()->save($status);
     
-        Session::flash('success', 'The User was successfully created!');
+        Session::flash('user-success', 'The user was successfully created!');
     	return redirect()->route('users.index');
     }
 
@@ -156,6 +154,11 @@ class UserController extends Controller
         $employeeid = $request->employees;
         $hours = $request->hours;
         $minutes = $request->minutes;
+
+        // Empties the temporary session array and updates the final session array.
+        $reset = array();
+        session()->put('userlist', $reset);
+        session()->put('visitors', $userids);
 
         // Backend validation.
         if($employeeid == null)
@@ -198,7 +201,7 @@ class UserController extends Controller
             $user->visits()->save($visit);
         }
 
-        Session::flash('success', 'The Visit has been successfully registered!');
+        Session::flash('user-success', 'The visit has been successfully created!');
         return redirect()->route('users.index');
     }
 
@@ -249,6 +252,8 @@ class UserController extends Controller
      *
      * This method is called upon by an AJAX request whenever a user checks out.
      * 'Drags from the checkin list to checkout list'.
+     * Removes the users id from the backend session arrays that keep track of whose
+     * check-in or not.
      * Updates the given users status and 'updated_at' timestamp.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -258,12 +263,26 @@ class UserController extends Controller
     {
         $userid = $request->data;
         $userlist = session()->get('userlist');
-        // Removes the userid from the array of checked in users.
+        $visitors = session()->get('visitors');
+
+        // Removes the userid from the arrays of checked in users.
         if(!empty($userlist))
         {
             $index = array_search($userid, $userlist);
-            array_splice($userlist,$index,1);
-            session()->put('userlist', $userlist);
+            if($index !== false)
+            {
+                array_splice($userlist,$index,1);
+                session()->put('userlist', $userlist);
+            }
+        }
+        if(!empty($visitors))
+        {
+            $index = array_search($userid, $visitors);
+            if($index !== false)
+            {
+                array_splice($visitors,$index,1);
+                session()->put('visitors', $visitors);
+            }
         }
 
         // Checks out the status and updates the timestamp.
@@ -280,7 +299,7 @@ class UserController extends Controller
      *
      * This method is called from an AJAX request.
      * This method is called in a set interval (set in userscript.js).
-     * The whole purpose is to send the backend userlist to the frontend to 
+     * The whole purpose is to send the backend visitors array to the frontend to 
      * synchronize and see if there are any missmatches. 
      * By missmatch this method is refering to if an administrator manually checks out a guest,
      * in that case the backend array is updated, but the frontend variables are not.
@@ -291,8 +310,8 @@ class UserController extends Controller
      */
     public function autosync(Request $request)
     {
-        $userlist = session()->get('userlist');
-        return response($userlist);
+        $visitors = session()->get('visitors');
+        return response($visitors);
     }
 
     /**
@@ -302,7 +321,7 @@ class UserController extends Controller
      * Whenever there is a missmatch in the various frontend variables that keeps track of who is checked in or out,
      * there is probably an error which can not be fixed unless we reset the variables.
      * This is most likely caused by an unforseen user error or administrator error.
-     * This method will reset the backend variables and statuses, and respond to the AJAX request so the
+     * This method will reset the backend arrays and clear their statuses, then respond to the AJAX request so the
      * frontend variables also get reset before refreshing the users homepage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -310,11 +329,19 @@ class UserController extends Controller
      */
     public function listsync(Request $request)
     {
-        // Fetches the backend array of checked in users.
+        // Fetches the backend arrays of checked in users.
         $userlist = session()->get('userlist');
+        $visitors = session()->get('visitors');
 
         // Changes their status to false.
         foreach($userlist as $userid)
+        {
+            $user = DB::table('users')
+                ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
+                ->where('id', $userid)
+                ->update(['status' => false, 'statuses.updated_at' => Carbon::now()]);
+        }
+        foreach($visitors as $userid)
         {
             $user = DB::table('users')
                 ->leftjoin('statuses', 'users.id', '=', 'statuses.user_id')
@@ -325,6 +352,7 @@ class UserController extends Controller
         // Creates a new empty array.
         $reset = array();
         session()->put('userlist', $reset);
+        session()->put('visitors', $reset);
 
         return Response('');
     }
@@ -392,8 +420,7 @@ class UserController extends Controller
                                     '</strong>'.
                                 '</div>'.
                                 '<div class="col-md-12 text-center">'.
-                                    $user->email.'<br/>'.
-                                    $user->company.
+                                    '<i>'.$user->company.'</i>'.
                                 '</div>'.
                             '</div>'.
                         '</div>'.
