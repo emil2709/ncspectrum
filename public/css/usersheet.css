@@ -4,6 +4,13 @@
  * This sheet is for CSS that is used specifically on User/Guest pages.
  */
 
+.row {
+    background-image: url("/images/noder.png");
+    background-size: 900px 600px;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+
 .placeholder { 
     background-color: #f5f5f5;
     border: 1px solid #e3e3e3;

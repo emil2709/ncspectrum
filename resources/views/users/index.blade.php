@@ -4,10 +4,13 @@
 
 @section('content')
 	<div class="row">
-
 		<div class="col-md-12" id="mainlogin">
 			<div class='col-md-2 pull-right'>
 				<a href='{{ route('users.create') }}' class='btn btn-primary btn-block'>CREATE NEW USER</a>
+			</div>
+
+			<div class='col-md-2 pull-left'>
+				<img src="{{URL::asset('/images/logo.png')}}" width="526" height="42">
 			</div>
 		</div>
 
@@ -73,10 +76,9 @@
 							</div>
 						</div>
 					</li>
-				@endforeach					
+				@endforeach												
 				</ul>
 			</div>
 		</div>
-		
 	</div>
 @endsection
