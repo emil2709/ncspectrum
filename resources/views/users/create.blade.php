@@ -94,6 +94,11 @@
 						<a href="{{ route('users.index') }}" class="btn btn-default btn-block">CANCEL</a>
 					</div>
 				</div>
+				<br><br>
+				<legend class='text-center'>
+					<a href="{{ route('users.index')}}"><img src="{{URL::asset('/images/logo.png')}}" 
+					width = "526" height="42"></a>
+				</legend>
 
 			</fieldset>
 

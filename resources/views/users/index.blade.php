@@ -3,17 +3,23 @@
 @section('title', '| Home')
 
 @section('content')
-	<div class="row">
+  
+	<div class="row">	
 
 		<div class="col-md-12" id="mainlogin">
 			<div class='col-md-2 pull-right'>
 				<a href='{{ route('users.create') }}' class='btn btn-primary btn-block'>CREATE NEW USER</a>
 			</div>
+
+			<div class='col-md-2 pull-left'>
+				<img src="{{URL::asset('/images/logo.png')}}" width = "526" height="42">
+			</div>
 		</div>
+
 
 		<div class="col-md-6 margin-top">
 			<div class="col-md-12">
-				<h2 class="text-center">CHECK-OUT</h1>
+				<h2 class="text-center">CHECKED-OUT</h1>
 				<hr/>
 			</div>
 			<div class="col-md-12 margin-bottom">
@@ -44,11 +50,12 @@
 					@endforeach
 				</ul>	
 			</div>
+
 		</div>
 
 		<div class="col-md-6 margin-top">
 			<div class="col-md-12">
-				<h2 class="text-center">CHECK-IN</h1>
+				<h2 class="text-center">CHECKED-IN</h1>
 				<hr/>
 			</div>
 			<div class="col-md-12 margin-bottom">
