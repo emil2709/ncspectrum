@@ -178,8 +178,6 @@ function startup()
  * in order to see how many are checked in. 
  * If the inlist is empty it will disable the checkin button, 
  * If the inlist is not empty, it will enable the checkin button.
- * In the end, if the inlist is empty or the inlist length and the length of the users array is different
- * listsync() will be called.
  */
 function checkinCheck()
 {
