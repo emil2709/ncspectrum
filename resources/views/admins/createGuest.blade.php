@@ -7,8 +7,7 @@
 	<h2 class="sub-header text-center"> Create Guest</h2>
 	{!! Form::open(['route' => 'admins.storeGuest', 'class' => 'form-horizontal margin-top', 
 		'data-toggle' => 'validator']) !!}
-		
-		<fieldset>
+				<fieldset>
 			
 			<div class="form-group has-feedback">
 				<div class="col-md-3 control-label">
@@ -93,7 +92,6 @@
 					<a href="{{ route('admins.guests') }}" class="btn btn-default btn-block">CANCEL</a>
 				</div>
 			</div>
-
 		</fieldset>
 
 	{!! Form::close() !!}

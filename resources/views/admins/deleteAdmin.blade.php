@@ -24,7 +24,7 @@
 									<span><i class="glyphicon glyphicon-user delete-icon"></i></span>
 								</div>
 								<div class="col-md-11">
-									<strong>{{$admin->firstname}} {{$admin->lastname}}</strong>
+									{{$admin->firstname}} {{$admin->lastname}}
 								</div>
 							</div>
 							<div>
@@ -32,7 +32,7 @@
 									<span><i class="glyphicon glyphicon-envelope delete-icon"></i></span>
 								</div>
 								<div class="col-md-11 margin-bottom">
-									<strong>{{$admin->email}}</strong>
+									{{$admin->email}}
 								</div>
 							</div>
 							<div class="form-group">

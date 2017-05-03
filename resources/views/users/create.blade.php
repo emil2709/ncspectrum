@@ -4,12 +4,15 @@
 
 @section('content')
 
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-md-12 col-md-offset-0">
 		{!! Form::open(['route' => 'users.storeUser', 'class' => 'well form-horizontal margin-top', 'data-toggle' => 'validator']) !!}
+		<div class="logoScheme">
+			<a href='{{ route('users.index') }}'><img src="{{URL::asset('/images/logo.png')}}"></a>
+		<div class="nodeCreate">
 			
 			<fieldset>
 				
-				<legend class="text-center">CREATE USER</legend>
+				<legend class="text-center create-border"><h2>CREATE USER</h2></legend>
 
 				<div class="form-group has-feedback">
 					<div class="col-md-3 control-label">
@@ -96,7 +99,8 @@
 				</div>
 
 			</fieldset>
-
+			</div>
+		</div>
 		{!! Form::close() !!}
 	</div>
 

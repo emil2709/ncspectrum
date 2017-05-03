@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <span class="navbar-brand">NC-Spectrum</span>
+      <span class="navbar-brand"><a href='{{ route('admins.dashboard') }}'><img src="{{URL::asset('/images/logo-dashboard.png')}}"></a></span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
