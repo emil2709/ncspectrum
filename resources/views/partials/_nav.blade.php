@@ -15,8 +15,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
-              aria-expanded="false" id="navbar-avatar-spacing">
-            <img src="/uploads/avatars/{{ Auth::user()->avatar }}" id="navbar-avatar"/> 
+              aria-expanded="false" id="navbar-avatar-spacing"> 
             Hello, {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}!
             <span class="caret"></span>
           </a>

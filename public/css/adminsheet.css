@@ -28,6 +28,7 @@ caption {
 
 .navbar-default .navbar-brand {
   color: #fff;
+  border-left: 3px solid #2e353d;
 }
 
 .navbar-default .navbar-brand:hover,
@@ -66,7 +67,7 @@ caption {
  * Hide default border to remove 1px line.
  */
 .navbar-fixed-top {
-  border-left: 3px solid #2e353d;
+  border:0;
 }
 
 .navbar-brand img {
@@ -122,10 +123,12 @@ caption {
 .nav-side-menu li .sub-menu li.active {
   border-left: 3px solid #00adef;
 }
-.nav-side-menu ul .sub-menu li.active a,
+
+/*.nav-side-menu ul .sub-menu li.active a,
 .nav-side-menu li .sub-menu li.active a {
   color: #d19b3d;
-}
+}*/
+
 .nav-side-menu ul .sub-menu li,
 .nav-side-menu li .sub-menu li {
   background-color: #4f5b69;
@@ -138,6 +141,7 @@ caption {
 .nav-side-menu ul .sub-menu li:hover,
 .nav-side-menu li .sub-menu li:hover {
    border-left: 3px solid #55c43b;
+   color: #55c43b;
 }
 .nav-side-menu ul .sub-menu li:before,
 .nav-side-menu li .sub-menu li:before {
@@ -261,15 +265,6 @@ caption {
   padding-left: 50px;
 }
 
-#navbar-avatar {
-  width:32px; 
-  height:32px; 
-  position:absolute; 
-  top:10px; 
-  left:10px; 
-  border-radius:50%;
-}
-
 #profile-avatar-row {
   height:150px;
   margin-top:20px;
@@ -326,7 +321,6 @@ caption {
 }
 
 footer hr {
-  width: 87%;
   position: relative;
-  left: 200px;
+  left: 250px;
 }
