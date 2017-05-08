@@ -16,7 +16,7 @@
 
 		<div class="col-md-6 margin-top">
 			<div class="col-md-12">
-				<h2 class="text-center">CHECK-OUT</h2>
+				<h2 class="text-center">CHECKED-OUT</h2>
 				<hr/>
 			</div>
 			<div class="col-md-12 margin-bottom">
@@ -51,11 +51,11 @@
 
 		<div class="col-md-6 margin-top">
 			<div class="col-md-12">
-				<h2 class="text-center">CHECK-IN</h2>
+				<h2 class="text-center">CHECKED-IN</h2>
 				<hr/>
 			</div>
-			<div class="col-md-12 margin-bottom text-center">
-			    {{ Form::button('     CREATE VISIT     ', ['class' => 'btn btn-success', 'id' => 'checkin-btn']) }}
+			<div class="margin-bottom text-center">
+			    {{ Form::button('CREATE VISIT', ['class' => 'btn btn-success', 'id' => 'checkin-btn', 'style' => 'width:175px;']) }}
 			</div>
 			<div class="col-md-12">
 				<ul id="inlist" class="connectedSortable boxlist">		

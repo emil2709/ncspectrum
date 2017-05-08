@@ -17,7 +17,7 @@
 
 				<div class="row">
 					@foreach($users as $user)
-						<div class="col-md-12 text-center">
+						<div class="visitUser">
 							<span id="names">{{$user->firstname}} {{$user->lastname}}</span>
 							<span> - {{$user->company}}</span>
 							{{ Form::hidden('users[]', $user->id) }}

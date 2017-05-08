@@ -101,6 +101,19 @@ legend.create-border {
     height: 15%;
 }
 
+.visitUser {
+    margin-left: 26.5%;
+}
+
+h2 {
+    font-family: Century Gothic, sans-serif;
+    color: #575A5C;
+    /*font-family: "Cabin", Helvetica Neue, Sans-serif;*/
+
+    /*font-family: Consolas, monaco, monospace;*/
+    
+}
+
 #mainlogin {
     margin-top:15px;
 }
