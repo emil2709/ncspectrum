@@ -36,17 +36,17 @@
               <td> {{ $admin->email }} </td>
               <td>
                 <a href="{{ URL::route('admins.editAdmin', [$admin->id]) }}" title="Edit">
-                  <span class="glyphicon glyphicon-edit"></span>
+                  <span class="glyphicon glyphicon-edit" id="action-icons"></span>
                 </a>
               </td>
               <td>
                 <a href="{{ URL::route('admins.editAdminPassword', [$admin->id]) }}" title="Edit Password">
-                  <span class="glyphicon glyphicon-lock"></span>
+                  <span class="glyphicon glyphicon-lock" id="action-icons"></span>
                 </a>
               </td>
               <td>
                 <a href="{{ URL::route('admins.deleteAdmin', [$admin->id]) }}" title="Delete">
-                  <span class="glyphicon glyphicon-trash"></span>
+                  <span class="glyphicon glyphicon-trash" id="action-icons"></span>
                 </a>
               </td>
             </tr>
