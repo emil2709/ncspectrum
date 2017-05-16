@@ -20,25 +20,25 @@
 							<span><i class="glyphicon glyphicon-user delete-icon"></i></span>
 						</div>
 						<div class="col-md-11">
-							<strong>{{$employee->firstname}} {{$employee->lastname}}</strong>
+							{{$employee->firstname}} {{$employee->lastname}}
 						</div>
 						<div class="col-md-1">
 							<span><i class="glyphicon glyphicon-phone delete-icon"></i></span>
 						</div>
 						<div class="col-md-11">
-							<strong>{{$employee->phone}}</strong>
+							{{$employee->phone}}
 						</div>
 						<div class="col-md-1">
 							<span><i class="glyphicon glyphicon-envelope delete-icon"></i></span>
 						</div>
 						<div class="col-md-11">
-							<strong>{{$employee->email}}</strong>
+							{{$employee->email}}
 						</div>
 						<div class="col-md-1">
 							<span><i class="glyphicon glyphicon-home delete-icon"></i></span>
 						</div>
 						<div class="col-md-11">
-							<strong>{{$employee->company}}</strong>
+							{{$employee->company}}
 						</div>
 					</div>
 				</div>

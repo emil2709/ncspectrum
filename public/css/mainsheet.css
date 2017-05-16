@@ -165,6 +165,7 @@ footer {
     color: #fff;
     background-color: #55c43b;
     border-color: #55c43b;
+    border-radius: 15px 15px 15px 15px;
 }
 
 .alert-danger {

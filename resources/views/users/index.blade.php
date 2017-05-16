@@ -3,17 +3,20 @@
 @section('title', '| Home')
 
 @section('content')
-	<div class="row">
-
+	<div class="row node">
 		<div class="col-md-12" id="mainlogin">
 			<div class='col-md-2 pull-right'>
 				<a href='{{ route('users.create') }}' class='btn btn-primary btn-block'>CREATE NEW USER</a>
+			</div>
+
+			<div class='col-md-2 pull-left'>
+				<img src="{{URL::asset('/images/logo.png')}}" width="526" height="42">
 			</div>
 		</div>
 
 		<div class="col-md-6 margin-top">
 			<div class="col-md-12">
-				<h2 class="text-center">CHECK-OUT</h1>
+				<h2 class="text-center">CHECKED-OUT</h2>
 				<hr/>
 			</div>
 			<div class="col-md-12 margin-bottom">
@@ -48,11 +51,11 @@
 
 		<div class="col-md-6 margin-top">
 			<div class="col-md-12">
-				<h2 class="text-center">CHECK-IN</h1>
+				<h2 class="text-center">CHECKED-IN</h2>
 				<hr/>
 			</div>
-			<div class="col-md-12 margin-bottom">
-			    {{ Form::button('CREATE VISIT', ['class' => 'btn btn-success btn-block ', 'id' => 'checkin-btn']) }}
+			<div class="margin-bottom text-center">
+			    {{ Form::button('CREATE VISIT', ['class' => 'btn btn-success', 'id' => 'checkin-btn', 'style' => 'width:175px;']) }}
 			</div>
 			<div class="col-md-12">
 				<ul id="inlist" class="connectedSortable boxlist">		
@@ -73,10 +76,9 @@
 							</div>
 						</div>
 					</li>
-				@endforeach					
+				@endforeach												
 				</ul>
 			</div>
 		</div>
-		
 	</div>
 @endsection

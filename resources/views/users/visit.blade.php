@@ -8,13 +8,16 @@
 		{!! Form::open(['route' => 'users.storeVisit', 'class' => 'well form-horizontal margin-top', 
 			'data-toggle' => 'validator']) !!}
 			
+		<div class="logoScheme">
+			<a href='{{ route('users.index') }}'><img src="{{URL::asset('/images/logo.png')}}"></a>
+			
 			<fieldset>
 				
-				<legend class="text-center">VISIT</legend>
+				<legend class="text-center"><h2>CREATE VISIT</h2></legend>
 
 				<div class="row">
 					@foreach($users as $user)
-						<div class="col-md-12 text-center">
+						<div class="visitUser">
 							<span id="names">{{$user->firstname}} {{$user->lastname}}</span>
 							<span> - {{$user->company}}</span>
 							{{ Form::hidden('users[]', $user->id) }}
@@ -71,6 +74,7 @@
 				</div>
 
 			</fieldset>
+		<!--</div>-->
 
 		{!! Form::close() !!}
 	</div>

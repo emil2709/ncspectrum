@@ -14,7 +14,7 @@ chart: {
     }
 },
 title: {
-    text: 'NC-Spectrum'
+    text: 'Overview'
 },
 subtitle: {
     text: 'Guests, Employees and Administrators'

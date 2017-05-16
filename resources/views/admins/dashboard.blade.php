@@ -9,31 +9,31 @@
     <div class="col-xs-6 col-sm-2 placeholder">
       <h4>Guests</h4>
       <span class="glyphicon glyphicon-user"></span>
-      <a href="{{route('admins.guests')}}" class="pull-right">{{ $guests }}</a>
+      <a href="{{route('admins.guests')}}" class="pull-right" id="action-icons">{{ $guests }}</a>
     </div>
 
     <div class="col-xs-6 col-sm-2 placeholder">
       <h4>Employees</h4>
       <span class="glyphicon glyphicon-briefcase"></span>
-      <a href="{{route('admins.employees')}}" class="pull-right">{{ $employees }}</a>
+      <a href="{{route('admins.employees')}}" class="pull-right" id="action-icons">{{ $employees }}</a>
     </div>
 
     <div class="col-xs-6 col-sm-2 placeholder">  
       <h4>Administrators</h4>
       <span class="glyphicon glyphicon-star-empty"></span>
-      <a href="{{route('admins.admins')}}" class="pull-right">{{ $admins }}</a>
+      <a href="{{route('admins.admins')}}" class="pull-right" id="action-icons">{{ $admins }}</a>
     </div>
 
     <div class="col-xs-6 col-sm-2 placeholder">
       <h4>Visits</h4>
       <span class="glyphicon glyphicon-home"></span>
-      <a href="{{route('admins.visits')}}" class="pull-right">{{ $visits }}</a>
+      <a href="{{route('admins.visits')}}" class="pull-right" id="action-icons">{{ $visits }}</a>
     </div>
 
     <div class="col-xs-6 col-sm-2 placeholder">
       <h4>Log entries</h4>
       <span class="glyphicon glyphicon-list-alt"></span>
-      <a href="{{route('admins.log')}}" class="pull-right">{{ $log }}</a>
+      <a href="{{route('admins.log')}}" class="pull-right" id="action-icons">{{ $log }}</a>
     </div>
 
     <div class="col-xs-6 col-sm-2 placeholder">
@@ -53,8 +53,8 @@
       <table class="table" id="dashboard-status">
         @foreach ($statuses as $status)
           <tr>
-            <td>{{ $status->firstname }} {{ $status->lastname }}</td>
-            <td>{{ $status->company }}</td>
+            <td><div class="pull-left">{{ $status->firstname }} {{ $status->lastname }}</div></td>
+            <td><div class="pull-left" id="td-guest">{{ $status->company }}</div></td>
           </tr>
         @endforeach
       </table>

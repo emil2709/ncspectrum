@@ -38,17 +38,17 @@
               <td> {{ $employee->company }}</td>
               <td>
                 <a href="{{ URL::route('admins.editEmployee', [$employee->id]) }}" title="Edit">
-                  <span class="glyphicon glyphicon-edit"></span>
+                  <span class="glyphicon glyphicon-edit" id="action-icons"></span>
                 </a>
               </td>
               <td>
                 <a href="{{ URL::route('admins.employeevisits', [$employee->id]) }}" title="Employee Visits">
-                  <span class="glyphicon glyphicon-th-list"></span>
+                  <span class="glyphicon glyphicon-th-list" id="action-icons"></span>
                 </a>              
               </td>
               <td>
                 <a href="{{ URL::route('admins.deleteEmployee', [$employee->id]) }}" title="Delete">
-                  <span class="glyphicon glyphicon-trash"></span>
+                  <span class="glyphicon glyphicon-trash" id="action-icons"></span>
                 </a>
               </td>
             </tr>
