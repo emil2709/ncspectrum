@@ -7,9 +7,10 @@
 	<div class="col-md-10 col-md-offset-1">
 
 		@if(session('status'))
-			<div class="alert alert-success alert-margin-top" role="alert">
-				<strong>Success! </strong> <br/> {{ session('status') }}
-			</div>
+			<div class="alert alert-success text-center" role="alert">
+		        <h3>Success!</h3>
+		        {{ session('status') }}	        
+    		</div>
 		@endif
 
 		{!! Form::open(['url' => 'password/email', 'method' => 'POST', 'class' => 'well form-horizontal margin-top', 
