@@ -1,6 +1,6 @@
 @extends('main_user')
 
-@section('title', '| Admin Login')
+@section('title', '| Administrator Login')
 
 @section('content')
 	
@@ -9,7 +9,7 @@
 			
 			<fieldset>
 				
-				<legend class="text-center">ADMIN LOGIN</legend>
+				<legend class="text-center">ADMINISTRATOR LOGIN</legend>
 
 				<div class="form-group">
 					<div class="col-md-2 col-md-offset-1 control-label">

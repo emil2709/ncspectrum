@@ -175,11 +175,9 @@ function startup()
  *
  * This function enables and disables the checkin button.
  * Whenever this function is called it will check the length of the inlist
- * in order to see how many are checked in. 
- * If the inlist is empty it will disable the checkin button, 
- * If the inlist is not empty, it will enable the checkin button.
- * In the end, if the inlist is empty or the inlist length and the length of the users array is different
- * listsync() will be called.
+ * and the temporary visitors array in order to see how many are actually checked in. 
+ * If the inlist and temporary array is empty it will disable the checkin button, 
+ * If the inlist and temporary array is not empty, it will enable the checkin button.
  */
 function checkinCheck()
 {

@@ -271,12 +271,15 @@ class AdminController extends Controller
 
         // Matches up with the visitors array to only show the ones that has checked in AND
         // created or is in, a visit.
-        for($i = 0; $i < count($users); $i++)
+        if($visitors != null)
         {
-            if(in_array($users[$i]->id, $visitors))
+            for($i = 0; $i < count($users); $i++)
             {
-                array_push($invisit, $users[$i]);
-            } 
+                if(in_array($users[$i]->id, $visitors))
+                {
+                    array_push($invisit, $users[$i]);
+                } 
+            }
         }
 
         return view ('admins.status')->withUsers($invisit);
@@ -1052,7 +1055,7 @@ class AdminController extends Controller
                 else
                 {
                     // No more values, returns the default result.
-                    $admins = Admin::orderBy('firstname')->where('id', '!=', 1)->get();
+                    $admins = Admin::orderBy('id', 'desc')->where('id', '!=', 1)->get();
                 }
 
                 // Creates the output thats to be displayed in the view.
@@ -1098,7 +1101,7 @@ class AdminController extends Controller
                 else
                 {
                     // No more values, returns the default result.
-                    $guests = User::orderBy('firstname')->where('company','not like','NC-Spectrum')->get();
+                    $guests = User::orderBy('id', 'desc')->where('company','not like','NC-Spectrum')->get();
                 }
 
                 // Creates the output thats to be displayed in the view.
@@ -1145,7 +1148,7 @@ class AdminController extends Controller
                 else
                 {
                     // No more values, returns the default result.
-                    $employees = User::orderBy('firstname')->where('company','like','NC-Spectrum')->get();
+                    $employees = User::orderBy('id', 'desc')->where('company','like','NC-Spectrum')->get();
                 }
 
                 // Creates the output thats to be displayed in the view.
