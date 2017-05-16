@@ -10,7 +10,7 @@
 			<img src="/uploads/avatars/{{$admin->avatar}}" id="profile-avatar"/>
 			<h2>{{$admin->firstname}} {{$admin->lastname}}</h2>
 			<p>{{$admin->email}}</p>
-			{{Form::button('Upload Avatar', ['data-toggle' => 'collapse', 'data-target' => '#updateAvatar', 
+			{{Form::button('Upload Profile Picture', ['data-toggle' => 'collapse', 'data-target' => '#updateAvatar', 
 				'class' => 'btn btn-sm btn-default', 'id' => 'updateAvatarToggle'])}}
 
 			<div class="collapse"  id="updateAvatar">

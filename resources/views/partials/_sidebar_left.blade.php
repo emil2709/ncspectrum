@@ -2,7 +2,7 @@
 
 <div class="nav-side-menu">
 <div id="profile-avatar-row-side">
-      <img src="/uploads/avatars/{{ Auth::user()->avatar }}" id="profile-avatar-side"/>
+      <a href='{{ route('admins.showProfile') }}'><img src="/uploads/avatars/{{ Auth::user()->avatar }}" id="profile-avatar-side"/></a>
     </div>
 
 <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
