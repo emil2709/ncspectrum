@@ -18,7 +18,7 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 						{{ Form::text('firstname', null, ['class' => 'form-control', 'placeholder' => 'Enter First Name here ...',
-							'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå \-]{2,30}$"']) }}
+							'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-Za-z \-]{2,30}$"']) }}
 					</div>
 					<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				</div>
@@ -33,7 +33,7 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 						{{ Form::text('lastname', null, ['class' => 'form-control', 'placeholder' => 'Enter Last Name here ...',
-							'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-ZÆØÅa-zæøå \-]{2,30}$"']) }}
+							'required', 'minlength="2"', 'maxlength="30"', 'pattern="^[A-Za-z \-]{2,30}$"']) }}
 					</div>
 					<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				</div>
@@ -63,7 +63,7 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 						{{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter E-Mail Address here ...',
-							'required', 'pattern="^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$"']) }}
+							'required', 'pattern="^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"']) }}
 					</div>
 					<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				</div>

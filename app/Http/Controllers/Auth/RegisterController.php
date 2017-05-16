@@ -49,10 +49,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
-            'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
-            'email' => 'required|unique:admins|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/',
-            'password' => 'required|min:6|max:60|regex:/^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$/|confirmed',
+            'firstname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
+            'lastname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
+            'email' => 'required|unique:admins|regex:/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/',
+            'password' => 'required|min:6|max:60|regex:/^[A-Za-z0-9 \-._]{6,60}$/|confirmed',
         ]);
     }
 
