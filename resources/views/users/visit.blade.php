@@ -8,8 +8,8 @@
 		{!! Form::open(['route' => 'users.storeVisit', 'class' => 'well form-horizontal margin-top', 
 			'data-toggle' => 'validator']) !!}
 			
-		<!--<div class="logoScheme">
-			<a href='{{ route('users.index') }}'><img src="{{URL::asset('/images/logo.png')}}"></a>-->
+		<div class="logoScheme">
+			<a href='{{ route('users.index') }}'><img src="{{URL::asset('/images/logo.png')}}"></a>
 			
 			<fieldset>
 				
