@@ -6,9 +6,11 @@
 
 .node {
     background-image: url("/images/noder.png");
-    background-size: 900px 600px;
+    background-size: 900px 594px;
     background-repeat: no-repeat;
-    background-position: right bottom;
+    background-position: 72% 84%;
+    background-attachment: fixed;
+    /*background-position: right bottom;*/
 }
 
 .nodeCreate {
