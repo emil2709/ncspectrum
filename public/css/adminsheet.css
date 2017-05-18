@@ -221,6 +221,10 @@ caption {
   padding: 20px;
 }
 
+.main-margin {
+  margin-left: 220px;
+}
+
 @media (min-width: 768px) {
   .main {
     padding-right: 40px;
@@ -254,6 +258,10 @@ caption {
 
 .sortable-header {
   cursor: pointer;
+}
+
+.footer-margin {
+  padding-left: 250px;
 }
 
 footer hr {
