@@ -1,4 +1,4 @@
-<p align="right"><img src="public/images/hioa-logo.jpg" height="20%" width="20%"></p>
+<p align="left"><img src="public/images/hioa-logo.jpg" height="20%" width="20%"></p>
 
 
 ## About the Project
