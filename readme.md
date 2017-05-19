@@ -2,7 +2,8 @@
 
 
 ## About the Project
-
+This is a bachelorproject and developed by students attending [Høgskolen i Oslo og Akershus](http://www.hioa.no/) in cooperation with [NC-Spectrum](https://www.nc-spectrum.no/).
+The aim for this project was to develope a web solution prototype of a visitor management software for our employer.
 
 ## Installing the Project
 Before running this project there are some installations that needs to be done. 
@@ -18,11 +19,11 @@ However, in order to run our project optimally and to see the projects full pote
 
 ## Running the Project
 To run the project you need to use the terminal on Mac or Command line on Windows.
-1. [Change the path to the project and the following code to run the project on a local server].(https://laravel.com/docs/5.4) 
+1. [Change the path to the project and the following code to run the project on a local server](https://laravel.com/docs/5.4).
 ```
 php artisan serve
 ```
-2. [In order to enable the database, you first need to connect the project to your database].(https://laravel.com/docs/5.4/database)
+2. [In order to enable the database, you first need to connect the project to your database](https://laravel.com/docs/5.4/database).
 3. In order to generate data you need to migrate our tables into the database and seed them. 
 ```
 php artisan migrate:refresh --seed
@@ -31,8 +32,6 @@ Now you can hopefully run the project as it is supposed to be ran.
 
 
 ## Developers
-This is a bachelorproject and developed by students attending [Høgskolen i Oslo og Akershus](http://www.hioa.no/).
-
 - Erik Li
 - Joakim Møller
 - Andreas Stensrud
