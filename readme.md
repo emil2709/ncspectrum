@@ -1,5 +1,6 @@
 <p align="center"><img src="public/images/logo.png" height="90%" width="75%"></p>
 
+
 ## About the Project
 
 
@@ -15,13 +16,19 @@ However, in order to run our project optimally and to see the projects full pote
 4. Installing [Bootstrap Validation](https://github.com/1000hz/bootstrap-validator), for proper input validation.
 
 ## Running the Project
-To run the porject you need to use the terminal on Mac or Commandline on Windows and execute the following lines of code.
-1. 
-```
-edededd
-```
+To run the project you need to use the terminal on Mac or Command line on Windows.
 
+- [Change the path to the project and the following code to run the project on a local server.](https://laravel.com/docs/5.4) 
+```
+php artisan serve
+```
+- [In order to enable the database, you first need to connect the project to your database.](https://laravel.com/docs/5.4/database)
+- In order to generate data you need to migrate the tables into database and seed the them. 
+```
+php artisan migrate:refresh 
+```
+## Developers
+This is a bachelorproject and developed by students attending [Høgskolen i Oslo og Akershus](http://www.hioa.no/)
 
 ## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+All rights reserved to our school, [Høgskolen i Oslo og Akershus](http://www.hioa.no/), and our bachelorproject employer, [NC-Spectrum](https://www.nc-spectrum.no/).
