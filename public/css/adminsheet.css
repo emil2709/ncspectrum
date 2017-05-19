@@ -313,8 +313,8 @@ footer hr {
 }
 
 #profile-icons:hover {
-   color: #55c43b;
-   text-decoration: none;
+  color: #55c43b;
+  text-decoration: none;
 }
 
 #action-icons {
@@ -352,11 +352,6 @@ footer hr {
   cursor: pointer;
 }
 
-#expansion-icon:hover {
-  color: #55c43b;
-  cursor: pointer;
-}
-
 #col-sm {
   width: 300px;
 }
@@ -364,4 +359,3 @@ footer hr {
 #td-guest {
   padding-left: 10px;
 }
-
