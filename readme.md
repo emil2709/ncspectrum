@@ -5,7 +5,6 @@
 
 
 ## Installing the Project
-
 Before running this project there are some installations that needs to be done. 
 1. Installing [Composer](https://getcomposer.org/doc/00-intro.md), a tool for dependency management in PHP.
 2. Installing [Laravel](https://laravel.com/docs/5.4/installation), the PHP framework we are using.
@@ -17,7 +16,6 @@ However, in order to run our project optimally and to see the projects full pote
 
 
 ## Running the Project
-
 To run the project you need to use the terminal on Mac or Command line on Windows.
 - [Change the path to the project and the following code to run the project on a local server].(https://laravel.com/docs/5.4) 
 ```
@@ -31,10 +29,8 @@ php artisan migrate:refresh --seed
 
 
 ## Developers
-
 This is a bachelorproject and developed by students attending [Høgskolen i Oslo og Akershus](http://www.hioa.no/).
 
 
 ## License
-
 All rights reserved to our school, [Høgskolen i Oslo og Akershus](http://www.hioa.no/), and our bachelorproject employer, [NC-Spectrum](https://www.nc-spectrum.no/).
