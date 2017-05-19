@@ -40,3 +40,8 @@ Now you can hopefully run the project as it is supposed to be ran.
 
 ## License
 All rights reserved to our school, [Høgskolen i Oslo og Akershus](http://www.hioa.no/), and our bachelorproject employer, [NC-Spectrum](https://www.nc-spectrum.no/).
+
+<p align="center">
+  <img src="public/images/logo.png" height="50%" width="50%">
+  <img src="public/images/hioa-logo.jpg" height="50%" width="50%">
+</p>
