@@ -20,7 +20,7 @@ However, in order to run our project optimally and to see the projects full pote
 
 ## Running the Project
 To run the project you need to use the terminal on Mac or Command line on Windows.
-1. [Change the path to the project and the following code to run the project on a local server](https://laravel.com/docs/5.4).
+1. [Change the path to the project folder and apply the following code to run the project on a local server](https://laravel.com/docs/5.4).
 ```
 php artisan serve
 ```
