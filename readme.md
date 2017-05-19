@@ -43,5 +43,5 @@ All rights reserved to our school, [Høgskolen i Oslo og Akershus](http://www.hi
 
 <p align="center">
   <img src="public/images/logo.png" height="50%" width="50%">
-  <span style="background:red;"><img src="public/images/hioa-logo.jpg" height="25%" width="25%"></span>
+  <img src="public/images/hioa-logo.jpg" height="40%" width="40%">
 </p>
