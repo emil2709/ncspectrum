@@ -29,7 +29,7 @@ php artisan serve
 ```
 php artisan migrate:refresh --seed
 ```
-Now you can hopefully run the project as it is supposed to be ran.
+Now you can hopefully run the project as it is supposed to be run.
 
 
 ## Developers
