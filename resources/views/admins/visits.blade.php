@@ -27,7 +27,7 @@
             <td>
               <span class="faint-placeholder"><i>(View All Attending Guests)</i></span>
               <a class="pull-right guest-expansion-btn" title="View Guests">
-                <span class="glyphicon glyphicon-menu-hamburger" id="visit-icon"></span>
+                <span class="glyphicon glyphicon-menu-hamburger" id="expansion-icon"></span>
               </a>
               <div class="guest-expansion">
                 @foreach($visitguests[$visit->id] as $guests)

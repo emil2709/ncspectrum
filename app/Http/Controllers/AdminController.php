@@ -1068,15 +1068,15 @@ class AdminController extends Controller
                             '<td>'.$admin->email.'</td>'.
                             '<td>'.
                                 '<a href="admin/'.$admin->id.'/edit" title="Edit">'.
-                                '<span class="glyphicon glyphicon-edit"></span></a>'.
+                                '<span class="glyphicon glyphicon-edit" id="action-icons"></span></a>'.
                             '</td>'.
                             '<td>'.
                                 '<a href="admin/'.$admin->id.'/edit" title="Edit Password">'.
-                                '<span class="glyphicon glyphicon-lock"></span></a>'.
+                                '<span class="glyphicon glyphicon-lock" id="action-icons"></span></a>'.
                             '</td>'.
                             '<td>'.
                                 '<a href="admin/'.$admin->id.'/delete" title="Delete">'.
-                                '<span class="glyphicon glyphicon-trash"></span></a>'.
+                                '<span class="glyphicon glyphicon-trash" id="action-icons"></span></a>'.
                             '</td>'.
                         '</tr>';
                 }
@@ -1116,15 +1116,15 @@ class AdminController extends Controller
                             '<td>'.$guest->company.'</td>'.
                             '<td>'.
                                 '<a href="/admin/guest/'.$guest->id.'/edit" title="Edit">'.
-                                '<span class="glyphicon glyphicon-edit"></span></a>'.
+                                '<span class="glyphicon glyphicon-edit" id="action-icons"></span></a>'.
                             '</td>'.
                             '<td>'.
                                 '<a href="/admin/guest/'.$guest->id.'/visits" title="Guest Visits">'.
-                                '<span class="glyphicon glyphicon-th-list"></span></a>'.
+                                '<span class="glyphicon glyphicon-th-list" id="action-icons"></span></a>'.
                             '</td>'.
                             '<td>'.
                                 '<a href="/admin/guest/'.$guest->id.'/delete" title="Delete">'.
-                                '<span class="glyphicon glyphicon-trash"></span></a>'.
+                                '<span class="glyphicon glyphicon-trash" id="action-icons"></span></a>'.
                             '</td>'.
                         '</tr>';
                 }
@@ -1163,15 +1163,15 @@ class AdminController extends Controller
                                 '<td>'.$employee->company.'</td>'.
                                 '<td>'.
                                     '<a href="/admin/employee/'.$employee->id.'/edit" title="Edit">'.
-                                    '<span class="glyphicon glyphicon-edit"></span></a>'.
+                                    '<span class="glyphicon glyphicon-edit" id="action-icons"></span></a>'.
                                 '</td>'.
                                 '<td>'.
                                     '<a href="/admin/employee/'.$employee->id.'/visits" title="Employee Visits">'.
-                                    '<span class="glyphicon glyphicon-th-list"></span></a>'.
+                                    '<span class="glyphicon glyphicon-th-list" id="action-icons"></span></a>'.
                                 '</td>'.
                                 '<td>'.
                                     '<a href="/admin/employee/'.$employee->id.'/delete" title="Delete">'.
-                                    '<span class="glyphicon glyphicon-trash"></span></a>'.
+                                    '<span class="glyphicon glyphicon-trash" id="action-icons"></span></a>'.
                                 '</td>'.
                             '</tr>';
                 }
