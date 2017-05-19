@@ -1,4 +1,4 @@
-<p align="center"><img src="public/images/logo.png"></p>
+<p align="center"><img src="public/images/logo.png" height="90%" width="75%"></p>
 
 ## About
 
