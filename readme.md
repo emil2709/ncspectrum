@@ -1,4 +1,4 @@
-<p align="center"><img src="public/images/logo.png" height="90%" width="75%"></p>
+<p align="center"><img src="public/images/logo.png" height="80%" width="60%"></p>
 
 
 ## About the Project
@@ -43,5 +43,5 @@ All rights reserved to our school, [Høgskolen i Oslo og Akershus](http://www.hi
 
 <p align="center">
   <img src="public/images/logo.png" height="50%" width="50%">
-  <img src="public/images/hioa-logo.jpg" height="50%" width="50%">
+  <img src="public/images/hioa-logo.jpg" height="75%" width="50%">
 </p>
