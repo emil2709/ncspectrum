@@ -1,15 +1,14 @@
 <p align="center"><img src="public/images/logo.png" height="90%" width="75%"></p>
 
-## About
+## About the Project
 
 
-## Installing
+## Installing the Project
+Before running this web solution there are some installations that needs to be done. 
+1. Installing Composer and Laravel.
+- dedededed
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Running
+## Running the Project
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
