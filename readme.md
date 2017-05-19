@@ -2,7 +2,7 @@
 
 
 ## About the Project
-This is a bachelorproject and developed by students attending [Høgskolen i Oslo og Akershus](http://www.hioa.no/) in cooperation with [NC-Spectrum](https://www.nc-spectrum.no/).
+This is a bachelorproject and developed by a group of students attending [Høgskolen i Oslo og Akershus](http://www.hioa.no/) in cooperation with [NC-Spectrum](https://www.nc-spectrum.no/).
 The aim for this project was to develope a web solution prototype of a visitor management software for our employer.
 
 
