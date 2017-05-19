@@ -6,7 +6,7 @@
 ## Installing the Project
 Before running this web solution there are some installations that needs to be done. 
 1. Installing Composer and Laravel.
-- dedededed
+  - dedededed
 
 ## Running the Project
 
