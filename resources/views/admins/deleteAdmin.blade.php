@@ -43,7 +43,7 @@
 									<div class="input-group">
 										<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 										{{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'System Administrator Password ...', 'required', 'minlength="6"', 'maxlength="60"', 
-											'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
+											'pattern="^[A-Za-z0-9 \-._]{6,60}$"']) }}
 									</div>
 								</div>
 							</div>

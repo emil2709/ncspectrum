@@ -22,11 +22,11 @@
 						@if(Auth::user()->id == 1)
 							{{ Form::password('currentPassword', 
 								['class' => 'form-control', 'placeholder' => 'System Administrator Password ...',
-								'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
+								'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-Za-z0-9 \-._]{6,60}$"']) }}
 						@else
 							{{ Form::password('currentPassword', 
 								['class' => 'form-control', 'placeholder' => 'Current Password ...',
-								'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
+								'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-Za-z0-9 \-._]{6,60}$"']) }}
 						@endif
 					</div>
 					<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -43,7 +43,7 @@
 						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 						{{ Form::password('password', ['class' => 'form-control', 'id' => 'password',
 							'placeholder' => 'New Password ...', 'required', 'minlength="6"', 'maxlength="60"', 
-							'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
+							'pattern="^[A-Za-z0-9 \-._]{6,60}$"']) }}
 					</div>
 					<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				</div>
@@ -59,7 +59,7 @@
 						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 						{{ Form::password('password_confirmation', ['class' => 'form-control', 'data-match' => '#password',
 							'data-match-error' =>'The passwords does not match.', 'placeholder' => 'Confirm Password ...',
-							'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
+							'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-Za-z0-9 \-._]{6,60}$"']) }}
 					</div>
 					<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 				</div>

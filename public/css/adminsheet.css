@@ -327,11 +327,6 @@ footer hr {
   text-decoration: none;
 }
 
-#visit-icon>.active>span {
-  color: #55c43b;
-  text-decoration: none;
-}
-
 #checkedin {
   color: #55c43b;
   font-size: 15px;
@@ -348,8 +343,13 @@ footer hr {
 }
 
 #expansion-icon {
-  cursor: pointer;
   color: #00adef;
+  cursor: pointer;
+}
+
+#expansion-icon:hover {
+  color: #55c43b;
+  cursor: pointer;
 }
 
 #expansion-icon:hover {

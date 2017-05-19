@@ -1,6 +1,6 @@
 @extends('main_admin')
 
-@section('title', 'Profile')
+@section('title', '| Profile')
 
 @section('content')
 
@@ -28,7 +28,6 @@
 		<div class="row margin-top">
 			<hr/>
 			<h2 class="text-center">Settings</h2>
-			<!--<div class="margin-top text-center">-->
 			<div class="col-md-6 margin-top">
 				<div class="col-md-12 text-center">
 					<h4 class="text-center">Edit Personalia</h4>
@@ -37,7 +36,6 @@
 					</a>
 				</div>	
 			</div>
-			<!--<div class="margin-top text-center">-->
 			<div class="col-md-6 margin-top">
 				<div class="col-md-12 text-center">
 				<h4 class="text-center">Edit Password</h4>

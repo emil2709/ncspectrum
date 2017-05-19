@@ -26,7 +26,7 @@
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 							{{ Form::email('email', null, ['class' => 'form-control', 
 								'placeholder' => 'Enter Email Address here ...',
-								'required', 'pattern="^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$"']) }}
+								'required', 'pattern="^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"']) }}
 						</div>
 					</div>
 				</div>

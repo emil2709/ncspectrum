@@ -441,11 +441,11 @@ class AdminController extends Controller
         // Backend validation rules. 
         // Data sent from the view is in the $request variable.
         $this->validate($request, [
-                'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
-                'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
+                'firstname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
+                'lastname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
                 'phone' => 'required|unique:users|min:8|max:8|regex:/^[0-9]{8}$/',
-                'email' => 'required|unique:users|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/',
-                'company' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$/'
+                'email' => 'required|unique:users|regex:/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/',
+                'company' => 'required|min:2|max:30|regex:/^[A-Za-z0-9 \-.]{2,30}$/'
             ]);
 
         // Validates if the company name is similar to 'NC-Spectrum'.
@@ -491,10 +491,10 @@ class AdminController extends Controller
         // Backend validation rules. 
         // Data sent from the view is in the $request variable.
         $this->validate($request, [
-                'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
-                'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
+                'firstname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
+                'lastname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
                 'phone' => 'required|unique:users|min:8|max:8|regex:/^[0-9]{8}$/',
-                'email' => 'required|unique:users|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/'
+                'email' => 'required|unique:users|regex:/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/'
             ]);
 
         // Stores and saves the registered data into the database.
@@ -528,11 +528,11 @@ class AdminController extends Controller
         // Data sent from the view is in the $request variable.
         $this->validate($request, [
                 'firstname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
-                'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
+                'lastname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
                 'phone' => 'required|unique:users,phone,'.$id.'|min:8|max:8|regex:/^[0-9]{8}$/',
                 'email' => 'required|unique:users,email,'.$id.
-                    '|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/',
-                'company' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå0-9 \-.]{2,30}$/'
+                    '|regex:/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/',
+                'company' => 'required|min:2|max:30|regex:/^[A-Za-z0-9 \-.]{2,30}$/'
             ]);
 
         // Validates if the company name is similar to 'NC-Spectrum'.
@@ -574,11 +574,11 @@ class AdminController extends Controller
         // Backend validation rules. 
         // Data sent from the view is in the $request variable.
         $this->validate($request, [
-                'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
-                'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
+                'firstname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
+                'lastname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
                 'phone' => 'required|unique:users,phone,'.$id.'|min:8|max:8|regex:/^[0-9]{8}$/',
                 'email' => 'required|unique:users,email,'.$id.
-                    '|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/'
+                    '|regex:/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/'
             ]);
 
         // Finds and updates the employee-object with the new values.
@@ -615,10 +615,10 @@ class AdminController extends Controller
         // Backend validation rules. 
         // Data sent from the view is in the $request variable.
         $this->validate($request, [
-                'firstname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
-                'lastname' => 'required|min:2|max:30|regex:/^[A-ZÆØÅa-zæøå \-]{2,30}$/',
+                'firstname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
+                'lastname' => 'required|min:2|max:30|regex:/^[A-Za-z \-]{2,30}$/',
                 'email' => 'required|unique:admins,email,'.$id.
-                    '|regex:/^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$/'
+                    '|regex:/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/'
             ]);
 
         // Finds and updates the administrator-object with the new values.
@@ -668,9 +668,9 @@ class AdminController extends Controller
         // Backend validation rules. 
         // Data sent from the view is in the $request variable.
         $this->validate($request, [
-                'currentPassword' => 'required|min:6|max:60|regex:/^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$/',
-                'password' => 'required|min:6|max:60|regex:/^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$/|confirmed',
-                'password_confirmation' => 'required|min:6|max:60|regex:/^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$/',
+                'currentPassword' => 'required|min:6|max:60|regex:/^[A-Za-z0-9 \-._]{6,60}$/',
+                'password' => 'required|min:6|max:60|regex:/^[A-Za-z0-9 \-._]{6,60}$/|confirmed',
+                'password_confirmation' => 'required|min:6|max:60|regex:/^[A-Za-z0-9 \-._]{6,60}$/',
             ]);
 
         // Eloquent Model Admin, accesses the 'admins' table.
@@ -812,7 +812,7 @@ class AdminController extends Controller
         // Backend validation rules. 
         // Data sent from the view is in the $request variable.
         $this->validate($request, [
-                'password' => 'required|min:6|max:60|regex:/^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$/',
+                'password' => 'required|min:6|max:60|regex:/^[A-Za-z0-9 \-._]{6,60}$/',
             ]);
 
         // Eloquent Model Admin, accesses the 'admins' table.

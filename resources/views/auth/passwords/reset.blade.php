@@ -23,7 +23,7 @@
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 							{{ Form::email('email', null, ['class' => 'form-control', 
 								'placeholder' => 'Enter Email Address here ...',
-								'required', 'pattern="^[A-ZÆØÅa-zæøå0-9._-]+@[A-ZÆØÅa-zæøå0-9.-]+\.[A-ZÆØÅa-zæøå]{2,}$"']) }}
+								'required', 'pattern="^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"']) }}
 						</div>
 					</div>
 				</div>
@@ -37,7 +37,7 @@
 							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 							{{ Form::password('password', ['class' => 'form-control', 'id' => 'password',
 								'placeholder' => 'Enter New Password here ...',
-								'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
+								'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-Za-z0-9 \-._]{6,60}$"']) }}
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
@@ -54,7 +54,7 @@
 							{{ Form::password('password_confirmation', ['class' => 'form-control', 
 								'placeholder' => 'Confirm Password here ...',
 								'data-match' => '#password', 'data-match-error' =>'The passwords does not match.', 
-								'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-ZÆØÅa-zæøå0-9 \-._]{6,60}$"']) }}
+								'required', 'minlength="6"', 'maxlength="60"', 'pattern="^[A-Za-z0-9 \-._]{6,60}$"']) }}
 						</div>
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 					</div>
