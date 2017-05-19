@@ -3,7 +3,7 @@
 @section('title', '| Home')
 
 @section('content')
-	<div class="row node">
+	<div class="row" id="node">
 		<div class="col-md-12" id="mainlogin">
 			<div class='col-md-2 pull-right'>
 				<a href='{{ route('users.create') }}' class='btn btn-primary btn-block'>CREATE NEW USER</a>

@@ -4,11 +4,12 @@
  * This sheet is for CSS that is used specifically on User/Guest pages.
  */
 
-.node {
+#node {
     background-image: url("/images/noder.png");
     background-size: 900px 594px;
     background-repeat: no-repeat;
     background-position: 72% 84%;
+    /*background-position: 440px 120px;*/
     background-attachment: fixed;
 }
 
