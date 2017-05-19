@@ -5,6 +5,7 @@
 This is a bachelorproject and developed by students attending [Høgskolen i Oslo og Akershus](http://www.hioa.no/) in cooperation with [NC-Spectrum](https://www.nc-spectrum.no/).
 The aim for this project was to develope a web solution prototype of a visitor management software for our employer.
 
+
 ## Installing the Project
 Before running this project there are some installations that needs to be done. 
 1. Installing [Composer](https://getcomposer.org/doc/00-intro.md), a tool for dependency management in PHP.
@@ -42,6 +43,6 @@ Now you can hopefully run the project as it is supposed to be ran.
 All rights reserved to our school, [Høgskolen i Oslo og Akershus](http://www.hioa.no/), and our bachelorproject employer, [NC-Spectrum](https://www.nc-spectrum.no/).
 
 <p align="center">
-  <img src="public/images/hioa-logo.jpg" height="30%" width="30%">
+  <img src="public/images/hioa-logo.jpg" height="20%" width="20%">
   <img src="public/images/logo.png" height="50%" width="50%">
 </p>
