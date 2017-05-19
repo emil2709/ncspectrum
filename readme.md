@@ -1,4 +1,4 @@
-<p align="center"><img src="public/images/logo.png" height="80%" width="60%"></p>
+<p align="left"><img src="public/images/hioa-logo.jpg" height="10%" width="10%"></p>
 
 
 ## About the Project
@@ -42,7 +42,4 @@ Now you can hopefully run the project as it is supposed to be ran.
 ## License
 All rights reserved to our school, [Høgskolen i Oslo og Akershus](http://www.hioa.no/), and our bachelorproject employer, [NC-Spectrum](https://www.nc-spectrum.no/).
 
-<p align="center">
-  <img src="public/images/hioa-logo.jpg" height="10%" width="10%">
-  <img src="public/images/logo.png" height="50%" width="50%">
-</p>
+<p align="center"><img src="public/images/logo.png" height="50%" width="50%"></p>
