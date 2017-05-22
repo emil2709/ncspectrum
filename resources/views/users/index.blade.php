@@ -6,7 +6,7 @@
 	<div class="row node">
 		<div class="col-md-12" id="mainlogin">
 			<div class='col-md-2 pull-right'>
-				<a href='{{ route('users.create') }}' class='btn btn-primary btn-block'>CREATE NEW USER</a>
+				<a href='{{ route('users.create') }}' class='btn btn-primary btn-block'>CREATE USER</a>
 			</div>
 
 			<div class='col-md-2 pull-left'>
