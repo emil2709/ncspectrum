@@ -47,7 +47,7 @@
         
         @if(Auth::user()->id == 1)
         <li class="{{ Request::segment(2) === 'register' ? 'active' : null }}">
-          <a href="{{ route('register') }}"><i class="glyphicon glyphicon-chevron-right"></i>Admin</a>
+          <a href="{{ route('register') }}"><i class="glyphicon glyphicon-chevron-right"></i>Administrator</a>
         </li>
         @endif
       </ul>
