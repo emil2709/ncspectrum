@@ -51,10 +51,10 @@
     <div class="col-md-5 col-sm-3 text-center" style="border:thin">
       <caption class="text-center"><h4>Checked-In Guests</h4></caption>
       <table class="table" id="dashboard-status">
-        @foreach ($statuses as $status)
+        @foreach ($invisit as $visitor)
           <tr>
-            <td><div class="pull-left">{{ $status->firstname }} {{ $status->lastname }}</div></td>
-            <td><div class="pull-left" id="td-guest">{{ $status->company }}</div></td>
+            <td><div class="pull-left">{{ $visitor->firstname }} {{ $visitor->lastname }}</div></td>
+            <td><div class="pull-left" id="td-guest">{{ $visitor->company }}</div></td>
           </tr>
         @endforeach
       </table>

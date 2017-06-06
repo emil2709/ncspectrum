@@ -54,6 +54,9 @@ class AdminController extends Controller
      */
     public function showDashboard()
     {
+        $visitors = session()->get('visitors');
+        $invisit = array();
+
         $guests = User::where('company', '!=', 'NC-spectrum')->count();
         $employees = User::where('company', '=', 'NC-spectrum')->count();
         $admins = Admin::count();
@@ -66,7 +69,20 @@ class AdminController extends Controller
             ->get();
         $latestVisit = session()->get('latestVisit');
 
-        return view('admins.dashboard', compact('guests', 'employees', 'admins', 'visits', 'statuses', 'log', 'latestVisit'));
+        // Matches up with the visitors array to only show the ones that has checked in AND
+        // created or is in, a visit.
+        if($visitors != null)
+        {
+            for($i = 0; $i < count($statuses); $i++)
+            {
+                if(in_array($statuses[$i]->id, $visitors))
+                {
+                    array_push($invisit, $statuses[$i]);
+                } 
+            }
+        }
+
+        return view('admins.dashboard', compact('guests', 'employees', 'admins', 'visits', 'invisit', 'log', 'latestVisit'));
     }
 
     /**
